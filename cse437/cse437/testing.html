@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSE437</title>
+	<style type= "text/css">
+		body{
+			background: #25383C;
+			text-align: center;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+<h1> Welcome To CSE437!</h1>
+
+<script>
+
+//logout button
+	var logout= document.createElement('button');
+	logout.type= "button";
+	logout.id= "logout_btn";
+	logout.value= "log out";
+	logout.innerHTML= "log out";
+
+
+//registeration FORM
+	var reg_form= document.createElement('div');
+
+	//INPUT TEXT
+	var n_label= document.createElement('label');
+	n_label.innerHTML= "username: ";
+	var n= document.createElement('input');
+	n.type= "text";
+	n.id= "Rusername";
+
+	var pass_label= document.createElement('label');
+	pass_label.innerHTML= "password: ";
+	var pass= document.createElement("input");
+	pass.type= "password";
+	pass.id= "Rpassword";
+
+	//register
+	var reg= document.createElement("input");
+	reg.type= "button";
+	reg.id= "register_btn";
+	reg.value= "Register";
+
+	reg_form.appendChild(n_label);
+	reg_form.appendChild(n);
+	reg_form.appendChild(document.createElement('br'));
+	reg_form.appendChild(pass_label);
+	reg_form.appendChild(pass);
+	reg_form.appendChild(document.createElement('br'));
+	reg_form.appendChild(reg);
+
+
+//login FORM
+	var log_form= document.createElement("div");
+
+	//INPUT TEXT
+	var n_label= document.createElement('label');
+	n_label.innerHTML= "username: ";
+	var n= document.createElement('input');
+	n.type= "text";
+	n.id= "Lusername";
+
+	var pass_label= document.createElement('label');
+	pass_label.innerHTML= "password: ";
+	var pass= document.createElement("input");
+	pass.type= "password";
+	pass.id= "Lpassword";
+
+	//login
+	var log_in = document.createElement("input");
+	log_in.id= "login_btn";
+	log_in.type= "button";
+	log_in.value= "log in";
+
+	log_form.appendChild(n_label);
+	log_form.appendChild(n);
+	log_form.appendChild(document.createElement("br"));
+	log_form.appendChild(pass_label);
+	log_form.appendChild(pass);
+	log_form.appendChild(document.createElement("br"));
+	log_form.appendChild(log_in);
+
+
+//body
+	document.getElementsByTagName('body')[0].appendChild(logout);
+	document.getElementsByTagName('body')[0].appendChild(reg_form);
+	document.getElementsByTagName('body')[0].appendChild(log_form);
+
+</script>
+<script type="text/javascript" src="ajax.js"></script> <!-- load the JavaScript file -->
+</body>
+
+</html>

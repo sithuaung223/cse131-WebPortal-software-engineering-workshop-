@@ -1,0 +1,21 @@
+/*
+	index.css
+
+
+*/
+
+
+
+#header{
+		background-color: #cc0000;
+		color: white; 
+
+}
+
+
+#body-container{
+		background-color: #f2f2f2;
+		color: black; 
+		height: 100%;
+
+}
