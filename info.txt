@@ -1,0 +1,12 @@
+info.txt
+
+files: 
+	testing.html :(home page to register, login and logout)
+	ajax.json	 :(using json to handle listening events and requests)
+	insert.php   :(register new user at the database)
+	select.php	 :(validate login user from the database)
+	database.php :(accessing database)
+	
+link: http://ec2-54-174-37-57.compute-1.amazonaws.com/~sithuaung/cse437/testing.html
+
+register, logout, login will show messages.
