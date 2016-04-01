@@ -4,7 +4,11 @@
     <title> Video for Modules</title>
     <style>
         .moduleNavigation button{
+<<<<<<< HEAD
             background-color: #4863A0;
+=======
+            background-color: #4CAF50;
+>>>>>>> 572898dc696e910705483668d0cebc9674783a37
             border: none;
             color: white;
             padding: 8px 32px;
@@ -14,6 +18,7 @@
             font-size: 16px;
         }
         .moduleNavigation button:hover{
+<<<<<<< HEAD
             background-color: #2B3856;
         }
         /*hightlight button*/
@@ -32,6 +37,22 @@
 <body>
 <div id='module'>
 
+=======
+            background-color: #437C17;
+        }
+        /*hightlight button*/
+        .moduleNavigation button:focus{
+            background-color: #437C17;
+        }
+        /*navigation bar*/
+        #moduleNavigation{
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+<div id='module'>
+>>>>>>> 572898dc696e910705483668d0cebc9674783a37
     <div class="moduleNavigation" id='moduleNavigation'>
         <button id='moduleVideo'> Video </button>
         <button id='moduleStudio'> Studio </button>
@@ -63,7 +84,10 @@ function clickOnModuleNavigation(){
     document.getElementById('moduleVideo').addEventListener('click', clickOnModuleNavigation, false);
     document.getElementById('moduleStudio').addEventListener('click', clickOnModuleNavigation, false);
     document.getElementById('moduleLab').addEventListener('click', clickOnModuleNavigation, false);
+<<<<<<< HEAD
     document.getElementById('moduleVideo').click();
+=======
+>>>>>>> 572898dc696e910705483668d0cebc9674783a37
     // var moduleNavigation= document.getElementById('moduleNavigation');
     // var moduleContent= document.getElementById('moduleContent');
 </script>
