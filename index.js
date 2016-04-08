@@ -49,7 +49,7 @@ function pop_modules(){
 	//alert("pop called");
 	
 	var mods = ['syllabus', 'calendar', 'modules'];
-	var links = ['placeholder.html', 'calendar/calendar_v1.html', 'module/module1.html']
+	var links = ['placeholder.html', 'calendar/calendar_v1.html', 'modules/module1/module1.html']
 	var mod_list = $("#mod-list");
 	for (var m = 0; m < mods.length; m++){
 		//console.log(m);
