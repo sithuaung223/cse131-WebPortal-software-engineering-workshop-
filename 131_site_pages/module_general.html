@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+<!-- nav bar -->
+<nav class="navbar">
+
+  
+  <div class="container-fluid" id = "nav-div">
+  	<!-- washu logo home -->
+  	<div class = "navbar-header" >
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+  	</div>
+
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="dashboard.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="Calendar_131.html">Calendar</a></li>
+        <li class="dropdown">
+          <a href="modules.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Welcome</a></li>
+            <li><a href="#">Intro, Types & Names</a></li>
+            <li><a href="#">Choice & Iteration</a></li>
+            <li><a href="#">Arrays</a></li>
+            <li><a href="#">Input & Output</a></li>
+            <li><a href="#">Methods</a></li>
+            <li><a href="#">Recursion</a></li>
+            <li><a href="#">Objects</a></li>
+            <li><a href="#">Abstract Data Types</a></li>
+            <li><a href="#">List Structure</a></li>
+            <li><a href="#">Game</a></li>
+            <!-- <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><p class= "navbar-text">Delia95</p></li>
+        
+        <li class= "navbar-text" id = "logout-button"><p class = "navbar-text"><a href = "#" class = "navbar-link">Logout</a></p></li>
+      </ul> -->
+
+      <p class = "navbar-text navbar-right"> Delia95 <a href = "modules.html" class = "navbar-link"> Logout </a></p>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+ 
+<style type="text/css">
+.circle{
+    border: 7px solid black;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+h1 {
+  font-size: 180%;
+  color: black;
+}
+.btn{
+  background-color: transparent;
+}
+
+.fa{
+  font-size: 350%;
+}
+
+.m{
+  font-size: 450%;
+}
+
+.black{
+  color: black;
+}
+
+.title_header{
+  text-align: center;
+}
+
+.mod{
+  font-size: 180%;
+  color: black;
+}
+
+.scroll{
+  overflow-y:scroll; 
+
+}
+
+.btn-default{
+  height: 148%;
+}
+
+.border{
+  border:  solid black;
+}
+
+.reminder{
+  font-size: 190%;
+}
+
+.r{
+  float: right;
+  text-align: left;
+}
+
+.red{
+  color: red;
+}
+
+.p{
+  text-align: center;
+}
+
+.h{
+  color: red;
+  font-size: 140%;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+</style>
+
+<div class = "btn btn-default title_header r">
+  <h1 class = "m red p"> Modules </h1>
+  <br></br>
+  <span class="fa fa-check-circle black" > Exercises</span>
+  <span class="fa fa-check-circle-o black" > Studio</span>
+  <span class="fa fa-check-square black" > Labs</span>
+  <span class="fa fa-check-square-o black" > Extensions</span>
+</div>
+            
+<div class = "container-fluid">
+  
+  <div class = "row">
+    <div class = "col-md-4 col-sm-12 center ">
+      <a class="btn" href="modules.html" role="button">
+        <div class = "circle">
+          <br></br>
+          <br></br>
+        <h1> 
+          <!--<div class = "mod">Current Module: </div> -->
+          <br> <div class = "h">Types And Names </div></br>
+          <br></br>
+        </h1>
+          <span class="fa fa-check-circle black" ></span>
+          <span class="fa fa-check-circle-o black" ></span>
+          <span class="fa fa-check-square black" ></span>
+          <span class="fa fa-check-square-o black" ></span>
+        </div>
+      </a>
+      <div class = "border">
+      </div>
+    </div>
+
+    <div class = "col-md-4 col-sm-12 center">
+      <a class="btn" href="modules.html" role="button">
+        <div class = "circle">
+          <br></br>
+          <br></br>
+          <h1> 
+            <!--<div class = "mod"> Next Module: </div> -->
+            <br> <div class = "h">Choice And Iteration </div></br>
+            <br></br>
+          </h1>
+          <span class = "black reminder"> — — — — </span>
+        </div>
+      </a>
+      <div class = "border">
+      </div>
+    </div>
+
+      <div class = "col-md-4 col-sm-12 center scroll">
+          
+          <a class="btn btn-default" href="module_general.html" role="button">
+            <i class="fa fa-cubes fa-5x card red" aria-hidden="true"></i>
+            <h1 class = "black"> Full Module List </h1>
+            <h1> 0. Welcome </h1>
+            <h1> 1. Types And Names </h1>
+            <h1> 2. Choice And Iteration </h1>
+            <h1> 3. Arrays </h1>
+            <h1> 4. Input And Output </h1>
+            <h1> 5. Methods </h1>
+            <h1> 6. Recursion </h1>
+            <h1> 7. Objects </h1>
+            <h1> 8. Abstact Data Types </h1>
+            <h1> 9. List Structures </h1>
+            <h1> 10. Game </h1>
+          </a>
+
+        </div>
+
+        
+
+  </div>
+    
+
+
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+  
+  function square_this(selector){
+
+    var cur_width = $(selector).width();
+
+    $(selector).height(cur_width);
+    $(selector).min-width()
+  }
+
+  square_this(".center");
+
+</script>
+
+
+
+</html>
