@@ -24,7 +24,5 @@ session_start();
 	echo json_encode(array(
 		'success' => true,
 		'message' => "you have been registered"));
-	exit;
-
-  	
+	exit;  	
 ?>

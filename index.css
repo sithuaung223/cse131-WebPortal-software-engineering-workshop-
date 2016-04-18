@@ -1,0 +1,25 @@
+/*
+	index.css
+
+
+*/
+
+#header{
+		background-color: #151B54;
+		color: white; 
+
+}
+
+
+#body-container{
+		background-color: #f2f2f2;
+		color: black; 
+		height: 100%;
+
+}
+/*added for logout button - sithu*/
+#logout_btn{
+	position: absolute;
+	bottom: 8px;
+	right: 0px;
+}
