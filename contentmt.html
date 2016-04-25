@@ -1,0 +1,1090 @@
+<!doctype html>
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<style type="text/css">
+.gray{
+  text-shadow: 0 1px 0 #fff;
+  background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+  border-color: #ccc;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.dropbtn {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    min-width: 215px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: red;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 105%; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.scroll{
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+}
+
+h6{
+	font-size: 300%;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+.black{
+	background-color: black;
+}
+
+.po{
+	font-size: 70%;
+}
+
+.ju{
+	height: 500%;
+}
+
+.btn-file{
+	width: 20%;
+}
+
+.b{
+	color: black;
+	font-size: 200%;
+}
+
+.ol{
+	width: 45% !important;
+}
+
+
+.lk{
+	width: 90%;
+}
+
+.container{
+	margin: 0;
+}
+
+.olpl{
+	width: 100%;
+}
+
+.rr{
+	width: 45%;
+}
+
+.border{
+	border: 5px solid red;
+}
+
+.title{
+	font-size: 200%;
+}
+
+.hy{
+	height: 500px;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: black;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.ul{
+	border-left: 5px solid black;
+}
+</style>
+
+<nav class="navbar navbar-fixed-top">
+
+  
+  <div class="container-fluid" id = "nav-div">
+  	<!-- washu logo home -->
+  	<div class = "navbar-header" >
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="dashboard.html">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+  	</div>
+
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+<br></br>
+<br></br>
+
+
+
+
+
+
+<div class = "container"  > 
+	<!--<div class="center b">Admin Page</div>-->
+	<div class="center title">Content Management</div>
+	<div class = "row" id="mainframe"> 
+		<div class = "col-md-4 col-sm-12 col-md-offset-3 ul">
+				<div class="center title">Grading</div>
+				<form>
+				  <fieldset class="form-group rr">
+				    <label>Username</label>
+				    <input type="text" class="form-control" placeholder="Enter First Name">
+				  </fieldset>
+				  <fieldset class="form-group rr">
+				    <label>First Name</label>
+				    <input type="text" class="form-control" placeholder="Enter First Name">
+				  </fieldset>
+				  <fieldset class="form-group rr">
+				    <label>Last Name</label>
+				    <input type="text" class="form-control" placeholder="Enter Last Name">
+				  </fieldset>
+				  	<div class="checkbox">
+	  					<label>
+	 						<input type="checkbox" value="">
+							Exercises  
+						</label>
+					</div>
+					<div class="checkbox">
+	  					<label>
+	 						<input type="checkbox" value="">
+							Studio  
+						</label>
+					</div>
+					<div class="checkbox">
+	  					<label>
+	 						<input type="checkbox" value="">
+							Lab  
+						</label>
+					</div>
+					<div class="checkbox">
+	  					<label>
+	 						<input type="checkbox" value="">
+							Extension  
+						</label>
+					</div>
+					<fieldset class="form-group">
+				    <label for="exampleSelect1">Module</label>
+				    <select class="form-control" id="s">
+				    
+				    </select>
+				  </fieldset>
+				</form>
+				<div>
+					<button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Add Module</button>
+					<div class="border">
+				 </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add A Module</h4>
+        </div>
+        <div class="modal-body">
+   <form role="form">
+  <div class="form-group">
+    <label for="inputdefault">Module Name</label>
+    <input class="form-control" id="input1" type="text" value =""required>
+  </div>
+  <div class="form-group">
+    <label for="inputlg">Module Number</label>
+    <input class="form-control input-lg" id="input2" type="text" value=""required>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-default btn-file po" type="submit" id="addingM">Add!</button>
+  </div>
+</form>
+        </div>
+      
+      </div>
+      
+    </div>
+  </div>
+
+
+				</div>
+			</div>
+		<div class = "col-md-4 col-sm-12 center scroll hy" id="c1">
+        	<div> <br></br>
+        		
+			</div>
+    		
+        	
+					
+		
+
+		</div>	
+		
+	
+		
+</div>
+
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+
+
+/**
+<div class="dropdown">
+		        	<button  class="dropbtn">List Structures </button> <button type="submit" class="btn btn-default btn-file po">Delete</button><button type="submit" class="btn btn-default btn-file po">Edit</button>
+			        <div  class="dropdown-menu dropdown-menu-right">
+			        	<h5 class = "large-black">Exercises
+			        		<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button>
+			        	</h5>
+			    		<h5 class = "large-black">Studio<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+			    		<h5 class = "large-black">Labs<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+			    		<h5 class = "large-black">Extensions<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+
+					    <div class="dropdown lk center">
+				        	<button  class="btn btn-secondary btn-sm dropdown-toggle-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Videos </button> 
+				        	<span class="btn btn-default btn-file lk center">
+    						Add Video <input type="file">
+							</span>	
+					        <div  class="dropdown-menu dropdown-menu-right">
+					        	<h5 class = "large-black">Exercises
+					        		<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button>
+					        	</h5>
+					    		<h5 class = "large-black">Studio<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+					    		<h5 class = "large-black">Labs<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+					    		<h5 class = "large-black">Extensions<button type="submit" class="po">Delete</button><button type="submit" class="po">Edit</button></h5>
+
+
+					    		
+					  		</div>
+				  		</div>
+
+
+
+			  		</div>
+		  		</div>
+
+		  		<button class="btn btn-default btn-file po" type="submit">Rename!</button>
+		  		**/
+
+
+
+  	
+
+
+
+$(document).ready(function(){
+    var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+	xmlHttp.open("POST", "php/manageContent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
+	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests
+	xmlHttp.addEventListener("load", function(event){
+		//console.log(event.target.responseText);
+		 var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
+		 console.log(jsonData.modules);
+		
+		for(i=0; i <jsonData.modules.length; i++){
+					var d = document.createElement("div");
+			$(d).addClass("dropdown ");
+			var b = document.createElement("button");
+			$(b).addClass("dropbtn");
+			$(b).text(jsonData.modules[i].module_id + ": " +jsonData.modules[i].module_name);
+			var b2 = document.createElement("button");
+			$(b2).addClass("btn btn-default btn-file po del");
+			$(b2).attr("type", "submit");
+			$(b2).attr("id", jsonData.modules[i].module_id);
+			$(b2).text("Delete");
+			
+			var b3 = document.createElement("button");
+			$(b3).addClass("btn btn-default btn-file po");
+			$(b3).attr("data-toggle", "modal");
+			$(b3).attr("data-target", "#"+jsonData.modules[i].module_id+"sad");
+			$(b3).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", jsonData.modules[i].module_id+"sad");
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Module for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				$(input).attr("id", jsonData.modules[i].module_id+3);
+
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po ren");
+				$(b8).attr("type", "submit");
+				$(b8).attr("id", jsonData.modules[i].module_id);
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+			var drop = document.createElement("div");
+			$(drop).addClass("dropdown-menu dropdown-menu-right");
+
+			var b98 = document.createElement("button");
+			$(b98).addClass("po ");
+			$(b98).attr("type", "file");
+			$(b98).attr("id", jsonData.modules[i].module_id+98+".exerciseAdd." + jsonData.modules[i].module_name);
+			$(b98).text("Add Exercises");
+
+			var b989 = document.createElement("button");
+			$(b989).addClass("po addm");
+			$(b989).attr("type", "submit");
+			$(b989).attr("id", jsonData.modules[i].module_id+".exerciseAdd." + jsonData.modules[i].module_name);
+			$(b989).text("Submit Exercises");
+
+			var b99 = document.createElement("button");
+			$(b99).addClass("po ");
+			$(b99).attr("type", "file");
+			$(b99).attr("id", jsonData.modules[i].module_id+98+".studioAdd." + jsonData.modules[i].module_name);
+			$(b99).text("Add Studios");
+
+			var b999 = document.createElement("button");
+			$(b999).addClass("po addm");
+			$(b999).attr("type", "submit");
+			$(b999).attr("id", jsonData.modules[i].module_id+".studioAdd." + jsonData.modules[i].module_name);
+			$(b999).text("Submit Studios");
+
+			var b100 = document.createElement("button");
+			$(b100).addClass("po ");
+			$(b100).attr("type", "file");
+			$(b100).attr("id", jsonData.modules[i].module_id+98+".labAdd." + jsonData.modules[i].module_name);
+			$(b100).text("Add Labs");
+
+			var b9990 = document.createElement("button");
+			$(b9990).addClass("po addm");
+			$(b9990).attr("type", "submit");
+			$(b9990).attr("id", jsonData.modules[i].module_id+".labAdd." + jsonData.modules[i].module_name);
+			$(b9990).text("Submit Labs");
+
+			var b101 = document.createElement("button");
+			$(b101).addClass("po ");
+			$(b101).attr("type", "file");
+			$(b98).attr("id", jsonData.modules[i].module_id+98+".extensionsAdd." + jsonData.modules[i].module_name);
+			$(b101).text("Add Extensions");
+
+			var b1010 = document.createElement("button");
+			$(b1010).addClass("po addm");
+			$(b1010).attr("type", "file");
+			$(b1010).attr("id", jsonData.modules[i].module_id+".extensionsAdd." + jsonData.modules[i].module_name);
+			$(b1010).text("Submit Extensions");
+
+			$(drop).append(b98);
+			$(drop).append(b99);
+			$(drop).append(b100);
+			$(drop).append(b101);
+			$(drop).append(b989);
+			$(drop).append(b999);
+			$(drop).append(b9990);
+			$(drop).append(b1010);
+
+			
+			if(jsonData.modules[i].exercises != null){
+				var n = jsonData.modules[i].exercises.split("/");
+			var n3 = n[3].split(".");
+				
+				var h= document.createElement("h5");
+				$(h).addClass("large-black");
+				$(h).text(n3[0]);
+
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po");
+				$(b4).text("Delete");
+
+			
+			var b5 = document.createElement("button");
+			$(b5).addClass("po");
+			$(b5).attr("data-toggle", "modal");
+			$(b5).attr("data-target", "#"+n3[0]);
+			$(b5).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Exercise for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+			}
+
+			if(jsonData.modules[i].studios != null){
+				var n = jsonData.modules[i].studios.split("/");
+			var n3 = n[3].split(".");
+				var h= document.createElement("h5");
+				$(h).addClass("large-black");
+				$(h).text(n3[0]);
+
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po");
+				$(b4).text("Delete");
+
+				
+			var b5 = document.createElement("button");
+			$(b5).addClass("po");
+			$(b5).attr("data-toggle", "modal");
+			$(b5).attr("data-target", "#"+n3[0]);
+			$(b5).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Studio for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+			}
+
+			if(jsonData.modules[i].labs != null){
+				var n = jsonData.modules[i].labs.split("/");
+			var n3 = n[3].split(".");
+				var h= document.createElement("h5");
+				$(h).addClass("large-black");
+				$(h).text(n3[0]);
+
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po");
+				$(b4).text("Delete");
+
+				
+			var b5 = document.createElement("button");
+			$(b5).addClass("po");
+			$(b5).attr("data-toggle", "modal");
+			$(b5).attr("data-target", "#"+n3[0]);
+			$(b5).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Lab for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+			}
+
+			if(jsonData.modules[i].extensions != null){
+				var n = jsonData.modules[i].extensions.split("/");
+			var n3 = n[3].split(".");
+				var h= document.createElement("h5");
+				$(h).addClass("large-black");
+				$(h).text(n3[0]);
+
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po");
+				$(b4).text("Delete");
+
+				
+			var b5 = document.createElement("button");
+			$(b5).addClass("po");
+			$(b5).attr("data-toggle", "modal");
+			$(b5).attr("data-target", "#"+n3[0]);
+			$(b5).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Extensions for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+			}
+
+				if(jsonData.modules[i].videos.length != 0){
+				
+
+		  		var v = document.createElement("div");
+		  		$(v).addClass("dropdown lk center");
+		  		var bv = document.createElement("button");
+		  		$(bv).addClass("btn btn-secondary btn-sm dropdown-toggle-right");
+		  		$(bv).attr("type", "button");
+		  		$(bv).attr("data-toggle", "dropdown");
+		  		$(bv).attr("aria-haspopup", "true");
+		  		$(bv).attr("aria-expanded", "false");
+		  		$(bv).text("Edit Videos");
+		  		$(v).append(bv);
+
+		  		var a = document.createElement("div");
+		  		$(a).addClass("btn btn-default btn-file lk center");
+
+		  		var x = document.createElement("INPUT");
+				x.setAttribute("type", "file");
+				$(a).text("Add Video");
+				$(a).append(x);
+				$(v).append(a);
+
+				var l = document.createElement("div");
+				$(l).addClass("dropdown-menu dropdown-menu-right");
+				$(v).append(l);
+
+
+				for(j= 0; j < jsonData.modules[i].videos.length; j++ ){
+
+					var h= document.createElement("h5");
+					$(h).addClass("large-black");
+					$(h).text(jsonData.modules[i].videos[j].name);
+
+					var b4 = document.createElement("button");
+					$(b4).attr("type", "submit");
+					$(b4).addClass("po");
+					$(b4).text("Delete");
+
+			
+			var b5 = document.createElement("button");
+			$(b5).addClass("po");
+			$(b5).attr("data-toggle", "modal");
+			$(b5).attr("data-target", "#"+j);
+			$(b5).text("Rename");
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", j);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename " + jsonData.modules[i].videos[j].name + " for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				
+
+				$(h).append(b4);
+				$(h).append(b5);
+				$(drop).append(h);
+
+					$(l).append(h)
+					$(v).append(l)
+					$("#mainframe").append(modal_head);
+				}
+
+				
+				$(drop).append(v);
+				$(d).append(drop);
+
+
+
+
+			}
+
+			$(d).append(drop);
+			
+			$(d).append(b)
+			$(d).append(b2)
+			$(d).append(b3)
+
+			$("#c1").append(d)
+
+			var o = document.createElement("option");
+			$(o).text(jsonData.modules[i].module_name);
+			$("#s").append(o);
+
+			var border = document.createElement("div");
+			$(border).addClass("border");
+			$("#c1").append(border)
+		}
+		
+
+		$(".dropbtn").click(function(){
+	//console.log("callin...");
+	//$(this).toggleClass("show");
+	var to_show = $(this).parent().children()[0];
+	$(to_show).toggleClass("show");
+
+});
+
+$(document).ready(function(){
+    $(".del").click(function (){ 
+    	deleteModule($(this)); 
+    	window.location.href = ("contentmt.html");
+    }); 
+});
+
+$(document).ready(function(){
+    $(".ren").click(function (){ 
+    	renameModule($(this)); 
+    }); 
+});
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+	}, false); // Bind the callback to the load event
+	xmlHttp.send(); // Send the data
+});
+
+
+
+
+$(document).ready(function(){
+    $("#addingM").click(function (){ 
+    	addModule(); 
+    }); 
+});
+
+
+function addModule(){
+        var moduleName= document.getElementById("input1").value;
+        var moduleNum= document.getElementById("input2").value;
+        var dataString = "moduleName=" + encodeURIComponent(moduleName) +"&moduleId=" +encodeURIComponent(moduleNum); 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "php/addModule.php", true); 
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        xmlHttp.addEventListener("load", function(event){
+            var jsonData = JSON.parse(event.target.responseText); 
+            if(jsonData.success){  
+                //loaded
+            }else{
+                //cannot loaded
+            }
+        }, false);
+        xmlHttp.send(dataString); 
+    }
+
+function deleteModule(element){
+        var moduleNum= parseInt (element.attr("id"));
+        var dataString = "moduleId=" +encodeURIComponent(moduleNum); 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "php/deleteModule.php", true); 
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        xmlHttp.addEventListener("load", function(event){
+            var jsonData = JSON.parse(event.target.responseText); 
+            if(jsonData.success){  
+                //loaded
+            }else{
+                //cannot loaded
+            }
+        }, false);
+        xmlHttp.send(dataString); 
+    }
+
+    function renameModule(element){
+        var moduleNum= (parseInt (element.attr("id")));
+        var moduleName = document.getElementById(parseInt (element.attr("id"))+3).value;
+        var dataString = "moduleId=" +encodeURIComponent(moduleNum)+"&moduleName="+encodeURIComponent(moduleName); 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "php/editModule.php", true); 
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        xmlHttp.addEventListener("load", function(event){
+            var jsonData = JSON.parse(event.target.responseText); 
+            if(jsonData.success){  
+                //loaded
+            }else{
+                //cannot loaded
+            }
+        }, false);
+        xmlHttp.send(dataString); 
+    }
+
+</script>
+
+
+
+</html>
