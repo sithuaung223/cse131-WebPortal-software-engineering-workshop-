@@ -128,7 +128,8 @@ h6{
 	width: 45% !important;
 }
 
-
+.center{
+padding: 0}
 .lk{
 	width: 90%;
 }
@@ -449,89 +450,81 @@ $(document).ready(function(){
 			var drop = document.createElement("div");
 			$(drop).addClass("dropdown-menu dropdown-menu-right");
 
-			var b98 = document.createElement("button");
+			var b98 = document.createElement("input");
 			$(b98).addClass("po ");
 			$(b98).attr("type", "file");
-			$(b98).attr("id", jsonData.modules[i].module_id+98+".exerciseAdd." + jsonData.modules[i].module_name);
+			$(b98).attr("id", jsonData.modules[i].module_id);
 			$(b98).text("Add Exercises");
 
 			var b989 = document.createElement("button");
 			$(b989).addClass("po addm");
 			$(b989).attr("type", "submit");
-			$(b989).attr("id", jsonData.modules[i].module_id+".exerciseAdd." + jsonData.modules[i].module_name);
+			$(b989).attr("id", jsonData.modules[i].module_id+".exercise." + jsonData.modules[i].module_id);
 			$(b989).text("Submit Exercises");
 
-			var b99 = document.createElement("button");
-			$(b99).addClass("po ");
-			$(b99).attr("type", "file");
-			$(b99).attr("id", jsonData.modules[i].module_id+98+".studioAdd." + jsonData.modules[i].module_name);
-			$(b99).text("Add Studios");
 
 			var b999 = document.createElement("button");
 			$(b999).addClass("po addm");
 			$(b999).attr("type", "submit");
-			$(b999).attr("id", jsonData.modules[i].module_id+".studioAdd." + jsonData.modules[i].module_name);
+			$(b999).attr("id", jsonData.modules[i].module_id+".studio." + jsonData.modules[i].module_id);
 			$(b999).text("Submit Studios");
 
-			var b100 = document.createElement("button");
-			$(b100).addClass("po ");
-			$(b100).attr("type", "file");
-			$(b100).attr("id", jsonData.modules[i].module_id+98+".labAdd." + jsonData.modules[i].module_name);
-			$(b100).text("Add Labs");
 
 			var b9990 = document.createElement("button");
 			$(b9990).addClass("po addm");
 			$(b9990).attr("type", "submit");
-			$(b9990).attr("id", jsonData.modules[i].module_id+".labAdd." + jsonData.modules[i].module_name);
+			$(b9990).attr("id", jsonData.modules[i].module_id+".lab." + jsonData.modules[i].module_id);
 			$(b9990).text("Submit Labs");
 
-			var b101 = document.createElement("button");
-			$(b101).addClass("po ");
-			$(b101).attr("type", "file");
-			$(b98).attr("id", jsonData.modules[i].module_id+98+".extensionsAdd." + jsonData.modules[i].module_name);
-			$(b101).text("Add Extensions");
 
 			var b1010 = document.createElement("button");
 			$(b1010).addClass("po addm");
 			$(b1010).attr("type", "file");
-			$(b1010).attr("id", jsonData.modules[i].module_id+".extensionsAdd." + jsonData.modules[i].module_name);
+			$(b1010).attr("id", jsonData.modules[i].module_id+".extension." + jsonData.modules[i].module_id);
 			$(b1010).text("Submit Extensions");
 
+				var ct = document.createElement("button");
+			$(ct).addClass("po addm");
+			$(ct).attr("type", "file");
+			$(ct).attr("id", jsonData.modules[i].module_id+".video." + jsonData.modules[i].module_id);
+			$(ct).text("Submit Video");
+
+			var it = document.createElement("button");
+			$(it).addClass("po addm");
+			$(it).attr("type", "file");
+			$(it).attr("id", jsonData.modules[i].module_id+".goal." + jsonData.modules[i].module_id);
+			$(it).text("Submit Goals");
+
 			$(drop).append(b98);
-			$(drop).append(b99);
-			$(drop).append(b100);
-			$(drop).append(b101);
+
 			$(drop).append(b989);
 			$(drop).append(b999);
 			$(drop).append(b9990);
 			$(drop).append(b1010);
+			$(drop).append(ct);
+			$(drop).append(it);
 
 			
 			if(jsonData.modules[i].exercises != null){
-				var n = jsonData.modules[i].exercises.split("/");
-			var n3 = n[3].split(".");
+				var n = jsonData.modules[i].exercises;
 				
 				var h= document.createElement("h5");
 				$(h).addClass("large-black");
-				$(h).text(n3[0]);
+				$(h).text(n);
 
 				var b4 = document.createElement("button");
 				$(b4).attr("type", "submit");
-				$(b4).addClass("po");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".exercise." + jsonData.modules[i].module_id+"."+jsonData.modules[i].exercises);
 				$(b4).text("Delete");
 
-			
-			var b5 = document.createElement("button");
-			$(b5).addClass("po");
-			$(b5).attr("data-toggle", "modal");
-			$(b5).attr("data-target", "#"+n3[0]);
-			$(b5).text("Rename");
+
 
 
 
 				var modal_head = document.createElement("div");
 				$(modal_head).addClass("modal fade");
-				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("id", n);
 				$(modal_head).attr("role", "dialog");
 
 				var modal_2 = document.createElement("div");
@@ -584,34 +577,30 @@ $(document).ready(function(){
 				$("#mainframe").append(modal_head);
 
 				$(h).append(b4);
-				$(h).append(b5);
-				$(drop).append(h);
+				var gh = document.createElement("div");
+				$(gh).addClass("center");
+				$(gh).append(h)
+				$(drop).append(gh);
 			}
 
 			if(jsonData.modules[i].studios != null){
-				var n = jsonData.modules[i].studios.split("/");
-			var n3 = n[3].split(".");
+				var n = jsonData.modules[i].studios
 				var h= document.createElement("h5");
 				$(h).addClass("large-black");
-				$(h).text(n3[0]);
+				$(h).text(n);
 
 				var b4 = document.createElement("button");
 				$(b4).attr("type", "submit");
-				$(b4).addClass("po");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".studio." + jsonData.modules[i].module_id+"."+jsonData.modules[i].studios);
 				$(b4).text("Delete");
 
-				
-			var b5 = document.createElement("button");
-			$(b5).addClass("po");
-			$(b5).attr("data-toggle", "modal");
-			$(b5).attr("data-target", "#"+n3[0]);
-			$(b5).text("Rename");
 
 
 
 				var modal_head = document.createElement("div");
 				$(modal_head).addClass("modal fade");
-				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("id", n);
 				$(modal_head).attr("role", "dialog");
 
 				var modal_2 = document.createElement("div");
@@ -664,38 +653,35 @@ $(document).ready(function(){
 				$("#mainframe").append(modal_head);
 
 				$(h).append(b4);
-				$(h).append(b5);
 				$(drop).append(h);
 
 				$(h).append(b4);
-				$(h).append(b5);
-				$(drop).append(h);
+
+				var gh = document.createElement("div");
+				$(gh).addClass("center");
+				$(gh).append(h)
+				$(drop).append(gh);
 			}
 
 			if(jsonData.modules[i].labs != null){
-				var n = jsonData.modules[i].labs.split("/");
-			var n3 = n[3].split(".");
+				var n = jsonData.modules[i].labs
 				var h= document.createElement("h5");
 				$(h).addClass("large-black");
-				$(h).text(n3[0]);
+				$(h).text(n);
 
 				var b4 = document.createElement("button");
 				$(b4).attr("type", "submit");
-				$(b4).addClass("po");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".lab." + jsonData.modules[i].module_id+"."+jsonData.modules[i].labs);
 				$(b4).text("Delete");
 
 				
-			var b5 = document.createElement("button");
-			$(b5).addClass("po");
-			$(b5).attr("data-toggle", "modal");
-			$(b5).attr("data-target", "#"+n3[0]);
-			$(b5).text("Rename");
 
 
 
 				var modal_head = document.createElement("div");
 				$(modal_head).addClass("modal fade");
-				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("id", n);
 				$(modal_head).attr("role", "dialog");
 
 				var modal_2 = document.createElement("div");
@@ -748,38 +734,34 @@ $(document).ready(function(){
 				$("#mainframe").append(modal_head);
 
 				$(h).append(b4);
-				$(h).append(b5);
 				$(drop).append(h);
 
 				$(h).append(b4);
-				$(h).append(b5);
-				$(drop).append(h);
-			}
+				var gh = document.createElement("div");
+				$(gh).addClass("center");
+				$(gh).append(h)
+				$(drop).append(gh);			}
 
 			if(jsonData.modules[i].extensions != null){
-				var n = jsonData.modules[i].extensions.split("/");
-			var n3 = n[3].split(".");
+				var n = jsonData.modules[i].extensions
+			
 				var h= document.createElement("h5");
 				$(h).addClass("large-black");
-				$(h).text(n3[0]);
+				$(h).text(n);
 
 				var b4 = document.createElement("button");
 				$(b4).attr("type", "submit");
-				$(b4).addClass("po");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".extension." + jsonData.modules[i].module_id+"."+jsonData.modules[i].extensions);
 				$(b4).text("Delete");
 
-				
-			var b5 = document.createElement("button");
-			$(b5).addClass("po");
-			$(b5).attr("data-toggle", "modal");
-			$(b5).attr("data-target", "#"+n3[0]);
-			$(b5).text("Rename");
+
 
 
 
 				var modal_head = document.createElement("div");
 				$(modal_head).addClass("modal fade");
-				$(modal_head).attr("id", n3[0]);
+				$(modal_head).attr("id", n);
 				$(modal_head).attr("role", "dialog");
 
 				var modal_2 = document.createElement("div");
@@ -832,12 +814,94 @@ $(document).ready(function(){
 				$("#mainframe").append(modal_head);
 
 				$(h).append(b4);
-				$(h).append(b5);
 				$(drop).append(h);
 
 				$(h).append(b4);
-				$(h).append(b5);
+				var gh = document.createElement("div");
+				$(gh).addClass("center");
+				$(gh).append(h)
+				$(drop).append(gh);
+			}
+
+			if(jsonData.modules[i].goals_and_resources != null){
+				var n = jsonData.modules[i].goals_and_resources
+			
+				var h= document.createElement("h5");
+				$(h).addClass("large-black");
+				$(h).text(n);
+
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".goal." + jsonData.modules[i].module_id+"."+jsonData.modules[i].goals_and_resources);
+				$(b4).text("Delete");
+
+
+
+
+
+				var modal_head = document.createElement("div");
+				$(modal_head).addClass("modal fade");
+				$(modal_head).attr("id", n);
+				$(modal_head).attr("role", "dialog");
+
+				var modal_2 = document.createElement("div");
+				$(modal_2).addClass("modal-dialog");
+				$(modal_head).append(modal_2);
+
+				var modal_3 = document.createElement("div");
+				$(modal_3).addClass("modal-content");
+				$(modal_2).append(modal_3);
+
+				var modal_4 = document.createElement("div");
+				$(modal_4).addClass("modal-header");
+
+				var b7 = document.createElement("button");
+				$(b7).attr("type", "button");
+				$(b7).addClass("close");
+				$(b7).attr("data-dismiss", "modal");
+				$(b7).text("Close");
+
+				var te = document.createElement("h6");
+				$(te).text("Rename Extensions for " + jsonData.modules[i].module_name)
+
+				$(modal_4).append(te);
+				$(modal_4).append(b7);
+				$(modal_3).append(modal_4);
+
+				var modal_5 = document.createElement("div");
+				$(modal_5).addClass("modal-body");
+
+				var f = document.createElement("form");
+				$(f).attr("role", "form");
+				var df = document.createElement("div");
+				$(df).addClass("form-group")
+				var input = document.createElement("input");
+				$(input).addClass("form-control");
+				$(input).attr("type", "text");
+				var b8 = document.createElement("button");
+				$(b8).addClass("btn btn-default btn-file po");
+				$(b8).attr("type", "submit");
+				$(b8).text("Rename!");
+
+				$(df).append(b8);
+				$(df).append(input);
+
+
+				$(f).append(df);
+				$(modal_5).append(f);
+				$(modal_3).append(modal_5);
+
+				$("#mainframe").append(modal_head);
+
+				$(h).append(b4);
 				$(drop).append(h);
+
+				$(h).append(b4);
+				var gh = document.createElement("div");
+				$(gh).addClass("center");
+				$(gh).append(h)
+				$(drop).append(gh);
 			}
 
 				if(jsonData.modules[i].videos.length != 0){
@@ -857,11 +921,7 @@ $(document).ready(function(){
 		  		var a = document.createElement("div");
 		  		$(a).addClass("btn btn-default btn-file lk center");
 
-		  		var x = document.createElement("INPUT");
-				x.setAttribute("type", "file");
-				$(a).text("Add Video");
-				$(a).append(x);
-				$(v).append(a);
+		  	
 
 				var l = document.createElement("div");
 				$(l).addClass("dropdown-menu dropdown-menu-right");
@@ -874,17 +934,13 @@ $(document).ready(function(){
 					$(h).addClass("large-black");
 					$(h).text(jsonData.modules[i].videos[j].name);
 
-					var b4 = document.createElement("button");
-					$(b4).attr("type", "submit");
-					$(b4).addClass("po");
-					$(b4).text("Delete");
+				var b4 = document.createElement("button");
+				$(b4).attr("type", "submit");
+				$(b4).addClass("po delm");
+				$(b4).attr("id", jsonData.modules[i].module_id+".video." + jsonData.modules[i].module_id+"."+jsonData.modules[i].videos[j].name);
+				$(b4).text("Delete");
 
-			
-			var b5 = document.createElement("button");
-			$(b5).addClass("po");
-			$(b5).attr("data-toggle", "modal");
-			$(b5).attr("data-target", "#"+j);
-			$(b5).text("Rename");
+
 
 
 
@@ -943,7 +999,6 @@ $(document).ready(function(){
 				
 
 				$(h).append(b4);
-				$(h).append(b5);
 				$(drop).append(h);
 
 					$(l).append(h)
@@ -969,7 +1024,7 @@ $(document).ready(function(){
 			$("#c1").append(d)
 
 			var o = document.createElement("option");
-			$(o).text(jsonData.modules[i].module_name);
+			$(o).text(jsonData.modules[i].module_id+ ": "+jsonData.modules[i].module_name);
 			$("#s").append(o);
 
 			var border = document.createElement("div");
@@ -996,6 +1051,25 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".ren").click(function (){ 
     	renameModule($(this)); 
+    }); 
+});
+
+$(document).ready(function(){
+    $(".addm").click(function (){ 
+    	//var i = $(this).attr("id");
+    	var u = $(this).attr("id").split(".")
+    	uploadFile($(this), $("#"+u[2])[0]); 
+    	window.location.href = ("contentmt.html");
+    }); 
+});
+
+
+$(document).ready(function(){
+    $(".delm").click(function (){ 
+    	//var i = $(this).attr("id");
+    	var u = $(this).attr("id").split(".")
+    	deleteFile($(this)); 
+    	window.location.href = ("contentmt.html");
     }); 
 });
 
@@ -1082,6 +1156,69 @@ function deleteModule(element){
         }, false);
         xmlHttp.send(dataString); 
     }
+
+    function uploadFile(element, x){
+	    var yu = $(element).attr("id").split(".");
+	    //alert(yu[0]+yu[1]+x)
+	    if ('files' in x){
+	        if (x.files.length == 0){
+	            // No files selected
+	            alert("length 0")
+	        }
+	        else {
+	            //TODO: use the following line instead of hard coding
+	            var moduleid= yu[0];
+
+	            var category = yu[1];
+	           
+	            
+	            for (var i=0; i< x.files.length; i++){
+
+	                var file= x.files[i];
+
+	                //create FormData object to store the information of the file
+	                var data= new FormData();
+	                data.append('SelectedFile', file);
+	                data.append('moduleId', moduleid);
+	                data.append('category', category);
+
+	                // Send the file to back end
+	                var xmlHttp = new XMLHttpRequest(); 
+	                xmlHttp.open("POST", "php/upload.php", true); 
+	                xmlHttp.addEventListener("load", function(event){
+	                	console.log(event.target.responseText);
+	                }, false); 
+	                xmlHttp.send(data); 
+	            }
+	        }
+	    }
+	}
+
+	function deleteFile(element){
+	var yu = $(element).attr("id").split(".");
+    // encoding data to send
+    var moduleId=yu[0];
+    var fileName= yu[3];
+    var category= yu[1];
+    //alert(yu[0]+yu[1]+yu[3])
+    var dataString = "moduleId=" + encodeURIComponent(moduleId) + "&fileName=" + encodeURIComponent(fileName)+"&category=" + encodeURIComponent(category);
+
+    // fire ajax request and handle response
+    var xmlHttp = new XMLHttpRequest(); 
+    xmlHttp.open("POST", "php/deleteFile.php", true); 
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.addEventListener("load", function(event){
+
+        var jsonData = JSON.parse(event.target.responseText); 
+        if (jsonData.success){
+            //success
+        }
+        else {
+        }    
+    }, false);
+
+    xmlHttp.send(dataString); 
+}
 
 </script>
 
