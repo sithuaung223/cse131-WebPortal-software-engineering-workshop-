@@ -1,0 +1,258 @@
+
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+<!-- nav bar -->
+<nav class="navbar">
+
+  
+  <div class="container-fluid" id = "nav-div">
+  	<!-- washu logo home -->
+  	<div class = "navbar-header" >
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="dashboard.html">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+  	</div>
+
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="dashboard.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="Calendar_131.html">Calendar</a></li>
+        <li class="dropdown">
+          <a href="module_general.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul class="dropdown-menu" id = "drop_down_container">
+            <!-- <li><a href="module_detail.html">Welcome</a></li>
+            <li><a href="module_detail.html">Intro, Types & Names</a></li>
+            <li><a href="module_detail.html">Choice & Iteration</a></li>
+            <li><a href="module_detail.html">Arrays</a></li>
+            <li><a href="module_detail.html">Input & Output</a></li>
+            <li><a href="module_detail.html">Methods</a></li>
+            <li><a href="module_detail.html">Recursion</a></li>
+            <li><a href="module_detail.html">Objects</a></li>
+            <li><a href="module_detail.html">Abstract Data Types</a></li>
+            <li><a href="module_detail.html">List Structure</a></li>
+            <li><a href="module_detail.html">Game</a></li>
+			-->
+            <!-- <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><p class= "navbar-text">Delia95</p></li>
+        
+        <li class= "navbar-text" id = "logout-button"><p class = "navbar-text"><a href = "#" class = "navbar-link">Logout</a></p></li>
+      </ul> -->
+
+      <p class = "navbar-text navbar-right" id = "name"> </p>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+
+
+
+<div class = "container">
+
+	<div class = "row">
+				<h1 class ="center">Calendar</h1>
+		<div class = "col-md-12 ">
+			<div class = "table-responsive title scroll"> 
+
+			 <table id="myTable" class="table table-bordered" width = "645" >
+				 <thead>
+					<tr>
+						<th class = "cal_center">Assign Date</th>
+						<th class = "cal_center">Topic</th>
+						<th class = "cal_center">Due Date</th>
+					</tr>
+				</thead>
+				<tbody id = "body">
+
+				</tbody>
+			</table>
+		</div>
+
+		</div>
+	</div>
+	
+
+</div>
+
+</body>
+
+
+
+<style type="text/css">
+
+.title{
+	border-left: 11px solid black;
+	border-right: 11px solid black;
+}
+
+.cal_center{
+	text-align: center;
+}
+
+td.hred:hover{
+	background-color: black;
+	color: white;
+}
+
+.scroll{
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: red;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src = "logout.js"></script>
+
+
+<script  type="text/javascript">
+
+
+
+function getAllModulesInfo(){
+        
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "php/getAllModulesInfo.php", true); 
+  xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+  xmlHttp.addEventListener("load", function(event){
+
+      console.log(event.target.responseText);
+      data = JSON.parse(event.target.responseText); 
+      if(data.success){  
+
+      		//cal generation
+
+      		for(i =0; i<data.modules.length; i++){
+
+      			var row = document.createElement("tr");
+
+      			var column1 = document.createElement("td");
+      			$(column1).addClass("cal_center hred");
+      			$(column1).text("1/1/1111")
+
+      			var column2 = document.createElement("td");
+      			$(column2).addClass("cal_center hred");
+      			$(column2).text(data.modules[i].module_name)
+
+      			var column3 = document.createElement("td");
+      			$(column3).addClass("cal_center hred");
+      			$(column3).text("9/9/9999")
+
+      			$(row).append(column1);
+      			$(row).append(column2);
+      			$(row).append(column3);
+
+      			$("#body").append(row);
+
+      		}
+
+
+
+
+
+          	var l = document.createElement("a");
+			$("#name").text(data.student);
+			$(l).attr("href", "#");
+			$(l).attr("class", "navbar-link");
+			$(l).text(" Logout");
+			$("#name").append(l);
+			$(l).attr("id", "logout_btn");
+
+			popDropDown(data);
+
+          document.getElementById("logout_btn").addEventListener("click", logoutAjax, false); // Bind the AJAX call to button click
+          $('[href = "module_detail.html"]').click(function(e){
+              e.preventDefault();
+              $.cookie("module_name", $(this).attr("id"));
+              window.location.href = "module_detail.html";
+          });
+      }else{
+          //cannot loaded
+          alert("Modules could not be loaded");
+      }
+  }, false);
+  xmlHttp.send(); 
+}
+
+
+function popDropDown(data){
+  console.log(data);
+  var mod_array = data.modules;
+
+    for (var i = 0; i < mod_array.length; i++){
+      var new_drop = document.createElement("li");
+      var new_d_a = document.createElement("a");
+      $(new_d_a).text(mod_array[i].module_name);
+      $(new_d_a).attr("id", mod_array[i].module_id);
+      $(new_d_a).attr("href", "module_detail.html");
+      $(new_drop).append(new_d_a);
+      $("#drop_down_container").append(new_drop);
+    }
+
+  
+
+
+}
+
+
+
+$(document).ready(function(){
+
+	getAllModulesInfo();
+
+
+});
+
+
+
+
+</script>
+
+
+</html>
