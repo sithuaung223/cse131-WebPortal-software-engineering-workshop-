@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -5,6 +6,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!-- Latest compiled and minified CSS -->
@@ -65,6 +72,8 @@
     border: none;
     cursor: pointer;
     min-width: 215px;
+    min-height: 70px ;
+    display: inline;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -181,7 +190,17 @@ padding: 0}
 	font-size: 250%;
 }
 
-.gf{height: 500px;}
+.gf{height: 700px;}
+
+.wid{
+	width: 10%;
+	display: inline;
+}
+
+.mij{
+	height: 10%;
+	font-size: 70%
+}
 </style>
 
 <nav class="navbar navbar-fixed-top">
@@ -201,7 +220,8 @@ padding: 0}
 
   	</div>
 
-  	<p class = "big-r center">Administration</p>
+  	<span class = "big-r center">Administration</span>
+  	<p class = "navbar-text navbar-right" id = "name"> </p>
   </div><!-- end of #nav-div -->
 
 </nav>
@@ -277,7 +297,7 @@ padding: 0}
 								    <select class="form-control" id="uis"></select>
 								</fieldset>
 								<div class="center">
-									<button type="submit" class="prog" id="grade">Set Module!</button>
+									<button type="submit" class="curr" >Set Module!</button>
 								</div>
 							</form>
 							<div class="border"></div>
@@ -306,6 +326,20 @@ padding: 0}
 							    <label for="inputlg">Module Number</label>
 							    <input class="form-control input-lg" id="input2" type="text" value=""required>
 					  		</div>
+
+					  		
+					  		<div class="form-group">
+							    <label for="inputlg">Module Start Date</label>
+							    <input class="form-control input-lg z" id="input3" type="text" value=""required>
+					  		</div>
+					  		<div class="form-group">
+							    <label for="inputlg">Module End Date</label>
+							    <input class="form-control input-lg z" id="input4" type="text" value=""required>
+					  		</div>
+					  	
+
+
+
 					  		<div class="form-group">
 					    		<button class="btn btn-default btn-file po" type="submit" id="addingM">Add!</button>
 					  		</div>
@@ -336,8 +370,7 @@ padding: 0}
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src = "logout.js"></script>
 <script>
 
 
@@ -357,17 +390,110 @@ $(document).ready(function(){
 			$(b).addClass("dropbtn");
 			$(b).text(jsonData.modules[i].module_id + ": " +jsonData.modules[i].module_name);
 			var b2 = document.createElement("button");
-			$(b2).addClass("po del");
+			$(b2).addClass(" mij del");
 			$(b2).attr("type", "submit");
 			$(b2).attr("id", jsonData.modules[i].module_id);
 			$(b2).text("Delete");
 			
 			var b3 = document.createElement("button");
-			$(b3).addClass(" po");
+			$(b3).addClass(" mij");
 			$(b3).attr("data-toggle", "modal");
 			$(b3).attr("data-target", "#"+jsonData.modules[i].module_id+"sad");
 			$(b3).text("Rename");
 
+			var b37 = document.createElement("button");
+			$(b37).addClass(" mij");
+			$(b37).attr("data-toggle", "modal");
+			$(b37).attr("data-target", "#"+jsonData.modules[i].module_id+"happy");
+			$(b37).text("Dates");
+
+
+				var qmodal_head = document.createElement("div");
+				$(qmodal_head).addClass("modal fade");
+				$(qmodal_head).attr("id", jsonData.modules[i].module_id+"happy");
+				$(qmodal_head).attr("role", "dialog");
+
+				var qmodal_2 = document.createElement("div");
+				$(qmodal_2).addClass("modal-dialog");
+				$(qmodal_head).append(qmodal_2);
+
+				var qmodal_3 = document.createElement("div");
+				$(qmodal_3).addClass("modal-content");
+				$(qmodal_2).append(qmodal_3);
+
+				var qmodal_4 = document.createElement("div");
+				$(qmodal_4).addClass("modal-header");
+
+				var qb7 = document.createElement("button");
+				$(qb7).attr("type", "button");
+				$(qb7).addClass("close");
+				$(qb7).attr("data-dismiss", "modal");
+				$(qb7).text("Close");
+
+				var qte = document.createElement("h6");
+				$(qte).text("Rename Dates for " + jsonData.modules[i].module_name)
+
+				$(qmodal_4).append(qte);
+				$(qmodal_4).append(qb7);
+				$(qmodal_3).append(qmodal_4);
+
+				var qmodal_5 = document.createElement("div");
+				$(qmodal_5).addClass("modal-body");
+
+				var qf = document.createElement("form");
+				$(qf).attr("role", "form");
+				var qdf = document.createElement("div");
+				$(qdf).addClass("form-group")
+				var qinput = document.createElement("input");
+				$(qinput).addClass("form-control z assign");
+				$(qinput).attr("type", "text");
+				$(qinput).attr("id", jsonData.modules[i].module_id+55);
+
+				var qb8 = document.createElement("button");
+				$(qb8).addClass("btn btn-default btn-file po assignB");
+				$(qb8).attr("type", "submit");
+				$(qb8).attr("id", jsonData.modules[i].module_id+35);
+				$(qb8).text("Change Start Date!");
+
+				$(qdf).append(qb8);
+				$(qdf).append(qinput);
+
+				var qfr = document.createElement("form");
+				$(qfr).attr("role", "form");
+				var qdfr = document.createElement("div");
+				$(qdfr).addClass("form-group")
+				var qinputr = document.createElement("input");
+				$(qinputr).addClass("form-control z due");
+				$(qinputr).attr("type", "text");
+				$(qinputr).attr("id", jsonData.modules[i].module_id+75);
+
+				var qb8r = document.createElement("button");
+				$(qb8r).addClass("btn btn-default btn-file po dueB");
+				$(qb8r).attr("type", "submit");
+				$(qb8r).attr("id", jsonData.modules[i].module_id+45);
+				$(qb8r).text("Change End Date!");
+				
+				$(qdfr).append(qb8r);
+				$(qdfr).append(qinputr);
+
+
+				$(qfr).append(qdfr);
+				$(qmodal_5).append(qfr);
+				$(qmodal_3).append(qmodal_5);
+
+				$(qf).append(qdf);
+				$(qmodal_5).append(qf);
+				$(qmodal_3).append(qmodal_5);
+
+				$("#mainframe").append(qmodal_head);
+
+
+
+
+
+
+
+				//
 
 
 				var modal_head = document.createElement("div");
@@ -1001,9 +1127,19 @@ $(document).ready(function(){
 
 			$(d).append(drop);
 			
+
+			var mini = document.createElement("div")
+			$(mini).addClass("wid");
+			
+
+
 			$(d).append(b)
-			$(d).append(b2)
-			$(d).append(b3)
+			$(mini).append(b2)
+			$(mini).append(b3)
+			$(mini).append(b37)
+
+
+			$(d).append(mini);
 
 			$("#c1").append(d)
 
@@ -1028,6 +1164,43 @@ $(document).ready(function(){
 	var to_show = $(this).parent().children()[0];
 	$(to_show).toggleClass("show");
 
+});
+
+function getDashboardInfo(){
+  // encoding data to send
+  // fire ajax request and handle response
+  var xmlHttp = new XMLHttpRequest(); 
+  xmlHttp.open("POST", "php/getDashboardInfo.php", true); 
+  xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xmlHttp.addEventListener("load", function(event){
+  	//console.log(event.target.responseText);
+    data = JSON.parse(event.target.responseText); 
+    if (data.success){
+      //everything happens here
+      //console.log(data.student);
+	var l = document.createElement("a");
+	$("#name").text(data.student);
+	$(l).attr("href", "#");
+	$(l).attr("class", "navbar-link");
+	$(l).text(" Logout");
+	$("#name").append(l);
+	$(l).attr("id", "logout_btn");
+      
+ 	document.getElementById("logout_btn").addEventListener("click", logoutAjax, false); // Bind the AJAX call to button click
+
+    }
+    else {
+      alert("Data not Found!");
+    } 
+  }, false); 
+
+  xmlHttp.send(); 
+}
+
+
+$(document).ready(function(){
+
+	getDashboardInfo();
 });
 
 $(document).ready(function(){
@@ -1056,6 +1229,36 @@ $(document).ready(function(){
     	//var i = $(this).attr("id");
     	var u = $(this).attr("id").split(".")
     	deleteFile($(this)); 
+    }); 
+});
+
+
+$(document).ready(function(){
+    $(".assignB").click(function (){ 
+    	//var i = $(this).attr("id");
+    	var u = $(this).attr("id")
+    	var y = parseInt(u - 35)
+    	var t = $("#"+(parseInt ($(this).attr("id")) + 20)).val()
+    	updateModuleDate(y, t, "assign"); 
+    }); 
+});
+
+$(document).ready(function(){
+    $(".dueB").click(function (){ 
+    	//var i = $(this).attr("id");
+    	var u = $(this).attr("id")
+    	var y = parseInt(u - 45)
+    	var t = $("#"+(parseInt ($(this).attr("id")) + 30)).val()
+    	//alert(t)
+    	updateModuleDate(y, t,"due"); 
+    }); 
+});
+
+$(document).ready(function(){
+    $(".curr").click(function (){ 
+    	var s = $("#uis").val().split(":")
+
+    	setCurrentModule(s[0]); 
     }); 
 });
 
@@ -1098,6 +1301,11 @@ window.onclick = function(event) {
 
 
 
+$(document).ready(function(){
+		var jq = $.noConflict();
+        jq( ".z" ).datepicker();
+    });
+
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(); // Send the data
 });
@@ -1112,10 +1320,14 @@ $(document).ready(function(){
 });
 
 
+
+
 function addModule(){
         var moduleName= document.getElementById("input1").value;
         var moduleNum= document.getElementById("input2").value;
-        var dataString = "moduleName=" + encodeURIComponent(moduleName) +"&moduleId=" +encodeURIComponent(moduleNum); 
+        var moduleDate= document.getElementById("input3").value;
+        var moduleDate_Two= document.getElementById("input4").value;
+        var dataString = "moduleName=" + encodeURIComponent(moduleName) +"&moduleId=" +encodeURIComponent(moduleNum)+"&assign_date=" +encodeURIComponent(moduleDate)+"&due_date=" +encodeURIComponent(moduleDate_Two); 
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("POST", "php/addModule.php", true); 
         xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
@@ -1269,6 +1481,55 @@ function updateProgress(bigDaddy){
 
     xmlHttp.send(dataString); 
 }
+
+
+function setCurrentModule(sets){
+    // encoding data to send
+    var moduleId=sets;
+    var dataString = "moduleId=" + encodeURIComponent(moduleId);
+
+    // fire ajax request and handle response
+    var xmlHttp = new XMLHttpRequest(); 
+    xmlHttp.open("POST", "php/setCurrentModule.php", true); 
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.addEventListener("load", function(event){
+
+        var jsonData = JSON.parse(event.target.responseText); 
+        if (jsonData.success){
+            //success
+            
+        }
+        else {
+            alert(jsonData.message);
+        }    
+    }, false);
+
+    xmlHttp.send(dataString); 
+}
+
+  function updateModuleDate(modID, dateVal, dateTypeVal){
+        var moduleNum= modID;
+        var fullDate = dateVal;
+        var dateType = dateTypeVal;
+        //alert(moduleNum+fullDate+dateType)
+        var dataString = "moduleId=" +encodeURIComponent(moduleNum)+"&date="+encodeURIComponent(fullDate)+"&dateType="+encodeURIComponent(dateType); 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "php/updateModuleDate.php", true); 
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        xmlHttp.addEventListener("load", function(event){
+            var jsonData = JSON.parse(event.target.responseText); 
+            if(jsonData.success){  
+                //loaded
+                //alert(jsonData.message)
+                //window.location.href = ("contentmt.html");
+            }else{
+                //cannot loaded
+            }
+        }, false);
+        xmlHttp.send(dataString); 
+    }
+
+
 </script>
 
 

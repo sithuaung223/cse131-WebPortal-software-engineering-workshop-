@@ -1,4 +1,5 @@
 
+
 <html>
 
 
@@ -82,16 +83,16 @@
 <div class = "container">
 
 	<div class = "row">
-				<h1 class ="center">Calendar</h1>
+				<h1 class ="center r">Calendar</h1>
 		<div class = "col-md-12 ">
 			<div class = "table-responsive title scroll"> 
 
 			 <table id="myTable" class="table table-bordered" width = "645" >
 				 <thead>
 					<tr>
-						<th class = "cal_center">Assign Date</th>
-						<th class = "cal_center">Topic</th>
-						<th class = "cal_center">Due Date</th>
+						<th class = "cal_center ti">Assign Date</th>
+						<th class = "cal_center ti">Topic</th>
+						<th class = "cal_center ti">Due Date</th>
 					</tr>
 				</thead>
 				<tbody id = "body">
@@ -121,15 +122,31 @@
 	text-align: center;
 }
 
-td.hred:hover{
+td.hred:hover {
 	background-color: black;
 	color: white;
 }
 
+th.ti:hover{
+	background-color: red;
+	color: black;
+}
+
+a:hover{
+	color: red;
+}
 .scroll{
   overflow-y:scroll;
   overflow-x:hidden;
 
+}
+
+.r{
+	color: red;
+}
+
+a{
+	color: gray;
 }
 
 ::-webkit-scrollbar {
@@ -174,15 +191,29 @@ function getAllModulesInfo(){
 
       			var column1 = document.createElement("td");
       			$(column1).addClass("cal_center hred");
-      			$(column1).text("1/1/1111")
+      			$(column1).text(data.modules[i].assign_date)
 
       			var column2 = document.createElement("td");
       			$(column2).addClass("cal_center hred");
-      			$(column2).text(data.modules[i].module_name)
+
+            var a = document.createElement("a");
+            $(a).attr("href", "module_detail.html");
+            $(a).attr("id", data.modules[i].module_id);
+            $(a).text(data.modules[i].module_name);
+      			$(column2).append(a);
+
+      			/**
+      			var a = document.createElement("a");
+      			$(a).text(data.modules[i].module_name)
+      			$(a).attr("href", "module_detail.html")
+
+      			$(column2).append(a);
+
+      			**/
 
       			var column3 = document.createElement("td");
       			$(column3).addClass("cal_center hred");
-      			$(column3).text("9/9/9999")
+      			$(column3).text(data.modules[i].due_date)
 
       			$(row).append(column1);
       			$(row).append(column2);
