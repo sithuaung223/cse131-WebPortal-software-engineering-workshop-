@@ -1,0 +1,517 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Arrays</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 3: Arrays</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI class="active"><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Studio</H3>
+<HR>
+<html>
+If necessary,
+review <a href="../../StudioDocs/studioheader.html">studio procedures</a> before
+starting.
+<HR>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<H3> Dice Simulation</H3> 
+<p>
+In this studio you will simulate the throw of a number of
+<a href="http://en.wikipedia.org/wiki/Dice">Dice</a>.
+This will require using what you have learned in
+<a href="../2/">Module 2</a> and <a href="../1/">Module 1</a> but will
+also require the use of <I>arrays</I> as taught in <a href="./">this module</a>.
+<p>
+<BLOCKQUOTE>
+We ask that you follow these instructions carefully, step-by-step, so as to
+develop your code by concept refinement.   Each concept is first described,
+and then your group takes steps to implement the concept.
+<p>
+Ask questions as needed to complete one step before going on to the next.
+</BLOCKQUOTE>
+<H4>Procedure</H4>
+In the steps described below, pictures are shown of dice to illustrate
+the concepts involved in this studio.  You will not really be using or
+displaying the pictures.  Instead, your program will <I>simulate</I> throwing
+dice and you will measure the properties of interest.
+<OL>
+  <LI> You need two pieces of information from the user:
+<DL>
+   <DT> How many dice will be used in this simulation?
+<DD>
+For the purposes of this document, let us say that <I>D</I> dice are used.
+<p>
+As an example, if <I>D</I> is <KBD>3</KBD>, then a given throw could
+be:
+<CENTER>
+<TABLE>
+<TR>
+<IMG SRC=Studio/3.jpg WIDTH="40">
+<IMG SRC=Studio/5.jpg WIDTH="40">
+<IMG SRC=Studio/3.jpg WIDTH="40">
+</TR>
+</TABLE>
+</CENTER>
+   <DT> How many times will the dice be thrown?
+<DD>
+For the purposes of this document, let us say that the dice will be thrown
+<I>T</I> times.
+<p>
+As an example, if <I>T</I> is <KBD>5</KBD>, then the dice could be thrown
+as follows:
+<a name="fig1"></a>
+<CENTER>
+<TABLE>
+<TR> <TH COLSPAN=3 ALIGN=CENTER> Figure 1 </TH> </TR>
+<TR>
+<TD>
+<IMG SRC=Studio/3.jpg WIDTH="40">
+<IMG SRC=Studio/5.jpg WIDTH="40">
+<IMG SRC=Studio/3.jpg WIDTH="40">
+</TD>
+</TR>
+<TR>
+<TD>
+<IMG SRC=Studio/1.jpg WIDTH="40">
+<IMG SRC=Studio/1.jpg WIDTH="40">
+<IMG SRC=Studio/6.jpg WIDTH="40">
+</TD>
+</TR>
+<TR>
+<TD>
+<IMG SRC=Studio/2.jpg WIDTH="40">
+<IMG SRC=Studio/1.jpg WIDTH="40">
+<IMG SRC=Studio/4.jpg WIDTH="40">
+</TD>
+<TR>
+<TD>
+<IMG SRC=Studio/5.jpg WIDTH="40">
+<IMG SRC=Studio/1.jpg WIDTH="40">
+<IMG SRC=Studio/2.jpg WIDTH="40">
+</TD>
+</TR>
+<TR>
+<TD>
+<IMG SRC=Studio/6.jpg WIDTH="40">
+<IMG SRC=Studio/6.jpg WIDTH="40">
+<IMG SRC=Studio/6.jpg WIDTH="40">
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</DL>
+<BLOCKQUOTE>
+At this point, 
+<UL>
+<LI> Create a class <KBD>Dice</KBD> in the <KBD>studio3</KBD>
+package (which is in the <KBD>studios</KBD> source folder).  
+<LI> Decide on meaningful variable names for the concepts introduced so far:
+<UL>
+  <LI> The number of dice used in this simulation.
+  <LI> The number of times the dice are thrown.
+</UL>
+<LI> Insert code
+to obtain the values for these variables from the user.
+<BLOCKQUOTE>
+If you have forgotten how to do this, look at examples from previous studios
+or look at the code from lecture.
+</BLOCKQUOTE>
+<LI> Test your code at this point, printing out the values you have received.
+</UL>
+</BLOCKQUOTE>
+<LI> Now let's simulate the dice rolls.  
+<BLOCKQUOTE>
+For the purposes of this lab, let's say that each die is six-sided, and
+therefore labeled to show the values 1&hellip;6.  If you have time, you
+might consider how to change your code to accommodate dice that have fewer or
+more than 6 sides.
+</BLOCKQUOTE>
+You need to iterate, assigning each
+die's roll the value that it shows in your simulated roll.
+Pseudocode for this activity is shown below:
+<PRE>
+// Pseudocode
+// for each die d
+//     randomly throw d to obtain the value v, shown face-up on d
+// end
+</PRE>
+<DL>
+<DT>
+How should you represent the value <I>v</I> shown on the die?  
+<DD>
+Talk this over as a group.
+While it is true that in computer science most sequences start at 0, you should
+pick a representation that helps you solve the problem at hand.
+<BLOCKQUOTE>
+<B>Spoilers: You will need to sum the values shown on the dice.</B>  You should
+therefore pick a representation that makes this easy.
+</BLOCKQUOTE>
+<DT> How will you compute (by simulation) the value <I>v</I> for each die <I>d</I>'s roll?
+<DD>
+You have seen this before:  use some simple computation based on <KBD>Math.random()</KBD> to compute a value in your representation of choice for each die's
+roll.
+</DL>
+<LI> 
+You next need a mechanism for remembering the value of each die as it is thrown.
+<p>
+Consider the example shown in <a href="#fig1">Figure&nbsp;1</a>.  After the
+first throw, we have:
+<CENTER>
+<TABLE>
+<TR>
+<TD>
+<IMG SRC=Studio/3.jpg WIDTH="40">
+<IMG SRC=Studio/5.jpg WIDTH="40">
+<IMG SRC=Studio/3.jpg WIDTH="40">
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+You must provision an array with one slot per die to hold the results of
+each throw.   
+If <I>D</I> is the number of dice, then
+such an array might fit into your program as follows:
+<PRE>
+int[] diceThrown = new int[D]
+// for each die d
+//     randomly throw d to obtain the value v, shown face-up on d
+//     record die d's role in the diceThrown array
+// end
+// At this point, your dieThrown array has an entry that shows each die's value
+</PRE>
+<BLOCKQUOTE>
+Review the material we have been studying on <B>arrays</B>, and discuss as a group
+how to deply the above array to remember each die's value after it has been thrown.
+Instantiate the array in your code and make sure its size is exactly
+right for the task at hand.
+</BLOCKQUOTE>
+For the example above,
+your array might look like:
+<CENTER>
+<TABLE BORDER CELLPADDING=5>
+<TR> <TH> array index </TH> <TD ALIGN=CENTER> 0 </TD> <TD ALIGN=CENTER> 1</TD> <TD ALIGN=CENTER> 2 </TD> </TR>
+<TR> <TH> array contents </TH> <TD ALIGN=CENTER> 3 </TD> <TD ALIGN=CENTER>5</TD> <TD ALIGN=CENTER>3</TD></TR>
+<TR> <TH> represents </TH> 
+<TD> <IMG SRC=Studio/3.jpg WIDTH="40"> </TD>
+<TD> <IMG SRC=Studio/5.jpg WIDTH="40"> </TD>
+<TD> <IMG SRC=Studio/3.jpg WIDTH="40"> </TD>
+</TR>
+</TABLE>
+</CENTER>
+<p>
+<LI> Insert code to print th array's values, and run your program several
+times to make sure the values look reasonable.
+<HR>
+<LI> Around the code you have currently programmed, insert a loop so that
+your code iterates <I>T</I> times.
+<BLOCKQUOTE>
+Recall <I>T</I> was a value prompted from the user.  It is the number of
+times we will throw the dice.
+<p>
+You do <B>not</B> need a different or larger array than the one you already
+have.  You only need to remember the dice values after each throw.  You will
+not be required to remember the values from <I>all</I> of the throws.
+</BLOCKQUOTE>
+<LI> Run your program and examine the values printed from the <I>T</I> iterations.  They should continue to look reasonable (albeit random).
+<HR>
+<LI> Suppose we are interested in how often all of the dice show the same
+value after they are thrown within one of the <I>T</I> iterations.
+In the example shown in <a href="#fig1">Figure&nbsp;1</a>, this happened 1 in 5
+times (so, 20% or 0.2).
+<BLOCKQUOTE>
+What are the steps needed to make a concept real?    Some related questions are:
+<UL>
+  <LI> How can we determine if all dice have the same value after they are thrown?
+Fortunately, you have stored the dice values so they can be examined after they have all been thrown.
+  <LI> How do we keep track of the number of times they all have the same value?
+  <LI> How do we report the fraction of times they all have the same value?
+</UL>
+<p>
+Take those steps now
+so that your code can determine when all of the dice values are the same.
+Arrange for your program to print out the fraction or percentage of times the
+throws result in the same value for all dice.
+</BLOCKQUOTE>
+<HR>
+<LI> Suppose we are next are interested in the <I>sum</I> of the dice values.
+<BLOCKQUOTE>
+Make this concept real taking the usual steps.
+</BLOCKQUOTE>
+<LI> Arrange for your program to print out the dice values' sum each time
+the dice are thrown.  In addition to any output you already produce, you
+should have <I>T</I> more lines of output, one for each iteration of
+throwing the dice.  
+<p>
+Make sure the results seem reasonable.
+<HR>
+<BLOCKQUOTE>
+If you get this far, that is great, and we will demo you and consider your work done.
+If you have time now, or inclination later, take a look at the rest and see if you can do it.
+<p>
+This will help prepare you for the exam.
+</BLOCKQUOTE>
+<LI> Suppose we are interested in how often each possible sum occurs as the
+dice are thrown.
+In the example in <a href="#fig1">Figure&nbsp;1</a>, the sums
+were seen as follows:
+<CENTER>
+<TABLE BORDER PADDING=5>
+<TR> <TH> Sum</TH> <TH> Number of times<br>Sum was seen </TH></TR>
+<TR> 
+  <TD ALIGN=CENTER> 7</TD>
+  <TD ALIGN=CENTER> 1</TD>
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> 8</TD>
+  <TD ALIGN=CENTER> 2</TD>
+</TR>
+<TR> 
+  <TD ALIGN=CENTER>11</TD>
+  <TD ALIGN=CENTER> 1</TD>
+</TR>
+<TR> 
+  <TD ALIGN=CENTER>18</TD>
+  <TD ALIGN=CENTER> 1</TD>
+</TR>
+</TABLE>
+</CENTER>
+<BLOCKQUOTE>
+To make this concept real, have the following discussion:
+<UL>
+  <LI> What values could the sum possibly take, given that there are <I>D</I> dice?
+  <LI> Based on what we have studied thus far, kind and type of variable is needed to keep track of the sums?
+  <LI> Where in your code should you update how often a sum occurs?
+</UL>
+</BLOCKQUOTE>
+<LI> Arrange for your program to produce output (formatted as you like) that
+shows how often each sum occurs as a fraction or percentage of all of the
+throws.  It's OK to report <KBD>0</KBD> for sums whose values did not occur.
+<BLOCKQUOTE>
+For <I>D</I> dice, which sums occur most frequently?  You can determine this
+by running your program on different numbers of dice, but using enough iterations
+to show typical behavior.
+</BLOCKQUOTE>
+</OL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:38:59 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio3">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio3a">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

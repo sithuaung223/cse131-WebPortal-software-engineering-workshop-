@@ -1,0 +1,204 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Lists</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 9: Lists</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI class="active"><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Exercises</H3>
+<BLOCKQUOTE>
+These exercises are part of the asynchronous component of this course.
+Material is taught and demonstrated, but at times you are asked to complete
+one of the exercises to help you master the new concepts.
+<p>
+In the repository you are using for this course, look inside the
+<KBD>exercises</KBD> source folder, and you will see assignments organized
+by name.  Before continuing on to the next portion of the asynchronous material,
+spend some time on the exercise.  When you are finished, commit your code
+so that credit for the exercise can be given.
+<p>
+It is not so important that you get the exercise exactly right.  It is
+important to work through it as best you can before you look at the
+solution or continue with other work in this module.
+</BLOCKQUOTE>
+<HR>
+<a name="exer1"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>A static and interative <KBD>size(ListNode&lt;T&gt;)</KBD> method</H3>
+<OL>
+<LI> In the <KBD>exercises9</KBD> package of your <KBD>exercises</KBD> folder,
+open the <KBD>ListNode</KBD> class.
+<LI> You will find there a <I>stub</I> method for
+<KBD>size(ListNode&lt;T&gt;)</KBD>.
+<BLOCKQUOTE>
+<UL>
+ <LI> A stub is the starting sketch of a method.  It usually returns some
+default result, which, while not correct, is a starting point for developing
+a real implementation of the method.
+ <LI> Because this method is <KBD>static</KBD>, it does not have access to
+the class parameter type <KBD>T</KBD>.  Thus you see that the method
+declaration:
+<PRE>
+public static&lt;T&gt; int size(ListNode&lt;T&gt; start)
+</PRE>
+declares the type parameter <KBD>T</KBD> on the <KBD>static</KBD> attribute.
+</UL>
+</BLOCKQUOTE>
+ <LI> Complete the method so that it computes the size of a sequence of
+<KBD>ListNode&lt;T&gt;</KBD> objects, where the list is implied to begin at the
+parameter <KBD>start</KBD>.
+<BLOCKQUOTE>
+You must use <B>iteration</B>, not recursion, for your solution.  
+You can review the video with the
+students in which they worked on a recursive solution.  But your solution
+here must be iterative.
+</BLOCKQUOTE>
+  <LI> To test your code, uncomment the lines of code in the <KBD>main</KBD>
+method that call the <KBD>size(ListNode&lt;T&gt;)</KBD> method.
+</OL>
+If you get stuck, take a look at the solution video but look only as far
+as you must to get unstuck.  At that point, resume work on your own.
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer2"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>A static and recursive <KBD>size(ListNode&lt;T&gt;)</KBD> method</H3>
+In this exercise, you continue your work from the previous exercise.
+<OL>
+<LI> In the <KBD>exercises9</KBD> package of your <KBD>exercises</KBD> folder,
+open the <KBD>ListNode</KBD> class, which should contain your work from
+the previous exercise.
+<LI> Rename the existing <KBD>size(ListNode&lt;T&gt;)</KBD> method to some
+other name (such as <KBD>sizeIterative</KBD>, and define a new 
+<KBD>size(ListNode&lt;T&gt;)</KBD> method for your work here.
+ <LI> Complete the method so that it computes the size of a sequence of
+<KBD>ListNode</KBD> objects, where the list is implied to begin at the
+parameter <KBD>start</KBD>.
+<BLOCKQUOTE>
+<UL>
+<LI> Here you must use recursion for your solution.
+<LI> The interactive student video does exactly that, so you can review it
+if necessary.  However, try to do this on your own as much as possible.
+<LI> The solution for this exercise contains another video showing how to
+solve this problem.
+</UL>
+<BLOCKQUOTE>
+  <LI> To test your code, use the lines of code in the <KBD>main</KBD>
+method that call the <KBD>size(ListNode&lt;T&gt;)</KBD> method.
+</OL>
+If you get stuck, take a look at the solution videos but look only as far
+as you must to get unstuck.  At that point, resume work on your own.
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer3"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>A static and recursive <KBD>sum(ListNode&lt;T&gt;)</KBD> method</H3>
+In this exercise, you continue your work from the previous exercise.
+<OL>
+<LI> In the <KBD>exercises9</KBD> package of your <KBD>exercises</KBD> folder,
+open the <KBD>ListNode</KBD> class, which should contain your work from
+the previous exercises.
+<LI> Define a method stub by inserting the following code into your class:
+<PRE>
+	//
+	// static and iterative
+	//
+	public static&lt;T&gt; int sum(ListNode&lt;T&gt; start) {
+		// NB  start could be null!
+		return 0; // FIXME
+	}
+</PRE>
+ <LI> Complete the method so that it computes the sum of a sequence of
+<KBD>ListNode</KBD> objects's values, where the list is implied to begin at the
+parameter <KBD>start</KBD>.
+  <LI> To test your code, use the lines of code in the <KBD>main</KBD>
+method that call the <KBD>sum(ListNode&lt;T&gt;)</KBD> method.
+</OL>
+If you get stuck, take a look at the solution videos but look only as far
+as you must to get unstuck.  At that point, resume work on your own.
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

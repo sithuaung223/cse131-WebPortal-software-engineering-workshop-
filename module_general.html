@@ -1,0 +1,575 @@
+<!doctype html>
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+  
+  <div class="container-fluid" id = "nav-div">
+    <!-- washu logo home -->
+    <div class = "navbar-header" >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="dashboard.html">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="dashboard.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="Calendar_131.html">Calendar</a></li>
+        <li class="dropdown">
+          <a href="module_general.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul id = "drop_down_container" class="dropdown-menu">
+            <!--<li><a href="module_detail.html">Welcome</a></li>
+            <li><a href="module_detail.html">Intro, Types & Names</a></li>
+            <li><a href="module_detail.html">Choice & Iteration</a></li>
+            <li><a href="module_detail.html">Arrays</a></li>
+            <li><a href="module_detail.html">Input & Output</a></li>
+            <li><a href="module_detail.html">Methods</a></li>
+            <li><a href="module_detail.html">Recursion</a></li>
+            <li><a href="module_detail.html">Objects</a></li>
+            <li><a href="module_detail.html">Abstract Data Types</a></li>
+            <li><a href="module_detail.html">List Structure</a></li>
+            <li><a href="module_detail.html">Game</a></li>
+            -->
+            <!-- <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><p class= "navbar-text">Delia95</p></li>
+        
+        <li class= "navbar-text" id = "logout-button"><p class = "navbar-text"><a href = "#" class = "navbar-link">Logout</a></p></li>
+      </ul> -->
+
+      <p class = "navbar-text navbar-right" id = "name"></p>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+ 
+<style type="text/css">
+
+h1 {
+  font-size: 180%;
+  color: black;
+}
+
+.progress-bar {
+    border-right: solid 5px black;
+}
+.progress-bar:last-child {
+    border: none; 
+}
+
+.fa{
+  font-size: 350%;
+}
+
+.m{
+  font-size: 450%;
+}
+
+.black{
+  color: black;
+}
+
+.title_header{
+  text-align: center;
+}
+
+.mod{
+  font-size: 200%;
+  color: black;
+}
+
+.scroll{
+  overflow-y:scroll; 
+
+}
+
+.e{
+  height: 140%;
+}
+
+.border{
+  border:  solid black;
+}
+
+
+.right{
+  float: right;
+  text-align: left;
+}
+
+.red{
+  color: red;
+}
+
+.center{
+  text-align: center;
+}
+div.box{
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  
+  display: inline-block; width: 400px; height: 400px;
+  border-width: 50px;
+  border-color: rgba(0,0,0,0);
+  
+  border-radius: 5%;
+  -moz-border-radius: 5%;
+  -webkit-border-radius: 5%;
+  
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -ms-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.box {
+  border-radius: 2px;
+  background-color: white;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
+.inner-text{
+  font-size: 90%;
+  color: black;
+  text-align: justify;
+    text-justify: inter-word;
+}
+
+
+div.box:hover {
+background-color: black ;
+ }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+div.box{
+  border-width: 0;
+  border-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 0 #fff;
+  background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+  border-color: #ccc;
+
+}
+.large-black>a{
+  font-size: 120%;
+  color: black; 
+}
+
+.large-black0{
+  font-size: 120%;
+  color: black; 
+}
+
+
+
+
+.basic-red>a{font-size: 120%;color: red}
+
+li{
+font-size: 90%
+}
+
+.gray{
+  text-shadow: 0 1px 0 #fff;
+  background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+  border-color: #ccc;
+}
+
+h5>a{
+  text-decoration: none;
+  color: black;
+}
+
+a{
+  color: black;
+}
+
+a:hover{
+  text-decoration: none;
+
+}
+
+.u{
+    padding-left: 2px;
+}
+
+
+</style>
+
+            
+<div class = "container-fluid u ">
+  <div class = "col-md-2 col-sm-12 center u ">
+      <div class = "border">
+      </div>
+      <br></br>
+      <div class="gray e" id = "mod_list">
+        <i class="fa fa-cubes fa-5x card red" aria-hidden="true"></i>
+        <h3> Full Module List </h3>
+        <!-- <h5 class = "large-black"> <a href="module_detail.html">1. Intro and Types & Names </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 2. Choice And Iteration </a> </h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 3. Arrays </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 4. Input And Output </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 5. Methods </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 6. Recursion </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 7. Objects </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 8.        <br></br>  
+        <br></br>
+        <br></br>Abstract Data Types </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 9. List Structures </a></h5>
+        <h5 class = "large-black"><a href="module_detail.html"> 10. Game </a></h5>
+        -->
+ 
+      </div>
+      <div class = "border">
+      </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-9 col-sm-12 center ">
+       <div class = "border">
+       </div>
+       <br></br>
+
+       <br></br>
+       <div class="row gray">
+          <div href="modules.html">        
+            <div >
+                <div class = "box disapear " id="modProgress">
+                <br></br>
+                  <br> <div class = "mod" id="ModuleName"></div></br>          
+                  <div  id="toggle">
+                    By the end of this module, you should...
+                    <br></br>
+                    <p class = "inner-text " id="itext"></p>
+                  </div>
+                  <br></br>
+                  <div>Module Progress</div>
+                  <div ></div>
+                  <!-- <i class = "fa fa-star" data-toggle="tooltip" data-placement="bottom" title = "Exercises"></i>
+                  <i class = "fa fa-star" data-toggle="tooltip" data-placement="bottom" title = "Studio"></i>
+                  <i class = "fa fa-star" data-toggle="tooltip" data-placement="bottom" title = "Labs"></i>
+                  <i class = "fa fa-star" data-toggle="tooltip" data-placement="bottom" title = "Extensions"></i> -->
+                
+              </div>
+             <br></br>
+            </div>
+          </div>
+        </div>
+        <div class = "border">
+        </div>
+        <div>
+          <div class = "col-md-12 col-sm-12 center">
+            <h1 class = "black">Total Progress </h1>
+            <div class="progress" id="bar">
+              <!-- 
+              <div class="progress-bar  " data-toggle="tooltip" data-placement="bottom" title = "Methods" style="width: 10%">
+                <span class = "black">  1</span>
+              </div>
+              <div class="progress-bar " data-toggle="tooltip" data-placement="bottom" title = "Recursion" style="width: 10%">
+                <span class = "black">  2</span>
+              </div>
+              <div class="progress-bar  " data-toggle="tooltip" data-placement="bottom" title = "Objects" style="width: 10%">
+                <span class = "black">  3</span>
+              </div>
+              <div class="progress-bar " data-toggle="tooltip" data-placement="bottom" title = "Abstract Data Types" style="width: 10%">
+                <span class = "black">  4</span>
+              </div>
+              <div class="progress-bar  " data-toggle="tooltip" data-placement="bottom" title = "List Structures" style="width: 10%">
+                <span class = "black">  5</span>
+              </div>
+              <div class="progress-bar  " data-toggle="tooltip" data-placement="bottom" title = "Game" style="width: 10%">
+                <span class = "black">  6</span> 
+              </div>
+              <div class="progress-bar  " data-toggle="tooltip" data-placement="bottom" title = "Types and Names" style="width: 10%">
+                <span class = "black">  7</span>
+              </div>
+              <div class="progress-bar " data-toggle="tooltip" data-placement="bottom" title = "Choice and Iteration" style="width: 10%">
+                <span class = "black">  8</span>
+              </div>
+              <div class="progress-bar " data-toggle="tooltip" data-placement="bottom" title = "Arrays" style="width: 10%">
+                <span class = "black">  9</span>
+              </div>
+              <div class="progress-bar " data-toggle="tooltip" data-placement="bottom" title = "Input and Output" style="width: 10%">
+                <span class = "black">  10</span>
+              </div>         
+            -->
+            </div>
+          </div>
+        </div>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src = "logout.js"></script>
+<script>
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+}); 
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+
+ /** 
+  function square_this(selector){
+
+    var cur_width = $(selector).width();
+
+    $(selector).height(cur_width);
+    $(selector).min-width()
+  }
+
+  square_this(".center");
+*/
+var data;
+
+/*
+var data = {module_name: "Abstract Data Types",
+            goals_and_resources: "use an abstract data type such a list" +
+                                  "understand how to generate equals and (to some extent) hashCode" +
+                                  "become more comfortable with designing objects based on stories",
+            module_progress:    [true,false,true,false],
+            course_progress:    [true,true,true,true,true,true,true,false,false,false]
+            };
+*/
+
+
+            //console.log(data.currentModule.module_name);
+
+
+
+
+function popModules(data){
+
+
+
+
+
+  $("#ModuleName").text(data.currentModule.module_name);
+  $("#itext").text(data.goals_and_resources);
+
+//pop logout and user with data
+  var l = document.createElement("a");
+  $("#name").text(data.student);
+  $(l).attr("href", "#");
+  $(l).attr("class", "navbar-link");
+  $(l).text(" Logout");
+  $("#name").append(l);
+  $(l).attr("id", "logout_btn");
+
+
+  //var s = document.getElementsByClassName("fa-star");
+  for (var mod_part in data.currentModule.progress){
+
+       var star = document.createElement("i");
+       $(star).addClass("fa fa-star");
+       $(star).attr("data-toggle","tooltip");
+       $(star).attr("data-placement","bottom");
+       //console.log(data.currentModule.progress[mod_part]);
+       $(star).attr("title", mod_part);
+       if (data.currentModule.progress[mod_part] == 1){
+        $(star).attr("style","color:"+"gold");
+      }
+      $("#modProgress").append(star);
+    
+
+  }
+  /*
+  var slices = document.getElementsByClassName("progress-bar");
+  for (var i = 0; i < slices.length; i++){
+    if(data.course_progress[i] == true){
+       $(slices[i]).addClass("progress-bar-success progress-bar-striped");
+    }else{
+      $(slices[i]).addClass("progress-bar-danger");
+    }
+  }
+  */
+
+
+}
+
+
+function pop_mod_list(data){
+
+
+  var mod_array = data.modules;
+  console.log(data);
+  var container = $("#mod_list");
+  var num_mods = mod_array.length;
+  var amt_left = 100;
+  var slice_sz = Math.floor(100 / num_mods);
+  for (var i = 0; i < num_mods; i++){
+
+    //pop side list
+    var new_item = document.createElement("h5");
+    if (mod_array[i].module_name === data.currentModule.module_name){
+      $(new_item).attr("class", "basic-red");
+    }
+    else{
+      $(new_item).attr("class", "large-black");
+    }
+    var new_a = document.createElement("a");
+    $(new_a).attr("href", "module_detail.html");
+    $(new_a).text(mod_array[i].module_name);
+    $(new_a).attr("id", mod_array[i].module_id);
+    $(new_item).append(new_a);
+    $(container).append(new_item);
+
+    //pop dropdown
+    //<li><a href="module_detail.html">Welcome</a></li>
+    var new_drop = document.createElement("li");
+    var new_d_a = document.createElement("a");
+    $(new_d_a).text(mod_array[i].module_name);
+    $(new_d_a).attr("id", mod_array[i].module_id);
+    $(new_d_a).attr("href", "module_detail.html");
+    $(new_drop).append(new_d_a);
+    $("#drop_down_container").append(new_drop);
+
+
+    //pop progress bar
+    var prog_container = $("#bar");
+
+    var new_prog_item = document.createElement("div");
+    $(new_prog_item).attr("class", "progress-bar");
+    $(new_prog_item).attr("data-toggle", "tooltip");
+    $(new_prog_item).attr("data-placement", "bottom");
+    $(new_prog_item).attr("title", mod_array[i].module_name);
+    var val;
+    if (amt_left - (2 * slice_sz) >= 0){
+      amt_left = amt_left - slice_sz;
+      val = slice_sz;
+    }
+    else{
+      
+      val = amt_left;
+      amt_left = 0;
+    }
+    $(new_prog_item).attr("style", "width: " + String(val) + "%");
+
+    var spn = document.createElement("span");
+    $(spn).attr("class", "black");
+    $(spn).text(i+1);
+    $(new_prog_item).append(spn);
+    $(prog_container).append(new_prog_item);
+
+     if (mod_array[i].complete){
+      $(new_prog_item).addClass("progress-bar-success progress-bar-striped");
+    }
+    else{
+      $(new_prog_item).addClass("progress-bar-danger");
+    }
+  }
+
+  for (var j = 0; j < 3; j++){
+    $(container).append(document.createElement("br"));
+  }
+
+
+
+}
+
+function getAllModulesInfo(){
+        
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "php/getAllModulesInfo.php", true); 
+  xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+  xmlHttp.addEventListener("load", function(event){
+
+      console.log(event.target.responseText);
+      data = JSON.parse(event.target.responseText); 
+      if(data.success){  
+          pop_mod_list(data);
+          popModules(data);
+          //console.log(data);
+          document.getElementById("logout_btn").addEventListener("click", logoutAjax, false); // Bind the AJAX call to button click
+          $('[href = "module_detail.html"]').click(function(e){
+              e.preventDefault();
+              $.cookie("module_name", $(this).attr("id"));
+              window.location.href = "module_detail.html";
+          });
+      }else{
+          //cannot loaded
+          alert("Modules could not be loaded");
+      }
+  }, false);
+  xmlHttp.send(); 
+}
+
+
+
+$(document).ready(function(){
+
+  getAllModulesInfo();
+
+});
+
+
+</script>
+
+
+
+</html>

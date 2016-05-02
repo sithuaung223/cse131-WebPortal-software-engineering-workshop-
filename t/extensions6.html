@@ -1,0 +1,680 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Recursion</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 6: Recursion</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Divine Lines (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Ken Goldman
+</UL></DL>
+<BLOCKQUOTE>
+A video demonstrating a solution can be found <a href="Extensions/lines.mp4">here</a>.
+</BLOCKQUOTE>
+In the <KBD>extensions</KBD> source folder, find and open the <KBD>lines</KBD> package and the
+<KBD>Lines</KBD> class contained therein.    The <KBD>main</KBD> method is provided, and it calls
+the method <KBD>drawLine</KBD>,which you must complete.
+<BLOCKQUOTE>
+Do not change the parameters or return type of the <KBD>drawLine</KBD> method!  You are welcome to define
+<I>other</I> methods in the <KBD>Lines</KBD> class if you wish, but the <KBD>drawLine</KBD> method's signature (the number and types of its parameters and its return type) must
+be preserved as you do your work.
+</BLOCKQUOTE>
+<p>
+Your task is to devise an algorithm for drawing a line from (x1,y1) to (x2,y2) using <I>recursion</I>.
+It may take you some time to think about how to do that, but once you see the recursive nature of drawing a line,
+you will probably need only a few lines of code to accomplish this task.
+
+<p>
+Please take note of the following guidelines, as you will not receive credit unless your solution follows
+the rules of this assignment:
+<UL>
+  <LI> The code given to you will perform a test of your <KBD>drawLine</KBD> when you run it as a Java Application.
+  <LI> If you want to draw lines interactively using your solution, then run the <KBD>InteractiveLines</KBD> class
+as a Java Application.
+  <LI> Do not use <KBD>StdDraw.line</KBD> to do any of your work!
+  <LI> The only methods you are allowed to use from <KBD>StdDraw</KBD> are <KBD>point</KBD>,
+    <KBD>setPenRadius</KBD>, and <KBD>setPenColor</KBD>.
+<BLOCKQUOTE>
+This means you must draw your line one point at a time.
+</BLOCKQUOTE>
+<LI>
+Some students approach this problem by computing the slope of the line and
+then incrementally trying to draw pieces of it using recursion. That approach
+comes to grief for vertical lines, which have infinite slope.  There
+is a much easier and satisfying way to solve this problem, but you have
+to think about it.
+<BLOCKQUOTE>
+Do <B>not</B> compute or use the slope of the line in your approach.  We will
+not count the extension if you do that.  Instead, think recursively about
+how a line is constructed.
+</BLOCKQUOTE>
+</UL>
+ When you are done it should look like this:
+ <p>
+ <CENTER>
+ <IMG SRC="Extensions/crayRays.jpg" width = 400 height = 400>
+ </CENTER>
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 6.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions7">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Persian Recursian (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> The idea for this assignment comes from the article &quot;Persian Recursion&quot; by Anne M. Burns that appeared on pages 196-199 of <em>Mathematics Magazine</em>, volume 7, in 1997
+</UL></DL>
+<BLOCKQUOTE>
+<UL>
+<LI> A video demonstrating my solution can be found <a href="Extensions/persian.mp4">here</a>.
+<LI> That video instructs you how to speed up the drawing substantially.
+<LI> Don't speed things up until you see the rug is drawing properly.
+</UL>
+</BLOCKQUOTE>
+In the <KBD>extensions</KBD> folder open the <KBD>recursivepatterns</KBD> package and
+the <KBD>PersianRug</KBD> class.
+Your task is to complete the method <KBD>persianRug</KBD> so that it draws a rug similar to the
+one shown below:
+<CENTER>
+<IMG SRC="Extensions/rug.png">
+</CENTER>
+Each call to <KBD>persianRug</KBD> works on a given square of the rug.   Consider the picture shown below:
+<CENTER><IMG SRC="Extensions/orig.png"></CENTER>
+<UL>
+<LI>
+The square is described by its lower-left corner (in this case, (0,0)), and its size (in this case, 1).
+<LI> Each step of the recursion considers the colors of the provided square's sides (in this case, blue), and computes
+a color for the two lines to be drawn inside the square (in this case, red).  
+<BLOCKQUOTE>
+Computing the color of these two lines is what makes the rug look as it does.  More detail is given below
+concerning how to pick a color.
+</BLOCKQUOTE>
+<LI> Further recursion would act on the sub-squares you see in the above picture.  For example, the upper-left
+subsquare has its lower-left corner at (0, 0.5), has size 0.5, and has colors blue, red, red, blue, starting from
+north and proceeding clockwise.
+</UL>
+<p>
+The parameters for <KBD>persianRug</KBD> are documented in the source code provided to you for this extension.
+<p>
+Notes:
+<UL>
+<LI> Colors in this lab are represented as an index into a <KBD>Color</KBD> array called <KBD>palette</KBD>.  This
+array is provided for you in the source code and it is passed into your
+<KBD>persianRug</KBD> method.
+<LI> Indexes into <KBD>palette</KBD> are passed into <KBD>persianRug</KBD> to describe the colors of the
+square's bordering edges.  For example, blue is represented by index 0 into the <KBD>palette</KBD> array,
+and cyan appears at index 1.
+<LI> Picking a color for the two lines drawn inside a given square is the <I>creative</I> aspect of this
+assignment.  The following should be read carefully and understood before you jump into coding.
+<UL>
+<LI> Although you will eventually pick more diverse colors, we recommend that unti your lab is working,
+you should always use color index 0 for the color of the two drawn lines.
+<LI> Once that is working, you must pick a color that is a function of the square's bordering colors (which
+are conveniently represented as indexes into <KBD>palette</KBD>.   That function must have the following
+properties to perform correctly:
+<UL>
+  <LI> The function must return a value that is an appropriate index into the <KBD>palette</KBD> array.
+<BLOCKQUOTE>
+As you know, 0 is the smallest index, and the largest index is <KBD>palette.length-1</KBD>.
+</BLOCKQUOTE>
+  <LI> The function must return the same value for any permutation of a given square's bordering colors.
+For example, if the colors are specified in order red, blue, blue, red, then any square with two blue and two 
+red sides must compute the same color for the two drawn lines.
+<BLOCKQUOTE>
+Recall that these colors are represented as integers, each being an index into the <KBD>palette</KBD> array.
+What kinds of functions on integers return the same result no matter the order of those integers?
+</BLOCKQUOTE>
+</UL>
+<LI> Different functions will produce different rugs.  The rug below is computed using the same code as the rug shown at the top of this assignment, but the function was tweaked slightly:
+<CENTER><IMG SRC="Extensions/otherrug.png"></CENTER>
+Perhaps you can see that in the above rug, once a square has red on each of its borders, the two drawn lines inside that square are also red.
+That effect just happens to be a property of the function I used to produce
+the above image.
+<p>
+<LI> Rugs contributed Fall 2013:
+<CENTER>
+<TABLE BORDER> 
+<TR> 
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/bengreene.png" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/djas.png" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/alan.png" WIDTH=200></TD>
+</TR>
+<TR>
+  <TD ALIGN=CENTER> Ben Greene</TD>
+  <TD ALIGN=CENTER> Dylan Jew and Ari Spilo</TD>
+  <TD ALIGN=CENTER> Alan Waldman</TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/samchase.png" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/mp.png" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/bz.png" WIDTH=200></TD>
+</TR>
+<TR>
+  <TD ALIGN=CENTER> Sam Chase</TD>
+  <TD ALIGN=CENTER> Meagan Provencher</TD>
+  <TD ALIGN=CENTER> Ben Zod</TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/dianafasanello.png" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/AnnaKunyao.jpg" WIDTH=200></TD>
+ <TD ALIGN=CENTER> <IMG SRC="Extensions/JeremyScharfRug.png" WIDTH=200></TD>
+</TR>
+<TR>
+  <TD ALIGN=CENTER> Diana Fasanello</TD>
+  <TD ALIGN=CENTER> Anna Kolasa and Kunyao Liu</TD>
+  <TD ALIGN=CENTER> Jeremy Scharf</TD>
+</TR>
+</TABLE>
+</CENTER>
+<LI> When things go wrong, it is almost always because you do not have a consistent view of the square
+as presented to <KBD>persianRug</KBD>.  Ask for help as needed!
+</UL>
+
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 6.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions8">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Flower Power (4 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Ken Goldman
+</UL></DL>
+<BLOCKQUOTE>
+A video demonstrating my solution can be found <a href="Extensions/flower.mp4">here</a>.
+</BLOCKQUOTE>
+In the <KBD>extensions</KBD> folder open the <KBD>recursivepatterns</KBD> package.  
+The following classes found there, and described in greater detail below, must
+be completed for this extension:
+<UL>
+ <LI> <KBD>TransparentColor</KBD> 
+ <LI> <KBD>Flower</KBD>
+</UL>
+The ultimate goal is to complete the <KBD>flower</KBD> method of the
+<KBD>Flower</KBD> class so that it draws an image similar to the one
+shown below:
+<CENTER><IMG SRC="Extensions/flower.png"></CENTER>
+The colors shown in the above image are somewhat <I>transparent</I>, so that
+the color of an ellipse is allowed to bleed through the ellipse above it.
+<p>
+You can proceed by working on either class first.  However, if you postpone
+<KBD>TransparentColor</KBD>, you will see solid colors in your flower until
+you have completed that class.
+<H4>Details</H4>
+<DL>
+<DT><KBD>TransparentColor</KBD>
+<DD> As is the case with most color models, Java's 
+<KBD><a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/awt/Color.html">Color</a></KBD> 
+objects
+are allowed to have a degree of transparency.
+<p>
+The <KBD>transparentColor</KBD> method, as provided to you, ignores the
+<KBD>alpha</KBD> parameter and returns the color provided as input.
+<BLOCKQUOTE>
+You must change this behavior so that the color returned as the same
+red, green, and blue components as the provided color, but with the
+specified transparency.
+</BLOCKQUOTE>
+Java makes this easy, because there is a constructor for
+<KBD><a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/awt/Color.html">Color</a></KBD> 
+that does the job.
+This task is given to you primarily to acquaint you with the process of looking
+through JavaDoc documentation to find a class or method you need.
+<p>
+Follow the instructions provided in the <KBD>TransparentColor</KBD> source code.
+<BLOCKQUOTE>
+Before moving on, test your code by running <KBD>TransparentColor</KBD> as
+a Java Application.  You should see the colors solid at the upper right of
+the drawing window, and blended (more transparent) at the lower left.
+<p>
+You must demo this to a TA when you seek credit for this extension.
+</BLOCKQUOTE>
+
+<DT><KBD>Flower</KBD>
+<DD>
+Your task here is to complete the <KBD>flower</KBD> method, whose parameters
+are described in the JavaDoc for the method.  Some useful guildines follow:
+<UL>
+<LI> The <KBD>StdDraw</KBD> class offers a <KBD>filledEllipse</KBD> method,
+but you must set the color before calling it.
+<LI> You should choose a random color for each ellipse you draw, and you are
+provided a <KBD>palette</KBD> of <KBD>Color</KBD> objects as input to
+your <KBD>flower</KBD> method.
+<BLOCKQUOTE>
+If necessary, review the material in the text and slides that discusses how
+to pick a random integer.  You would use that integer to index the
+<KBD>palette</KBD> array.
+</BLOCKQUOTE>
+<LI> You must find the substructure in the flower pattern.  To help
+with this, the following
+diagram shows the locations of each ellipse within a given level of recursion:
+<CENTER><IMG SRC="Extensions/five-recursive-calls.jpg" WIDTH=400></CENTER>
+<LI> Analyze the above diagrams to infer the area taken up by each sub-ellipse
+that you must draw.
+<LI> Remember that the <KBD>StdDraw</KBD> coordinate system has (0,0) at the 
+lower-left, and (1,1) at the upper right.
+<LI> Remember that <KBD>StdDraw</KBD> shapes take a center as their primary
+coordinate, and use half-widths and half-lengths for dimensions.
+</UL>
+</DL>
+As usual, ask for help as needed.
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 6.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions9">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Fibonacci Recursively and Iteratively (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<H4> Introduction </H4>
+
+You have written the recursive function for the
+<a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci Sequence</a> in <a href=studio.html">studio</a>.  In this extension, you will
+compare the running time of that recursive formulation with an
+iterative formulation of the same function.
+
+<H4>Procedure</H4>
+<UL>
+  <LI> Find the <KBD>fibonacci</KBD> package in the <KBD>extensions</KBD>
+source folder.
+  <LI> Complete the <KBD>recursive</KBD> method so that it returns the
+<I>n</I><SUP>th</SUP> fibonacci number using the recursive proram
+from <a href="studio.html">studio</a>.
+   <LI> Complete the <KBD>iterative</KBD> method so that it computes the
+same function, but iteratively.
+<BLOCKQUOTE>
+As a hint, you will need two variables that represent the 
+<I>(n-1)</I><SUP>th</SUP> and
+<I>(n-2)</I><SUP>th</SUP> values of the sequence.  Adding those together
+produces the
+<I>n</I><SUP>th</SUP> term.  The variables' values are then shifted prior
+to the next iteration.
+</BLOCKQUOTE>
+<LI> Run the <KBD>CorrectnessTest</KBD> to make sure your functions are
+computing the correct values.
+<LI> We will now compare the timing of the two methods.
+First run <KBD>TimedTest</KBD>, and give it a little time to finish. Right click the <KBD>outputs</KBD> folder and click refresh. You should now see two excel file outputs in the folder. Open them up and plot the points, observing the difference in time between the iterative and recursive methods.
+</UL>
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 6.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions0">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext5"></a>
+<H2>Extension 5: Tic-Tac-Toe: A Perfect Player (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Tim Huber
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Not yet ready
+</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>
+<B>Warning:  </B> You must have a complete and working <KBD>tictactoe</KBD> extension
+before you take on this work.   So make sure you already have credit
+for that extension and that all method work properly.
+</BLOCKQUOTE>
+
+
+<H4> Procedure </H4> 
+<p>Your task in this extension is to design a robot player that plays tic-tac-toe perfectly. Once this player is implemented correctly, 
+it should never lose, regardless of whether it makes the first move or not. Note that a tic-tac-toe game between two perfect players 
+will <em>always</em> end in a tie. </p>
+
+<p>Inside the <kbd>extensions</kbd> folder is a <kbd>tictactoexpert</kbd> package, 
+which contains the following:
+<DL>
+ <DT> <KBD>NaivePlayer</KBD>
+ <DD>
+This player picks a random move from those currently available on
+the <KBD>board</KBD>.
+ <DT> <KBD>PerfectPlayer</KBD>
+ <DD>
+Here is where you do your work.  The <KBD>perfectMove</KBD> method should
+play so as to always at least force a tie,
+if not a win, for <KBD>myPlayer</KBD>.  As given to you, the code simply picks
+the next available move in a top-to-bottom, left-to-right scan of the
+<KBD>board</KBD>.
+ <DT> <KBD>Game</KBD>
+ <DD>
+You can use this class to test your <KBD>PerfectPlayer</KBD>.  The play
+alternates between you and the <KBD>PerfectPlayer</KBD>.  You should test your
+code here by allowing it to win or draw, with you playing (as human) a good
+but not perfect game.
+ <DT> <KBD>PPTest</KBD>
+ <DD>
+This tests your <KBD>PerfectPlayer</KBD>, ensuring that it always draws
+against itself, and never loses against the <KBD>NaivePlayer</KBD>.
+</DL>
+Open it up and you should see a <kbd>PerfectPlayer</kbd> class. 
+This is where you will be doing the work for this extension. It contains a <kbd>public static int[] makeMove(String[][] board, String playerSymbol)</kbd> 
+that takes in a double <kbd>String</kbd> array representation of the board and the <kbd>String</kbd> symbol of the player (<kbd>"x"</kbd> or <kbd>"o"</kbd>), 
+and returns an <kbd>int</kbd> array in which the first entry is the <em>row</em> of the robot's move and the second entry is the <em>column</em>. 
+In the <kbd>String[][]</kbd> parameter, the row and column of each <kbd>String</kbd> correspond to that row and column on the tic-tac-tow board. 
+A <kbd>""</kbd> (not null) indicates a free space and an <kbd>"o"</kbd> or <kbd>"x"</kbd> indicate either the robot player or its opponent's mark. The 
+<kbd>playerSymbol</kbd> parameter tells you which mark corresponds to the robot's moves.</p>
+<blockquote>
+There is a simple, complete robot player implemented in the <kbd>DumbPlayer</kbd> class that you can look at for reference.
+</blockquote>
+
+<p>You can find outline of tic-tac-toe strategy <a href="https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy">here</a>, which can be turned into a 
+simple algorithm for the robot player. This algorithm doesn't strictly need recursion, but you will find that creating and blocking forks is much more 
+easily accomplished by calling the <kbd>makeMove</kbd> method recursively. This will allow you to predict the state of the board several moves ahead and 
+decide if a move actually produces a fork.</p>
+
+<blockquote>
+In a tic-tac-toe game, the first and second moves are extremely important. You may want to handle these moves individually before moving on to a more
+general algorithm.
+</blockquote>
+
+<p>You can test your perfect robot player with the <kbd>TestPerfectPlayer</kbd> JUnit test. Be aware that this test is not exhaustive (even after passing, 
+the robot player could be making some mistakes) but it is sufficient to get credit for this extension.</p>
+
+<a name="extdemo5"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 6.5</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6.5">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions1">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 5</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

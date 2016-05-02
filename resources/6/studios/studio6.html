@@ -1,0 +1,349 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Recursion</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 6: Recursion</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI class="active"><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Studio</H3>
+<HR>
+if necessary, review <a href="../../studiodocs/studioheader.html">studio procedures</a> before
+starting.
+<p>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<BLOCKQUOTE><FONT SIZE=+2 COLOR=RED>
+<b>Note for Fall 2015:  Update your repos from the topmost level.  There was
+a missing test case in the code I originally sent you.  Thanks!</b>
+<p>
+Note!  It is <B>very important</B> to the pedagogical goals of this studio that you follow the directions
+below <B>carefully</B>.   The object of studio is <I>not</I> to arrive at a solution, but rather to understand
+the processes involved in developing solutions.
+<p>
+For example, at times, you may be asked to sketch a solution using pencil and paper.
+<p>
+To be blunt, this means you <b>must have pencil and paper out</b>, and you must use said paper and pencil to sketch
+solutions.  These sketches are very helpful both for your own understanding of recursive computations but also
+these sketches help us understand how you think about recursion.
+</FONT>
+</BLOCKQUOTE>
+<HR>
+<H4>Overview</H4>
+In this studio you will learn two styles of developing recursive code:
+<UL>
+  <LI> A <B>recursive specification or formula</B> may be provided for a computation.  In such cases,
+the recursive code is often a direct transcription of the formula into Java.
+  <LI> Examples or instances of the computation may be provided.  In such cases, you must
+identify the <B>recursive structure</B> of the computation to obtain code.
+</UL>
+<H4>Recursive Formulae</H4>
+<OL>
+<LI>
+For each of the following recursive formulae, write the corresponding code in Java and test your solution
+using the provided JUnit test.
+<BLOCKQUOTE>
+The functions defined below are <I>partial</I>, in the sense that they do not work on all inputs.
+Let's assume that inputs to all functions below are restructed to the nonnegative integers (0, 1, 2, &hellip;).
+<P>
+Do not worry about errors that may occur if improper inputs are presented.
+</BLOCKQUOTE>
+<DL>
+  <DT> factorial
+  <DD>
+This was done in front of you during lecture.
+<TABLE>
+<TR> <TD ROWSPAN=2 VALIGN=CENTER> fact(n) = </TD>  <TD ROWSPAN=2 VALIGN=CENTER><FONT SIZE=12>{</FONT></TD> <TD> n &times; fact(n-1)</TD> <TD ALIGN=CENTER> n &gt; 0</TD></TR>
+<TR>                                               <TD>  1</TD> <TD ALIGN=CENTER> otherwise</TD></TR>
+</TABLE>
+  <DT> Fibonacci
+  <DD>
+<TABLE>
+<TR> <TD ROWSPAN=2 VALIGN=CENTER> fib(n) = </TD>  <TD ROWSPAN=2 VALIGN=CENTER><FONT SIZE=12>{</FONT></TD> <TD> fib(n-1) &plus; fib(n-2)</TD> <TD ALIGN=CENTER> n &gt; 1</TD></TR>
+<TR>                                               <TD>  n</TD> <TD ALIGN=CENTER> otherwise</TD></TR>
+</TABLE>
+  <DT> isOdd
+  <DD>
+<TABLE>
+<TR> <TD ROWSPAN=2 VALIGN=CENTER> isOdd(n) = </TD>  <TD ROWSPAN=2 VALIGN=CENTER><FONT SIZE=12>{</FONT></TD> <TD> ! isOdd(n-1) </TD> <TD ALIGN=CENTER> n &gt; 0</TD></TR>
+<TR>                                               <TD>  false</TD> <TD ALIGN=CENTER> otherwise</TD></TR>
+</TABLE>
+  <DT> sum
+  <DD>
+<TABLE>
+<TR> <TD ROWSPAN=2 VALIGN=CENTER> sum(a,b) = </TD>  <TD ROWSPAN=2 VALIGN=CENTER><FONT SIZE=12>{</FONT></TD> <TD> sum(a+1, b-1) </TD> <TD ALIGN=CENTER> b &gt; 0</TD></TR>
+<TR>                                               <TD>  a</TD> <TD ALIGN=CENTER> otherwise</TD></TR>
+</TABLE>
+</DL>
+<LI>  Using the substitution model, show (using pencil an paper) the evaluation of:
+<UL>
+  <LI> isOdd(3)
+  <LI> sum(100,3)
+</UL>
+<BLOCKQUOTE>
+At this piont, show your work to a TA before proceeding!
+</BLOCKQUOTE>
+</OL>
+
+<H4> Recursive Substructure </H4>
+Below are some computations you have seen before, but we will now conceive of them recursively.
+Using pencil and paper, identify the recursive substructure as shown in lecture. This means circling the
+compuation that is <I>smaller</I> than the larger one, and identifying by name as a function call.
+<p>
+After identifying the substructure, implement the function recursively in Java and run the unit test.
+<BLOCKQUOTE>
+Show your recursive structure diagrams to a TA for each problem below before coding it or before proceeding
+to the next problem.
+</BLOCKQUOTE>
+<DL>
+  <DT> factorial
+  <DD>  This was done in front of you during lecture.  <UL>
+     <LI> fact(n) = n &times; (n-1) &times; (n-2) &times; &hellip; &times 1
+     <LI> fact(0) = 1
+     </UL>
+   <DT> sumDownBy2
+   <DD>  <UL>
+     <LI> sumDownBy2(n) = n &plus; (n-2) &plus; (n-4) &plus; &hellip; 
+     <LI> sumDownBy2(1) = 1
+     <LI> sumDownBy2(0) = 0
+   </UL>
+   <DT> harmonicSum
+   <DD>  <UL>
+     <LI> harmonicSum(n) = 1 &plus; 1/2 &plus; 1/3 &plus; &hellip; &plus; 1/(n-1) &plus; 1/n
+     <LI> harmonicSum(1) = 1
+   </UL>
+<BLOCKQUOTE> NB:  The result of this computation should be a <KBD>double</KBD>.  Be careful about integer
+divsion!
+</BLOCKQUOTE>
+   <DT> mult
+   <DD>  <UL>
+     <LI> 
+<TABLE>
+<TR> <TD ROWSPAN=2 VALIGN=CENTER> mult(a,b) = </TD><TD> &nbsp;</TD> <TD> a &plus; a &plus;</TD> <TD> &hellip; </TD> <TD> a &plus; a</TD> </TR>
+<TR> <TD ALIGN=RIGHT>|</TD>  <TD COLSPAN=3 ALIGN=CENTER>  Added together b times </TD> <TD ALIGN=LEFT>|</TD></TR>
+<TR> <TD VALIGN=CENTER> mult(a,0) = </TD> <TD> 0</TD></TR>
+</TABLE>
+   </UL>
+</DL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:02 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio6">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio6a">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

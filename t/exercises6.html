@@ -1,0 +1,211 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Recursion</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 6: Recursion</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI class="active"><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Exercises</H3>
+<BLOCKQUOTE>
+These exercises are part of the asynchronous component of this course.
+Material is taught and demonstrated, but at times you are asked to complete
+one of the exercises to help you master the new concepts.
+<p>
+In the repository you are using for this course, look inside the
+<KBD>exercises</KBD> source folder, and you will see assignments organized
+by name.  Before continuing on to the next portion of the asynchronous material,
+spend some time on the exercise.  When you are finished, commit your code
+so that credit for the exercise can be given.
+<p>
+It is not so important that you get the exercise exactly right.  It is
+important to work through it as best you can before you look at the
+solution or continue with other work in this module.
+</BLOCKQUOTE>
+<HR>
+<a name="exer1"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Recursive sum</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> In the <KBD>exercises6</KBD> package
+  of the <KBD>exercises</KBD> source folder, create
+<UL>
+  <LI> <KBD>Sum.java</KBD> as a Java class
+  <LI> <KBD>SumTest.java</KBD> as a JUnit test file
+</UL>
+  <LI> Complete both so that sum is computed as defined by the explicitly
+recursive formula:
+<UL>
+  <LI> sum(n) = sum(n-1) + n, if n &gt; 0
+  <LI> sum(n) = 0, otherwise
+</UL>
+  <LI> Write some tests for sum and run the unit test file to make sure
+your function works.
+<BLOCKQUOTE>
+Remember that you have to have a <KBD>@Test</KBD> directive above any
+unit test method, as shown in the video.
+</BLOCKQUOTE>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer2"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Recursive addition</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> In the <KBD>exercises6</KBD> package
+  of the <KBD>exercises</KBD> source folder, complete the
+<UL>
+  <LI> <KBD>Add.java</KBD>
+  <LI> <KBD>addTest.java</KBD>
+</UL>
+  <LI> Complete both so that addition is computed as defined by the explicitly
+recursive formula:
+<UL>
+  <LI> add(x,y) = x, if y = 0
+  <LI> add(x,y) = add(x+1,y-1), otherwise
+</UL>
+  <LI> Write some more tests for add and run the unit test file to make sure
+your function works.
+<BLOCKQUOTE>
+Remember that you have to have a <KBD>@Test</KBD> directive above any
+unit test method, as shown in the video.
+</BLOCKQUOTE>
+<LI> Under what conditions on x and y does your method operate correctly?
+<LI> How could you complete the <KBD>addAll(x,y)</KBD> method so it works
+for any <KBD>x</KBD> and <KBD>y</KBD>?
+<BLOCKQUOTE>
+See the code, as a hint is given there.
+</BLOCKQUOTE>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer3"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Base Cases</H3>
+<DL>
+ <DT> Part 1
+ <DD>
+In the video, one possible explanation for human reproduction was given,
+namely that a woman is born with all of the babies already inside her that
+she would ever deliver.  This idea is attributed to
+<a href="http://10e.devbio.com/article.php?id=65"> Anton von Leeuwenhoek</a> 
+who, as a lensmaker, greatly advanced the use of microscopes in studying biology.
+In terms of recursion and base cases, what is wrong with
+von Leeuwenhoek's speculation?
+  <DT> Part 2
+  <DD>
+<H4>Instructions</H4>
+<UL>
+  <LI> In the <KBD>exercises6</KBD> package
+  of the <KBD>exercises</KBD> source folder, find and open the
+<KBD>FactorialNoBaseCase</KBD> class.
+  <LI> Run the class as a Java Application.
+  <LI> What happens, and why?
+</UL>
+</DL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<H4><a href="Exercises/Solutions/3.html" target="_blank"> Solution (click here)</a></H4>
+<HR>
+<a name="exer4"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Graph Paper</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> In the <KBD>exercises6</KBD> package
+  of the <KBD>exercises</KBD> source folder, find and open the
+<KBD>GraphPaper</KBD> class.
+  <LI> Complete the class so that it produces a grid on the screen
+<UL>
+<LI> Think about the recursive substructure of drawing a grid
+<LI> Think about the base case(s)
+</UL>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

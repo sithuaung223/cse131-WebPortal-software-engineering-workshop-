@@ -1,0 +1,588 @@
+<!doctype html>
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+<!-- nav bar -->
+<nav class="navbar navbar-fixed-top">
+
+  
+  <div class="container-fluid" id = "nav-div">
+  	<!-- washu logo home -->
+  	<div class = "navbar-header" >
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="dashboard.html">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+  	</div>
+
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="dashboard.html">Home <span class="sr-only">(current)</span></a></li>
+              <li><a href="Calendar_131.html">Calendar</a></li>
+        <li class="dropdown">
+          <a href="modules.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul class="dropdown-menu" id = "drop_down_container">
+            <!-- <li><a href="module_detail.html">Welcome</a></li>
+            <li><a href="module_detail.html">Intro, Types & Names</a></li>
+            <li><a href="module_detail.html">Choice & Iteration</a></li>
+            <li><a href="module_detail.html">Arrays</a></li>
+            <li><a href="module_detail.html">Input & Output</a></li>
+            <li><a href="module_detail.html">Methods</a></li>
+            <li><a href="module_detail.html">Recursion</a></li>
+            <li><a href="module_detail.html">Objects</a></li>
+            <li><a href="module_detail.html">Abstract Data Types</a></li>
+            <li><a href="module_detail.html">List Structure</a></li>
+            <li><a href="module_detail.html">Game</a></li>
+          -->
+            <!-- <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><p class= "navbar-text">Delia95</p></li>
+        
+        <li class= "navbar-text" id = "logout-button"><p class = "navbar-text"><a href = "#" class = "navbar-link">Logout</a></p></li>
+      </ul> -->
+
+      <p class = "navbar-text navbar-right" id = "name"> </p>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+
+
+
+<div id = "wrapper">
+	<!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand"><div class = "side-title"></div></li>
+              <li class="side-choice active" >
+                  <a href="#">Goals and Resources</a>
+              </li>
+              <li class="side-choice" >
+                  <a href="#">Exercises</a>
+              </li>
+              <li class="side-choice" >
+                  <a href="#">Studios</a>
+              </li>
+              <li class="side-choice" >
+                  <a href="#">Labs</a>
+              </li>
+              <li class="side-choice" >
+                  <a href="#">Extensions</a>
+              </li>
+              <li class="side-choice" >
+                  <a href="#">Videos</a>
+              </li>
+          </ul>
+      </div>
+        <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                    <div id = "Goals and Resources" class="col-lg-12">
+                         <div id = "inner" class = "row">
+                            <div class = "text-content col-md-10 " data-spy="scroll" data-target="#scrollspy">
+
+
+                            </div>
+                            <div class = "scrollspy-content col-md-2">
+                                <div id = "scrollspy"  data-spy = "affix">
+                                  <ul class = "nav nav-pills nav-stacked">
+                                      
+                                  </ul>
+                                </div>
+                            </div>
+
+                         </div>
+
+                    </div>
+
+                    <div id = "Exercises" class="col-lg-12 content-inactive">
+                      <div class = "row">
+                        <div class = "text-content col-md-10 " data-spy="scroll" data-target="#scrollspy">
+
+
+                        </div>
+                        <div class = "scrollspy-content col-md-2">
+                            <div id = "scrollspy"  data-spy = "affix">
+                              <ul class = "nav nav-pills nav-stacked">
+                                  
+                              </ul>
+                            </div>
+                        </div>
+
+                     </div>
+                           
+
+                        
+                    </div>
+                    <div id = "Studios" class="col-lg-12 content-inactive">
+                        <div class = "row">
+                          <div class = "text-content col-md-10 " data-spy="scroll" data-target="#scrollspy">
+
+
+                          </div>
+                          <div class = "scrollspy-content col-md-2">
+                              <div id = "scrollspy"  data-spy = "affix">
+                                <ul class = "nav nav-pills nav-stacked">
+                                    
+                                </ul>
+                              </div>
+                          </div>
+
+                       </div>
+                           
+
+                    </div>
+                    <div id = "Labs" class="col-lg-12 content-inactive">
+                       
+                      <div class = "row">
+                          <div class = "text-content col-md-10 " data-spy="scroll" data-target="#scrollspy">
+
+
+                          </div>
+                          <div class = "scrollspy-content col-md-2">
+                              <div id = "scrollspy"  data-spy = "affix">
+                                <ul class = "nav nav-pills nav-stacked">
+                                    
+                                </ul>
+                              </div>
+                          </div>
+
+                       </div>
+
+                    </div>
+                    <div id = "Extensions" class="col-lg-12 content-inactive">
+                      <div class = "row">
+                        <div class = "text-content col-md-10 " data-spy="scroll" data-target="#scrollspy">
+
+
+                        </div>
+                        <div class = "scrollspy-content col-md-2">
+                            <div id = "scrollspy"  data-spy = "affix">
+                              <ul class = "nav nav-pills nav-stacked">
+                                  
+                              </ul>
+                            </div>
+                        </div>
+
+                     </div>
+                           
+
+                    </div>
+
+
+                    <div id = "Videos" class="col-lg-12 content-inactive">
+
+                          <div class = "row">
+                              <h1 id="vid_title"> No videos </h1>
+                              <div class  = "col-md-offset-1 col-md-7">
+
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                      
+                                      <iframe id = "vid_frame" class="embed-responsive-item" src=""></iframe>
+                                    </div>
+                              </div>
+                              <div class = "col-md-4">
+                                  <ul class="list-group">
+                                  </ul>
+
+                              </div>
+                          </div>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+
+
+
+</di
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src = "logout.js"></script>
+<script>
+
+/**************************************************************************************
+*                           Init Globals
+***************************************************************************************/
+var side_opt_selected;
+var content_opt_visible;
+var active_vid_li;
+var current_src;
+
+/**************************************************************************************
+*                           Get module page detail data
+***************************************************************************************/
+
+
+
+//input: empty div which represent a list of files in a module of File System
+//output: div will have the list of files as a radio button
+//restriction: function is called when document is loaded; OR delete button is clicked; OR upload button is clicked
+function getFileList(moduleName){
+  // encoding data to send
+  var dataString = "modulename=" + encodeURIComponent(moduleName); 
+  //console.log(moduleName);
+  // fire ajax request and handle response
+  var xmlHttp = new XMLHttpRequest(); 
+  xmlHttp.open("POST", "php/getModuleInfo.php", true); 
+  xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xmlHttp.addEventListener("load", function(event){
+
+    var data = JSON.parse(event.target.responseText); 
+    if (data.success){
+      //everything happens here
+      console.log(data);
+      popDropDown(data);
+      setGlobals();
+      popModuleNameAndPlaylist(data);
+      popSidePane(data);
+      setChosenVideo();
+      document.getElementById("logout_btn").addEventListener("click", logoutAjax, false); // Bind the AJAX call to button click
+      $('[href = "module_detail.html"]').click(function(e){
+              e.preventDefault();
+              $.cookie("module_name", $(this).attr("id"));
+              window.location.href = "module_detail.html";
+          });
+
+    }
+    else {
+      alert("no File");
+    } 
+  }, false); 
+
+  xmlHttp.send(dataString); 
+}
+
+/*
+var data = {module_name: "Intro to Data types",
+            goals_and_resources : "../resources/module1/goals/goal.html",
+            exercises : "../resources/module1/exercises/exercise1.html",
+            studios   : "../resources/module1/studios/studio1.html",
+            labs      : "../resources/module1/labs/lab1.html",
+            extensions: "../resources/module1/extensions/extension1.html",
+            videos    : [{name:'Introduction', url: '../resources/module3/videos/ModuleIntro.mp4'},
+                          {name:'The "int" data type', url: '../resources/module3/videos/inttype.mp4'},
+                          {name:'The "double" data type', url: '../resources/module3/videos/doubletype.mp4'},
+                          {name:'The "String" data type', url: '../resources/module3/videos/strings.mp4'},
+                          {name:'The "boolean" data type', url: '../resources/module3/videos/booleantype.mp4'}]
+
+
+      };
+*/
+
+/**************************************************************************************
+*                           Set Globals
+***************************************************************************************/
+function setGlobals(){
+
+  side_opt_selected = $(".side-choice.active");
+  content_opt_visible  = $("[id = 'Goals and Resources']");
+
+}
+
+
+
+
+/**************************************************************************************
+*                           pop module name in side-pane
+***************************************************************************************/
+
+function popModuleNameAndPlaylist(data){
+  $(".side-title").text(data.module_name);
+
+  // pop section conent
+  var video_list = data.videos;
+  var ul = $("ul.list-group");
+
+  var l = document.createElement("a");
+  $("#name").text(data.student);
+  $(l).attr("href", "#");
+  $(l).attr("class", "navbar-link");
+  $(l).text(" Logout");
+  $("#name").append(l);
+  $(l).attr("id", "logout_btn");
+
+
+
+
+
+
+  /**************************************************************************************
+  *                           populate playlist
+  ***************************************************************************************/
+  for (var i = 0; i < video_list.length; i++){
+    
+
+    
+    var new_li = document.createElement("li");
+
+    $(new_li).addClass("list-group-item");
+    var a = document.createElement("a");
+    $(a).attr("id", video_list[i].url);
+    $(a).attr("href", "#");
+    $(a).addClass("vid-list-item");
+    $(a).text("\t" + video_list[i].name);
+
+    var i_tag = document.createElement("i");
+    $(i_tag).addClass("fa fa-film");
+
+    $(new_li).append(i_tag);
+    $(new_li).append(a);
+    if (i == 0){//set src for already playing video
+      //$("iframe").attr("src", video_list[i].url);
+      current_src = video_list[i].url;
+      $("#vid_title").text(video_list[i].name);
+      $(new_li).addClass("vid-chosen");
+      active_vid_li = new_li;
+    }
+
+
+
+    ul.append(new_li);
+
+    
+  }
+
+}
+
+/**************************************************************************************
+*                           pop dropdown
+***************************************************************************************/
+
+function popDropDown(data){
+  console.log(data);
+  var mod_array = data.modules;
+
+    for (var i = 0; i < mod_array.length; i++){
+      var new_drop = document.createElement("li");
+      var new_d_a = document.createElement("a");
+      $(new_d_a).text(mod_array[i].module_name);
+      $(new_d_a).attr("id", mod_array[i].module_id);
+      $(new_d_a).attr("href", "module_detail.html");
+      $(new_drop).append(new_d_a);
+      $("#drop_down_container").append(new_drop);
+    }
+
+  
+
+
+}
+
+/**************************************************************************************
+*                           play video when selected
+***************************************************************************************/
+
+function setChosenVideo(){
+  $(".vid-list-item").click(function(e){
+  e.preventDefault();
+  //console.log("code is running!");
+  $("#vid_title").text($(this).text());
+
+  $("#vid_frame").attr("src", $(this).attr("id"));
+
+  $(active_vid_li).toggleClass("vid-chosen");
+  active_vid_li = $(this).parent();
+  $(active_vid_li).toggleClass("vid-chosen");
+
+
+
+  });
+
+}
+
+/**************************************************************************************
+*                           populate all text side pane options
+***************************************************************************************/
+
+
+function popSidePane(data){
+
+
+  $.get(data.goals_and_resources, function(text){
+      $("[id = 'Goals and Resources']>.row>.text-content").html(text);
+      $.get(data.exercises, function(text){
+          $("[id = 'Exercises']>.row>.text-content").html(text);
+          $.get(data.studios, function(text){
+              $("[id = 'Studios']>.row>.text-content").html(text);
+              $.get(data.labs, function(text){
+                $("[id = 'Labs']>.row>.text-content").html(text);
+                $.get(data.extensions, function(text){
+                    $("[id = 'Extensions']>.row>.text-content").html(text);
+                    setUpPageLinks();
+                });
+              });
+          });
+      });
+  });
+
+
+}
+
+
+
+/**************************************************************************************
+*                           set up in-page links
+***************************************************************************************/
+
+function setUpPageLinks(){
+  ////console.log("running");
+  var cur_id = 0;
+  var elements = document.getElementsByTagName("h2");
+  ////console.log(elements.length);
+  for (var j = 0; j < elements.length; j++){
+    var cur_el = elements[j];
+    ////console.log(cur_el);
+    var parent = $(cur_el).parent();
+    ////console.log(parent);
+    if ($(parent).hasClass("text-content") ){
+      //console.log("check is true");
+      $(cur_el).attr("id", String(cur_id));
+      var new_li = document.createElement("li");
+      var new_a = document.createElement("a");
+      $(new_a).attr("href", "#" + String(cur_id));
+      $(new_a).text($(cur_el).text());
+      $(new_li).append(new_a);
+      $(new_li).attr("role", "presentation");
+      
+      
+      var g_parent = $(parent).parent();
+      //console.log($($($(g_parent).children()[1]).children()[0]).children()[0]);
+      var ul = $($($(g_parent).children()[1]).children()[0]).children()[0];
+      ////console.log(ul);
+      $(ul).append(new_li);
+      cur_id++;
+    }
+
+  }
+
+
+
+
+}
+
+
+
+
+/**************************************************************************************
+*                           click event on a side pane option
+***************************************************************************************/
+
+$(document).ready(function(){
+
+
+  getFileList($.cookie("module_name"));
+
+
+
+
+  $(".side-choice").click(function(){
+
+    if (!$(this).hasClass("active")){
+      
+      if (side_opt_selected.text().trim() == "Videos"){
+        //alert("video will stop playing");
+        current_src = $("#vid_frame").attr("src");
+        $("#vid_frame").attr("src", "");
+      }
+
+      
+      if ($(this).text().trim() == "Videos"){
+        //alert("video will start playing");
+        $("#vid_frame").attr("src", current_src);
+      }
+
+      //switch the selected side pane option
+      side_opt_selected.toggleClass("active");
+      $(this).toggleClass("active");
+      side_opt_selected = $(this);
+
+
+
+
+      
+      //switch visibility of the chosen content
+      content_opt_visible.toggleClass("content-inactive");
+      $("[id = '" + side_opt_selected.text().trim() + "']").toggleClass("content-inactive");
+      content_opt_visible = $("[id = '" + side_opt_selected.text().trim() + "']");
+
+
+    }
+   
+
+
+  });
+
+
+
+
+});
+
+
+/**************************************************************************************
+*                           Scrollspy handling
+***************************************************************************************/
+
+//$('body').scrollspy({ target: '#navbar-example' });
+
+var nav_width = $("nav").width();
+var offset = nav_width;
+
+$('.nav-stacked li a').click(function(event) {
+    event.preventDefault();
+    $($(this).attr('href'))[0].scrollIntoView();
+    scrollBy(0, -offset);
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+</html>

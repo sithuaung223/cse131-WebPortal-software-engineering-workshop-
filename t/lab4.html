@@ -1,0 +1,237 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Input&nbsp;&amp;&nbsp;Output</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 4: Input&nbsp;&amp;&nbsp;Output</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI class="active"><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Lab</H3>
+<HR>
+<H3> Bumping Balls </H3>
+In this lab you will simulate multiple bouncing balls, that may bump
+into each other or into the wall.  The steps articulated below for completing
+this lab recommend that you develop the code in stages, so that you can test
+as you go and make sure you are on the right track.
+<p>
+You have the knowledge you need to do this assignment, but the assignment
+is written-up in a style usually seen for software specification:  you are
+told what should happen, but it's up to you to make it happen.
+<p>
+As always, consult with TAs when you are stuck.
+<BLOCKQUOTE>
+The code you submit must be your own!
+We are not interested in solutions you find on the Internet.  We are interested
+in <I>your</I> implementation of these ideas.
+</BLOCKQUOTE>
+<H4> Resources </H4>
+<UL>
+<LI> Do your work in the <KBD>lab4</KBD> package of the <KBD>labs</KBD> source
+folder, in the <KBD>BumpingBalls</KBD> class.
+<LI>
+Review the implementation of <KBD>BouncingBall</KBD>, 
+found in the <KBD>book</KBD>
+source folder, package <KBD>book.ch1</KBD>.
+<LI> Review the additions we made to <KBD>BouncingBall</KBD> to obtain
+<KBD>DeluxeBouncingBall</KBD>, found in the <KBD>lecture</KBD> source folder,
+package <KBD>io</KBD>.
+<UL>
+  <LI> We added sound when an object changed direction.
+  <LI> We replaced the ball by images.
+</UL>
+<LI> While there is some physics required for this lab, the information
+you need to know is simply the following:
+<UL>
+   <LI> Two balls are colliding if the distance between the two balls' centers
+is less than the sum of the two balls' radii:
+<BLOCKQUOTE>
+<IMG src="Lab/Description/collision23.png"><br>
+<HR>
+<UL>
+<LI>
+Image from <KBD><a href="http://kahshiu.wordpress.com/page/2/">http://kahshiu.wordpress.com/page/2/</a></KBD>
+<LI> <KBD>Ar</KBD> and <KBD>Br</KBD> are the radii of the two balls.
+<LI> <KBD>dist</KBD> is the distance between the two balls' centers
+</UL>
+</BLOCKQUOTE>
+<LI> The distance between two points can be computed
+using the <a href="http://www.purplemath.com/modules/distform.htm">distance formula</a>.
+</UL>
+</UL>
+<H4>Description</H4>
+<UL>
+  <LI> Prompt the user for the number of balls that will be simulated in
+your program and the number of iterations for the simulation.
+  <LI> For each ball, find a random place on the screen to place that ball.
+  <LI> For each ball, compute a random velocity for that ball. 
+<BLOCKQUOTE>
+  Based on what you have learned so far in this course, how will you keep
+track of the balls' positions and velocities?
+</BLOCKQUOTE>
+   <LI> 
+Finding a reasonable range of velocities may require some trial-and-error, or
+some thinking and experimentation using pencil and paper:   
+<UL>
+<LI> If the balls move
+too fast, they might fly off the screen.  
+<LI> If they move too slowly, the simulation will take forever for you to see something.
+</UL>
+   <LI> Iterate the specified number of times, each time recomputing
+each ball's location 
+<LI> When a ball collides with a wall, change its velocity as shown
+in the <KBD>BouncingBall</KBD> program.
+<LI> When a ball collides with another ball, change both its horizontal and
+vertical velocity component, as if the ball hit a corner of the screen.
+<LI> For extra fun, have the balls replaced by images you like.  There
+are some in the <KBD>images</KBD> folder in your repo, but you are free
+to find others.  Be sure to commit those to your repository.
+<LI> For extra extra fun, play sounds when balls collide.  Some of those can be found
+in the <KBD>sound</KBD> folder.
+</UL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> You must demo the commited work to a TA.  Make sure the TA knows that
+your demo is for credit at this point.  
+<LI> Follow the directions below to have your demo for this work recorded.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:00 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab4">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab4a">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

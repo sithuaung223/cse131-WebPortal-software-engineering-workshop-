@@ -1,0 +1,317 @@
+
+<!doctype html>
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<style type="text/css">
+
+.inputS + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.inputS {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputS + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputS:focus + label,
+.inputS + label:hover {
+    background-color: red;
+}
+
+</style>
+
+<!-- nav bar -->
+<nav class="navbar">
+
+  
+  <div class="container-fluid" id = "nav-div">
+  	<!-- washu logo home -->
+  	<div class = "navbar-header" >
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="dashboard.html">
+      <img alt="WashU Logo"  width="60" height="60"src="imgs/washu_logo_circle.png"></a>
+
+  	</div>
+
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="dashboard.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="Calendar_131.html">Calendar</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul id = "drop_down_container" class="dropdown-menu">
+            <!--<li><a href="module_detail.html">Welcome</a></li>
+            <li><a href="module_detail.html">Intro, Types & Names</a></li>
+            <li><a href="module_detail.html">Choice & Iteration</a></li>
+            <li><a href="module_detail.html">Arrays</a></li>
+            <li><a href="module_detail.html">Input & Output</a></li>
+            <li><a href="module_detail.html">Methods</a></li>
+            <li><a href="module_detail.html">Recursion</a></li>
+            <li><a href="module_detail.html">Objects</a></li>
+            <li><a href="module_detail.html">Abstract Data Types</a></li>
+            <li><a href="module_detail.html">List Structure</a></li>
+            <li><a href="module_detail.html">Game</a></li>
+			-->
+            <!-- <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><p class= "navbar-text">Delia95</p></li>
+        
+        <li class= "navbar-text" id = "logout-button"><p class = "navbar-text"><a href = "#" class = "navbar-link">Logout</a></p></li>
+      </ul> -->
+
+      <p class = "navbar-text navbar-right" id = "name"> </p>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- end of #nav-div -->
+
+</nav>
+
+
+
+<div class = "container">
+	<div class = "row">
+		<div class = "col-md-4 col-sm-12">
+			<div class="thumbnail">
+		      <img id = "pic" alt="user_img" class = "img-rounded">
+		      <div class="caption">
+		        <h2 id = "name2"></h2>
+		        <input class= "inputS" type = "file" name ="pic_upload_name" id="pic_upload_name"></input> <label for="pic_upload_name">Profile Picture</label>   <input class= "btn-file"type = "submit" id="pic_submit"></input>
+		        <h3 id = "level"></h3>
+		        <p id = "per"></p>
+		        <div class="progress">
+				  <div class="progress-bar progress-bar-success" id = "per_bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+				    <span class="sr-only">40% Complete (success)</span>
+				  </div>
+				</div>
+
+
+		        
+		      </div>
+    		</div>
+		</div>
+		<div class = "col-md-8 col-sm-12">
+
+			<div class = "row">
+				<div class = "col-md-4 col-sm-12 center">
+					
+					<a class="btn btn-default" href="module_general.html" role="button">
+						<i class="fa fa-cubes fa-5x card" aria-hidden="true"></i>
+						<h1> Modules </h1>
+					</a>
+				</div>
+				<div class = "col-md-4 col-sm-12 center">
+					<a class="btn btn-default" href="Calendar_131.html" role="button">
+						<i class="fa fa-calendar fa-5x card" aria-hidden="true"></i>
+						<h1> Calendar </h1>
+					</a>
+				</div>
+				<div class = "col-md-4 col-sm-12 center">
+					<a class="btn btn-default" href="modules.html" role="button">
+						<i class="fa fa-university fa-5x card" aria-hidden="true"></i>
+						<h1> Policies </h1>
+					</a>
+				</div>
+				<div class = "col-md-4 col-sm-12 center">
+					<a class="btn btn-default" href="https://www.piazza.com" role="button">
+						<i class="fa fa-comments fa-5x card" aria-hidden="true"></i>
+						<h1> Piazza </h1>
+					</a>
+				</div>
+				<div class = "col-md-4 col-sm-12 center">
+					<a class="btn btn-default" href="modules.html" role="button">
+						<i class="fa fa-rocket fa-5x card" aria-hidden="true"></i>
+						<h1> Extensions </h1>
+					</a>
+				</div>
+				<div class = "col-md-4 col-sm-12 center">
+					<a class="btn btn-default" href="modules.html" role="button">
+						<i class="fa fa-question-circle fa-5x card" aria-hidden="true"></i>
+						<h1> FAQs </h1>
+					</a>
+				</div>
+			</div>
+		
+
+		</div>
+	</div>
+
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src = "logout.js"></script>
+<script>
+
+
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+
+//Set globals
+var data;
+
+
+function getDashboardInfo(){
+  // encoding data to send
+  // fire ajax request and handle response
+  var xmlHttp = new XMLHttpRequest(); 
+  xmlHttp.open("POST", "php/getDashboardInfo.php", true); 
+  xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xmlHttp.addEventListener("load", function(event){
+  	//console.log(event.target.responseText);
+    data = JSON.parse(event.target.responseText); 
+    if (data.success){
+      //everything happens here
+      //console.log(data.student);
+      popDashData();
+      popDropDown();
+      $('[href = "module_detail.html"]').click(function(e){
+              e.preventDefault();
+              $.cookie("module_name", $(this).attr("id"));
+              window.location.href = "module_detail.html";
+          });
+      modules_direct();
+      
+
+    }
+    else {
+      alert("Data not Found!");
+    } 
+  }, false); 
+
+  xmlHttp.send(); 
+}
+
+
+/*
+var data = {student: "Delia95",
+            percentage: 40,
+            student_level:    "Ninja",
+            pic: "https://upload.wikimedia.org/wikipedia/commons/f/ff/JAA_3538-2.jpg"
+            };
+*/
+
+
+function popDropDown(){
+	console.log(data);
+	var mod_array = data.modules;
+
+  	for (var i = 0; i < mod_array.length; i++){
+  		var new_drop = document.createElement("li");
+		var new_d_a = document.createElement("a");
+		$(new_d_a).text(mod_array[i].module_name);
+		$(new_d_a).attr("id", mod_array[i].module_id);
+		$(new_d_a).attr("href", "module_detail.html");
+		$(new_drop).append(new_d_a);
+		$("#drop_down_container").append(new_drop);
+  	}
+
+	
+
+
+}
+
+function popDashData(){
+
+	var l = document.createElement("a");
+	$("#name").text(data.student);
+	$(l).attr("href", "#");
+	$(l).attr("class", "navbar-link");
+	$(l).text(" Logout");
+	$("#name").append(l);
+	$(l).attr("id", "logout_btn");
+
+	
+
+	$("#name2").text(data.student);
+
+	$("#level").text(data.student_level);
+
+	$("#per").text(data.percentage+"% Complete!");
+
+	$("#per_bar").attr("style", "width: " + String (data.percentage) + "%");
+
+	$("#pic").attr("src", data.pic);
+
+
+
+	document.getElementById("logout_btn").addEventListener("click", logoutAjax, false); // Bind the AJAX call to button click
+
+
+
+}
+
+function modules_direct(){
+	
+	$('[href = "modules.html"]').click(function(e){
+		e.preventDefault();
+		$.cookie("destination", $(this).text().trim());
+        window.location.href = "modules.html";
+
+
+	});
+
+}
+
+
+$(document).ready(function(){
+
+	getDashboardInfo();
+
+});
+
+
+
+
+</script>
+
+
+
+</html>

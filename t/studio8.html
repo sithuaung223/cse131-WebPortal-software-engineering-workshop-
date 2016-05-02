@@ -1,0 +1,525 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: ADTs</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 8: ADTs</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI class="active"><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Studio</H3>
+<HR>
+If necessary, review <a href="../../StudioDocs/studioheader.html">studio procedures</a> before
+starting.
+<p>
+<BLOCKQUOTE>
+<UL>
+  <LI> The work prescribed in this studio will probably exceed the time
+you have today.  
+<BLOCKQUOTE>
+<B>Work as slowly as required to understand what you are doing.</B>
+You receive credit no matter how far you go with this studio.  If there
+are steps beyond the time you have today, look at those on your own.
+</BLOCKQUOTE>
+  <LI> In this studio, you carry out the steps you saw in lecture
+creating an object, reasoning about its equality with other objects, and
+letting eclipse generate the appropriate code.  In lecture you saw
+a <KBD>Point</KBD> object, and the results of that work are in your
+repositories in the <KBD>lecture</KBD> folder.  Look for
+<KBD>mod8early</KBD> or <KBD>mod8late</KBD> packages.  Both are in
+your repository.
+  <LI> For this studio, <B>form groups of no more than 2 people</B>.  If there
+is one odd person left in the room, that person can join an already
+formed group of 2 people.
+  <LI> When you have a question or need some help, first ask the other 
+pair sitting nearby or across from you.
+  <LI> If you need furtherhelp, ask a TA or the professor as needed.
+</UL>
+</BLOCKQUOTE>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<H3>Procedure</H3>
+From the story described below, design and implement the described classes.
+Follow the instructions carefully. Don't rush ahead until you have 
+successfully completed the specified work.
+<OL>
+ <LI> Read the following:
+<UL>
+<LI> A <KBD>Date</KBD> has-a month, day, and year.  It also has-a field that
+indicates whether the date is a holiday or not.
+<BLOCKQUOTE>
+For the purposes of this studio, assume that all months have 31 days.
+</BLOCKQUOTE>
+<LI> A <KBD>Time</KBD> has-an hour (0 to 23) and a minute (0 to 59).  It also
+has-a field that indicates whether the (<KBD>toString()</KBD> of the) time 
+should be in 12- or 24-hour format.
+</UL>
+ <LI> 
+At this point, create an immutable class for <KBD>Date</KBD> and <KBD>Time</KBD>
+in your <KBD>studio8</KBD> package of the <KBD>studios</KBD> source folder,
+based on the above story.
+<BLOCKQUOTE>
+<UL>
+<LI> 
+The term <I>immutable</I> means that the instance variables cannot change
+after the object is constructed.  <KBD>Color</KBD> is such an object,
+but <KBD>Account</KBD>  is not.
+<p>
+To show your intent about immutability, be sure to include the keyword
+<KBD>final</KBD> in your instance variable declarations, as in:
+<PRE>
+  private final int x;
+</PRE>
+If this is unclear,
+ask around about it.
+<LI>
+For now, assume that only legitimate input values are specified for anything
+your constructor requires.
+<LI> Think carefully about what your constructor for <KBD>Time</KBD> should
+retain.  Explore a bit how you will deal with the 12- or 24-hour format
+issue for <KBD>toString()</KBD>.  
+<UL>
+<LI> What is the essence of such a <KBD>Time</KBD>
+object? 
+<LI> What instance variables are required to capture its essence?
+</UL>
+</UL>
+</BLOCKQUOTE>
+<LI> 
+Now implement <KBD>toString()</KBD> for each of these classes, returning
+a String that is appropriately descriptive.
+<LI>
+Create a few instances and print them out in the <KBD>main</KBD> method of
+the each class.
+<LI> 
+<B>Show a TA your work so far.</B>
+<HR>
+<LI> We next equip our two classes with the ability to tell whether they do,
+or do not <I>equal</I> a given <KBD>Object</KBD>.
+<p>
+For each of the two classes, let's make eclipse generate the <KBD>equals</KBD>
+and <KBD>hashCode</KBD> methods.  You won't understand all of that just
+yet, but let's do it and we'll explainthings later:
+<OL>
+<LI>
+While editing each class, choose <KBD>Source</KBD>&hellip;<KBD>Generate hashCode() and equals()</KBD>&hellip;
+<LI> You are then presented with a menu of instance variables.
+<BLOCKQUOTE>
+This is an important step for you.  You must decide <I>which</I> of the
+instance variables (fields) should be used to compare two objects of this kind.
+<p>
+These classes were specified such that <B>not all</B> of the fields are relevant
+for this comparsion.  Talk this over, make your choices, and then....
+</BLOCKQUOTE>
+<LI> Click <KBD>OK</KBD>.
+<LI> Take a look at the code that is generated.  Again, it probably will not
+make much sense, so please consider the following as you look at the code:
+<DL>
+<DT>hashCode()
+<DD>
+For whichever fields you have chosen for equality considerations, it must
+always be the case that if two objects do equal each other, then they have
+the same <KBD>hashCode()</KBD> value.  This implication goes only in the
+direction stated, so one possible legal implementation is simply:
+<BLOCKQUOTE>
+<PRE>
+public int hashCode() {
+   return 0;
+}
+</PRE>
+</BLOCKQUOTE>
+<p>
+However, you can see that the code eclipse generated is much more complicated
+than that.
+<p>
+For now, imagine that you have before you lots of buckets, each labeled with
+an integer.  Think of <KBD>hashCode()</KBD> as returning an integer that 
+represents the only bucket in which this object could be found.  Thus, if
+you want to see if the object exists in all of the buckets, you really need
+only check one bucket.
+<p>
+Convince yourself that if two objects of the same type (for example,
+<KBD>Date</KBD>) equal each other, then their <KBD>hashCode()</KBD> values are
+the same as computed by the eclipse-generated code.
+<p>
+You might also try to find two objects of the same type such that they differ
+and their <KBD>hashCode()</KBD> values happen to be different.
+<DT>equals(Object obj)
+<DD> With regard to the code automatically generated
+for <KBD>equals(Object obj)</KBD>, the <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Object.html#equals%28java.lang.Object%29">contract in Java for equals</a> includes the following;  read over the code and convince
+yourselves that the code enacts the proper contract:
+<BLOCKQUOTE>
+<UL>
+  <LI>  If <KBD>this</KBD> and <KBD>obj</KBD> are physically the same object,
+then the result should be <KBD>true</KBD>.
+  <LI> No instantiated object equals the <KBD>null</KBD> reference.
+The <KBD>this</KBD> reference is always to an actually instantiated object.
+  <LI> If <KBD>this</KBD> and <KBD>obj</KBD> are objects of different types,
+then the answer must be <KBD>false</KBD>.
+  <LI> If none of the above rules applies, then equality can be based on
+any consistent comparison of any subset of the objects' fields.
+</UL>
+</BLOCKQUOTE>
+</DL>
+</OL>
+<LI> Instantiate some <KBD>Date</KBD> and <KBD>Time</KBD> objects (several of each)
+and ensure that they compare properly to each
+other.
+<BLOCKQUOTE>
+Remember to use <KBD>a.equals(b)</KBD> to see if <KBD>a</KBD> and <KBD>b</KBD>
+equal each other!  If you use <KBD>==</KBD>, the comparison is restricted tow
+whether the two objects are phyiscally the same:  the <KBD>equals(Object obj)</KBD> method is not run for that comparison.
+</BLOCKQUOTE>
+<HR>
+<LI> Let's now make some lists and sets of the objects we have created so far.
+We'll focus on <KBD>Date</KBD> but if you have time, try this with
+<KBD>Time</KBD> as well (pardon the pun).
+<OL>
+<LI> In the <KBD>main</KBD> method of each class, you should already be
+creating and comparing instances of your objects.
+<LI> After you have instantiated some 5 objects, create a <KBD>List</KBD> of such
+objects by using the following code:
+<PRE>
+LinkedList&lt;Date&gt; list = new LinkedList&lt;Date&gt;();
+</PRE>
+<BLOCKQUOTE>
+You have not seen the angle-bracket notation. It is used to specify
+parametric types.  It may help to read the above line of code as:
+<QUOTE>
+Instantiate a new linked list of Date objects and assign that object to
+the variable named <KBD>list</KBD>.
+</QUOTE>
+</BLOCKQUOTE>
+You may have to use eclipse suggestions to import the proper classes, which
+will come from the <KBD>java.util</KBD> package.
+
+</OL>
+<LI> What can we do with a <KBD><a href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html">LinkedList</a></KBD> object?  Click on the
+link in the sentence before this one and check out the API.
+<BLOCKQUOTE>
+Note that in the documentation, <KBD>E</KBD> refers to the type of element in
+the list you construct.  In this running example, that would be a <KBD>Date</KBD>
+object.
+</BLOCKQUOTE>
+<LI> Add some of your <KBD>Date</KBD> objects to the <KBD>list</KBD> list and
+print it out whenyou are done.
+<BLOCKQUOTE>
+To print it you need only say:
+<PRE>
+System.out.println(list);
+</PRE>
+</BLOCKQUOTE>
+<LI> <B>Show your work to a TA.</B>
+<HR>
+<LI>  Let's see what happens when we add two <KBD>Date</KBD> objects to the list
+that <KBD>equal</KBD> each other:
+<BLOCKQUOTE>
+<PRE>
+Date d1 = new Date(...stuff your constructor needs);
+Date d2 = new Date(...same info as above, so these will equal each other);
+list.add(d1);
+list.add(d2);
+list.add(d1);
+System.out.println(list);
+</PRE>
+</BLOCKQUOTE>
+What do you see?  Does the same date appear three times in the list?
+<LI> Let's do the same thing but this time with a <KBD>HashSet</KBD>.
+After the code you have written so far, add:
+<BLOCKQUOTE>
+<PRE>
+HashSet&lt;Date&gt; set = new HashSet&lt;Date&gt;();
+set.add(d1);
+set.add(d2);
+set.add(d1);
+System.out.println(set);
+</PRE>
+</BLOCKQUOTE>
+Do you you see multiple occurrences of equal <KBD>Date</KBD> objects in
+the set?
+<BLOCKQUOTE><B>
+Based on your observations,
+what is the main difference between sets and lists?
+</B></BLOCKQUOTE>
+<LI> <B>Show your work to a TA.</B>
+<HR>
+<LI> The story continues:  An <KBD>Appointment</KBD> has-a <KBD>Date</KBD> and
+a <KBD>Time</KBD>.
+<LI> Design and implement an <KBD>Appointment</KBD> object in the <KBD>studio8</KBD>
+package.
+<LI> Just as you did with <KBD>Date</KBD> and <KBD>Time</KBD>, use eclipse to
+generate the <KBD>hashCode()</KBD> and <KBD>equals(Object obj)</KBD>.  You
+should base these on equality of the contained <KBD>Date</KBD> and <KBD>Time</KBD>
+references.
+<LI> Read over the code eclipse generates.  Note how it <I>delegates</I> equality
+to the contained objects, in which you have previously defined how you want
+equality treated for objects of those types.
+<LI> Create some instances of <KBD>Appointment</KBD> objects using the
+<KBD>Date</KBD> and <KBD>Time</KBD> objects you have already made.
+<LI> In your opinion, what other <I>has-a</I>s should an <KBD>Appointment</KBD>
+have?
+<LI> <B>Show your work to a TA.</B>
+<HR>
+<LI> Design a <KBD>Calendar</KBD>  object in terms of a collection
+of <KBD>Appointment</KBD>s.  
+<UL>
+  <LI> Should you use a list or a set?
+  <LI> What methods should your <KBD>Calendar</KBD> object offer?
+</UL>
+<LI> Try to implement and test the methods of your <KBD>Calendar</KBD> object.
+<LI> <B>Show your work to a TA.</B>
+<HR>
+<LI> Let's add code so that a <KBD>Time</KBD> object offers the method <KBD>boolean isEarlierThan(Time other)</KBD>
+that returns whether <KBD>this</KBD> <KBD>Time</KBD> is earlier than the <KBD>other</KBD>
+<KBD>Time</KBD>, assuming the two occur on the same day.
+<LI> Likewise, a <KBD>Date</KBD> offers the method <KBD>boolean isEarlierThan(Date other)</KBD>
+<BLOCKQUOTE>
+Implement and test these two methods.
+<p>
+At this point, if implementation of these methods is difficult, revisit
+the way you specify and accept information for these classes.  You are free
+to design them to make your life easier.
+</BLOCKQUOTE>
+<LI> <B>Show your work to a TA.</B>
+<HR>
+<LI> Suppose we would like to offer a method common to both
+<KBD>Date</KBD> and <KBD>Time</KBD> that indicates whether you are working
+on the specified date or at the specified time.  Create an interface
+called <KBD>Working</KBD> with the single method:
+<PRE>
+  public boolean amWorking();
+</PRE>
+<LI> Make both <KBD>Date</KBD> and <KBD>Time</KBD> implement that interface.
+<BLOCKQUOTE>
+You can be creative in terms of when you decide you are working, but here
+is a suggestion:
+<UL>
+<LI> For <KBD>Time</KBD>, assume you are working between 9 AM and 5 PM
+<LI> For <KBD>Date</KBD>, assume you are working on even-numbered dates
+</UL>
+</BLOCKQUOTE>
+<LI> Create a list of <KBD>Working</KBD> objects and add up the number of
+those objects that indicate that you are working.
+<LI> <B>Show your work to a TA.</B>
+</OL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:04 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio8">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio8a">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

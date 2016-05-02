@@ -1,0 +1,405 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Lists</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 9: Lists</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI class="active"><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Studio</H3>
+<HR>
+If necessary, review <a href="../../StudioDocs/studioheader.html">studio procedures</a> before
+starting.
+<p>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<h3>Doubly Linked Lists</h3>
+<P>
+<BLOCKQUOTE>
+In lecture this week, we implemented an <KBD>IntList</KBD> interface
+using lists with one link per item.
+In this studio, you will investigate implementation of our <KBD>IntList</KBD>
+ADT using a doubly linked list.  Your work will include 
+design and implementation of
+iterators (forwards and backwards) for the list, and a discussion that
+compares your implementation with the singly linked list from lecture.
+</BLOCKQUOTE>
+Here are the steps:
+<OL>
+<LI> Gather your group around one workstation.  Plan on taking turns
+at the keyboard.
+<LI> Review the 
+<a href="../../slides/26.pdf"> studio prep material </a> 
+on doubly linked
+lists.
+Keep that material open on somebody's display for reference during the
+studio.
+<BLOCKQUOTE><B>
+Note:  The "null" in the sentinel nodes should really be "any integer you
+like because it will be ignored". In other words, the sentinels should also
+be <KBD>ListItem</KBD> objects.
+</B></BLOCKQUOTE>
+<LI> Code developed during lecture is in your studio workspace.  Look in the <KBD>studio9</KBD> package
+of the <KBD>studios</KBD> source folder.  
+<!--It's also in your personal repos, but it would be easier not to
+mention that now. -->
+<BLOCKQUOTE>
+The code you should probably study is the
+<KBD>SinglyLinkedListWithSentinel</KBD> class, since it uses
+sentinels and so does this studio.
+<p>
+This code is in your <KBD>studio9</KBD> package.
+</BLOCKQUOTE>
+<LI> Examine the provided <KBD>IntList</KBD> interface.
+<BLOCKQUOTE>
+Please follow the instructions below carefully.  Don't try to skip ahead.
+</BLOCKQUOTE>
+
+<LI> Now let's start a new class in this package, <KBD>DoublyLinkedListOfInts</KBD>:
+<UL>
+  <LI> Click on the <KBD>studio9</KBD> entry in the package explorer.
+  <LI> Click: File...New...Class
+  <LI> Fill in the name (<KBD>DoublyLinkedListOfInts</KBD>)
+  <LI> In the Interfaces section, Add the IntList interface (you have
+to type this in, but as you do, the one you want will appear as a choice).
+  <LI> Be  sure the <I>Inherit abstract methods</I> box is checked.
+  <LI> Finish it up
+</UL>
+<BLOCKQUOTE>
+You should now have stubs in your new class.
+If you do not, delete the new class and start again, following the
+instructions carefully.
+</BLOCKQUOTE>
+<LI> A <KBD>DoublyLinkedListOfInts</KBD> <I>has-a</I>:
+ <UL>
+  <LI> <KBD>head</KBD> pointer, just as we have in the <KBD>SinglyLinkedListWithSentinel</KBD>
+  <LI> <KBD>tail</KBD> pointer, which points to the other sentinel, at the <I>end</I> of the list
+  <LI> <KBD>size</KBD>, which reflects the number of <I>bona fide</I> integers in this list.  In other words,
+the sentinels are not included in the <KBD>size</KBD> count.
+ </UL>
+<BLOCKQUOTE>
+Declare instance variables to represent these <I>has-a</I>s in your <KBD>DoublyLinkedListOfInts</KBD> class.
+</BLOCKQUOTE>
+<LI> For each method in the interface, discuss an implementation and
+ sketch how it would work:
+<BLOCKQUOTE>
+<UL>
+<LI> More details are provided below, but you should first talk about this.
+<LI>
+As you work,
+look for opportunities to reduce one method's work to another's.
+<LI> One of the most important aspects of this design is the use
+of a <a href="http://en.wikipedia.org/wiki/Sentinel_node">sentinel</a>, as depicted in the
+<a href="../../slides/26.pdf"> studio prep material </a>.
+Discuss the role of sentinels and
+how they affect (simplify) your implementation.
+</UL>
+</BLOCKQUOTE>
+<LI> For testing, I've included a <KBD>TestLinkedListOfObjects</KBD> jUnit test you can use as-is to test your code.
+Notice the
+declarations of the interface type (<KBD>IntList</KBD>) as compared with the actual objects instantiated
+(<KBD>LinkedListOfInts</KBD>).
+<BLOCKQUOTE><B>  Use the interface type as much as possible. It does not commit to an implementation
+and this makes it easier to change from one implementation of the interface to another.</B></BLOCKQUOTE>
+<LI> The <KBD>ListItem</KBD> class, as given to you and as used in lecture,
+had only one pointer, namely <KBD>next</KBD>.  For the doubly linked list,
+you need to augment <KBD>ListItem</KBD> to have two pointers: <KBD> next</KBD>
+and <KBD>prev</KBD>.
+<BLOCKQUOTE>
+Add the necessary instance variable, accessors and setters to the <KBD>ListItem</KBD> class.
+</BLOCKQUOTE>
+<LI> Work on implementing the methods as we did in class, in the following order:
+<UL>
+  <LI> Constructor -- like the <KBD>LinkedListOfInts</KBD> but it will have to initialize
+the <KBD>head</KBD> and <KBD>tail</KBD>
+the sentinels as well.  Can those instance variables be <KBD>final</KBD>?  
+<BLOCKQUOTE>
+<UL>
+ <LI> Your constructor must create the objects and pointers that are shown on <B>slide 2</B> of
+the <a href="../../slides/26.pdf"> studio prep material </a>.
+
+ <LI>
+It's usually a good idea to assume initially that instance variables
+could be <KBD>final</KBD> and then retreat from that if necessary.
+<LI> 
+DO NOT MOVE ON until you have shown your constructor to your TA so we can
+be sure you see how this object is supposed to be initialized.  It's important
+to understand that before moving to the methods below.
+</UL>
+</BLOCKQUOTE>
+  <LI> <KBD>String toString() </KBD> -- you might want to implement this first, so you can use it for
+debugging by printing out the state of the list.
+<BLOCKQUOTE>
+A good way to think of this is to look at <B>slide 1</B> of the
+<a href="../../slides/26.pdf"> studio prep material </a>.
+</BLOCKQUOTE>
+  <LI> <KBD>void addFirst(int item)</KBD> -- be sure to think about special cases, such
+          as adding to an empty list.
+  <LI> <KBD>void addLast(int item)</KBD> -- recall in the studio prep material, there is
+not only a <KBD>head</KBD> pointer, but also a <KBD>tail</KBD> pointer.  Try to do this operation
+as efficiently and cleanly as you can.
+  <LI> <KBD>int size()</KBD> -- remember that this returns the perceived size of the list, in terms
+of how the end-user views the list.  The sentinels do not count toward the size.
+  <LI> <KBD>int indexOf(int item)</KBD> -- should return -1 if the <KBD>item</KBD> is not found.
+Otherwise it should return the first occurence of the item in the list.
+  <LI> <KBD>boolean remove(int item)</KBD>  tries to remove the first occurence of the item, if any.
+The method returns <KBD>true</KBD> if something was removed, <KBD>false</KBD> otherwise.
+<BLOCKQUOTE><B>
+Try to use the sentinels and double links to your advantage.   This method is quite easy because of those.
+Strive for the cleanest, correct implementation.  Talk with others and other groups about
+ideas for doing this.
+</B></BLOCKQUOTE>
+<HR>
+<BLOCKQUOTE>
+If you get this far, that's great.  You may find the rest challenging, but give
+it a try for the time you have left.  We'll talk more about iterators in the
+next lecture.
+</BLOCKQUOTE>
+<HR>
+<LI> <KBD>Iterator&lt;Integer&gt; iterator()</KBD> will take some thought.
+Here are some ideas.
+<UL>
+ <LI> It will not work to keep the state of the <KBD>Iterator</KBD> in the <KBD>DoublyLinkedListOfInts</KBD>
+class.
+<BLOCKQUOTE><B>
+It's really important that you understand why the above is true.  Discuss this amongst yourselves
+and talk with a TA about it.  Do not move on until your group sees this point.  Think of what would
+happen with two nested iterators if you had the state in the <KBD>DoublyLinkedLIstOfInts</KBD> object.
+</B></BLOCKQUOTE>
+ <LI> You can use extra classes if you need them.  Just add them into the <KBD>lists</KBD> package
+    and use them however you like.  
+ <LI> This method must return an instance of an object that "implements" all of
+the methods in the <KBD>Iterator&lt;Integer&gt; interface:
+<UL>
+ <LI> <KBD>boolean hasNext()</KBD>
+ <LI> <KBD>Integer next()</KBD>
+ <LI> <KBD>void remove()</KBD> -- for this method, do nothing, just have
+   a stub that is empty.
+</UL>
+</UL>
+<LI> <KBD>IntList reverse()</KBD> returns a new list with the elements in the reverse order of
+<KBD>this</KBD> list.
+</UL>
+</OL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:05 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio9">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio9a">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

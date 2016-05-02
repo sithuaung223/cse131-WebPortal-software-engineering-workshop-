@@ -1,0 +1,255 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Input&nbsp;&amp;&nbsp;Output</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 4: Input&nbsp;&amp;&nbsp;Output</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI class="active"><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Exercises</H3>
+<BLOCKQUOTE>
+These exercises are part of the asynchronous component of this course.
+Material is taught and demonstrated, but at times you are asked to complete
+one of the exercises to help you master the new concepts.
+<p>
+In the repository you are using for this course, look inside the
+<KBD>exercises</KBD> source folder, and you will see assignments organized
+by name.  Before continuing on to the next portion of the asynchronous material,
+spend some time on the exercise.  When you are finished, commit your code
+so that credit for the exercise can be given.
+<p>
+It is not so important that you get the exercise exactly right.  It is
+important to work through it as best you can before you look at the
+solution or continue with other work in this module.
+</BLOCKQUOTE>
+<HR>
+<a name="exer1"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Computing statistics for a list of numbers</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>Stats</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> Write code as directed to compute the specified statistics for the numbers
+that you read in.
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer2"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Example using graphics</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>GraphicsDemo</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> For each of the following, write code to generate the graphics as
+specified, and run your program after each addition to see that you are
+creating the right kinds of shapes, colors, and sizes.
+<UL>
+  <LI> Draw a blue point anywhere you like
+  <LI> Draw a larger green point someplace else
+  <LI> Draw an unfilled red triangle somewhere
+  <LI> Draw a filled yellow circle somewhere
+  <LI> Draw a filled blue rectangle somewhere
+<BLOCKQUOTE>
+The book does not include mention of Sedgewick's <KBD>filledRectangle</KBD> method.  But it is there, and you can find it by pausing after typing the <KBD>.</KBD>.  Eclipse will then show you possible completions, which will include
+<KBD>filledRectangle</KBD>.
+</BLOCKQUOTE>
+</UL>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer3"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Mouse and keyboard</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>WaitPoint</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> Write code that does the following:
+<UL>
+  <LI> Waits until the mouse has been pressed
+  <LI> Waits until the mouse has been released
+  <LI> Draws a visible point at the spot where the mouse was released
+  <LI> Waits until the user has typed a <KBD>q</KBD> (all other keys are ignored)
+  <LI> Writes text on the graphic screen that says goodbye
+</UL>
+<BLOCKQUOTE>
+Do this a step at a time, testing your code.  Look at the solution video 
+intermittently, as necessary.
+</BLOCKQUOTE>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer4"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Follow the mouse</H3>
+In this exercise you will apply what you have learned about graphics to
+cause a ball to follow the mouse on a graphics screen.
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>MouseFollower</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> That code already contains the standard animation loop:
+<UL>
+  <LI> <KBD>StdDraw.clear()</kBD> at the beginning, to wipe the graphics
+display clean
+  <LI> Your code will then paint one frame of the animation
+  <LI> <KBD>StdDraw.show(10)</KBD> produces what you have drawn on the screen
+    and waits 10 milliseconds before continuing.   
+<BLOCKQUOTE>
+<UL>
+<LI> By using <KBD>show(..)</KBD>,
+the drawing you do is not actually shown between calls to <KBD>show</KBD>. 
+<LI>
+Instead, the drawing is done in memory, off the screen, which is much faster.
+<LI> When you call <KBD>show()</KBD>, the work you have done off screen is put
+on screen all at once. 
+<LI> The program also pauses for the specified time, usually
+10 to 50 milliseconds.  Pausing allows your computer to do something else
+for a while, which will make your computer feel more responsive in the
+other applications that are running.
+</UL>
+</BLOCKQUOTE>
+</UL>
+<LI> First try to get a ball on the screen to follow your mouse.  This
+consists of reading the mouse's coordinates, and painting a ball at that
+spot.
+<LI> When you have that working, try to think of how you could make the ball
+appear to lag in its mouse-following activities.  
+<BLOCKQUOTE>
+<UL>
+<LI> As a hint, think about
+keeping some history of where the mouse has been.  
+<LI> You can then have the
+ball go to locations in the mouse's past.
+</UL>
+</BLOCKQUOTE>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer5"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Frequency of a pitch</H3>
+As described in the videos and text, a musical pitch can be encoded
+as an integer.  The convention for this course is that 0 corresponds to
+concert A, 1 corresponds to Bb just above concert A, and so on.
+<p>
+In this exercise you will print out the frequency associated with 
+a pitch, and with the pitch 7 chromatic steps above that pitch.
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>Pitches</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> Insert code to prompt the user to enter an integer representing a pitch.
+<LI> Compute the frequency that corresponds to that pitch.
+<LI> Print the frequency of that pitch, the frequency of a pitch 7 chromatic
+steps higher, and the ratio of the two frequencies.
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer6"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Ratios of two pitches' frequencies</H3>
+Continue your work on the above exercise as follows.
+<H4>Instructions</H4>
+<UL>
+  <LI> Continue modifying the <KBD>Pitches</KBD> Java program in the <KBD>exercises4</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+<LI> Prompt the user to enter an integer for pitch 1.
+<LI> Prompt the user to enter an integer for pitch 2.
+<LI> Compute the frequency that corresponds to those pitches
+<LI> Print the frequency of both pitches
+and the ratio of the two frequencies.
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

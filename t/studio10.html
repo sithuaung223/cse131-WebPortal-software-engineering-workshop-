@@ -1,0 +1,291 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Game</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 10: Game</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI class="active"><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Studio</H3>
+<HR>
+If necessary, review <a href="../../StudioDocs/studioheader.html">studio procedures</a> before
+starting.
+
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<h3>Tetris</h3>
+<P>
+<BLOCKQUOTE>
+This week's studio is meant to get you used to thinking about how you might implement Tetris. You are not obligated to use any of the code you develop today in your final implementation. The group you work with today does not have to include the person you plan to collaborate with for the final project. 
+<p>
+In the videos for this week, you learned about the <KBD>Anim</KBD> interface , which insists that objects
+can draw themselves and say whether they are done. The graphical objects that you create for your version of Tetris should implement this interface. You also reviewed the standard <EM>animation loop</EM> that we use for all animation.
+In this studio, you will start to think about how to break Tetris down into codable pieces. Your work will include identifying objects that could be used in your implementation, specifying the has-a's and behaviors for one of these objects, and finally you will try creating and animating a block object. You will <B>NOT</B> receive as many step by step instructions so as to get you ready for working on the lab. However, TAs and the instructor will be around to provide help should you need it, but as much as possible draw on past labs and studios to try and figure things out. 
+</BLOCKQUOTE>
+Here are the steps:
+<OL>
+<LI> Gather your group around one workstation.  Plan on taking turns
+at the keyboard.
+<LI> You should have familiarized yourself with Tetris by now. 
+<LI> First try and come up with 3 elements of Tetris that you might represent as object classes in your implementation of the game. You are not obligated to use these classes in your final game so don't worry too much about it. This is just to get you used to thinking about how you might break the game into codable objects. As a start, you might think about the different graphical elements of the game or the different functions represented.
+<LI> Once you have 3 possible object types. Choose one of those types and write a specification of it. List what you think the has-a's are and the behaviors. You can do this on a piece of paper or create a class in the <KBD>studio10</KBD> package of the <KBD>studios</KBD> folder and put it in the comments.
+
+<LI> 
+DO NOT MOVE ON until you have shown your list of potential objects and your class specification to your TA so we can
+be sure you understand how to specify an object and to look for codable elements in a design problem.
+
+<LI> Code developed during lecture is in your studio workspace.  Look in the <KBD>studio10</KBD> package
+of the <KBD>studios</KBD> source folder.  
+<!--It's also in your personal repos, but it would be easier not to
+mention that now. -->
+<BLOCKQUOTE>
+The code you should probably study is the
+<KBD>VertBall</KBD> class, since it implements <KBD>Anim</KBD> and moves in a vertical direction. You should also look at the <KBD>GameOnVideo</KBD> class, since it implements a <EM>standard animation loop</EM> using a list of objects implementing Anim much like you will do in this studio.
+<p>
+This code is in your <KBD>studio10</KBD> package.
+</BLOCKQUOTE>
+<LI> Examine the provided <KBD>Anim</KBD> interface.
+
+
+<LI>You are going to create a new class called <KBD>VertBlock</KBD> which implements the <KBD>Anim</KBD> abstract interface. You learned how to create a new class that inherits from an abstract interface in studio9. <KBD>VertBlock</KBD> represents a square block that is given: 
+<p>
+<UL>
+<LI> a random color, 
+<LI> start position, 
+<LI> end position 
+<LI> and speed of descent. 
+</UL>
+<br>
+Each time it is drawn it advances down the screen as determined by the speed. It is first drawn at the start position and stops at the end position. The block should remain on the screen once it reaches the end position.
+<LI> <KBD>DescendingBlocks</KBD> which you can find in your <KBD>studio10</KBD> folder contains the animation loop you will use for this studio. Blocks that will appear in your display should be added here.
+<LI> Using the description of <KBD>VertBlock</KBD> above and looking at the code for <KBD>VertBall</KBD> as a reference implement the class VertBlock and animate it using the DescendingBlocks loop. If you are confused how to do that, take a look at the <KBD>GameOnVideo</KBD> class for an example.
+
+<BLOCKQUOTE>  
+Make sure to comment your code. If you are having difficulty implementing <KBD>VertBlock</KBD>, it might be a good exercise to write the specification of the class in terms of <I>has-a</I>s and behaviors in the comments before writing any code.
+<B>Strive for the cleanest, correct implementation. </B>
+</BLOCKQUOTE>
+
+<LI>If you have time, add another block to the display after the first block has reached the bottom of the display. The second block should also start at the top and descend to the bottom. It should stop descending when it either reaches the bottom of the display or hits the first block. You may have to alter your <KBD>VertBlock</KBD> class to do this.
+</OL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:06 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 10</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="10">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio10">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this studio, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for studio 10</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="10">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="studio10a">
+        <input type="hidden" name="Thing"    value="studio">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 3</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name3">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID3">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=3>
+             </TD><TD>
+                 Copy from 3 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 4</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name4">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID4">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=4>
+             </TD><TD>
+                 Copy from 4 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

@@ -1,0 +1,2330 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Objects</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 7: Objects</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Conways Game of Life (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<BLOCKQUOTE>
+This is not ma and pa's old Conway; this is a new, improved, and less confusing version of the classic extension. We hope you enjoy it!
+</BLOCKQUOTE>
+
+<a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a> 
+is a biology simulation that was developed by British mathematician 
+John Horton Conway in 1970. It is designed to simulate cellular 
+automation by creating an initial configuration of living and dead cells and 
+observing how they evolve. Many interesting patterns have developed from the origins
+of the original simulation--producing patterns that pulsate, exist into infinity, and even glide
+like spaceships.
+
+<HR>
+<p>
+
+The rules of Conway's Game of life are as follows:
+<UL>
+<LI> If a living cell has fewer than two living neighbors, it dies of loneliness
+<LI> If a living cell has more than three living neighbors it dies of overcrowding
+<LI> If a living cell has two or three neighbors, it continues to live
+<LI> If a dead cell has exactly three living neighbors, it is resurrected by friendship
+</UL>
+<p>
+This set of rules can end up making some very interesting patterns. Below we have drawn out some of the patterns that are made by cells in 
+Conway's game of life. Dead cells are represented by white squares, living cells are represented by black squares.
+
+<H3><B>Sample Patterns</B></H3>
+
+<H4><B>Still Lifes</B></H4>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Game_of_life_block_with_border.svg/200px-Game_of_life_block_with_border.svg.png"
+alt="Block" width="100" height="100" /> Block</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Game_of_life_beehive.svg/200px-Game_of_life_beehive.svg.png"
+alt="Beehive" width="100" height="100" /> Beehive</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Game_of_life_loaf.svg/200px-Game_of_life_loaf.svg.png"
+alt="Loaf" width="100" height="100" /> Loaf</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Game_of_life_boat.svg/200px-Game_of_life_boat.svg.png"
+alt="Boat" width="100" height="100" /> Boat</p>
+
+<H4><B>Oscillators</B></H4>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/9/95/Game_of_life_blinker.gif"
+alt="Blinker" width="100" height="100" /> Blinker</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/1/12/Game_of_life_toad.gif"
+alt="Toad" width="100" height="100" /> Toad</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/1/1c/Game_of_life_beacon.gif"
+alt="Beacon" width="100" height="100" /> Beacon</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/0/07/Game_of_life_pulsar.gif"
+alt="Pulsar" width="100" height="100" /> Pulsar</p>
+
+<H4><B>Spaceships</B></H4>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/f/f2/Game_of_life_animated_glider.gif"
+alt="Glider" width="100" height="100" /> Glider</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/3/37/Game_of_life_animated_LWSS.gif"
+alt="Lightweight Spaceship" width="126" height="98" /> Lightweight Spaceship</p>
+
+<H4><B>Perpetual Patterns</B></H4>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/500px-Game_of_life_glider_gun.svg.png"
+alt="Gosper Glider Gun" width="500" height="146" /> Gosper Glider Gun</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Game_of_life_infinite1.svg/200px-Game_of_life_infinite1.svg.png"
+alt="Block-Laying Switch Engine" width="200" height="160" /> Block-Laying Switch Engine</p>
+
+<H4>Directions</H4>
+
+In this lab, you will be responsible for building the simulator portion of
+Conway's Game of Life (henceforth known as Conway, or Life). 
+You can then run the game on your own patterns or on patterns that we provide.
+<p>
+The code for this work can be found
+<KBD>conway</KBD> package of the <KBD>extensions</KBD> source folder.
+The <kbd>Conway</kbd> class is where you will be doing all of your work. <kbd>ConwayTest</kbd> is the tester for <kbd>Conway</kbd>
+and <kbd>Main</kbd> is what you will run when your code is finished to actually see your work happen. The <kbd>Main</kbd> class 
+creates a GUI, <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphical User Interface</a>, which allows you to 
+see cells dying and coming back to life. 
+Open <kbd>Conway</kbd>. 
+You will create the following methods:
+<OL>
+<LI> A <kbd>public Conway(int rows, int cols)</kbd> constructor that specifies the dimensions of the Conway board. 
+ <LI> A <kbd>public int getRows()</kbd> method, that is an accessor.
+  <LI> A <kbd>public int getColumns()</kbd> method, that is an accessor 
+ <BLOCKQUOTE>
+ Your code should now pass the <kbd>getRowsAndColumnsTest()</kbd>
+ </BLOCKQUOTE>
+ <LI> A <kbd>public void setLiveness(boolean b, int row, int col)</kbd> method that takes in a row and a column, and whether that cell should be currently alive or dead
+ <BLOCKQUOTE>
+ It would make sense that if a cell was alive, and it was represented by a boolean, it would be <kbd>true</kbd>, and if it was dead it would be <kbd>false</kbd>.
+You must come up with a data type that stores values in rows an columns to represent all of the cells. There are multiple ways to store this information, 
+but think carefully about which one you choose, for this choice could save you time down the road. Just remember; you should not change anything within the test, 
+and you must return what we ask you to return. 
+ </BLOCKQUOTE>
+<LI> An <kbd>public boolean isAlive(int row, int col)</kbd> method, which returns whether the cell at that specific row and column is alive or dead. If 
+ the row and column are out of the bounds of that Conway object, then return false.
+<BLOCKQUOTE>
+Your code should now pass the <kbd>isAliveTest()</kbd> and the <kbd>setLivenessTest()</kbd>.
+ </BLOCKQUOTE>
+ <LI> A <kbd>public void clear()</kbd> method, which sets every cell in the Conway object to dead.
+ <BLOCKQUOTE> 
+ Your code should now pass the <kbd>clearTest()</kbd>
+ </BLOCKQUOTE>
+ <LI> A <kbd>public int countLivingNeighbors(int row, int col)</kbd> method, which considers the cell at a certain row and column, and 
+ returns the number of living neighbors that it has.
+ <BLOCKQUOTE>
+ The neighbors of a certain cell are considered to be the eight cells that are surrounding it. Your <kbd>isAlive()</kbd> should help you with this.
+ <p>
+<TABLE BORDER CELLPADDING="5">
+<TR><TD>
+ <IMG SRC="Extensions/3by3box.gif" width = 200 height = 100> </TD>
+<TD>
+ If you were to count the number of living neighbors of the living cell in the picture above, you would check the eight white squares
+ that are surrounding it, and see if any of those cells were alive. In this picture, the live cell in the middle has no living neighbors, so according to the 
+ rules, it will die of loneliness. So in the next frame it will become a white square. 
+</TD>
+</TR>
+<TD ALIGN=CENTER>
+ <IMG SRC="Extensions/4x4BoxFilled.gif" width = 200 height = 100>
+</TD>
+<TD>
+This is a random group of cells 
+</TR>
+<TD ALIGN=CENTER>
+ <IMG SRC="Extensions/4x4BoxNumbers.gif" width = 200 height = 100>
+ </TD>
+ <TD>
+ This picture shows the number of living neighbors that each of the cells in the above picture has 
+ </TD>
+ </TR>
+</TABLE>
+<p>
+Once you implement this method, your code should pass the <kbd>countLivingNeighborsTest()</kbd>
+ </BLOCKQUOTE>
+<LI> A <kbd>public void step()</kbd> method, which executes a generation of life. 
+What this means is that you take all of the cells from the <kbd>this</kbd> Conway object, and determine whether or not they will be alive in the 
+next generation. 
+<BLOCKQUOTE>
+It might be helpful here to create a <kbd>next</kbd> conway object with the same dimensions as the <kbd>this</kbd> Conway object. If you change the values of the original Conway object while
+you still havent determined whether other cells will be alive in the next generation, you might not count the wrong number of living neighbors. For instance, say cell 
+A and cell B both alive, and are neighbors. If you determine that A will be dead in the next generation, and you kill it, when you go to count
+the number of living neighbors of B, it will have fewer living neighbors now than it should. If you create another Conway object, you can store the liveness of 
+ALL of the cells on that Conway object, and then alter the values of the <kbd>this</kbd> Conway object at the end.
+</BLOCKQUOTE>
+If a cell will not be alive in the next generation, set it to <kbd>false</kbd>. If a cell will be alive in the next generation, 
+set it to <kbd>true</kbd>. Make sure to account for all cells, and not just the ones that are currently alive. 
+The rules of the Conway Game of Life are listed at the top of this page. This is where you will implement those rules.
+
+<BLOCKQUOTE> 
+Your code should now pass the <kbd>stepTest()</kbd> 
+</BLOCKQUOTE>
+</OL>
+
+In the code, we have <kbd>public void yourDesginOne()</kbd> and <kbd>public void yourDesginTwo()</kbd>. You
+ do not have to fill these out for the code to work, but if you want to create a pattern, you can create it here, and 
+ you will be able to access it through the GUI. These will be used for the next extension
+
+The following methods are provided for you, do not change any of these:
+<OL>
+<LI> <kbd>public void blinker()</kbd> allows the GUI to create a blinker pattern
+<LI> <kbd>public void fourBlinkers()</kbd> allows the GUI to create a four-blinker pattern
+<LI> <kbd>public void gosperGliderGun()</kbd> allows the GUI to create a gosperGliderGun pattern
+<LI> <kbd>public void glider()</kbd> allows the GUI to create a glider pattern
+<LI> Other supporting classes, including the visualization code, are in the
+<KBD>labsupport</KBD> source folder.  They are moved there to reduce the clutter
+in the extensions folder.
+</OL>
+<BLOCKQUOTE>
+There is also an empty <kbd>public void logAndCapture()</kbd> method. You do not need to put anything in here right now, 
+this is the subject of the next extension
+</BLOCKQUOTE>
+<HR>
+<p>
+Once you have completed all the methods, you can run the <tt>Main</tt> method to play Conway's Game of Life. There
+are many patterns that can be used to test your simulation, some of which can be 
+<a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">found here.</a> 
+<p>
+To further debug your code, the visual interface allows you to take one step
+at a time.
+If the game is not working, use the debugger or print information helpful to
+diagnosing the problems you see.
+<P><HR></P>
+
+<H4>To Demo</H4>
+Your code must pass all of the unit tests, and the GUI should work, and be able to display cells interacting with eachother. 
+
+
+
+
+
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions8">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Conways Game of Afterlife: Automatic generation (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+For this extension, you will be working with automatic code generation, which will save you time and energy if 
+you want to save any of the cell mappings you create in Conway. In order to get credit for this extension, you  must implement
+the functionality of <tt>logAndCapture()</tt> in <KBD>Conway</KBD> 
+to capture the current living cells you have on the board and generate the appropriate Java code for creating those cells 
+in the console. 
+<p>
+For example, the <tt>Four Blinkers</tt> code is captured already, 
+but if you were 
+to generate code for it using <tt>logAndCapture()</tt> the result would look something like this:
+
+<BLOCKQUOTE>
+<pre>
+Beginning of Log and Capture
+setLiveness(true, 1, 1);
+setLiveness(true, 1, 2);
+setLiveness(true, 1, 3);
+setLiveness(true, 1, 5);
+setLiveness(true, 1, 6);
+setLiveness(true, 1, 7);
+setLiveness(true, 5, 1);
+setLiveness(true, 5, 2);
+setLiveness(true, 5, 3);
+setLiveness(true, 5, 5);
+setLiveness(true, 5, 6);
+setLiveness(true, 5, 7);
+End of Log and Capture
+</pre>
+</BLOCKQUOTE>
+The idea is that the code can be copied from the console, pasted into your
+<KBD>Conway</KBD> class, and when you choose the right menu item from the
+interface, the board will be initialized to replicate what you captured.
+<p>
+Once you have <tt>logAndCapture()</tt> working, use this new tool to automatically generate your own Conway 
+patterns in <tt>myDesignOne()</tt>, <tt>myDesignTwo()</tt>, and <tt>myDesignThree()</tt>. For credit for this 
+extension, these patterns should be both intriguing and potentially time-consuming to generate by hand.
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions9">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Project: Matrix (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<H4> Procedure </H4>
+
+In the <KBD>matrix</KBD> package of the <KBD>extensions</KBD> source folder,
+implement the <KBD>Matrix</KBD> class. Every time you implement a method correctly, you will be able to pass one more unit test.
+We have provided and finished some methods. We ask that you do not change anything other than the methods listed below.
+Implement the methods with the following features:
+<OL>
+<LI>A <I>constructor</I> that takes a two-dimensional array of type <tt>double</tt>
+and saves it (as an instance variable) as the values of the matrix.
+<BLOCKQUOTE> To be safe, your instance variable must be a <I>copy</I> of the
+parameter, so that the contents of your Matrix's array cannot be changed beyond 
+your control. 
+<p>
+To copy the two-dimensional array, you must instantiate a new two-dimensional array
+and copy the original array's contents into your new array. Do not use <KBD>clone</KBD>. It will only clone the first 
+row of the array, and the rest of the rows will be left empty
+</BLOCKQUOTE>
+<LI> An <tt>arraysAreEqual(double[][] one, double[][] two)</tt> method that compares the 
+two arrays to see if they are the same.  The two arrays are the same if:
+<UL>
+ <LI> They agree in the size of both of their dimensions.
+ <LI> The contents of the two arrays are the same.
+</UL>
+<BLOCKQUOTE>
+The <KBD>.equals(Object)</KBD> method included with this lab calls your
+<KBD>arraysAreEqual</KBD> method, so that <KBD>Matrix</KBD> equality of
+two matrices depends on the contents of those matrices.
+<p>
+Until this method is working, the rest of the JUnit tests will not work properly.
+</BLOCKQUOTE>
+<LI>A <tt>toString</tt> method that neatly shows the contents of the matrix.
+In your string use "\n" to insert a line break, and use "\t" where you want a tab between elements.
+Include JUnit tests that print these strings to the console (using <KBD>System.out.println</KBD>) for visual inspection,
+in addition to any automated tests you perform.
+Your toString method will come in handy for debugging the other methods.
+<P>
+<LI>A <tt>scaleRow</tt> method that takes a row number (an integer) and a scale factor (a double),
+and multiplies that row by the given scale factor.  This method does not return anything.  It just modifies the matrix.
+<BLOCKQUOTE>
+In this lab, rows are numbered as arrays are indexed.  Thus,
+the top row in the matrix is row 0, and the bottom row is numbered one less than
+the number of rows in the matrix.
+</BLOCKQUOTE>
+<P>
+<LI>An <tt>addRows</tt> method that takes two row numbers as parameters, and adds the two rows together, storing the
+result in place of the second of the two rows.
+<P>
+<LI>A <tt>plus</tt> method that takes another Matrix as its parameter and returns the
+matrix that results from adding this matrix by the given one.
+Matrix addition is only valid when the two matrices are the same size in both dimensions,
+so your <tt>plus</tt> method should throw an
+IllegalArgumentException when this is not the case.
+<P>
+<LI>A <tt>transpose</tt> method that takes no parameters and returns a new matrix that is the transpose of
+this one.  Recall that the columns of the transposed matrix have the same values as the rows of the original matrix.
+<P>
+<LI>A <tt>times</tt> method that takes another Matrix as its parameter and returns the
+matrix that results from multiplying this matrix by the given one.
+Recall that when you multiply two matrices A and B, the value in the
+cell at row <em>r</em> and column <em>c</em> of the resulting matrix
+is the dot product of A's row <em>r</em> with B's column <em>c</em>.
+Also recall that matrix multiplication is only valid when the number
+of columns of the first matrix is equal to the number of rows of the
+second, so your <tt>times</tt> method should throw an
+IllegalArgumentException when this is not the case.
+<P>
+<LI> An <tt>exchangeRows</tt> method that takes in two rows i and j and exchanges the two.
+This modifies the matrix and does not return anything.
+</OL>
+
+
+<H4> To Demo </H4> 
+Your code must pass all of the unit tests
+
+
+
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions0">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Gaussian Elimination (6 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+
+
+
+<H4>Directions</H4>
+You will create a <kbd>Gaussian</kbd> class in the <kbd>matrix</kbd> package. Inside of it you will have a <kbd>public Matrix getSolution()</kbd> method that 
+solves a series of equations by Gaussian elimination as described in this
+<A href="http://en.wikipedia.org/wiki/Gaussian_elimination">Wikipedia article</A>.
+you must do the following: 
+<OL>
+ <LI>
+ Create a constructor in the <kbd>Gaussian</kbd> class that takes in two matrices, a three by three matrix that represents the constants in the set of equations, 
+ and a three by one  matrix that represents the sums
+ <LI> Write a <kbd>public Matrix getSolution()</kbd> method that takes a certain <kbd>Gaussian</kbd> object and finds the solution of the system of equations 
+ that it represents. HINT: all of the inputs will be doubles, but you can assume that they will be whole numbers
+  <BLOCKQUOTE>
+   For instance: if we have the system of equations: 
+    <p>
+    <center>
+    3x + 10y - 4z = 27
+    <p>
+    2x - 3y + 2z = 7
+    <p>
+    -x - y + z = 0
+    <p>
+    </center>
+   We know that the matrix for the coefficients looks like 
+    <p>
+    <center>
+    [3][10][-4]
+    <p>
+    [2][-3][2]
+    <p>
+    [-1][-1][1]
+    <p>
+    </center>
+   And the matrix for the sums looks like 
+    <p>
+    <center>
+    [27]
+    <p>
+    [7]
+    <p>
+    [0]
+    <p>
+    </center>
+   Since the solution to this particular system of equations is x = 3, y = 5, z = 8, the solutions matrix would look like
+    <p>
+    <center>
+    [3]
+    <p>
+    [5]
+    <p>
+    [8]
+    <p>
+    </center>
+  </BLOCKQUOTE>
+ You can also assume that there will only be one solution to the system of equations that we provide to you.
+ <BLOCKQUOTE>
+ NOTE: Your solution to this extension must be a general one. In other words, it cannot be restricted to solving 3x3 (or 3x4 if you count the constants column) matrices. It must be able to solve systems of equations with arbitrary numbers of parameters.
+ </BLOCKQUOTE>
+</OL>
+
+<h4>To Demo</h4> 
+You must pass the <kbd>GaussianElimination</kbd> unit test.
+
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions1">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext5"></a>
+<H2>Extension 5: Gone Golfin' (7 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Fede Rozenberg
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Move this extension earlier because it's relatively easy from a design
+and object point of view.
+</FONT></BLOCKQUOTE>
+
+<H4>Overview</H4>
+<p> In this extension you will build a golf game where the player can putt the ball into the hole with a mouse click. 
+Your golf game will use the <KBD>Point</KBD> and <KBD>Vector</KBD> classes 
+you developed in <a href="lab.html">lab</a>.
+<BLOCKQUOTE>
+Make sure to import the correct <KBD>Point</KBD> and <KBD>Vector</KBD> classes from lab!
+</BLOCKQUOTE> 
+<BLOCKQUOTE>
+<UL>
+<LI> Here is some <a href="http://i.imgur.com/C7jJAhO.gifv" target="new"> inspiration</a>.
+<LI> Here is a <a href="Extensions/golf.mp4" target="new">video</a> demonstrating our
+version of the game.
+<LI> And here is a static view of the game before a putt:
+<p>
+<IMG SRC="Extensions/golf.png" WIDTH=300>
+<p>
+For simplicity, your game will
+be played on a standard Sedgewick unit canvas, whose <I>x</I> and <I>y</I>
+coordinates range from 0.0 to 1.0.
+</BLOCKQUOTE>
+
+<H4>Procedure</H4>
+<p>In the <KBD>golf</KBD> package you will find four classes:
+<DL>
+  <DT> <KBD>Green</KBD>
+  <DD> The <KBD>Green</KBD> is where the <KBD>Ball</KBD> and <KBD>Hole</KBD> reside. 
+<UL>
+<LI> Golf is typically
+played on grass, but you are going to shake things up. 
+<LI> The <KBD>Green</KBD>
+should take up the whole (unit) canvas 
+and be a random color for every new game.
+</UL>
+<p>
+When you have finished writing this class, run the <KBD>TestGreen</KBD> unit test.
+  <DT> <KBD>Hole</KBD>
+  <DD> The <KBD>Hole</KBD> is the goal. 
+<UL>
+<LI> It is similar to <KBD>Ball</KBD>, in that it <I>has-a</I> <KBD>Point</KBD>.
+<LI> However, the location of the <KBD>Hole</KBD> does not change during
+a game.
+<LI> The depiction of the <KBD>Hole</KBD> includes some kind of flag,
+as shown in the image above.  To allow room for the flag, we recommend
+that the location of the <KBD>Hole</KBD> be 
+at least .3 units away from the unit square canvas edge on all sides. 
+<BLOCKQUOTE>
+That is, 
+a <KBD>Hole</KBD> can only exist within 0.3 &lt; x, y &lt; 0.7.
+</BLOCKQUOTE>
+</UL>
+<p>
+When you have finished writing this class, run the <KBD>TestHole</KBD> unit test.
+  <DT> <KBD>Ball</KBD>
+  <DD> The <KBD>Ball</KBD> object represents your golf ball. 
+<UL>
+<LI>
+It <I>has-a</I> <KBD>Point</KBD> that represents its current location.
+<LI>
+Recall that a <KBD>Point</KBD> <I>has-a</I> <KBD>x</KBD> and <KBD>y</KBD> coordinate.
+<LI>
+The location of your <KBD>Ball</KBD> will change throughout a game, in
+response to putting the <KBD>Ball</KBD>.
+<BLOCKQUOTE>
+The implication of this point on your solution is that the location of
+a <KBD>Ball</KBD> is not <KBD>final</KBD>.
+</BLOCKQUOTE>
+</UL>
+<p>
+When you have finished writing this class, run the <KBD>TestBall</KBD> unit test.
+  <DT> <KBD>Game</KBD>
+  <DD> The <KBD>Game</KBD> is where it all comes together. 
+  <UL>
+  <LI>In this class you'll find a <KBD>play()</KBD>
+method that should run your animation loop, and a <KBD>reset()</KBD> method that should help in starting
+up a new game. 
+<LI> A <KBD>Game</KBD> <I>has-a</I> <KBD>Ball</KBD>, <KBD>Hole</KBD>, <KBD>Green</KBD>, as well as a <KBD>clickCount</KBD> and a <KBD>gameOver</KBD> setting.
+</UL>
+</DL>
+</p>
+
+
+<p>One crucial part of this extension is figuring out how to grab the mouse coordinates.
+Remember that <KBD>StdDraw</KBD> has built-in methods you can use to your advantage, namely 
+<KBD>StdDraw.isMousePressed()</KBD>, <KBD>StdDraw.mouseX()</KBD>, and <KBD>StdDraw.mouseY()</KBD>.</p>
+
+<BLOCKQUOTE>
+Hint: <br>
+<KBD>
+	while(!StdDraw.isMousePressed){ 
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;	//here we know nothing has happened...
+	<br>
+	}
+	<br>
+	//mouse must have been pressed here!
+	
+</KBD>
+</BLOCKQUOTE>
+
+
+  
+
+
+<a name="extdemo5"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.5</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.5">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions2">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 5</H3><HR NOSHADE SIZE=10><p>
+<a name="ext6"></a>
+<H2>Extension 6: Julia Sets: Fractal Images (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Needs a careful editing
+</FONT></BLOCKQUOTE>
+<h4>Overview:</h4>
+Fractals are mathematical models that
+can create seemingly complex drawings from very simple specifications.
+Because they are not easily bored, computers are well-suited to
+iterative tasks.  
+You will use iteration in this lab to compute
+a <I>fractal</I> drawing.
+This lab emphasizes how computation can be applied
+with relative ease and speed to create what
+would take
+a human much longer to accomplish.
+
+<h4>Before Starting:</h4>
+<ol>
+<LI> Update your workspace and look for the <KBD>julia</KBD> package in
+the <KBD>extensions</KBD> source folder.  To run
+the program, run <KBD>JuliaController</KBD> as a Java application.
+<li> <B>Please read over the entire document before you start.</B>  Really.
+It will save you time in the long run.
+<li> If you are interested, see the 
+   <a href="Extensions/wallpaper.jpg"> wallpaper </a> a student made from
+this lab.  You can change constants and colors to get different patterns.
+</ol>
+<p>
+<h4>Background Information:</h4>
+Fractals are an amazing mechanism for describing complex systems in terms
+of simple and recursive components.
+The idea of fractals in the complex plane (where the x coordinate is real and the y coordinate is imaginary)
+dates back to 1918, when
+Gaston Julia began research that characterized
+<a href="http://en.wikipedia.org/wiki/Julia_set"> Julia Set </a>
+fractals. In 1979, 
+<a href="http://www.math.yale.edu/mandelbrot/">
+Benoit Mandelbrot</a> defined a map over Julia sets that reflected
+the expense of computing a specific point in the set. Such maps
+generate interesting patterns, and we will in a sense reproduce
+Mandelbrot's work in this lab.
+Since Mandelbrot's original work, computers have become faster and Java
+has made programming them easier.  Thus,
+our renditions will be more aesthetically pleasing 
+(and won't take overnight to render either).
+
+
+<h4>Problem statement: Drawing a Julia Set</h4>
+<p>
+This lab involves computation over some points of a <i>complex</i> plane.
+Recall that a <a href="http://www.ping.be/~ping1339/complget.htm"> complex </a> number has two components:
+a <i>real</i> and an <i>imaginary</i> part. 
+For each complex point <code>c</code> (which we will display on a cartesian coordinate system) that we want to display, we compute
+a function <code>rigor(c)</code>. This is an important formula when considering Julia sets, but for this extension, we will use it to compute what color 
+we will make a certain point. 
+<BLOCKQUOTE>
+<b>Code for rigor(c):</b>
+<PRE>
+   Complex z = new Complex(-0.7795, 0.134);
+   int iters = 0;
+   while(c.abs() &lt; 2 &amp;&amp; iters &lt; this.IPP) {
+      c = c.times(c).plus(z);
+      iters = iters + 1;
+   }
+   return iters;
+</PRE>
+<p>
+In this formula, <KBD>z</KBD> is a constant that is chosen so that the colors of this Julia set come out a certain way. Once you finish this lab, you can 
+experiment with different values of z to try to find new images. 
+</BLOCKQUOTE>
+In other words, <code>rigor(c)</code> is the number of iterations
+that it takes to compute the value at <code>c</code>.
+The value of <code>IPP</code> is arbitrary, but let's assume
+for now that
+100 iterations are allowed for the computation.  The function
+<code>abs(z)</code> computes the distance of <code>z</code> from
+the complex point (0,0).
+<BLOCKQUOTE>
+The IPP is the Iterations Per Pixel. If you change the IPP, the budget for each pixel will be larger, which means that the code will spend longer 
+computing each point. The <kbd>rigor(c)</kbd> function iteratively calculates what color a pixel will be by executing the above code, 
+but sometimes certain points on the complex plane take an arbitrarily large amount of time to measure, so instead of letting your computer run for an arbitrarily large
+ amount of time, you will cap the function when you reach a certain number of iterations.
+</BLOCKQUOTE>
+<p>
+To show complex numbers on an x-y axis system,
+let us assume that the real component of a complex number is registered on
+the x-axis;  the imaginary component is thus registered on the y axis.
+If we apply the above computation over the complex plane as x
+ranges from -2 to 2 and y ranges from -2i to 2i,
+we obtain the following picture:
+<a name="fig1">
+<CENTER>
+<HR>
+<TABLE>
+<TR> <TD ALIGN=RIGHT> (-2, 2i)</TD><TD ALIGN=CENTER>(0, 2i)</TD><TD>(2, 2i)</TD></TR>
+<TR> <TD ALIGN=RIGHT> (-2, 0i) </TD> 
+    <TD ALIGN=CENTER><IMG SRC="Extensions/orig.png" width = 300, height = 300></TD><TD>(2, 0i)</TD></TR>
+<TR> <TD ALIGN=RIGHT> (-2, -2i)</TD><TD ALIGN=CENTER>(0, -2i)</TD><TD>(2, -2i)</TD></TR>
+<TR> <TH ALIGN=CENTER COLSPAN=3>Figure 1: Initial display</TR>
+</TABLE>
+<HR>
+</CENTER>
+</a> 
+
+
+The 
+black areas represent points whose computation exceeded the limit set above (<code>IPP</code>). 
+<p>
+In the figures shown in this write-up, the color of a pixel p is 
+computed as follows, based on the value of <KBD>iters</KBD> that was
+computed for the Complex coordinate associated with <KBD>p</KBD>:
+<BLOCKQUOTE>
+<PRE>
+Color color = Color.black;
+if (iters &lt; this.IPP) {
+   // If you feel like changing the color, play with this line
+   color = Color.getHSBColor((iters % 256)/255.0f, 1.0f, 1.0f);
+}
+StdDraw.setPenColor(color);
+//
+// Draw a point
+//
+StdDraw.filledCircle(realCoord, imaginaryCoord, .00001);
+</PRE>
+The <kbd>rigor(c)</kbd> function gives you the value of <kbd>iters</kbd>. 
+You entered a certai complex coordinate c, and this function gives you the color 
+of that coordinate. So the last line of this code draws a tiny circle at that complex coordinate of the color that was given by the <kbd>rigor(c)</kbd> function
+
+</BLOCKQUOTE>
+
+The above code uses the <B><a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Color.html#getHSBColor(float,%20float,%20float)">HSB</a></B> color model.  For more information,
+consult the <KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/awt/Color.html#getHSBColor%28float,%20float,%20float%29">Color.getHSBColor</a></KBD> documentation.  The basic idea is to pick a hue based on the number of iterations,
+but leave the brightness and saturation at full.
+<p>
+<HR>
+Note the complex coordinates of the lower-left and upper-right corners.
+<BLOCKQUOTE>
+We use those two corners to describe the currently viewed area of the
+display.
+</BLOCKQUOTE>
+Zooming in, zooming out, and the selection of a box all affect those two
+corners, which in turn frame the display that is shown.
+<H4>Zooming around</H4>
+<p>
+What is really interesting about a fractal drawing is that one
+can dive into the drawing and discover ever increasing detail.
+Below you see the results of zooming into the picture.
+<p>
+<CENTER>
+<TABLE BORDER>
+<TR> 
+<TD ALIGN=CENTER> 
+<TABLE>
+<TR> 
+            <TD ALIGN=RIGHT> (-1.6, 0.5i)</TD>
+            <TD></TD>
+            <TD>(-0.6, 0.5i)</TD>
+          </TR>
+<TR> <TD> <TD ALIGN=CENTER><IMG SRC="Extensions/zoom1.png" width = 300, height = 300></TD><TD></TD></TR>
+<TR> 
+            <TD ALIGN=RIGHT> (-1.6, -0.5i)</TD>
+            <TD></TD>
+            <TD>(-0.6, -0.5i)</TD>
+          </TR>
+</TABLE>
+</TD> 
+<TD>
+<TABLE>
+<TR> 
+            <TD ALIGN=RIGHT> (-1.51755, 0.063544i)</TD>
+            <TD></TD>
+            <TD>(-1.51210, 0.063544i)</TD>
+          </TR>
+<TR> <TD> <TD ALIGN=CENTER><IMG SRC="Extensions/zoom2.png" width = 300 height = 300></TD><TD></TD></TR>
+<TR> 
+            <TD ALIGN=RIGHT> (-1.51755, -0.0690i)</TD>
+            <TD></TD>
+            <TD>(-1.51210, -0.0690i)</TD>
+          </TR>
+</TABLE>
+</TD>
+</TR>
+<TR> <TD ALIGN=CENTER> Zoom in on left part of picture</TD> 
+     <TD ALIGN=CENTER> Another zoom in on left part of picture</TD>
+</TR>
+</TABLE>
+</CENTER>
+<UL>
+<LI> Zooming into the picture changes the fractal plane coordinate of
+the pixels.  
+<BLOCKQUOTE>
+Sedgewick's <KBD>StdDraw</KBD> allows you to set the coordinates of the
+display.
+</BLOCKQUOTE>
+<LI>
+The <KBD>Julia</KBD> object offers several ways to zoom, but the most
+important method to consider is setCoordinates
+<BLOCKQUOTE>
+The other zooming methods can accomplish their tasks by calling
+<KBD>setCoordinates</KBD> with the appropriate parameters.
+</BLOCKQUOTE>
+<LI> The zoom methods are called by selecting entries on the <KBD>JuliaController</KBD> panel:
+<UL>
+  <LI> <KBD>ZoomIn</KBD> and <KBD>ZoomOut</KBD> are available.
+  <LI> <KBD>Reset</KBD> sets things back to the way they started.
+  <LI> The <KBD>Mouse</KBD> panel button allows you to zoom by clicking once to decide what the upper left coordinate will be, and then clicking again to decide 
+  what the lower right one will be.
+</UL>
+</UL>
+<HR>
+<h4>Procedure</h4>
+We will be printing out one part of a large function defined on the complex plane. We will start out by showing the function from (-2, -2i) to (2, 2i). 
+When we zoom in, we will look at a different section of the picture.  
+<UL>
+<LI> Open up the <kbd>Complex</kbd> class in the <julia> package. This class has been provided for you to use, but we strongly recommend that you get acquainted with 
+it before you begin your work on <kbd>Julia</kbd>. This class has some useful and many necessary methods.
+<LI> Now open the <kbd>Julia</kbd> class. All of your work will go into this package. You will implement the following methods:
+<OL> 
+<LI> A <kbd>public Julia(int numRealSamples, int numImaginarySamples, int IPP)</kbd> constructor that takes in the number of real and imaginary samples, and the IPP.
+It should also set the lower left and upper right coordinates to (2, 2i) and (-2, -2i).
+<BLOCKQUOTE> 
+A Cartesian coordinate plane is made up of an infinite number of points. We do not have time to compute the colors of an infinite number of points. Instead, we will 
+take in how many points we need to compute in the constructor. When you draw the picture, you must iterate <kbd>numRealSamples</kbd> across the plane and 
+<kbd>numImaginarySamples</kbd> down it. So, if <kbd>numRealSamples</kbd> = 500 and <kbd>numImaginarySamples</kbd> = 300, you will have a total of 
+500 x 300 = 150,000 samples on the entire plane. Each sample is a complex point. You will pass these points into the <kbd>rigor(c)</kbd> function.
+</BLOCKQUOTE>
+<LI> A <kbd>public void draw()</kbd> method that draws the Julia set. In this method you should 
+    <UL>
+    <LI><kbd>StdDraw.show(0)</kbd> to begin the drawing process
+    <LI> <kbd>StdDraw.clear()</kbd> to clear the image 
+    <LI><kbd>StdDraw.setXscale(initialX, finalX)</kbd> and <kbd>StdDraw.setYscale(initialY, finalY)</kbd> to set the canvas to 
+the Cartesian coordinate plane that you are using The initial coordinates here are the coordinates of the lower left corner, and the final coordinates are 
+the coordinates of the upper right corner of the picture. 
+	<LI>Once the canvas is set, draw the picture
+	<LI>At the very end of this method, <kbd>StdDraw.show(0)</kbd> again. This will complete the picture drawing process
+	</UL>
+	<BLOCKQUOTE> 
+	The <kbd>StdDraw.show(0)</kbd> at the beginning AND the end causes the picture to be drawn faster.
+	It will also help to create a separate <kbd>private int rigor(Complex c)</kbd> method that computes the rigor outside of your <kbd>draw()</kbd> method, but 
+	it is not necessary. If you run the <kbd>JuliaControler</kbd> you should now get the picture that is shown at the top of this extension. 
+	</BLOCKQUOTE>
+
+<LI> A <kbd>public void setCoordinates(Complex ll, Complex ur)</kbd> method that takes in two complex numbers and makes the first one the lower left coordinate of the 
+picture, and the second one the upper right coordinate of the picture.
+<BLOCKQUOTE> 
+You should make sure that the lower left coordinate is (-2, -2i) and the upper right coordinate is (2, 2i) whenever a new <kbd>Julia</kbd> object is made. If you run 
+the <kbd>JuliaControler</kbd>, the <kbd>Set Coords Test</kbd> button, when clicked, should now produce the image shown in the table below. 
+</BLOCKQUOTE>
+
+<LI> A <kbd>public void reset()</kbd> method that resets the lower left and upper right coordinates of the picture to their original values ( <-2, -2i> and <2, 2i> ), 
+resets the IPP to 50, resets the number of real and imaginary samples to 800.
+<LI> A <kbd>public void zoomIn()</kbd> method that brings both the upper right and lower left coordinates a quarter of the way towards each other, effectively making 
+each side a 
+<LI> A <kbd>public void zoomOut()</kbd> method that does the opposite of the <kbd>zoomIn()</kbd> method
+<BLOCKQUOTE>
+If you run the <kbd>JuliaController</kbd> now, the <kbd>Zoom In Test</kbd> should produce the image shown in the table below.
+</BLOCKQUOTE>
+<LI>A <kbd>public void setIPP(int IPP)</kbd> that sets the IPP to the provided integer
+<BLOCKQUOTE>
+The <kbd>IPP Test</kbd> button on the <kbd>JuliaControler</kbd> should now draw the image in the table below
+</BLOCKQUOTE>
+<LI>A <kbd>public void setNumSamples(int numRealSamples, int numImaginarySamples)</kbd> that sets the number of samples.
+</OL>
+<LI> You sould now be able to run the <kbd>JuliaController</kbd> and play around with the image. You can use your own zoom features, or you can click the <kbd>mouse</kbd>
+button, highlight an area with your mouse, and zoom in on that. The <kbd>IPP</kbd> slider will change the IPP from 50 to 300, and the Samples
+slider changes the number of real and imaginary samples to values between 200 and 2000. Be warned: changing the Samples to 2000 might take a while, as this is 
+a lot of processing for your computer to do. Find your own cool designs in the Julia set, or click the <kbd>Cool design</kbd> buttons to see some interesting patters 
+that we've found in the Julia set. 
+</UL>
+
+<BLOCKQUOTE> 
+Remember the z value that we gave you for the rigor function beforehand? Here are some values of z that will give you interesting designs:
+<UL>
+<LI> (-.162, 1.04i)
+<LI> (.3, -.01i)
+<LI> (-1.47, 0i)
+<LI> (-.12, -.77i)
+<LI> (.28, .008i)
+</UL>
+These are actually all points on the graph of the <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set</a> whicch is a complex graph of Julia sets.
+</BLOCKQUOTE>
+<CENTER>
+<TABLE BORDER CELLPADDING="5">
+<TR><TD ALIGN = CENTER>
+ <IMG SRC="Extensions/Setcoordstest.jpg" width = 300 height = 300> </TD>
+<TD>
+ This picture should be the result of you pressing the <kbd>Test 1</kbd> button
+</TD>
+</TR>
+<TD ALIGN=CENTER>
+ <IMG SRC="Extensions/Zoomtest.jpg" width = 300 height = 300>
+</TD>
+<TD>
+This should be the result of you pressing the <kbd>Test 2</kbd> button 
+</TR>
+<TD ALIGN=CENTER>
+ <IMG SRC="Extensions/IPPtest.jpg" width = 300 height = 300>
+ </TD>
+ <TD>
+This should be the result of you pressing the <kbd>Test 3</kbd> button
+ </TD>
+ </TR>
+</TABLE>
+</CENTER>
+<H4> To Demo: </H4>
+The <kbd>JuliaController</kbd> should work, and your ta should be able to verify that all of the test buttons do everything that they should. 
+
+
+<BLOCKQUOTE> 
+For more information about the Mandelbrot set and Julia sets, try this <a href="https://www.youtube.com/watch?v=NGMRB4O922I">Youtube video</a> or this 
+<a href="http://aleph0.clarku.edu/~djoyce/julia/julia.html">web page</a>. 
+</BLOCKQUOTE>
+
+
+
+
+<a name="extdemo6"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 6</H3><HR NOSHADE SIZE=10><p>
+<a name="ext7"></a>
+<H2>Extension 7: Objects to Support Music (9 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<h4>Overview:</h4>
+There are several extensions that involve the use of music.  Without some
+nicely articulated objects in place, the code for those extensions would become
+unwieldy.
+<p>
+This extension involves your completing some classes that have already
+been designed.  Each class has an API described here and in the class's
+JavaDoc comments.  A JUnit test case is written both to help you create
+a correct implementation of the design and to demo your work for credit.
+
+<h4>Before Starting:</h4>
+<ul>
+<LI> Update your workspace and look for the <KBD>chords</KBD> packages in
+the <KBD>extensions</KBD> source folder, which include the following
+<DL>
+ <DT> <KBD>chords.gui</KBD>
+ <DD> This package has objects that are provided for your use.  You do not
+need to make any changes to these classes.
+<BLOCKQUOTE>
+Later,
+the class you
+will most likely use from this package
+is <KBD>TwoDimensionsionalGUI</KBD>,  which helps applications
+use the current
+position of the mouse in the Sedgewick drawing panel as a control mechanism.
+<p>
+For now,
+run the provided <KBD>TwoDimensionalGUIExample</KBD> and watch the effects 
+of moving
+your mouse around in the window.  This code uses the
+<KBD>TwoDimensionalGUI</KBD>'s <KBD>update()</KBD> method in an event loop,
+such as the ones you have seen before that accomplish animation.
+</BLOCKQUOTE>
+<DT><KBD>chords.testing</KBD>
+<DD> This package contains the tests for the code you will develop.
+Most of them are JUnit tests, but one (<KBD>PlayTest</KBD>), is an application
+that you will run to test your code.
+<DT><KBD>chords.music</KBD>
+<DD>This package contains skeleton classes for the code you will develop.
+Follow the instructions below, in the order given, to simplify your efforts.
+</DL>
+<LI> If necessary, review the <a href="../../slides/4.pdf">slides</a> presented in this course on sound and music.  These were in <a href="../4">Module 4</a>.
+</ul>
+<h4> Development Sequence </h4>
+<p>
+Some general guidelines follow:
+<BLOCKQUOTE>
+<UL>
+<LI> 
+Pay attention to the <i>user story</I> told about each class.  Recall that
+each <i>has-a</i> indicates the need for an instance variable.
+<LI> Name your variables appropriately, and protect them from access by
+other classes by declaring them <KBD>private</KBD>.
+<li> Where appropriate, include <KBD>final</KBD> on the declaration of instance
+variables, so that their values cannot be changed after the constructor
+finishes.
+<LI> Create meaningful <KBD>toString()</KBD> methods.  Make sure these do
+not produce <i>too</i> much information.  For example, if a class contains
+a large array of values, those should not be included in the <KBD>toString()</KBD> result.  Instead, include the size of the array in the <KBD>toString()</KBD>
+result if it could be useful.
+</UL>
+</BLOCKQUOTE>
+<p>
+OK, now follow the steps below, <B>in order</B>, to develop the classes for
+this extension:
+<OL>
+<LI> Open the <KBD>Samples</KBD> class as we will complete this class first.
+<LI> Take a look at the first constructor in <KBD>Samples</KBD>&ndash;the one
+whose signature is <KBD>Samples(double[])</KBD>.
+<p>
+A <KBD>Samples</KBD> object <I>has-a</I> <KBD>double</KBD> array of samples.
+This constructor takes in such an array, and the constructor must capture
+the array <B>by making a copy of its values</b> to be retained as an instance
+variable.
+<BLOCKQUOTE>
+This is a bit unusual:  you would normally capture an instance variable
+<KBD>val</KBD> by writing <KBD>this.val = val</KBD>, but for an array, that
+would
+retain the <I>reference</I> to the array without copying its values.
+While the reference is sufficient to access the array's values, there is 
+no guarantee that code outside the <KBD>Samples</KBD> class won't change the
+array after the constructor returns.
+</BLOCKQUOTE>
+<p>
+To guard against this, your constructor must make a <i>copy</i> of the array's
+values.  As a reminder, this involves:
+<OL>
+  <LI> Declaring the instance variable to be an array of <KBD>double</KBD> values.
+  <LI> In the constructor, instantiating the array the be the same size as 
+      the parameter array's size.
+  <LI> After instantiating the array, writing a loop to copy the values 
+          one-by-one from the parameter into
+         the instance variable copy.
+</OL>
+<BLOCKQUOTE> The <kbd>testConstructor1()</kbd> test will not pass until you have also completed <kbd>getNumSamples()</kbd> 
+and <kbd>getSample(int i)</kbd>, so once you have completed the constructor, we advise that you complete these two 
+simpler methods before unit testing again. 
+</BLOCKQUOTE>
+<p>
+<LI> Implement the <KBD>double getSample(int)</KBD> method, which should return
+the value of sample <KBD>i</KBD>.   Note that <KBD>getSample(0)</KBD> returns the
+first value, because (like most things in Java), we begin our samples at index
+<KBD>0</KBD>.
+<LI> Next complete the <KBD>getNumSamples()</KBD> method by returning the
+length of the instance-variable array of samples.
+<BLOCKQUOTE>
+Run the unit tests, and the <KBD>testConstructor1()</KBD> unit
+test should pass at this point, as well as the <kbd>getNumSamples()</kbd> unit test
+</BLOCKQUOTE>
+<p>
+<LI> The second constructor for <KBD>Samples</KBD> has signature <KBD>Samples(int)</KBD>. It does not accept an input array, but instead
+it should instantiate the instance variable to be an array of the specified
+<KBD>length</KBD>, all zero.  Such an array is not not directly useful or suitable
+for play-back,
+but is useful as a base for composing or extending other samples.
+Java does initialize all newly instantiated <KBD>double</KBD> arrays to zero
+automatically.
+<BLOCKQUOTE> 
+This constructor also requires <kbd>getNumSamples()</kbd> 
+and <kbd>getSample(int i)</kbd> to be completed before it will pass <kbd>testConstructor2</kbd>
+</BLOCKQUOTE>
+<p>
+<LI> Complete the <KBD>play()</KBD> method by having Sedgewick's <KBD>StdAudio</KBD> class play the instance-variable array of samples.
+<LI> Complete the <KBD>toString()</KBD> method to return a useful string to
+describe the contained samples.
+<p>
+<LI> Complete the <KBD>getMax()</KBD> and <KBD>getMin()</KBD> methods so
+that they do what their comments say they should do.
+<BLOCKQUOTE>
+Run the unit tests, and the <KBD>testMax()</KBD> and <KBD>testMin()</KBD> unit
+tests should pass at this point.
+</BLOCKQUOTE>
+<p>
+<LI> Complete the <KBD>concat(Samples)</KBD> method, which takes 
+<KBD>this</KBD> sequence of samples and an <KBD>other</KBD> sequence of
+samples and return a new sequence that is the concatenation of the two.
+Note that this must
+return a <KBD>new Samples</KBD> object.  The current object must not
+be changed!
+<BLOCKQUOTE>
+Run the unit tests, and the <KBD>testConcat()</KBD> unit
+test should pass at this point.
+</BLOCKQUOTE>
+<p>
+<LI> Complete the <KBD>combine(Samples)</KBD> method, which takes
+<KBD>this</KBD> sequence of samples and an <KBD>other</KBD> sequence
+of samples, and sums them, element-by-element, to form a new sequence of samples.
+If one sequence is shorter than the other, it is as if the shorter sequence
+had zeros as the sums are computed.
+<BLOCKQUOTE>
+Run the unit tests, and the <KBD>testCombine()</KBD> unit
+test should pass at this point.
+</BLOCKQUOTE>
+<HR>
+<LI> OK after all that work, open <KBD>Pitch</KBD> and you will see that
+this class is done for you.
+<BLOCKQUOTE>
+Run the <KBD>PitchTest</KBD> unit tests, and they should pass at this point.
+</BLOCKQUOTE>
+<HR>
+<LI> Open the <KBD>SingleTone</KBD> class.  A <KBD>SingleTone</KBD>
+<I>has-a</I> frequency which should be retained as a <KBD>double</KBD>.
+<LI> Complete the constructor for <KBD>SingleTone</KBD>.
+<LI> Complete the method <KBD>getSamples()</KBD> by generating samples
+at the specified <KBD>amplitude</KBD> and <KBD>duration</KBD>.
+Recall that a <KBD>SingleTone</KBD> <I>has-a</I> a frequency, so the
+frequency used for the samples should be stored as an instance variable in your
+class.
+<LI> Complete the <KBD>getOverTone(double)</KBD> method, which returns
+a new <KBD>SingleTone</KBD> object whose frequency is the specified
+mutliple of <KBD>this</KBD> one's frequency.
+<LI> Complete the <KBD>getOverTone(int,int)</KBD> method, which should
+return its result by reduction to the <KBD>getOverTone(double)</KBD> method.
+This means that you should return the result of
+<KBD>getOverTones(int,int)</KBD> by returning a suitable call of
+<KBD>getOverTone(double)</KBD>.
+<BLOCKQUOTE>
+Run the unit tests, and the <KBD>testOvertones()</KBD> unit
+test should pass at this point.
+</BLOCKQUOTE>
+<HR>
+<LI> Open <KBD>DiatonicScale</KBD>.  This class represents notes that form
+a major scale, such as the natural (usually, white) keys do on a piano.  A 
+<KBD>DiatonicScale</KBD> <I>has-a</I> starting <KBD>Pitch</KBD>, which
+should be retained as a <KBD>Pitch</KBD> reference.
+<BLOCKQUOTE>
+We could have designed this class to retain the starting pitch as an
+integer, but with the richer object <KBD>Pitch</KBD> we should use it instead.
+<p>
+Why?
+<p>
+A <KBD>Pitch</KBD> object can easily compute other related pitches, and
+return its representation as a frequency.   We could carry out these computations
+on any integer, but by having it already programmed in <KBD>Pitch</KBD>, we
+should use that object to avoid code duplication, avoid work, and increase
+reliability.
+</BLOCKQUOTE>
+<LI> The first constructor is already completed in terms of the second one, 
+so you don't have to worry about the first constructor.
+<LI> The second constructor must be completed,
+but it simply stores its incoming parameter in the instance variable you
+provisioned above.
+<LI> Let's look at <KBD>getPitch(int)</KBD>.  This method returns the
+<KBD>Pitch</KBD> that is the specified diatonic distance from this
+<KBD>DiatonicScale</KBD>'s starting pitch.  What makes this tricky is that
+the diatonic notes are not evenly spaced.  This can be most easily understood
+by looking at the chromatic distances between the natural keys on a piano.
+The following table shows the relative chromatic distances between the
+notes of a diatonic scale:
+<CENTER>
+<TABLE BORDER CELLPADDING=5>
+<TR> <TH> Example in <br>key of C major</TH> <TH> Diatonic<br>offset</KBD> <TH> Chromatic offset<br> from previous<br> diatonic note</TH> </TR>
+<TR> 
+  <TD ALIGN=CENTER> C </TD> 
+  <TD ALIGN=CENTER> 0 </TD> 
+  <TD ALIGN=CENTER> N/A </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> D </TD> 
+  <TD ALIGN=CENTER> 1 </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> E </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> F </TD> 
+  <TD ALIGN=CENTER> 3 </TD> 
+  <TD ALIGN=CENTER> 1 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> G </TD> 
+  <TD ALIGN=CENTER> 4 </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> A </TD> 
+  <TD ALIGN=CENTER> 5 </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> B </TD> 
+  <TD ALIGN=CENTER> 6 </TD> 
+  <TD ALIGN=CENTER> 2 </TD> 
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> C </TD> 
+  <TD ALIGN=CENTER> 7 </TD> 
+  <TD ALIGN=CENTER> 1 </TD> 
+</TR>
+</TABLE>
+</CENTER>
+<p>
+Moreover, the <KBD>getPitch(int)</KBD> method must accommodate values for
+its parameter that are negative, zero, or positive, and those values may
+be outside the range of a single octave.
+<BLOCKQUOTE>
+This is the trickiest method:  get help from the TAs or instructor if you
+need it.
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+<UL>
+<LI> 
+Run the unit tests for <KBD>DiatonicScale</KBD> and they should pass
+at this point.
+<LI> 
+You can also run <KBD>DiatonicScale</KBD> as an applicaiton and it should
+print out some information about some scales.
+</UL>
+</BLOCKQUOTE>
+<HR>
+<LI> Open <KBD>Triad</KBD> class.  A <KBD>Triad</KBD> has three
+<KBD>SingleTone</KBD>s.  
+<LI> Complete the constructor for <KBD>Triad</KBD>. 
+The constructor takes in a <KBD>DiatonicScale</KBD> and an <KBD>int</KBD>, which
+is the diatonic offset of the root of the triad.
+<p>
+The other two pitches are 2 and 4 diatonic offsets away from the root.
+<p>
+Use the <KBD>getPitch(int)</KBD> method of the specified
+<KBD>DiatonicScale</KBD> to find the root, second, 
+and third <KBD>SingleTone</KBD>s of this <KBD>Triad</KBD>.
+<LI> Complete <KBD>getTones()</KBD> which returns an array consisting of the
+<KBD>SingleTone</KBD>s of this <KBD>Triad</KBD>, in order.
+<LI> Complete <KBD>getSamples(double,double)</KBD>, which returns a <KBD>Samples</KBD> object
+of the triad's tones at the specified amplitude and of the
+specified duration.  
+<UL>
+ <LI> Note that the specified amplitude must be divided (evenly)
+among the three <KBD>SingleTone</KBD>s.   
+  <LI> All three <KBD>SingleTone</KBD>s of
+the triad should sound simultaneously and last for the specified duration.
+
+  <LI> This method can be written in
+a single line of code using objects you have already created and tested.
+</UL>
+<BLOCKQUOTE>
+Run the unit tests for <KBD>Triad</KBD> and they should pass
+at this point.
+</BLOCKQUOTE>
+<HR>
+<LI> For your final test, run <KBD>PlayTest</KBD> and choose a song.  You should
+be able to hear the song repeat and with the mouse you can change its
+pitch and its speed.
+
+</OL>
+
+<a name="extdemo7"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.7</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.7">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions4">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 7</H3><HR NOSHADE SIZE=10><p>
+<a name="ext8"></a>
+<H2>Extension 8: Chord Organ (4 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<p>
+You will use the <KBD>Triad</KBD> and other classes you have
+developed to make a simple chord organ that resembles the following:
+<CENTER>
+<IMG SRC="Extensions/kbd.png" WIDTH=250>
+</CENTER>
+The goal of your work is to hear the 
+a diatonic triad play in the C major scale when your mouse enters
+the correspondingly marked rectangle.
+<H4>Procedure</H4>
+<oL>
+  <LI> Open the <KBD>ChordOrgan</KBD> class in the <KBD>chords</KBD> package.
+This is where you will write your code for this extension.
+ <LI> Arrange for a screen such as the one shown above to be drawn,
+ and detect mouse entry into the specified rectangles.    To help you
+with this, consider the <KBD>BoundingBoxGUIExample</KBD> class
+in the <KBD>chords.gui</KBD> package:
+<UL>
+<LI> Run <KBD>BoundingBoxGUIExample</KBD> as an application and observe
+what happens when your mouse enters the displayed rectangle.
+<LI> Read the comments and the code for <KBD>BoundingBoxGUIExample</KBD>, 
+and get help if anything is unclear.
+<LI> Now try to create the GUI shown above.
+<BLOCKQUOTE>
+Your code will be shorter and easier to write if you think through how
+to represent the 8 keys shown in the GUI.  You could use many separate
+variables, but if you think abstractly, you will use
+arrays to represent the values of interest.
+</BLOCKQUOTE>
+</UL>
+<p>
+For the steps of the development described below, however, you
+<B>must</B> use the specified
+classes.
+  <LI> Construct a <KBD>DiatonicScale</KBD>  instance in the key of C:
+<PRE>
+DiatonicScale ds = new DiatonicScale(3);
+</PRE>
+This makes a diatonic scale object with high C as its base note.
+<LI> To make a given triad at offset <KBD>i</KBD>, use
+<PRE>
+Triad t = new Triad(ds,i);
+</PRE>
+<LI>  You can get samples from that <KBD>Triad</KBD> (using
+<KBD>Triad</KBD>'s <KBD>getSamples(double,double)</KBD>) of an amplitude and
+duration of your choosing and then cause them to be played using the
+<KBD>Samples</KBD> class.
+<LI> Demonstrate your work to a TA using a computer with sound enabled.
+</OL>
+
+<a name="extdemo8"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 8</H3><HR NOSHADE SIZE=10><p>
+<a name="ext9"></a>
+<H2>Extension 9: 6-1-4-5: How To Be Famous (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+Much has been written about the tendency for
+musicians from
+<a href="http://en.wikipedia.org/wiki/Johann_Pachelbel">Pachelbel</a> to
+<a href="http://en.wikipedia.org/wiki/Pink_%28singer%29">Pink</a>
+to write songs based on a common chord progression:
+<UL>
+  <LI> <a href="http://en.wikipedia.org/wiki/List_of_songs_containing_the_I-V-vi-IV_progression"> I-V-vi-IV</a>
+  <LI> <a href="http://sixfouronefive.blogspot.com/"> Six Four One Five </a>
+  <LI> <a href="http://www.boston.com/ae/music/articles/2008/12/31/striking_a_chord/">Striking a Chord</a>
+</UL>
+In response of this,
+the <a href="http://www.axisofawesome.net/">Axis of Awesome</a> has realized that
+the only barrier to their becoming famous is their lack of a four-chord song,
+as documented extensively in 
+<a href="https://www.youtube.com/watch?v=oOlDewpCfZQ">this amazing video</a>
+and
+<a href="https://www.youtube.com/watch?v=QpB_40hYjXU">this other amazing video</a>.
+<p>
+Axis of Awesome needs <B>your help</B>
+to record their soon-to-be-hit four-chord song.
+<HR>
+<p>
+In this extension, you use the <KBD>chords.music</KBD> classes you developed above to
+create a 4-chord song.  The song consists of two <KBD>Samples</KBD> of music,
+<I>background</I> and <I>tune</I>, which are
+<KBD>combine</KBD>d throughout to make a song.  As the song plays, you
+can control how much of what you hear is background and how much is tune.
+<p>
+<H4>Overview</H4>
+<UL>
+<LI> Open the <KBD>SixFourOneFive</KBD> class in the <KBD>chords</KBD> package.
+Your work for this extension will be done in this class.
+<LI> 
+A <KBD>TwoDimensionalGUI</KBD> class is provided for your use in
+the <KBD>chords.gui</KBD> package.  
+<BLOCKQUOTE>
+To see how it works
+<UL>
+<LI> Run the
+<KBD>TwoDimensionalGUIExample</KBD> and move your mouse in the window to
+control the size and shading of the displayed circle.
+<LI> Read the constructor and the code in the class.
+<LI> You can instantiate this class yourself 
+and use it to select the amount of background and tune present in your sound output.
+</UL>
+</BLOCKQUOTE>
+  <LI> The code you write will resemble the example GUI and all other
+programs based on an <I>event loop</I>.
+  <LI> Each iteration of your infinite event loop prepares four seconds of
+        sound for output.  
+<UL>
+ <LI> These four seconds are one musical measure.
+  <LI> Each measure has four beats 
+  <LI> Each second of time corresponds to one beat of the four-beat measure 
+  <LI> In other words, <FONT SIZE=+2>&#9833;</FONT>=60 in 4/4 time
+</UL>
+Thus, each measure goes through the four chords of your four-chord song,
+with one second spent on each chord.
+  <LI> The music you generate consists of background (chords) and a tune:
+<DL>
+ <DT> Background
+  <DD>  The background of your song is a constant progression of Six-Four-One-Five
+chords.  These chords can be generated using the classes you have
+above as follows:
+<UL>
+ <LI> If you construct a <KBD>DiatonicScale</KBD> with starting pitch <KBD>3</KBD>, 
+then its scale is C major starting on high C.
+<LI> Although the chord pattern is called Six Four One Five, this assumes
+the root chord is One.  For us, the root chord is <KBD>0</KBD>, so the
+diatonic offsets for our chords are really <KBD>5&nbsp;3&nbsp;0&nbsp;4</KBD>.
+<LI> That <KBD>5</KBD> chord is a bit high and sqeaky, so we lower it by
+an octave, subtracting 7 diatonic steps to get <KBD>-2</KBD>.
+The resulting chord sequence in terms of diatonic offsets is
+<PRE>
+-2 3 0 4
+</PRE>
+<LI> If we name the <KBD>DiatonicScale</KBD> of interest <KBD>ds</KBD>, then the 
+triads of interest are as follows:
+</UL>
+<CENTER>
+<TABLE BORDER>
+<TR> <TH>Chord</TH> <TH> Name in C major</TH> <TH> Triad </TH> </TR>
+<TR> <TD ALIGN=CENTER> Six </TD> <TD ALIGN=CENTER> a minor </TD> <TD ALIGN=CENTER> <KBD>new Triad(ds, -2)</KBD>  </TD> </TR>
+<TR> <TD ALIGN=CENTER> Four </TD> <TD ALIGN=CENTER> F major </TD> <TD ALIGN=CENTER> <KBD>new Triad(ds,  3)</KBD> </TD> </TR>
+<TR> <TD ALIGN=CENTER> One </TD> <TD ALIGN=CENTER> C major </TD> <TD ALIGN=CENTER> <KBD>new Triad(ds,  0)</KBD> </TD> </TR>
+<TR> <TD ALIGN=CENTER> Five </TD> <TD ALIGN=CENTER> G major </TD> <TD ALIGN=CENTER> <KBD>new Triad(ds,  4)</KBD>  </TD> </TR>
+</TABLE>
+</CENTER>
+Because <KBD>Triad</KBD>s are constructed relative to a <KBD>DiatonicScale</KBD>,
+the <KBD>Triad</KBD> instantiations above create Six Four One Five for whatever
+key the <KBD>DiatonicScale</KBD> object was constructed.
+<p>
+The background consists of rotating among the above chords, with each chord playing for
+one second (a quarter note).
+  <DT> Tune
+  <DD> The tune is generated randomly, with each note having random pitch and duration:
+<DL>
+  <DT> Duration
+  <DD> 
+  <UL>
+   <LI> Each chord of the background lasts for one second, and you need
+to generate a one-second tune to be combined and played with the background.
+  <LI> You could pick a single note for the one second, but that would not
+        be rhythmically interesting.
+  <LI> Instead, let's begin with a nominal beat that is
+one second in duration.  
+   <LI> That beat could be subdivided into two beats of half the original
+duration, so two half-second notes.
+   <LI> The process of subdividing could continue to obtain smaller rhythmic
+units such as four quarter-second notes, eight eighth-second notes, etc.
+  <LI> No matter how much we subdivide the beat, the resulting rhythmic
+units sum to one second when played continguously.
+    <LI> If the above process is not somewhat random, the resulting rhythms
+would still be quite regular and uninteresting.
+</UL>
+<BLOCKQUOTE>
+Your challange is to devise a method for randomly breaking a one-second beat
+into smaller units.  The units should not always be the same.  For example,
+one way to divide one second might result in the following, played
+consecutively:
+<UL>
+   <LI> 2 eighth-second notes
+   <LI> 1 eighth-second note
+   <LI> 2 sixteenth-second notes 
+   <LI> 1 quarter-second note
+   <LI> 1 quarter-second note
+</UL>
+</BLOCKQUOTE>
+ <DT> Pitch
+ <DD> Once one of the above rhythmic units is complete, its 
+pitch should be chosen from a <a href="http://en.wikipedia.org/wiki/Diatonic_scale">diatonic scale</a> in the key of C major. Construct a
+<KBD>DiatonicScale(3)</KBD> object and use its <KBD>getPitch(int)</KBD> to
+get a random diatonic pitch from the C-major scale.
+</DL>
+</UL>
+<HR>
+
+<a name="extdemo9"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions6">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 9</H3><HR NOSHADE SIZE=10><p>
+<a name="ext10"></a>
+<H2>Extension 10: Barcode Scanner (11 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Tim Huber
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Needs work
+</FONT></BLOCKQUOTE>
+<H4>Introduction</H4>
+<p> The first item ever bought with a UPC barcode was a 10-pack of Wrigley's Juicy Fruit chewing gum. It cost 74 cents.
+While there are several encoding schemes used to produce barcodes, by far the most common is the <a href="https://en.wikipedia.org/wiki/Universal_Product_Code">
+Universal Product Code</a> (or UPC-A). George J Laurer came up with the design for the Universal Product Code while he was working
+at IMB in 1973. Your task in this decode a UPC image.
+</p>
+
+<H4>Procedure</H4>
+<p>In the <KBD>extensions</KBD> folder you should find a package called <KBD>upc</KBD>. Open the <KBD>UPC</KBD> class inside it. You should see a constructor that
+takes in a Sedegwick <KBD>Picture</KBD> object and a method called <KBD>getValue()</KBD>. In order to test your code, you need to decode a barcode image and 
+return the sequence of 12 digits it encodes as a string in the <KBD> getValues()</KBD> method. How you go about this is largely up to you. This extension will
+challenge you to take a large task and break it down into manageable, less intimidating components. To test your code when you are finished, run the <KBD>TestUPC</KBD>
+class in the <KBD>upc</KBD> package.
+
+<BLOCKQUOTE> <p>Note: For this extension, you need only consider <EM>left-to-right</EM> scans. Further, the data you will be provided with in the JUnit test is 
+<EM>error free</EM>. This means that any trouble you have deciphering the 12-digit signature will not come as a result of the barcode image itself.</p>
+</BLOCKQUOTE>
+
+<p> Below are some important points about UPC encoding that you may find useful. If you have any more questions, the Wikipedia link in the introduction of this 
+extension is an excellent resource. </p>
+
+<UL>
+<LI> Barcodes are made up of a series of vertical black and white stripes. The basic elements of all of these stripes are called <EM>modules</EM>.
+<LI> A UPC encodes a unique, 12-digit signature. Ex: 850006000012
+<LI> At the beginning and end of all UPC barcodes is a large region of white space called the <EM> quiet zone </EM>. Just after the first <EM>quiet zone</EM> and before
+the last <EM>quiet zone</EM> are regions consisting of three <EM>modules</EM> with alternating colors <EM>black-white-black</EM>. These regions are called the <EM> start/end 
+sequences</EM> respectively. 
+<BLOCKQUOTE>
+Hint: You will likely find the <EM> start sequence </EM> to be particularly useful in decoding the UPC for this extension.
+</BLOCKQUOTE>
+<LI> After the <EM>start sequence</EM> come the first six <EM>digits</EM>. These digits consist of 4 <EM>bars</EM> of alternating color (either black or white) for a total of 7 modules per digit.
+Each <EM>bar</EM> can be anywhere from 1 to 4 <EM>modules</EM> in length, with the stipulation that the sum of the <EM> modules</EM> across all 4 <EM>bars</EM> in a <EM>
+digit</EM> must add to 7. The <EM>bars</EM> that make up the first 6 <EM>digits</EM> follow the following order of colors: <EM>white-black-white-black</EM>. 
+<LI> Each <EM>digit</EM> represents a single integer between 0 and 9, and the sequence of 4 bar-lengths is unique for a given direction of scan
+(i.e. there is a 1-to-1 mapping between integers 0,..., 9 and the sequence of 4 bar-lengths that make up a <EM>digit</EM> when the barcode is read from left-to-right).
+<LI> After the first 6 <EM>digits</EM> comes the <EM>middle sequence</EM>, made up of 5 modules that alternate <EM>white-black-white-black-white</EM>. 
+<LI> Following the <EM>middle sequence</EM> are the last 6 <EM>digits</EM>. The sequence of bar-lengths that make up these <EM>digits</EM> encode
+the integers 0 to 9 in the same manner as the first 6 <EMdigits</EM>, the only difference being that the colors alternate <EM>black-white-black-white</EM> 
+(instead of white-black-white-black).
+</UL>
+<br>
+<p> To get you started, here are some tips. There are three essential parts to your task ahead:
+<OL>
+<LI> Extracting information from the barcode image. 
+<LI> Finding all of the digits in that raw data.
+<LI> Computing the digit values and ultimately the 12-digit signature of the UPC barcode.
+</OL>
+
+<p> How you accomplish these tasks is up to you, but creating additional classes to make your life easier is <EM>strongly</EM> advised. You are given a <KBD>UPC</KBD> Object;
+what other Objects might be useful in this task? </p>
+<BLOCKQUOTE>
+Hint: You might consider creating classes to handle pieces of the larger task so you can test as you go.
+</BLOCKQUOTE> 
+<p> In the <KBD>upc</KBD> package is also a <KBD>UPCUtil</KBD> class. You are free to modify this class as you see fit.
+Inside it is a <KBD>public int[][] digits</KBD> that stores 10 integer arrays representing the UPC encoding
+of digits 0 through 9. The index of the array in <KBD>digits</KBD> tells you what digit the sequence of bar lengths therein represents. </p>
+<BLOCKQUOTE>
+<KBD>digits[3] = {1,4,1,1}</KBD> tells you that the digit "3" is encoded in a UPC by 4 bars of length 1-4-1-1
+</BLOCKQUOTE>
+<p> This information will be necessary for step three as described above. All of this information is also available in the hyperlink in the introduction. </p>
+<br>
+<p> You may find that you want to use the GenUPC class to test parts of your code before you are ready for the unit test. You can do so as follows:
+<pre>
+GenUPC gen = new GenUPC(4);
+String key = gen.genRandomUPC();
+Picture pic = gen.genPic(key);
+</pre>
+<p> Here, the <KBD>key</KBD> is the 12-digit signature of the barcode and <KBD>pic</KBD> is the <KBD>Picture</KBD> that gets passed into the <KBD>UPC</KBD> class. To view the barcode
+image, use the <KBD>.show()</KBD> method of the <KBD>Picture</KBD> Object. The integer input in the <KBD>GenUPC</KBD> class indicates the number of pixels per module in the image to
+be generated. </p>
+
+
+<a name="extdemo10"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.10</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.10">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions7">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 10</H3><HR NOSHADE SIZE=10><p>
+<a name="ext11"></a>
+<H2>Extension 11: Barcode Scanner: Imperfect Data (11 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Tim Huber
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Needs work
+</FONT></BLOCKQUOTE>
+<H4>Warning</H4>
+<p> It's strongly recommended that you complete extension 7.10 before doing this extension. If you start from 
+scratch, you will complete extension 7.10 in the process of doing this extension.</p>
+
+<H4>Overview</H4>
+<p> Your task in this extension is to build on what you have already done in extension 7.10, Barcode Scanner. In the
+<KBD>datafiles</KBD> folder is a <KBD>barcode</KBD> folder full of JPEG images of barcodes. Have a look at some of them.
+You should notice that they are not a nice as the barcodes you had to deal with in the first barcode extension; they are
+blurry and some of them are warped by curved surfaces. Your task is to modify your code so that it can deal with blurry images,
+as well as upside-down images. You may find that you want to create a main file to test your code as you work. The <KBD>UPC</KBD>
+class has an empty constructor (<KBD>public UPC()</KBD>) that will pop up a window in which you can choose what JPEG image
+you want to use as your input picture. In the <KBD>barcodes</KBD> folder there are also three "mystery" barcodes with the signatures
+cropped out. Once you finish this extension, you should be able to decipher them and then you can search 
+<a href="https://www.barcodelookup.com">here</a> to find out what the signature represents.
+</p>
+
+<H4>Procedure</H4>
+<p>Your first task is to modify your code to deal with blurry images. To do this, we are going to use a concept from image
+processing called <a href="https://en.wikipedia.org/wiki/Thresholding_(image_processing)"> thresholding</a>. This basically 
+involves pushing each pixel to white or black based on its brightness (or <EM>intensity</EM> henceforth). The intensity 
+of a color is related to the strength of its red, green, and blue components. Recall that white is the composition of all 
+colors and black is the absence of color. (If you completed the image processor extension, have a look at the grayscale method...).
+</p>
+<BLOCKQUOTE>
+<p>Note: how you choose to represent white and black after thresholding is up to you. It will be helpful to choose a representation
+that is compatible with your choices from the first extension. Also, it will be <EM>very helpful</EM> to incorporate a parameter 
+to serve as coefficient for the thresholding bound. By this I mean that to use the idea of thresholding, you need to compute a
+value that lies on the threshold between white and black. You need to have a default threshold, but you want to be able to modify
+this threshold with an input parameter. This is because sometimes the default bound won't eliminate all of the error, and you will want
+to try another one.  </p>
+</BLOCKQUOTE>
+
+<p>Once you have thresholding implemented, you should be able to find the digits and compute their values using your previously 
+implemented code, but how do you know if the signature you find is correct? First you want to check that all of the digits 
+that you discovered have the same <EM>parity</EM> and that they consist of seven modules. The <EM>parity</EM> of a digit is a
+way of determining if it was read from left to right, or vice-versa; if the sum of bar-lengths of the 1st and 3rd bars in a module is 
+<EM>odd</EM>, then (assuming the digit is correct) it was scanned from <EM>left-to-right</EM>. Finally, you want to check the barcode
+using the <EM>check digit</EM>, or the last digit in the 12-digit UPC signature. The check digit is computed as follows: 
+<OL>
+<LI> First, add up the odd-numbered digits (1st, 3rd, 5th...) and multiply by three
+<LI> Next, add up the even-numbered digits
+<LI> Next, add up the values computed in the previous two bullets, and take this value <a href="https://en.wikipedia.org/wiki/Modulo_operation">
+ modulo</a> 10. 
+<LI> If the result isn't 10, subtract the result from 10.
+</OL>
+If your computed check digit doesn't match the last digit in the UPC signature, then there is an error.</p>
+<p> Now that you have the ability to detect error in your barcode reads, how do you fix the problem? Recall that in an actual barcode 
+scanner, you need to keep waving the item in front of a laser until there is a beep, meaning that if there is an error, there is a re-scan.
+How you deal with error is up to you, but it's recommend that you re-read the data with a different threshold if the error too substantial 
+to easily deal with.</p>
+
+<BLOCKQUOTE>
+Hint: if you are reading across the pixels of the image at a specific height, consider making that height variable (just like the
+threshold) so that you can vary the scan-height when you re-scan as well.
+</BLOCKQUOTE>
+<p> Once this is complete, the <KBD>generatedWithError()</KBD> test in the <KBD>ImperefectDataTest</KBD> class should pass.
+<BLOCKQUOTE>
+After the thresholding modifications, the <KBD>TestUPC</KBD> JUnit test from the previous extension should still be passing. If it isn't, 
+you should focus on getting that working before moving on to the imperfect data testing.
+</BLOCKQUOTE>
+<br>
+<br>
+<p>Your final task is to modify your code so that it can read barcodes that are upside-down as well (note that this is the same as a 
+right-to-left scan). There are a variety of different ways to go about this, and it's up to you to decide what to do.</p>
+<p> At this point, the <KBD>files()</KBD> test in the <KBD>ImperefectDataTest</KBD> class should pass as well.
+
+  
+
+
+<a name="extdemo11"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.11</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.11">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions8">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 11</H3><HR NOSHADE SIZE=10><p>
+<a name="ext12"></a>
+<H2>Extension 12: Roguelike (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Fede Rozenberg
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Not yet ready
+</FONT></BLOCKQUOTE>
+<H4>Intro</H4>
+<p> The roguelike genre of video games has exploded in popularity in recent years. The spirit of the roguelike genre lies in the random generation of elements which provide a fresh gameplay experience during any given play session.
+Gameplay elements like procedurally generated environments, permadeath, and randomly placed items and enemies have been implemented time and time again
+in such critically acclaimed games as <a href="https://en.wikipedia.org/wiki/Spelunky" target="new">Spelunky</a>, <a href="https://en.wikipedia.org/wiki/The_Binding_of_Isaac_(video_game)" target="new">The Binding of Isaac</a>, and <a href="https://en.wikipedia.org/wiki/Don%27t_Starve" target="new">Don't Starve</a>.
+</p>
+<H4>Overview</H4>
+<p> In this extension you will build a <a href="https://en.wikipedia.org/wiki/Roguelike" target="new">roguelike</a> in the style of old-school ASCII
+games. An <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> game is one where all of the game elements are represented by characters, a la <a href="https://en.wikipedia.org/wiki/Dwarf_Fortress" target="new">Dwarf Fortress</a>. 
+Don't worry, we won't be attempting to approach the complexity of Dwarf Fortress in this game.
+<br>
+The rules of this roguelike are as follows:
+<UL>
+<LI> You play as a <KBD>Hero</KBD> in a 20x20 grid dungeon. The <KBD>Hero</KBD> has 200 movement points and 3 lives.
+<LI> Every move uses up one movement point.
+<LI> The dungeon is randomly populated with 100 <KBD>Treasure</KBD> items which, upon collection, grant the player a certain amount of points.
+<LI> The dungeon is also randomly populated with 20 <KBD>Baddie</KBD>s. If a <KBD>Baddie</KBD> touches the player, they lose a life and go back to the start of the dungeon.
+<LI> The <KBD>Game</KBD> ends once either all movement points or all lives have been used up.
+<LI> The only aesthetic rule: every element in this roguelike must be visually represented by a single <KBD>char</KBD>.
+</UL>
+
+</p>
+ 
+<H4>Procedure</H4>
+<p>In the <KBD>roguelike</KBD> package you will find five classes:
+<DL>
+  <DT> <KBD>Hero</KBD>
+  <DD> The <KBD>Hero</KBD> is the representation of the player. 
+<UL>
+<LI> A <KBD>Hero</KBD>'s ASCII representation is <KBD>"@"</KBD>.
+<LI> Every <KBD>Hero</KBD> <I>has-a</I> <KBD>location</KBD>. How you choose to represent this is up to you.
+<LI> Every <KBD>Hero</KBD> <I>has</I> 200 <KBD>movepts</KBD>. These decrease by one every time the <KBD>Hero</KBD> takes a step.
+<LI> Every <KBD>Hero</KBD> <I>has</I> 3 <KBD>lives</KBD>. These decrease by one upon contact with a <KBD>Baddie</KBD>.
+</UL>
+<p>
+  <DT> <KBD>Baddie</KBD>
+  <DD> The <KBD>Baddie</KBD>s are this game's main antagonists. 
+<UL>
+<LI> A <KBD>Baddie</KBD>'s ASCII representation is <KBD>"W"</KBD> (Actually though, use whatever ASCII character you find the most threatening). 
+<LI> Every <KBD>Baddie</KBD> <I>has-a</I> <KBD>location</KBD>. How you choose to represent this is up to you.
+</UL>
+<p>
+  <DT> <KBD>Treasure</KBD>
+  <DD> The <KBD>Treasure</KBD> object is how the player gets points. 
+<UL>
+<LI>Every <KBD>Treasure</KBD> instance <I>has-a</I> <KBD>treasureSprite</KBD>, which is the visual representation of that specific <KBD>Treasure</KBD>.
+The possible <KBD>treasureSprite</KBD>s to choose from are stored in <KBD>char[] possibleSprites</KBD>. Every <KBD>Treasure</KBD> must choose a random <KBD>char</KBD> from <KBD>possibleSprites</KBD>.
+<LI>Every <KBD>Treasure</KBD> <I>has-a</I> <KBD>points</KBD> value. The player's score should increase by this amount when a <KBD>Treasure</KBD> is picked up. Additionally, the value of a <KBD>Treasure</KBD> should vary depending on its ASCII representation.
+<LI>Finally, every <KBD>Treasure</KBD> <I>has-a</I> <KBD>location</KBD>.
+</UL>
+<p>
+  <DT> <KBD>Game</KBD>
+  <DD> The <KBD>Game</KBD> is where it all comes together. 
+<UL>
+<LI> Every <KBD>Game</KBD> <I>has-a</I> <KBD>map</KBD>, which should be a <KBD>char[20][20]</KBD>. The boundaries of the <KBD>map</KBD> should be represented by <KBD>"%"</KBD> and any empty space by a <KBD>"."</KBD>.
+<LI> Every <KBD>Game</KBD> <I>has-a</I> <KBD>Hero</KBD>.
+<LI> Every <KBD>Game</KBD> <I>has-a</I> <KBD>LinkedList&lt;Treasure&gt;</KBD>.
+<LI> Every <KBD>Game</KBD> <I>has-a</I> <KBD>LinkedList&lt;Baddie&gt;</KBD>.
+</UL>
+</DL>
+</p>
+
+
+<H4>Useful Information</H4>
+<UL>
+<LI> A good way to draw your <KBD>Game</KBD> is to loop through the <KBD>map</KBD> and check at each position if there is a <KBD>Hero</KBD>, <KBD>Baddie</KBD>
+<KBD>Treasure</KBD>, or nothing.
+<LI> When the <KBD>Hero</KBD> runs out of movement points or lives, the <KBD>Game</KBD>
+should end and display a message with the final score and whether or not the player died during their
+dungeon looting.
+</UL>
+
+
+ 
+<a name="extdemo12"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 7.12</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="7.12">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions9">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 12</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

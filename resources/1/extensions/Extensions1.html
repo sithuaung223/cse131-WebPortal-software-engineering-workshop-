@@ -1,0 +1,1136 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Intro and Types&nbsp;&amp;&nbsp;Names</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Speed Limit Fine Calculator (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Michael Waldman
+  <LI> Alan Waldman
+  <LI> Cameron Wong
+</UL></DL>
+<p>You will calculate the fine one would have to pay for going over the speed limit in the state of Massachusetts
+according to the
+<a href="http://www.dmv.org/ma-massachusetts/traffic-tickets.php">Massachusetts DMV</a>.
+<blockquote>By completing this work, you  demonstrate that you can:</p>
+<ul>
+  <li>Create a Java class on your own</li>
+  <li>Arrange for the class to take inputs of interest</li>
+  <li>Compute output values of interest</li>
+  <li>Produce meaningful output based on your computations</li>
+</ul></blockquote>
+<p>
+Have you ever received a ticket for speeding? 
+If so, how do you feel about it? Were you going more or less than 10 miles over the speed limit? 
+The objective of this extension is not only to allow you to practice <b>assignment statements</b> and <b>data types</b> but also for you to create a
+practical tool, though of course we hope you never need to compute a speeding
+fine for yourself.
+ <p>
+Consider the following story: 
+<UL>
+<LI> Pat is driving a Mini Cooper at 85 MPH on a 
+road that has the speed limit of 60 MPH.
+<LI> Pat is therefore going 25 MPH over the speed limit.
+<LI> If Pat is caught speeding, what would be Pat's fine?  
+<p>
+For this assignment, we model the fine after Massachusetts law:
+<UL>
+   <LI> A fine is assessed only if the driver's speed is at least 10 MPH over
+the speed limit.
+  <li>For the first 10 MPH over the speed limit, the fine is $50 no matter what</li>
+  <li>For any additional MPH past the first ten, $10 are added to the fine</li>
+</UL>
+<LI> Thus, Pat owes $50 for going at least 10 MPH over the speed limit
+(60+10=70&nbsp;MPH).  To this, we add
+$10&times;15 = $150 for the additional 15 MPH.  Thus, Pat owes $200.
+</UL>
+ 
+<h4>Procedure</h4>
+<ol>
+  <li>	First, create a <kbd>SpeedLimit</kbd> Java class in the
+<KBD>speeding</KBD> package of the <KBD>extensions</KBD> source folder.
+<BLOCKQUOTE>
+Do this by 
+<UL>
+<LI> right (control) clicking on the <KBD>speeding</KBD> package,
+and then 
+<LI> chooose <KBD>New</KBD>&hellip;<KBD>Class</KBD>
+<LI> Type in the name of the class (<KBD>SpeedLimit</KBD>)
+<LI> <B>Be sure</B> to check the box so that <KBD>public static void main</KBD> is
+included
+<LI> Click OK
+</UL>
+</BLOCKQUOTE>
+  <li> Write code to prompt the user for the information you need to
+compute the fine, assuming the fine is computed as described above.
+<BLOCKQUOTE>
+<UL>
+<LI>
+  Consider and decide upon the <b>data type</b> to represent information
+of interest to this problem.
+
+<LI> You must ask the user for some input values.
+If you do not
+recall how to use <KBD>ArgsProcessor</KBD>, review the video on the 
+syllabus entitled <I>Prompting the user for input values</I>.
+</UL>
+</BLOCKQUOTE>
+<LI>Arrange for your program to produce output such that:</p>
+<ul>
+  <li>For the first 10 miles over the speed limit, the fine is 50 no matter what</li>
+  <li>For any additional mile past the first ten, 10 dollars are added to the fine</li>
+</ul>
+
+<BLOCKQUOTE>Beware: Make sure your program works for 0 MPH and all possible
+positive velocities.
+</BLOCKQUOTE>
+
+
+<LI>Finally, your program should print how many miles you were going over the speed limit and how much money the fine will be.
+<BLOCKQUOTE>
+Sample output based on the example story above:
+<PRE>
+You reported a speed of 85 MPH for a speed limit of 60 MPH.
+You went 25 MPH over the speed limit.
+Your fine is $200.
+</PRE>
+</BLOCKQUOTE>
+</OL>
+<BLOCKQUOTE>
+You must compute the required information <B>without</B> using <KBD>if</KBD> statements.  To evaluate an expression conditionaly, use the
+<a href="http://alvinalexander.com/java/edu/pj/pj010018">ternary</a> operator,
+an example of which follows:
+<PRE>
+  int x = (y > 7) ? 12 : 5;
+</PRE>
+The variable <KBD>x</KBD> is set to <KBD>12</KBD> if <KBD>y</KBD>'s value
+is greater than <KBD>7</KBD>;  otherwise <KBD>x</KBD> is set to <KBD>5</KBD>.
+</BLOCKQUOTE>
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Image Processor (6 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Anne Bracy
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron Cytron</a>
+  <LI> <a href="http://www.cs.wustl.edu/~kjg/">Ken Goldman</a>
+  <LI> Logan Sorentino
+</UL></DL>
+<H4>Background</H4>
+<p></p>
+<DL>
+<DT><I>Pixels</I>
+<DD>
+<p>
+The word <I>pixel</I> stands for Picture Element. A pixel is a small part
+of a picture. Pixels are the little dots that make up LCD
+screens. When you see a low-resolution picture that is grainy, the
+<Q>grain</Q> you're seeing are the pixels.
+<DT>Representing color in Java
+<DD>
+<p>
+Pixels are made up of 3 colors: red, green, and blue (hence the
+term <I>RGB</I>). The color of a pixel is made up of a combination of the
+<I>intensities</I> of each of red, green, and blue components. Intensities range from 0 (meaning none of that color is present) to 255
+(meaning as much as possible of that color is present). You
+declare a new pixel by coding 
+<PRE>
+new Color(redValue, greenValue,blueValue)
+</PRE> 
+where <KBD>redValue</KBD> is the intensity (an integer between 0 and 255) of 
+red, <KBD>greenValue</KBD> is the intensity of green, and <KBD>blueValue</KBD> is the intensity of blue.<br>
+<p>
+
+For example, you get the color black with <KBD>new&nbsp;Color&nbsp;(0,0,0)</KBD> (0
+intensity for all colors). You get red with <KBD>new&nbsp;Color&nbsp;(255,0,0)</KBD>
+(highest intesity for red, 0 intensity for green and blue).
+<DT> Filters
+<DD>
+This work involves writing a number of filters that are applied to
+images to achieve a given result.  There are two kinds of methods that
+you complete, and each is described below:
+<DL>
+<DT><KBD>int foo(int pixelComponent)</KBD>
+<DD>Methods with the above signature take in a single pixel component
+intensity value:  an integer between 0 and 255 inclusively.
+They are obligated to return an intensity value as their result.
+<p>
+These methods are used by the course software as shown below:
+<CENTER>
+<IMG SRC="Extensions/colorintensity.jpg">
+</CENTER>
+<OL>
+  <LI> A <KBD>Color</KBD> object is broken into its red, green, and blue
+components.
+  <LI> Each component is passed to your <KBD>foo</KBD> method, and the
+result of that function is retained.
+  <LI> The three results are combined into a new <KBD>Color</KBD> object.
+</OL>
+In other words, the <KBD>foo</KBD> function is used as a filter on each
+of a <KBD>Color</KBD>'s components.  The <KBD>foo</KBD> function is unaware
+of which component it is processing:  it treats each equally.
+<DT><KBD>Color bar(Color c)</KBD>
+<DD>Methods with the above signature accept and produce a standard Java
+<KBD><a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html">Color</a></KBD> object.  These methods can themselves decompose a <KBD>Color</KBD>
+object into its components and create a resulting <KBD>Color</KBD> object
+to achieve whatever effect is desired.
+</DL>
+</DL>
+ 
+<h4>Project: Image Processing Methods</h4>
+<ol>
+  <li>In Eclipse, open the <KBD>extensions</KBD> source folder and
+then open the <KBD>imageprocessor</KBD> package. Find and open the
+<KBD>ImageProcessor</KBD> class.
+<BLOCKQUOTE>
+This is the <I>main</I> program you run to see the results of your work.
+<p>
+Go ahead and run it as a Java application.
+You should see a window pop up with
+some images preloaded.
+</BLOCKQUOTE>
+<LI> Try the <I>darker</I> filter.  It has been implemented for you, and
+it should produce an image in the <I>Target</I> window that resembles
+the image in the <I>source1</I> window, but is a bit darker.
+<LI> Try the <I>combine</I> filter.  It has also been implemented but
+its effects may seem a bit strange.  You will soon implement a smarter version
+of this kind of a filter.
+<LI> The other methods are not yet implemented, but you are free to try
+them.
+<BLOCKQUOTE>
+By the way, you can drag images between the icon panel at the top and the working
+panels in the middle, or <I>vice versa</I>, so that you can manipulate
+other images than the ones that are preloaded.<p>
+You can also load your own images by clicking on the icon that resembles
+a <I>plus</I> sign.
+</BLOCKQUOTE>
+</ol>
+
+<h4>Directions:</h4>
+First, right click on the <KBD>ImageProcessorTest</KBD> class, and <KBD>Run As</KBD> a <KBD>JUnit Test</KBD>.
+<BLOCKQUOTE>
+<UL>
+<LI>
+On the left you should see a whole bunch of 
+test names with red or blue x's by them, indicating that they are not being passed. <LI> Every time you complete a piece of code correctly, one of the tests will pass, 
+and a small green x will appear beside it. <LI> Once all of the tests pass, a satisfying green bar will appear in place of the red one that you see now. You will 
+not get this green bar in this extension, though, because you will not be doing any work on the <KBD>bgSubtract</KBD> or <KBD>bdReplace</KBD> methods. 
+To get the green bar you must go on to the next extension.
+</UL>
+</BLOCKQUOTE>
+
+Now open the <KBD>Filters</KBD> class and begin your work as described
+below.  
+<BLOCKQUOTE>
+It is strongly suggested that you re-run the unit test, and run <KBD>ImageProcessor</KBD> to test each filter after its
+completion before you move on to the next filter.  This will ensure that you are making progress and not going down a wrong path.
+</BLOCKQUOTE>
+Complete the provided stub
+methods as described below.
+In the method bodies, <B>use mathematical expressions</B>. Do <em>not</em> use
+a conditional (if) statement.
+<p>
+<DL>
+<DT> Intensity filters
+<DD>
+<BLOCKQUOTE>
+Use <B>no conditional execution</B> for this part:  only arithmetic expressions
+as you have learned them in <a href="index.html">Module 1</a>.
+</BLOCKQUOTE>
+    <ol>
+      <li>Complete the method called <em>copy</em>, so that each
+provided intensity value is copied exactly
+from the source to the target panel.
+<BLOCKQUOTE>
+Hint: This is a <em>very</em>
+simple method.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/copy.png">
+</CENTER>
+      </li>
+      <li>Complete the method that will <em>composite</em> the images
+in the
+two source panels by averaging their components. This method accepts two
+parameters, which are color components from the two source panels.
+<CENTER>
+<IMG src="Extensions/composite.png">
+</CENTER>
+      <li>Complete the method called <em>negative</em> that will
+produce the
+negative image by inverting the intensity of each component. 
+<BLOCKQUOTE>
+For
+example, if the parameter value is 0, you should return 255. If the
+parameter value is 1, you should return 254, and so on.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/negative.png">
+</CENTER>
+      <li>Complete the method <em>posterize</em> that will reduce the
+number of possible colors in an image. For a given color component, your
+method will choose between
+two intensities, 0 or 255, which correspond to that color component
+being turned off or on completely. 
+So, since each color has three
+components (red, green, and blue), you will end up with an image that
+has only 8 different colors. 
+<BLOCKQUOTE>
+Remember that you are <em>not</em>
+allowed to use conditionals (if) statements for this part of the lab.
+<p>
+<I>Hint:</I> : Recall that color components
+are in the range 0-255. Also, recall that if you divide an int by
+another int, the result number will be truncated. For example, 
+<KBD>130&nbsp;/&nbsp;128&nbsp;=&nbsp;1</KBD>, but 
+<KBD>125&nbsp;/&nbsp;128&nbsp;=&nbsp;0</KBD>.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/posterize.png">
+</CENTER>
+</OL>
+
+<DT> <KBD>Color</KBD> filters
+<DD>
+    <p>Note that each pixel
+of an image is represented as a <a
+ href="http://java.sun.com/javase/6/docs/api/java/awt/Color.html">Color</a>
+object.
+<BLOCKQUOTE>
+<UL>
+<LI>
+Continue to
+use <B>no conditional execution</B> for this part:  only arithmetic expressions
+as you have learned them in <a href="index.html">Module&nbsp;1</a>.
+<LI> To create a new <KBD>Color</KBD>, you must specify its red, green, and blue components in that order.  For example
+<PRE>
+Color c = new Color(25,128,0);
+</PRE>
+declares <KBD>c</KBD> to be a color with some red (25 out of 255), half of the possible green, and no blue.
+<LI> If you have a <KBD>Color c</KBD>, then you can get its red, green, and blue components as follows:
+<PRE>
+
+int red   = c.getRed();
+int green = c.getGreen();
+int blue  = c.getBlue();
+</PRE>
+</UL>
+</BLOCKQUOTE>
+Create and test methods (whose parameters and return values are <code>Color</code>s)
+with the following specifications. </p>
+    <ol>
+      <li>Complete the method <em>brighter</em> that will return, for
+each pixel, a Color that is brighter than
+the original. 
+<BLOCKQUOTE>
+The 
+<KBD><a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html">Color</a></KBD>
+class makes this easy because it already
+provides a 
+<KBD><a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html#brighter%28%29">brighter()</a></KBD>
+method that returns a brighter color.
+<p>
+If <KBD>c</KBD> is a color, then <KBD>c.brighter()</KBD> is a brighter version of <KBD>c</KBD>'s color.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/brighter.png">
+</CENTER>
+      <li>Complete the method <em>grayscale</em> that will make a
+grayscale image from a color image.
+To do this, you will take in one Color parameter (the Color object for
+a pixel from the original image) and
+will produce a new Color in which all the components (red, green, and
+blue) have the same value.
+<BLOCKQUOTE>
+Hint: To choose which value, average the three components of the
+original color.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/grayscale.png">
+</CENTER>
+  </li>
+</OL>
+<DT> More <KBD>Color</KBD> filters
+<DD>
+<BLOCKQUOTE>
+OK, now you can use <KBD>if</KBD> statements!
+</BLOCKQUOTE>
+    <ol>
+      <br>
+      <li>Complete the method <em>blackAndWhite</em> that produces a
+black and white image by returning, for each pixel, a <KBD>Color</KBD> that is
+either black or white, depending upon the overall intensity of the
+original color. 
+<p>
+For your return value, use the constant <KBD>Color.BLACK</KBD>
+or <KBD>Color.WHITE</KBD>. It's up to you how to decide when a
+color's components, taken as a whole, should be considered black or
+white.
+<CENTER>
+<IMG src="Extensions/blackandwhite.png">
+</CENTER>
+      <li>Complete the method <em>combineBrighter</em> that combines
+two images by choosing for each pixel the color from the image that has
+the brighter pixel in that location. To determine which pixel is
+brighter, compare the sums of the red, green, and blue components of
+the two pixels. Since the ProcessorTool will run your method for every
+pair of pixels, the resulting image will have some pixels from the
+first image and some from the second image.<br>
+<CENTER>
+<IMG src="Extensions/combinebrighter.png">
+</CENTER>
+    </ol>
+</DL>
+<H4> Demo </H4>
+<UL>
+<LI> 
+You must pass all of the unit tests, except for the ones for <KBD>bgSubtract</KBD> and <KBD>bgReplace</KBD>
+<LI>  Your TA should be able to play with your 
+<KBD>ImageProcessor</KBD> and deem it sufficient
+</UL>
+
+
+
+
+
+<a name="extdemo2"></a>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Image Processor Continued (4 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Arman Guerra
+  <LI> <a href="http://www.cs.wustl.edu/~kjg/">Ken Goldman</a>
+</UL></DL>
+<BLOCKQUOTE>
+This is a continuation of the previous extension.  It is therefore
+suggested that you
+do the previous extension first.
+</BLOCKQUOTE>
+
+<h4>Directions:</h4>
+The main program you should run for this extension is <KBD>Background</KBD>, which
+conveniently
+sets up the images in the bar and panels for you to do this work.
+<p>
+So run <KBD>Background</KBD> as a Java application.  You will see two
+similar images in the source panels, and some other images in the image
+bar.
+<p>
+Open the <KBD>Filters</KBD> class and begin your work as described
+below.  
+<p>
+<DL>
+<DT> Two more <KBD>Color</KBD> filters
+<DD>
+<BLOCKQUOTE>
+You can use <KBD>if</KBD> statements for this work.
+</BLOCKQUOTE>
+    <ol>
+      <br>
+      <li>Complete the method <em>bgSubtract</em> so that it returns
+a <KBD>Color</KBD> as follows:
+<UL>
+  <LI> If the <KBD>source1Color</KBD> and <KBD>source2Color</KBD> colors are
+<em>sufficiently similar</em>, return <KBD>Color.BLUE</KBD>. The idea is to subtract
+the background so that what is common between the two source images is shown
+in blue.
+<BLOCKQUOTE> 
+We will define a new term for this lab, the <em>Saturation Tolerance</em>. What this tells us is how different two colors can be, and still be considered 
+<em>sufficiently similar</em>. For instance; if the <em>Saturation Tolerance</em> is 10, one color has a red value of 130, and another color has a 
+red value of 138, these would be considered <em>sufficiently similar</em>. But if one color had a red value of 35 and another had a red value of 50, they would not 
+ be considered <em>sufficiently similar</em>
+</BLOCKQUOTE>
+  <LI> Otherwise, return <KBD>source1Color</KBD>.
+</UL>
+An example is shown below:
+<CENTER>
+<IMG src="Extensions/bg1.png">
+</CENTER>
+Where the two images are similar, the corresponding pixel in the
+target image is blue, because your method returned <KBD>Color.BLUE</KBD>.
+Where the images differ, the first image is shown in the target,
+because your method returned the pixel color from the first image.
+<p>
+      <li>Complete the method <em>bgReplace</em> that functions as
+follows:
+<UL>
+  <LI> If the <KBD>source1Color</KBD> is <KBD>Color.BLUE</KBD>, then return
+the <KBD>source2Color</KBD>.
+  <LI> Otherwise, return <KBD>source1Color</KBD>.
+</UL>
+The effect of this filter is to replace the blue color from the first image
+with the corresponding pixels from the second image.
+<p>
+To see this work, perform the following steps:
+<OL>
+<LI> Drag the blue-screen image from the target panel and drop it into the leftmost source panel.  The GUI should replace what was there with the blue-screen
+image. 
+<LI> Drag the other two-bear picture (the reverse of the one shown in the
+source panel) from the top icon bar into the middle source panel.
+<p>
+After dragging these images around the GUI, the results should resemble the
+following:
+<BLOCKQUOTE>
+<B>Note:</B>  No transformation is applied yet.  The <I>copy</I> operation appears
+as the menu choice but the <I>Go</I> button was not pressed.
+</BLOCKQUOTE>
+<CENTER>
+<IMG src="Extensions/bg2.png">
+</CENTER>
+<LI> Now apply the <I>bgReplace</I> filter, and the results resemble the
+following:
+<CENTER>
+<IMG src="Extensions/bg3.png">
+</CENTER>
+<LI> For fun, drag the chicken image from the top icon bar into the middle source panel, and reapply the <I> bgReplace</I> filter.  The results should
+resemble the following:
+<CENTER>
+<IMG src="Extensions/bg4.png">
+</CENTER>
+The chicken is a smaller image, so it did not take up the entire size of
+the bear image.
+</OL>
+    </ol>
+</DL>
+<H4>To Demo</H4>
+You must have received the satisfying green bar telling you that you've passed all of the <kbd>ImageProcessor</kbd> tests. Your TA must also be able to play with your
+<kbd>ImageProcessor</kbd> and be satisfied.
+
+
+<a name="extdemo3"></a>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Expected Value (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Alan Waldman
+</UL></DL>
+<H4>Background</H4>
+How do you feel about money, risk, and job satisfaction?
+In this extension you will
+examine some simple yet powerful ideas from economics, and you will
+write code to compute how a person should behave based how he or she
+views risk, reward, and job satisfaction.
+<p>
+The concepts we explore are as follows:
+<DL>
+  <DT> Utility
+  <DD> 
+<a href="http://en.wikipedia.org/wiki/Utility"> Utility</a> 
+is an economic term referring to the total satisfaction you
+derive or receive from some action or activity.
+<p>
+Given the choice of two activities and absent any other
+concerns, a rational person would chose the activity
+that yielded the higher utility.
+<p>
+  <DT> Expected Value
+  <DD> If there is uncertainty about outcomes, then the expected
+value of a given outcome is the product of its probability of occurring and
+the value of achieving that outcome.
+<BLOCKQUOTE>
+Let's consider the following two examples:
+<OL>
+ <LI> You are given $1.  The probability of this event is 1, and your
+value for achieving the outcome is $1, so your expected value is $1.
+  <LI> You enter into a (no-cost) lottery with 9,999 other people for a chance to win
+$10,000.  If the probability of the winner is uniformly distributed among those
+who enter the lottery, you win $10,000 with probabilty 0.0001 and you lose (win $0)
+with probability 0.9999.  The expected value computation for this
+scenario is as follows:
+<p>
+<CENTER>
+(.0001 &times; $10,000) &plus; (.9999 &times; $0)
+</CENTER>
+<p>
+Your expected value here is therefore also $1.
+</OL>
+</BLOCKQUOTE>
+<UL>
+<LI>
+Based only on expected value, a person confronted with a choice on the
+above two scenarios would have no reason to pick one over the other, since
+the expected value is the same.  
+<LI> Now suppose the money given to you for certain
+in the first scenario is doubled to $2.  A rational person would surely
+pick $2 over the lottery entry, because $2 is twice the expected value of
+the lottery outcome.
+</UL>
+<p>
+However, we know there are people who would choose entering the lottery over
+receiving a sure $1 or $2.  
+<p>
+
+In the <a href="http://usnews.nbcnews.com/_news/2012/11/28/15510840-11-things-more-likely-to-happen-than-winning-the-powerball-jackpot?lite">Powerball Lottery</a>,  
+your chances of winning are
+1 in 175,223,510.  So a rational person shouldn't buy a ticket if the jackpot
+is under $175M.
+But allegedly rational people do buy tickets for jackpots under that
+threshold.
+<p>
+How can we account for this behavior?  
+Read on.
+<DT> Expected Utility Theory
+<DD>
+The above analysis assumes a linear value for wealth.   
+We can account
+for those who favor or avoid risk using
+<a href="http://en.wikipedia.org/wiki/Expected_utility_hypothesis" >Expected Utility Theory</a>.
+This theory admits that rational people may have nonlinear views of
+wealth.  This means that you may like $1,000 more (or less) than 1,000 times as much
+as you like $1.
+Let's look at three examples:
+<TABLE BORDER CELLPADDING=5>
+<TR><TH> Expected utility function</TH> <TH> Notes </TH></TR>
+<TR> <TD> <B>u(d) = d</B> </TD> 
+<TD>Linear value of wealth.  The above analysis applies to such
+a person. NOTE TO SELF:  2nd derivative 0 here</TD>
+</TR>
+<TR> <TD> <B>u(d) = d<sup>2</sup></B></TD> 
+  <TD> This person values $10,000 the same way a linear
+person would value $100,000,000.  
+<p>
+In
+the scenario given above, this explains why a person would enter the
+lottery.  The person's perceived value of winning $10,000 is
+NOTE TO SELF:  show the application of u here
+$10,000<sup>2</sup>=$100,000,000, which at probability 0.0001 yields an expected
+utility of $10,000:  far greater than the $1 given for certain.  <p>
+An alternate view is that this person has a linear view of wealth 
+(<B>u(d)=d</B>)
+but an
+unrealistic view of the probability of winning.  For example, if this
+person holds the false belief that the probability of winning is 0.1 instead
+of .0001, then 
+the expected value jumps
+from $1 to $1,000 using a linear function for expected utility.
+Because economists try to model human behavior assuming rationality, they
+translate this inflated view of luck into a nonlinear view of wealth.
+<p>
+Thus, the function <B>u(d)=d<sup>2</sup></B> captures a form of
+<I>risk-loving</I> behavior.  
+More generally, when viewed from below, any <i>convex</i> function,
+of which u(d)=d<sup>2</sup> is an example, models risk-loving behavior.
+NOTE TO SELF:  2nd derivative is positive
+<p>
+Such a person is either more certain of winning than
+probabilities would indicate, or alternatively has a convex expected
+utility function.
+</TD>
+</TR>
+<TR><TD><B>u(d) = sqrt(d)</B></TD>
+<TD> On the other hand, this <I>concave</I> function captures <I>risk-averse</I>
+behavior.  In the lottery scenario, a win of $10,000 would feel like a win
+of only $100 to this person.  With a .0001 probability of winning, the
+expected utility under this function is only 1 cent.  Such a person would
+not enter the lottery even if the no-risk payoff were reduced from $1 to 2 cents.
+NOTE TO SELF:  2nd derivateive is negative here
+</TR>
+</TABLE>
+</DL>
+<P>
+
+<H4>Problem</H4>
+Suppose you are trying to decide between one of the following
+two careers:
+<DL>
+  <DT> Gamer  <DD>You join a start-up company, which is exciting and
+could have high pay-off, but this venture might
+fail.
+Let's say
+you succeed with probability <I>p</I>, and if so you will 
+earn $190,000.  But if you fail (with probability <I>1-p</I>), you earn only $5000.
+  <DT> Programmer  <DD>
+This job has no risk, and offers a salary in the range
+of $110,000 to $160,000.  Your salary will be determined by a random
+choice of a value drawn uniformly from that range.
+</DL>
+
+<H4> Procedure</H4>
+<BLOCKQUOTE>
+Do this work by createing a class in the <KBD>expectedvalue</KBD>
+package of the <KBD>extensions</KBD> folder.
+</BLOCKQUOTE>
+Let's begin by assuming you have linear value for money.  Based on
+the above description, write a program that does the following:
+<OL>
+  <LI> Prompts the user for a value for <I>p</I>, which is the probability of
+the game start-up venture succeeding.  The text of your prompt should
+be a meaningful message.
+<BLOCKQUOTE>
+Think about the type of <i>p</i>.  Also what is a good variable name
+for this concept?
+</BLOCKQUOTE>
+  <LI> Given <i>p</i>, compute the expected value of the gamer-job outcome.
+<BLOCKQUOTE>
+Use the equation for the Expected Value that is shown in the background section. Again, think about the type you need to represent the computed value,
+and think of a good name for this concept.
+</BLOCKQUOTE>
+  <LI >Now pick a salary for the programming job by choosing a random value
+   between $110,000 and $160,000.
+  <LI> Print both outcomes and a message that indicates whether you should
+accept the gamer job over the programmer job depending on which one will give you the most money, according to your calculation.
+Such output might resemble:
+<PRE>
+  Gamer: $97,500
+  Programmer: $115,000
+  You should be a gamer and not a programmer?  false
+</PRE>
+Run your program for multiple values of <i>p</i> to be sure that your output
+makes sense.
+</OL>
+<p>
+Now lets assume that you DON'T have a linear value of wealth. Lets assume that your utility for wealth given your job differs as follows:
+<UL>
+  <LI> EU (Gamer):  3*sqrt(wealth)
+  <LI> EU (Programmer):  2*sqrt(wealth)
+</UL>
+Now:
+<OL>
+<LI> Take the values for the wealth for the two jobs that you got before, and plug them into the above utility functions
+<LI> Print both outcomes and a message that indicates whether you should
+accept the gamer job over the programmer job depending on which one will give you the most utility, according to your calculation.
+
+
+
+<a name="extdemo4"></a>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext100"></a>
+<H2>Extension 100: Speed Limit Extension (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Under development.  Do not do this yet!
+</FONT></BLOCKQUOTE>
+<p>This extension is based on the Speed Limit Extension from Java, your task is the same but to code it in C++</p>
+<p>You will calculate the fine one would have to pay for going over the speed limit in the state of Massachusetts: <a href="http://www.dmv.org/ma-massachusetts/traffic-tickets.php">Massachusetts DMV</a>.
+<blockquote>By completing this work, you  demonstrate that you can:</p>
+<ul>
+  <li>Create a C++ source file on your own</li>
+  <li>Arrange for the executable to take inputs of interest</li>
+  <li>Compute output values of interest</li>
+  <li>Produce meaningful output based on your computations</li>
+</ul></blockquote>
+<p>
+Have you ever received a ticket for speeding? If so, how do you feel about it? Were you going more or less than 10 miles over the speed limit? 
+The objective of this extension is not only to allow you to practice <b>assignment statements</b> and <b>Data Types</b> but also to allow you to create a
+ practical tool which could be used in everyday life.</p>
+ <p>Consider the following story: Your friend Joe is driving his Mini Cooper at 75MPH on a causeway that has the speed limit of 60MPH and he gets pulled over. Joe doesn't have a clue how much he is going to get fined because 
+ he is both under the pressure of talking to the police officer and doesn't know how speeding fines are computed.
+ The officer does know how fines are computed. After the officer gets in his car, he considers Joe's speed and considers the speed limit and then gives Joe a fine.<blockquote>Take a moment to think about the things the officer needs in order to compute the fine that Joe 
+ will have to pay.</blockquote></p>
+ 
+<p><strong>Procedure</strong></p>
+<ol>
+  <li>	First, create a <kbd>speedLimit</kbd> C++ source file in the
+<KBD>speeding</KBD> package of the <KBD>extensions</KBD> source folder.
+  <li>Think about the information you need to know to determine if someone is going above the speed limit.
+  You should also think about which <b>Data Type</b> you should use for your information. </li>
+  </ol>
+
+<p> You will need to prompt the user for inputs. <p>For input, use the following code just after the main method declaration:</p><blockquote><b> <kbd>	cin >> speedLimit;</b></kbd></blockquote> </b>
+<p>After you have finished that part, you have made your program able to take inputs, which you must later ask for.
+<p>Say you want to prompt for the speed limit and save the answer the user gives:
+A way to do this would be writing an assignment statement, which you learned how to do in this module. Do you remember what part of the assignment statement executes first? Right or left?
+ If you don't, you should review this part of the module because you will need it to complete this extension.
+ </p>
+<p>Once you know which part of the assignment statement executes first, you can prompt the user for their input. Think about the <b>Data Type</b> you want the user to be able to input first though. Do you want them to input a decimal? An integer? A String? 
+<blockquote>Once you know which <b>Data Type</b> you want the user to input, you use the <b>cin</b> statement, variable of data type you want the user to enter.
+<p>For example, say you want to accept an integer, otherwise known as <b>int</b>. Asking the user for input would look like this:<b> <br/>
+int speedLimit; <br/>
+cout << "Input speed limit: "; <br/>
+cin >> speedLimit; <br/>
+</b></blockquote></p></p>
+
+<p>Arrange for your program to produce output such that:</p>
+<ul>
+  <li>For the first 10 miles over the speed limit, the fine is 50 no matter what</li>
+  <li>For any additional mile past the first ten, 10 dollars are added to the fine</li>
+</ul>
+
+<p>Beware: Make sure your program works for logical inputs and doesn't fine you if you're going 0 miles per hour. </p>
+
+
+<b>Finally, your program should print how many miles you were going over the speed limit and how much money the fine will be.</b>
+<b>To receive full credit be sure that the TA can clearly see your program is working correctly on a number of inputs.</b>
+<p>&nbsp;</p>
+
+<a name="extdemo100"></a>
+         <p>
+<P><H3>End of extension 100</H3><HR NOSHADE SIZE=10><p>
+<a name="ext400"></a>
+<H2>Extension 400: Expected Value (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Under development.  Do not do this yet!
+</FONT></BLOCKQUOTE>
+<H4>Background</H4>
+How do you feel about money, risk, and job satisfaction?
+In this extension you will
+examine some simple yet powerful ideas from economics, and you will
+write code to compute how a person should behave based how he or she
+views risk, reward, and job satisfaction.
+<p>
+The concepts we explore are as follows:
+<DL>
+  <DT> Utility
+  <DD> 
+<a href="http://en.wikipedia.org/wiki/Utility"> Utility</a> 
+is an economic term referring to the total satisfaction you
+derive or receive from some action or activity.
+<p>
+Given the choice of two activities and absent any other
+concerns, a rational person would chose the activity
+that yielded the higher utility.
+<p>
+  <DT> Expected Value
+  <DD> If there is uncertainty about outcomes, then the expected
+value of a given outcome is the product of its probability of occurring and
+the value of achieving that outcome.
+<BLOCKQUOTE>
+Let's consider the following two examples:
+<OL>
+ <LI> You are given $1.  The probability of this event is 1, and your
+value for achieving the outcome is $1, so your expected value is $1.
+  <LI> You enter into a (no-cost) lottery with 9,999 other people for a chance to win
+$10,000.  If the probability of the winner is uniformly distributed among those
+who enter the lottery, you win $10,000 with probabilty 0.0001 and you lose (win $0)
+with probability 0.9999.  The expected value computation for this
+scenario is as follows:
+<p>
+<CENTER>
+(.0001 &times; $10,000) &plus; (.9999 &times; $0)
+</CENTER>
+<p>
+Your expected value here is therefore also $1.
+</OL>
+</BLOCKQUOTE>
+<UL>
+<LI>
+Based only on expected value, a person confronted with a choice on the
+above two scenarios would have no reason to pick one over the other, since
+the expected value is the same.  
+<LI> Now suppose the money given to you for certain
+in the first scenario is doubled to $2.  A rational person would surely
+pick $2 over the lottery entry, because $2 is twice the expected value of
+the lottery outcome.
+</UL>
+<p>
+However, we know there are people who would choose entering the lottery over
+receiving a sure $1 or $2.  
+<p>
+
+In the <a href="http://usnews.nbcnews.com/_news/2012/11/28/15510840-11-things-more-likely-to-happen-than-winning-the-powerball-jackpot?lite">Powerball Lottery</a>,  
+your chances of winning are
+1 in 175,223,510.  So a rational person shouldn't buy a ticket if the jackpot
+is under $175M.
+But allegedly rational people do buy tickets for jackpots under that
+threshold.
+<p>
+How can we account for this behavior?  
+Read on.
+<DT> Expected Utility Theory
+<DD>
+The above analysis assumes a linear value for wealth.   
+We can account
+for those who favor or avoid risk using
+<a href="http://en.wikipedia.org/wiki/Expected_utility_hypothesis" >Expected Utility Theory</a>.
+This theory admits that rational people may have nonlinear views of
+wealth.  This means that you may like $1,000 more (or less) than 1,000 times as much
+as you like $1.
+Let's look at three examples:
+<TABLE BORDER CELLPADDING=5>
+<TR><TH> Expected utility function</TH> <TH> Notes </TH></TR>
+<TR> <TD> <B>u(d) = d</B> </TD> 
+<TD>Linear value of wealth.  The above analysis applies to such
+a person. NOTE TO SELF:  2nd derivative 0 here</TD>
+</TR>
+<TR> <TD> <B>u(d) = d<sup>2</sup></B></TD> 
+  <TD> This person values $10,000 the same way a linear
+person would value $100,000,000.  
+<p>
+In
+the scenario given above, this explains why a person would enter the
+lottery.  The person's perceived value of winning $10,000 is
+NOTE TO SELF:  show the application of u here
+$10,000<sup>2</sup>=$100,000,000, which at probability 0.0001 yields an expected
+utility of $10,000:  far greater than the $1 given for certain.  <p>
+An alternate view is that this person has a linear view of wealth 
+(<B>u(d)=d</B>)
+but an
+unrealistic view of the probability of winning.  For example, if this
+person holds the false belief that the probability of winning is 0.1 instead
+of .0001, then 
+the expected value jumps
+from $1 to $1,000 using a linear function for expected utility.
+Because economists try to model human behavior assuming rationality, they
+translate this inflated view of luck into a nonlinear view of wealth.
+<p>
+Thus, the function <B>u(d)=d<sup>2</sup></B> captures a form of
+<I>risk-loving</I> behavior.  
+More generally, when viewed from below, any <i>convex</i> function,
+of which u(d)=d<sup>2</sup> is an example, models risk-loving behavior.
+NOTE TO SELF:  2nd derivative is positive
+<p>
+Such a person is either more certain of winning than
+probabilities would indicate, or alternatively has a convex expected
+utility function.
+</TD>
+</TR>
+<TR><TD><B>u(d) = sqrt(d)</B></TD>
+<TD> On the other hand, this <I>concave</I> function captures <I>risk-averse</I>
+behavior.  In the lottery scenario, a win of $10,000 would feel like a win
+of only $100 to this person.  With a .0001 probability of winning, the
+expected utility under this function is only 1 cent.  Such a person would
+not enter the lottery even if the no-risk payoff were reduced from $1 to 2 cents.
+NOTE TO SELF:  2nd derivateive is negative here
+</TR>
+</TABLE>
+</DL>
+<P>
+
+<H4>Problem</H4>
+Suppose you are trying to decide between one of the following
+two careers:
+<DL>
+  <DT> Gamer  <DD>You join a start-up company, which is exciting and
+could have high pay-off, but this venture might
+fail.
+Let's say
+you succeed with probability <I>p</I>, and if so you will 
+earn $190,000.  But if you fail (with probability <I>1-p</I>), you earn only $5000.
+  <DT> Programmer  <DD>
+This job has no risk, and offers a salary in the range
+of $110,000 to $160,000.  Your salary will be determined by a random
+choice of a value drawn uniformly from that range.
+</DL>
+<UL>
+ <LI> Let's begin by assuming you have linear value for money.  Based on
+the above description, write a program that does the following:
+<UL>
+  <LI> Prompts the user for a value for <I>p</I>, which is the probability of
+the game start-up venture succeeding.  The text of your prompt should
+be a meaningful message.
+<BLOCKQUOTE>
+Think about the type of <i>p</i>.  Also what is a good variable name
+for this concept?
+</BLOCKQUOTE>
+  <LI> Given <i>p</i>, compute the expected value of the gamer-job outcome.
+<BLOCKQUOTE>
+Again, think about the type you need to represent the computed value,
+and think of a good name for this concept.
+</BLOCKQUOTE>
+  <LI >Now pick a salary for the programming job by choosing a value
+uniformly between $110,000 and $160,000.
+  <LI> Print both outcomes and a message that indicates whether you should
+accept the gamer job over the programmer job for this particular calculation.
+Such output might resemble:
+<PRE>
+  Gamer: $97,500
+  Programmer: $115,000
+  You should be a gamer and not a programmer?  false
+</PRE>
+Run your program for multiple values of <i>p</i> to be sure that your output
+makes sense.
+</UL>
+</UL>
+<p>
+Which should you do to maximize your utility?
+<p>
+Let's say your expected `utility for wealth given your job differs as follows:
+<UL>
+  <LI> EU (Gamer):  3*sqrt(wealth)
+  <LI> EU (Programmer):  2*sqrt(wealth)
+</UL>
+
+<H4> Special Considerations for C++ Implementation </H4>
+<UL>
+<LI> Look into rand() and srand() to achieve proper random numbers </LI>
+<LI> You will need the <cmath> header to use the sqrt function </LI>
+<LI> Be sure to format the output properly to recieve full credit, be sure it's clear to the TA that your code is working </LI>
+</UL>
+
+<H4>For more information</H4>
+
+<a name="extdemo400"></a>
+<P><H3>End of extension 400</H3><HR NOSHADE SIZE=10><p>
+<a name="ext500"></a>
+<H2>Extension 500: Nutrion Analyzer (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Under development.  Do not do this yet!
+</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>
+   <UL>
+     <LI> In this extension you must re-do the Nutrition analyzer lab, create and code a simple program that prints
+nutrtional information about food.
+<BLOCKQUOTE>
+Review or reference the <a href="studio.html">studio</a> exercises
+as necessary.
+</BLOCKQUOTE>
+</BLOCKQUOTE>
+<p>
+<H2>Nutrition Analyzer</H2>
+In this extension you develop a simple tool that prints nutrition information about
+food.  This lab is based on what you learned in studio and in the lab.  By completing this
+extension you demonstrate that you can:
+<UL>
+  <LI> Create a C++ source file on your own
+  <LI> Arrange for the class to take inputs of interest
+  <LI> Compute output values of interest
+  <LI> Produce meaningful output based on your computations
+</UL>
+<p>
+<H2>Procedure</H2>
+<OL>
+   <LI> Create a <KBD>Nutrition</KBD> C++ source file in the <KBD>lab1</KBD> package
+of the <KBD>labs</KBD> source folder.
+<BLOCKQUOTE>
+The <KBD>lab1</KBD> class is currently empty, but don't let that bother you.
+Right (control) click on <KBD>lab1</KBD> and create a new source file called
+<KBD>Nutrition</KBD>.
+</BLOCKQUOTE>
+   <LI> Arrange for your program to accept the following inputs:
+<DL>
+  <DT><KBD>name</KBD>
+   <DD> The name of this food, provided as a <KBD>String</KBD>
+  <DT><KBD>carbs</KBD>
+    <DD> The number of grams of carbohydrates in this food
+  <DT><KBD>fat</KBD>
+    <DD> The number of grams of fat in this food
+  <DT><KBD>protein</KBD>
+    <DD> The number of grams of protein in this food
+  <DT><KBD>statedCals</KBD>
+    <DD> The number of calories stated on this food's label
+</DL>
+<p> For example, the values for a Snicker bar are:
+<p>
+<TABLE BORDER CELLPADDING=5>
+<TR> <TD> <KBD>name</KBD></TD><TD> <TD> <KBD>Snickers</KBD></TD> </TR>
+<TR> <TD> <KBD>carbs</KBD></TD><TD> <TD> <KBD>34.5</KBD></TD> </TR>
+<TR> <TD> <KBD>fat</KBD></TD><TD> <TD> <KBD>13.6</KBD></TD> </TR>
+<TR> <TD> <KBD>protein</KBD></TD><TD> <TD> <KBD>4.3</KBD></TD> </TR>
+<TR> <TD> <KBD>statedCals</KBD></TD><TD> <TD> <KBD>271</KBD></TD> </TR>
+</TABLE>
+<BLOCKQUOTE>
+At this point, you should be thinking about the data types you would use to represent each of the above
+items.  We tell you that the <KBD> name</KBD> is a <KBD>String</KBD>, but what about the other inputs?
+<p>
+The above example is provided to inspire your thinking.
+<p>
+To accept the inputs, use the same code we used in studio.  Just after the <KBD>main</KBD> method declaration,
+you should have the lines:
+<PRE>
+cout << "Please input food name: "; <br/>
+string foodName; <br/>
+cin >> foodName; <br/>
+</PRE>
+This will likely show an error because eclipse doesn't know about <KBD>cin</KBD> and <KBD>cout</KBD>.  Do you remember how to 
+fix this?  Ask if you need help.
+<p>
+After that, you should initialize your inputs using code modeled after the code you read and wrote in <a href="studio.html">studio</a>.
+<p>
+
+</BLOCKQUOTE>
+<LI> Arrange for your program to produce output such as the following:
+<BLOCKQUOTE>
+<PRE>
+Snickers has
+  34.5 grams of carbohydrates = 138.0 Calories
+  13.6 grams of fat = 122.4 Calories
+  4.3 grams of protein = 17.2 Calories
+
+This food is said to have 271 (available) Calories.
+With 6.6 unavailable Calories, this food has 1.65 grams of fiber
+
+Approximately 
+  50.9% of your food is carbohydrates
+  45.2% of your food is fat
+  6.3% of your food is protein
+
+This food is acceptable for a low-carb diet?  false
+This food is acceptable for a low-fat diet?  false
+By coin flip, you should eat this food?   true
+</PRE>
+</BLOCKQUOTE>
+<p>
+Notes:
+<UL>
+   <LI> There are 4 Calories in a gram of carbohydrates or protein.
+   <LI> There are 9 Calories in a gram of fat.
+   <LI> The stated caloric content of some foods may be less than the value you obtain by adding the calories
+due to carbohydrates, fat, and protein.  This is because some of the carbohydrates may be <I>dietary fiber</I>, and
+as such they are
+unavailable for your body to use as energy.  
+<BLOCKQUOTE>
+In the above example, based on carbohydrates, fat, and protein, the food contains 277.6 Calories.  However,
+the label claims a modest 271 Calories.  Thus, 6.6 Calories are unavailable and are attributed to dietary fiber.
+<p>
+From this we can compute <KBD>6.6&nbsp;/&nbsp;4&nbsp;=&nbsp;1.65</KBD> grams of the stated carbohydrates are fiber.
+</BLOCKQUOTE>
+<LI>
+The percentages shown in the output above feature at most a single digit of precision after the decimal point.
+<BLOCKQUOTE>
+You must arrange for your percentages to exactly this precise.  This will take some thought, but it can be done
+using what is taught in the book:  <KBD>int</KBD> operations, <KBD>double</KBD> operations, casting, and
+<KBD>floor</KBD> included in the <KBD>cmath</KBD> header.
+<BLOCKQUOTE>
+You are <B>not</B> allowed to use <KBD>printf</KBD> or other functions you may
+find that would accomplish this task.  You have to figure out how to do it
+using what you have learned in this module.
+</BLOCKQUOTE>
+</BLOCKQUOTE>
+<LI> The following are taken from this 
+<a href="http://www.freedieting.com/tools/nutrient_calculator.htm"> online resource </a>:
+<UL>
+  <LI> A food is a <I>low-carb</I> food if no more than 25% of its calories come from carbohydrates.
+  <LI> A food is a <I>low-fat</I> food if no more than 15% of its calories come from fat.
+</UL>
+<BLOCKQUOTE>
+For the output lines whose conclusions are <KBD>true</KBD> or <KBD>false</KBD>, define an appropriately named
+<KBD>boolean</KBD> variable in your program and set it equal to the expression that determines its value.
+<p>
+When you print the value it will print as <KBD>true</KBD> or <KBD>false</KBD>.
+</BLOCKQUOTE>
+<LI> To accomplish the coin flip, recall the random-number generator with <KBD>rand</KBD>.   Define
+a boolean <KBD>heads</KBD> and assign its value 
+by comparing a
+random number with <KBD>0.5</KBD>.
+<p>
+<LI> Your strings can include the character sequences <KBD>\t</KBD> and <KBD>\n</KBD>, which have the effect of inserting a tab and a newline, respectively.
+A <I>tab</I> will cause the output to shift right to a predetermined position.
+A <I>newline</I> will end the current line of output and begin a new line.
+</UL>
+<LI> To demo your lab, find some food labels (for real or on the web) and run your program with the appropriate values for those foods.
+</OL>
+<HR>
+
+<a name="extdemo500"></a>
+<P><H3>End of extension 500</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

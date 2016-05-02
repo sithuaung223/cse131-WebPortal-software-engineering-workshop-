@@ -1,0 +1,361 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: ADTs</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 8: ADTs</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI class="active"><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Lab</H3>
+<HR>
+Update your repository as usual.  You should see a <KBD>lab8</KBD> package in the <KBD>labs</KBD> source folder.
+<P><HR><P>
+<H3><a name="project">Project: A Polynomial ADT</a></H3>
+
+In this lab, you will using an ADT (Abstract Data Type) provided in the Java library
+as the basis for creating an implementation of a new ADT (a
+Polynomial).  The 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/List.html">List</a></KBD> 
+interface defines the
+ADT's methods, and there are several implementations
+of <KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/List.html">List</a></KBD> that can be used.  
+<BLOCKQUOTE>Click on the hyperlinked word
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/List.html">List</a></KBD> 
+(or any other such type) in this lab description to be taken to the online documentation
+for the object type.</BLOCKQUOTE>
+<p>
+We will be using the
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/LinkedList.html">LinkedList</a></KBD> implementation.  For now, its implementation is not of concern to us, but
+we will be studying it along with implementation alternatives in the upcoming weeks.
+<p>
+For this lab, you will write a program that creates, manipulates, and
+evaluates polynomials of arbitrary degree.  You will begin by creating
+a Polynomial class that, among other things, is capable of evaluating
+itself at points along the x axis.  
+<BLOCKQUOTE>
+Note: In the text of the lab, and in the output you generate, we'll use
+the caret (^) symbol to denote exponentiation.  However, you should
+keep in mind that this is <b>not</b> Java
+syntax for exponentiation.
+(In fact, you may recall that the symbol is used for the
+boolean operator xor in Java.)
+</BLOCKQUOTE>
+
+<P>In the file <B>Polynomial.java</B>, define the class
+<code>Polynomial</code> to satisfy
+the following specification.
+<BLOCKQUOTE>
+To expedite your work on this lab,
+we have provided a
+JUnit test file <KBD>PolynomialTest.java</KBD>. Use the test file as a guide,
+so that you develop and test your code in small steps.
+</BLOCKQUOTE>
+<P>
+Each polynomial object will need a way to store the coefficients of the polynomial that 
+it represents.  Since you won't know in advance how many coefficients there will be, 
+your Polynomial class will store the coefficients in a list.  In particular:
+<BLOCKQUOTE>
+You must use a 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/LinkedList.html">LinkedList</a></KBD>
+of 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD> 
+objects:
+<UL>
+ <LI> Each <KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD> is one coefficient.  
+ <LI> The length of the list will determine the degree of the polynomial
+ <LI> The order of the coefficients in the list will correspond to the terms, in either increasing or decreasing order of degree, <B>whichever is more convenient</B> for your implementation
+</UL>
+</BLOCKQUOTE>
+This is the first time we will be using <i>parameterized types</i>.  
+<BLOCKQUOTE>
+To specify a
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/util/LinkedList.html">LinkedList</a></KBD>
+of 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>s,
+you would say:
+<PRE>
+LinkedList&lt;Double&gt; list = new LinkedList&lt;Double&gt;();
+</PRE> 
+This informs Java that the type of objects stored in the list are 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>s.
+A 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>
+object is essentially the object version of the <KBD>double</KBD> type.  To see how
+it works, just click on its name in this lab description and you will be escorted to
+the API for
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>.
+<p>
+When you take an object from such a list, Java knows the object will
+be a 
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>.
+Java is reasonable about casting between <KBD>double</KBD> and
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>,
+so that the following code:
+<PRE>
+  double coeff = list.getFirst()
+</PRE>
+returns the first element in the <KBD>list</KBD>, but it is known to be of
+type
+<KBD><a href="http://java.sun.com/javase/7/docs/api/java/lang/Double.html">Double</a></KBD>.
+Java converts this automatically to <KBD>double</KBD> for you.
+</BLOCKQUOTE>
+<P>
+<HR>
+<H3>Description of the <KBD>Polynomial</KBD> type</H3>
+<p>
+<OL>
+<LI>The constructor creates a polynomial with no terms.  The value of
+such a polynomial is <KBD>0</KBD> at all points.
+<BLOCKQUOTE>
+The polynomial, with no terms added yet, presents a special case that you must
+treat properly in the methods for this ADT!  We will be testing for this when
+you demo.
+</BLOCKQUOTE>
+
+<P><LI>The method <code>toString</code> takes no parameters and
+returns a String representation of the polynomial.  For example,
+you might return something like
+<KBD>4x^0&nbsp;+&nbsp;-7x^1&nbsp;+&nbsp;0x^2&nbsp;+&nbsp;11x^3</KBD>
+as the result.
+<BLOCKQUOTE>
+If you want to be clever about <code>toString</code>, you can
+treat the constant term and the <KBD>x</KBD> term specially, returning
+<KBD>4&nbsp;+&nbsp;-7x&nbsp;+&nbsp;0x^2&nbsp;+&nbsp;11x^3</KBD>.
+If you want to be even more clever about <code>toString</code>, you can
+watch the signs and omit terms with a zero coefficient, returning
+something like  
+<KBD>4&nbsp;-&nbsp;7x&nbsp;+&nbsp;11x^3</KBD>&nbsp;
+instead. Even more betterer, show the high-order
+terms first, as in 
+<KBD>11x^3&nbsp;-&nbsp;7x&nbsp;+&nbsp;4</KBD>.
+</BLOCKQUOTE>
+
+<P><LI>The method <code>addTerm</code>
+takes a double as its parameter.  The result of the call is that
+the <KBD>Polynomial</KBD>. is modified to have a new higher-order term
+with the specified coefficient.
+<BLOCKQUOTE>
+The <KBD>Vector</KBD> class you wrote for <a href="../7/lab.html">lab 7</a>
+was immutable, so the operations on <KBD>Vector</KBD> always returned a new <KBD>Vector</KBD>
+and could not modify the existing one.
+<p>
+<B>Such is not the case here.</B>  Although the <KBD>LinkeList list</KBD> is declared <KBD>final</KBD> in
+<KBD>Polynomial</KBD>, methods can be called on <KBD>list</KBD>, including those that add things to the linked list. 
+It is the
+reference itself, <KBD>list</KBD>, that is <KBD>final</KBD> and cannot be modified to point to
+any other <KBD>LinkedList</KBD>.
+</BLOCKQUOTE>
+For convenience, the
+method return <KBD>this</KBD> so you can make subsequent calls on the same
+line.  For example,
+<PRE>
+Polynomial foo = new Polynomial();
+foo.addTerm(4).addTerm(-7).addTerm(0).addTerm(11);
+</PRE>
+could be used as a shorthand for
+<PRE>
+Polynomial foo = new Polynomial();
+foo.addTerm(4);
+foo.addTerm(-7);
+foo.addTerm(0);
+foo.addTerm(11);
+</PRE>
+to create the polynomial
+<KBD>4&nbsp;+&nbsp;-7x&nbsp;+&nbsp;0x^2&nbsp;+&nbsp;11x^3</KBD>.
+<BLOCKQUOTE>
+Even if I had not said the following already,
+the above example confirms that <KBD>Polynomial</KBD> must be mutable. 
+The longhand sequence would have no cumulative effect if each call returned
+a new <KBD>Polynomial</KBD>.
+</BLOCKQUOTE>
+
+<P><LI>The method <code>evaluate</code> takes a double value <em>x</em> as its
+parameter, and returns the double value of the polynomial at point <em>x</em>.
+For example, if the polynomial is
+<KBD>7&nbsp;+&nbsp;5x&nbsp;-&nbsp;2x^2&nbsp;+&nbsp;5x^3</KBD>,
+then <code>evaluate(2.0)</code> would return <KBD>49.0</KBD>.
+Use a <B>recursive</B> implementation of
+<A href="../../Notes/DataStructures/structures.html#horner">Horner's method</A>
+as the algorithm for evaluation.
+For example,
+<P>
+<center><KBD>7&nbsp;+&nbsp;5x&nbsp;-&nbsp;2x^2&nbsp;+&nbsp;5x^3</KBD>&nbsp;&nbsp;=&nbsp;&nbsp;<KBD>7&nbsp;+&nbsp;x(5&nbsp;+&nbsp;x(-2&nbsp;+&nbsp;x(5)))</KBD></center>
+<P>
+(Hint: Pass an Iterator as one parameter to a recursive helper procedure.)
+<BLOCKQUOTE>
+<B>
+To receive credit for this method,
+you <i>must</i> use recursion.
+</B>
+</BLOCKQUOTE>
+
+<P><LI>The method <code>derivative</code> takes no parameters and
+returns a <B>new</B> Polynomial that is the first derivative of this
+polynomial.  For example, if this polynomial is 
+<KBD>7&nbsp;+&nbsp;5x&nbsp;-&nbsp;2x^2&nbsp;+&nbsp;5x^3</KBD>,
+you would return a Polynomial object 
+representing the polynomial 
+<KBD>5&nbsp;-&nbsp;4x&nbsp;+&nbsp;15x^2</KBD>.
+<BLOCKQUOTE>
+If you have not studied calculus, point this out when you demo and you will
+not be held responsible for implementing this method.
+</BLOCKQUOTE>
+
+<P><LI>The method
+<code>sum</code> takes another Polynomial as its parameter and returns
+a <B>new</B> Polynomial that is the result of adding together the two
+polynomials.  It should return the correct result
+even if the two polynomials are of different degree.
+</OL>
+<HR>
+<BLOCKQUOTE>
+Be sure your work passes both the <KBD>PolynomialTest</KBD> and the
+<KBD>MorePolynomialTest</KBD> before you say you are ready to demo.
+</BLOCKQUOTE>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> You must demo the commited work to a TA.  Make sure the TA knows that
+your demo is for credit at this point.  
+<LI> Follow the directions below to have your demo for this work recorded.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:04 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab8">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab8a">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>
