@@ -1,0 +1,1216 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Input&nbsp;&amp;&nbsp;Output</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 4: Input&nbsp;&amp;&nbsp;Output</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Create an Instrument (6 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+We have seen how <a href="http://www.jimloy.com/physics/harmony.htm">
+sound can be represented as a summation of sine waves</a>.
+In this extension, you will process a description of an instrument, which
+specifies the relative intensities of that instruments
+<a href="">overtones</a>.  You will modify a copy of <KBD>PlayThatTune</KBD> so that
+the sound emitted for each note has the profile of the specified instrument.
+<H4>Warm Up</H4>
+<UL>
+ <LI> Update your repository and locate the <KBD>instrument</KBD> package
+in the <KBD>extensions</KBD> folder.  
+ <LI> You will find a copy of
+<KBD>PlayThatTune</KBD> in the <KBD>instrument</KBD> package, credited
+to Sedgewick's book, as this code is adpated from Sedgewick's <KBD>PlayThatTune</KBD>.
+  <LI> Run <KBD>PlayThatTune</KBD> and verify that it plays the music
+files correctly.
+</UL>
+<H4>Overview</H4>
+<UL>
+  <LI> For the purposes of this work, let's define a <I>frequency factor</I> as a multiplicative factor to be applied
+to a frequency <KBD>f</KBD>:
+<BLOCKQUOTE>
+In the example below, let's assume that <KBD>f</KBD> is 440&nbsp;Hz (cycles per second), which is concert A. On a piano, this is the
+A above middle C:
+<CENTER><IMG SRC="Extensions/a440.gif" WIDTH=350></CENTER>
+<UL>
+  <LI> a factor of <KBD>1</KBD> results in the same frequency as <KBD>f</KBD>, because <KBD>1*f==f</KBD>.
+  <LI> a factor of <KBD>2</KBD> yields a frequency <B>an octave higher</B> than <KBD>f</KBD>.
+<p>
+For this example, we obtain
+880&nbsp;Hz, which is the A above high C on a piano:
+<CENTER><IMG SRC="Extensions/a880.gif" WIDTH=350></CENTER>
+  <LI> a factor of <KBD>4</KBD> yields a frequency <B>two octaves higher</B> than <KBD>f</KBD>.  
+<p>
+Here we obtain
+1760&nbsp;Hz, an octave above the A above high C:
+<CENTER><IMG SRC="Extensions/a1760.gif" WIDTH=350></CENTER>
+  <LI> a factor of <KBD>3</KBD> is between one and two octaves higher, and it turns out to be one octave plus 
+a <a href="http://en.wikipedia.org/wiki/Perfect_fifth">just (or, pure) fifth</a>
+above
+the pitch corresponding to <KBD>f</KBD>.
+Here we obtain the frequency 1320&nbsp;Hz, which sounds like the E above high C.
+<CENTER><IMG SRC="Extensions/e3x.gif" WIDTH=350></CENTER>
+The sound is slightly different than on a piano, where the pitches are not perfect but are instead evenly spaced apart
+from each other.  The corresponding note on the piano has a frequency of 1318.51&nbsp;Hz, slightly flatter than
+what we get by our frequency factor.
+  <LI> a factor of <KBD>0.75</KBD> (ratio of 3:4) yields a note that sounds like an E, but dividing by 4 lowers its
+pitch by two octaves.   With <KBD>f</KBD> at concert A, a frequency factor of 3:4 yields a frequency of 330, whichsounds like the E above middle C:
+<CENTER><IMG SRC="Extensions/e34.gif" WIDTH=350></CENTER>
+Again, the pitch on a piano is slightly different;  in this case it
+is slightly flatter at  329.63.
+</UL>
+</BLOCKQUOTE>
+  <LI> It is thus convenient to specify a frequency factor as the ratio of
+two integers.  In the above examples we see 1:1, 2:1, 4:1, 3:1, and 3:4.
+  <LI> To build an actual instrument, we must pick the frequency factors we
+wish to hear, and specify how strong each should be.  The table below
+specifies such an instrument:
+<BLOCKQUOTE>
+<CENTER>
+<TABLE CELLPADDING=5>
+<THEAD>
+<TR> <TH COLSPAN=2> Frequency Factor</TH> <TH> Relative</TH></TR>
+<TR> <TH> Numerator </TH> <TH> Denominator</TH> <TH> Strength</TH></TR>
+</THEAD>
+<TR> 
+  <TD ALIGN=CENTER> 1</TD>
+  <TD ALIGN=CENTER> 1</TD>
+  <TD ALIGN=CENTER> 1</TD>
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> 2</TD>
+  <TD ALIGN=CENTER> 1</TD>
+  <TD ALIGN=CENTER> 0.75</TD>
+</TR>
+<TR> 
+  <TD ALIGN=CENTER> 3</TD>
+  <TD ALIGN=CENTER> 2</TD>
+  <TD ALIGN=CENTER> 0.50</TD>
+</TR>
+</TABLE>
+</CENTER>
+</BLOCKQUOTE>
+The first row is the fundamental frequency.  The second is an octave higher, and is 3/4 as strong as the fundamental frequency.  The third row specifies a
+pitch that is a fifth above the fundamental freqnecy, and quieter still at
+half the strength of the fundamental frequency.
+<p>
+The waveform that results from such an instrument specification is shown
+below in red, with the three frequency factors shown in black:
+<BLOCKQUOTE>
+<CENTER><IMG SRC="Extensions/instr.jpg" WIDTH=350></CENTER>
+<UL>
+<LI> The <FONT COLOR="red">red solid waveform</FONT> is literally the sum of the
+<FONT COLOR="black">black dotted waveforms</FONT>.  The 
+sound you produce is sampled from the red waveform, and that <B>is</B> the
+subject of this extension.
+<LI> The plot shown above is not the subject of this extension, but is shown
+to help explain how complex sounds are built from simple ones,
+as follows:
+<UL>
+<LI> The black waveform with the largest <a href="http://en.wikipedia.org/wiki/Amplitude">amplitude</a> (the tallest
+black waveform) is the fundamental frequency
+at relative strength 1.  The sample shown is for 1/440 of a second of a
+440&nbsp;Hz concert-A.  This is sufficient ot show one full cycle of the
+fundamental frequency.
+<LI>  The black waveform with the next largest amplitude has relative strength 0.75.  It is
+an octave higher, so it oscillates twice in the timespan of the
+fundamental pitch's waveform.
+<LI> The black waveform of smallest amplitude (at half the strength of
+the fundamental frequency) is the 3:2 frequency factor, which sounds
+like a fifth above the fundamental frequency.  As expected, it exhibits 
+1.5 cycles in the timespan of the fundamental pitch's waveform.
+</UL>
+<LI> The sound of the red waveform, which is what you will produce below, is
+similar to an oboe or a clarinet (in the opinion of my son).
+</UL>
+</BLOCKQUOTE>
+</UL>
+<H4>Procedure</H4>
+<OL>
+  <LI> First prompt the user for how many frequency factors the user wishes
+to specify.  In the above example, 3 such frequencies were used.
+  <LI> For each frequency factor, prompt the user for its
+<UL>
+  <LI> Numerator (an <KBD>int</KBD>)
+  <LI> Denominator (an <KBD>int</KBD>)
+  <LI> Relative strength (a <KBD>double</KBD>)
+</UL>
+<BLOCKQUOTE>
+The information about the frequency factors must be saved (in arrays)
+for future use.
+</BLOCKQUOTE>
+  <LI> The code in <KBD>PlayThatTune</KBD>, copied with attribution
+from <KBD>PlayThatTune</KBD>, reads in a file and computes a value
+in a variable called <KBD>hz</KBD> that is the fundamental frequency
+of the tune being played.
+<BLOCKQUOTE>
+The <KBD>hz</KBD> value is computed from concert A (440&nbsp;Hz), taking the specified
+number of equally spaced chromatic steps above (or below) concert A.
+<p>
+The relevant details, explained in the lecture slides for this module,
+are not necessary to complete this extension, but please ask if you would
+like clarification.
+</BLOCKQUOTE>
+<LI> Your task is to modify the assignment to the sample <KBD>a[i]</KBD> in
+the provided code:
+<CENTER><IMG SRC="Extensions/origformula.png" WIDTH=500></CENTER>
+The sine wave sampled and assigned there is for:
+<UL>
+ <LI>  the fundamental frequency (<KBD>hz</KBD>, shown in the red box) of the desired pitch
+  <LI> relative strength <KBD>1.0</KBD> (the result of the sine function call
+is implicitly multiplied by 1, shown at the red dot).
+</UL>
+<p>
+In place of that value, you must compute the sum of sine wave samples, one
+for each frequency factor, as follows:
+<UL>
+<LI> <KBD>a[i]</KBD> is initially zero.
+<LI> For each frequency factor
+<KBD>f<sub>k</sub></KBD>, add to <KBD>a[i]</KBD> a sample obtained
+as follows:
+<UL>
+<LI> 
+  The value passed to the sine function must be multiplied by the 
+frequency factor.  This means multiplying the red-boxed <KBD>hz</KBD> by the ratio of the
+numerator and denominator of the frequency factor.
+ <LI> The value returned from the sine function must be multiplied by the
+relative strength of the frequency factor.  This happens at the red dot.
+</UL>
+</UL>
+<LI> Test your program on the <KBD>A.txt</KBD> file first, which is a
+single note.  Then try <KBD>Ascale.txt</KBD> and some other songs.
+</OL>
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Draw a Sound Wave (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<H4>Warm Up</H4>
+To understand this extension, you should first be familiar with the 
+extension in which an instrument's sound is produced as the sum of
+sine waves.
+<p>
+You will modify your program further in this extension to produce the sine-wave
+plots that depict how sine-wave addition occurs.
+<p>
+The details of this assignment are not completely specified so that
+you must think through what is needed to produce meaningful plots.
+Ask for help as needed!
+<H4>Procedure</H4>
+<UL>
+<LI> An example of a plot is shown below:
+<CENTER><IMG SRC="Extensions/instr.jpg" WIDTH=350></CENTER>
+<UL>
+<LI> The black waveform with the largest <a href="http://en.wikipedia.org/wiki/Amplitude">amplitude</a> (the tallest
+black waveform) is the fundamental frequency
+at relative strength 1.  The waves shown are for 1/440 of a second of a
+440&nbsp;Hz concert-A.  This is sufficient ot show one full cycle of that
+fundamental frequency.
+<LI>  The black waveform with the next largest amplitude has relative strength 0.75.  It is
+an octave higher, so it oscillates twice in the timespan of the
+fundamental pitch's waveform, at 880&nbsp;Hz.
+<LI> The black waveform of smallest amplitude (at half the strength of
+the fundamental frequency) is 660&nbsp;Hz: the 3:2 frequency factor, which sounds
+like a fifth above the fundamental frequency.  As expected, it exhibits 
+1.5 cycles in the timespan of the fundamental pitch's waveform.
+<LI> The red waveform is the sum of the black ones.
+</UL>
+<LI> Each of the frequency factors incorporated into an instrument
+is shown separately by plotting dots of the curve as the values
+are computed.
+<LI> With frequencies on the order of hundereds or thousands of
+cycles per second, we must limit the time of the plot so that we
+can see one or two cycles clearly.
+<BLOCKQUOTE>
+Think about how many <B>samples</B> you need to capture to show
+one complete cycle at 440&nbsp;Hz.  
+<p>
+One way to reason about this is to use
+the units of the various computations and multiply or divide them to obtain
+the property you seek.
+</BLOCKQUOTE>
+<LI> Plot the individual waveforms using black dots, as shown above.
+<LI> Plot the summation waveform using red connected line segments, as shown
+above.
+</UL>
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions6">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Loud or Graphics-ful Bouncing Balls (2 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<H3>Extension points available for <a href="lab.html">Lab 4</a></H3>
+<BLOCKQUOTE>
+Trevor Larsen and Tyler Spinks submitted <a href="Extensions/cena.mp4">this video</a> for your amusement, as a demo of this extension.  It is based
+on the <I>John Cena Prank Call</I> <a href="https://www.youtube.com/watch?v=wRRsXxE1KVY" target="new">video</a>.
+</BLOCKQUOTE>
+<p>
+If you have added sound or pictures to your solution for 
+<a href="lab.html">Lab 4</a>, demo those to a TA and receive points for 
+this extension.
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions7">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Magic 8 Ball (7 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<BLOCKQUOTE>
+A video demonstrating my solution can be found <a href="Extensions/magic8ball.mp4">here</a>.
+</BLOCKQUOTE>
+<p>
+The <a href="http://en.wikipedia.org/wiki/Magic_8-Ball">Magic Eight Ball</a>
+is an autoresolution device. A question of <KBD>boolean</KBD> type is
+posed, the Magic Eight Ball is turned over, and it then displays its advice
+in a murky window.  It has resurfaced in other guises over the ages, most
+recently perhaps as <a href="http://spongebob.wikia.com/wiki/Magic_Conch_Shell"> The Magic Conch Shell</a> in the
+<a href="http://spongebob.wikia.com/wiki/Club_SpongeBob">Club SpongeBob</a>
+episode of 
+<a href="http://spongebob.wikia.com"> SpongeBob SquarePants</a>.
+<p>
+To receive credit for this extension, your implementation of the
+Magic 8 Ball must:
+<UL>
+  <LI> Repeatedly prompt the user for his or her question using <KBD>ArgsProcessor</KBD>.
+  <LI> Dramatically cause the answer to emerge in a (<KBD>StdDraw</KBD>)
+display, over a 2-5 second period, as follows:
+<UL>
+  <LI> Display the result in a triangular shape, such as shown
+<a href="http://www.indra.com/cgi-bin/spikes-8-ball"> here</a>. (Your solution
+will be much more dramatic as you include the following.)  Your triangle
+need not rotate.
+   <LI> Your rendering must fade the image from black to showing the
+triangle with text in a continuous manner, as the answer emerges.
+   <LI> Your rendering of the answer must cause the text go from blurry to
+sharp as the answer emerges.
+   <LI> Try to have a suitably eerie sound accompany your display. (not necessary
+for credit, but nice)
+
+</UL>
+</UL>
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions8">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext5"></a>
+<H2>Extension 5: Roving Eyes (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Ken Goldman
+</UL></DL>
+<BLOCKQUOTE>
+A video demonstrating my solution can be found <a href="Extensions/rovingeyes.mp4">here</a>.
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+This extension has been brought back from the 131 vaults, having originally
+been conceived by Ken Goldman, formerly a professor in our department and
+currently at Google.  In its new form, it has been rewritten to comform
+to Sedgewick's API.  Also, it does not make use of objects, so it can
+be offered as an extension at this point in the course.
+<p>
+Although the solution can be quite short (mine weighed in at approximately
+50 lines), there are some tricky aspects to this work, and it may be an
+extension that you work on over several weeks.
+<p>
+You will have to interact with the mouse, perhaps for the first time, both
+in terms of its location and determining whether the mouse has been pressed and
+released.  It will take patience to get this to work, but most students like
+the end result.
+</BLOCKQUOTE>
+<H4> The idea</H4>
+<UL>
+   <LI> Each time the mouse is clicked, an eyeball is deposited on the image.
+   <LI> Each eyeball consists of two parts:
+   <UL>
+      <LI> An outer filled circle that is white with a thin black border.  This part
+        of the eyeball does not move as the mouse moves around the screen.
+      <LI> An inner filled circle with of some color (mine are red, below).
+This part of the eyeball does move, so that the eyeball can appear to be
+looking at something.
+   </UL>
+   <LI> All eyeballs seem to look at the mouse, wherever the mouse moves within
+    the <KBD>StdDraw</KBD> window.
+</UL>
+<CENTER>
+<TABLE BORDER CELLPADDING=5>
+<TR> 
+<TD ALIGN=CENTER>
+<IMG SRC="Extensions/ken1.png" WIDTH=200>
+</TD>
+<TD ALIGN=CENTER>
+<IMG SRC="Extensions/ken2.png" WIDTH=200>
+</TD>
+<TD ALIGN=CENTER>
+<IMG SRC="Extensions/ken3.png" WIDTH=200>
+</TD>
+<TD ALIGN=CENTER>
+<IMG SRC="Extensions/ken4.png" WIDTH=200>
+</TD>
+</TR>
+<TR>
+<TD>This is the initial image you should draw. The picture can
+be found as <KBD>images/ken.jpg</KBD> in your workspace.
+</TD>
+<TD> Here, I have clicked over the image to deposit my first eyeball.
+The mouse (not shown) is to the right, so the eyeball is looking that way.
+</TD>
+<TD> Then I clicked a second time to deposit another eyeball, this time
+over the right eye shown in the image.
+<p>
+Both eyeballs are looking at my mouse, which is at the lower right (not shown).
+</TD>
+<TD>
+Each time I click the mouse, another eyeball is deposited, and all eyeballs
+continue looking at my mouse, wherever it happens to be.
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+<H4> Part 0: Initialize your application</H4>
+<UL>
+ <LI> Begin by drawing the picture in the image.
+ <LI> Prompt the user to specify the maximum number of eyeballs that
+      will be drawn.  This information is necessary so that you can
+      appropriately provision arrays needed to implement this extension.
+</UL>
+<BLOCKQUOTE> This code is included in your repository.  Open the
+<KBD>extensions</KBD> folder in which you will find the <KBD>eyeballs</KBD>
+package. Open and run the <KBD>Eyeballs</KBD> class.
+</BLOCKQUOTE>
+<H4> Part 1:  Detecting mouse clicks</H4>
+Most programs that interact with the mouse use a <I>listener</I> model that
+takes action when the mouse is moved, pressed, released, or clicked (a press
+and release action).
+<p>
+Unfortunately, in Sedgewick's API, we can only determine the current
+status of a mouse button as up or down.  We must then use logic and
+iteration to discover whether a mouse has been pressed, released, or 
+clicked.
+This low-level API for the mouse leads to
+some mixed feelings about how you are learning to interact with the mouse:
+<UL>
+  <LI> The code you write will not be typical of how most Java programs
+interact with the mouse.  The reason for this is that your work takes
+place in an infinite loop, slowed only by the use of <KBD>StdDraw.pause(n)</KBD>,
+which consumes resources on your computer even when you are not moving
+the mouse.
+  <LI> You are essentially <I>polling</I> the mouse as to whether it
+is up or down, and then using your own logic to determine whether
+it has been pressed, released, clicked, or dragged.  
+From a pedagogical perspective, you
+will learn how this kind of processing takes place at a low level on some
+computers.  You also learn how to track the <I>state</I> of an input device
+over time, and many applications require this kind of logic.
+</UL>
+<p>
+Following is a description of mouse actions as they are typically 
+used in most applications:
+<DL>
+ <DT> Mouse press
+ <DD> We think of this as a single push-down action on a mouse or trackpad.
+This action usually initiates some activity in applications.  
+<BLOCKQUOTE>
+From an application's point of view,
+this event
+happens just once when the mouse is pushed down.  Generation of another mouse
+press action would require the mouse to be released, and then pressed again.
+</BLOCKQUOTE>
+
+  <DT> Mouse release
+ <DD> If a mouse has been pressed, then it can be released.  Some applications
+distinguish between the press and release, so that the mouse can move between
+those actions.  This is sometimes called <I>dragging</I> the mouse.
+  <DT> Mouse click
+  <DD> While this is a compound action, consisting of a mouse press
+followed by a mouse release, it is usually treated as an atomic action that
+takes place at exactly one coordinate.  The release also happens within some
+reasonable timeframe of the press, if the press and release are to be
+construed as a click.
+</DL>
+<BLOCKQUOTE> The above mouse actions are the logical ones that we wish
+to implement.  Actually, it suffices for this extension to
+determine only a mouse release, but you are welcome to think about how to
+discover the other actions.
+</BLOCKQUOTE>
+<p>
+The Sedgwick API offers only the following interface, which
+we must use in our application to simulate the above mouse actions.
+<DL>
+  <DT> <KBD>double mouseX()
+  <DD> returns the x-coordinate of the mouse, expressed in terms of
+the coordinates of the <KBD>StdDraw</KBD> canvas.
+
+  <DT> <KBD>double mouseY()
+  <DD> returns the y-coordinate of the mouse, expressed in terms of
+the coordinates of the <KBD>StdDraw</KBD> canvas.
+
+  <DT> <KBD>boolean mousePressed()
+  <DD> A better name for this would be <KBD>boolean isMouseDown()</KBD>, because
+this method does not detect a mouse press in the standard view of mouse
+actions.  Instead it simply reports whether the mouse button is currently 
+pressed or not.
+</DL>
+<p>
+Your task is to simulate a mouse-click action using the above API.  
+This will inevitably involve <I>polling</I> the mouse as to whether the
+button is down or up.  Consider the following code:
+<PRE>
+while (!StdDraw.mousePressed()) {
+    // do nothing, 
+    // we are waiting for the mouse button to go down  
+    //
+    // The line below is important, as described below
+    //
+    StdDraw.show(50);
+}
+</PRE>
+<UL>
+  <LI> Without the pause using <KBD>StdDraw.show(50)</KBD>, this application 
+would run in a <I>tight</I> loop
+that would always keep your computer busy, even if you are not interacting
+with the application.   As a result, all of the other applications open on your
+computer would suffer from not getting sufficient CPU resources to be
+reponsive.  These applications would appear to behave sluggishly.
+  <LI> Sedgewick uses the pause intervals to hide updates that you make to
+       the drawing canvas.   Between calls to show, no updates are shown.
+       At the call to show, the screen is redrawn, and the CPU is released
+       for the specified period of time (50 milliseconds in the above code).
+</UL>
+<BLOCKQUOTE>
+Make sure your eyeballs are depositing properly as you mouse-click before
+you move on to implement more features.
+</BLOCKQUOTE>
+<H4> Part 2: Following the mouse movement</H4>
+<p>
+A pupil within an eyeball tracks objects using the geometry of similar
+triangles.  The following diagram and discussion may be useful.
+<CENTER>
+<IMG SRC="Extensions/eyeball.png">
+</CENTER>
+<UL>
+ <LI> The eyeball is centered at <KBD>(ex,ey)</KBD> and is looking at the
+    object (the mouse) at <KBD>(mx,my)</KBD>.  
+This leads to the following equations:
+<UL>
+  <LI> <KBD>mx = ex + dx</KBD>
+  <LI> <KBD>my = ey + dy</KBD>
+</UL>
+<LI> Knowing <KBD>(ex,ey)</KBD> and <KBD>(mx,my)</KBD>, we can solve
+for <KBD> dx</KBD> and <KBD>dy</KBD>.
+<LI> Knowing <KBD>dx</KBD> and <KBD> dy</KBD>, we can 
+compute <KBD>d</KBD> using the distance formula.
+<LI>  We know <KBD>p</KBD>, because it is the radius of the eyeball minus
+the radius of the pupil.  This may be hard to see, but convince yourself
+of this by looking carefully at the figure.
+<LI> The green triangle is similar to the large triangle.
+<LI> Knowing <KBD> p </KBD>  and <KBD>d</KBD>, we can compute their ratio.
+<LI> That same ratio describes 
+<KBD>px</KBD>:<KBD>dx</KBD>
+<KBD>py</KBD>:<KBD>dy</KBD>.
+<LI> From those ratios we can compute <KBD> px</KBD> and <KBD> py</KBD>.
+<LI> Knowing <KBD>(ex,ey)</KBD>, <KBD>px</KBD>, and <KBD>py</KBD>, we can
+compute the center of the red pupil as <KBD>(ex+px,ey+py)</KBD>.
+</UL>
+<H4>Putting it all together</H4>
+Your code is like the bouncing ball code, in that it enacts a sequence
+of frames.  Each frame consists of checking whether and where a new eyeball
+should be deposited.  Moreover, all existing eyeballs must be updated so
+that they appear to be tracking the mouse as it moves through the window.
+<p>
+Give yourself time for this extension, and develop and test the aspects
+in the order described above.
+
+<a name="extdemo5"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.5</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.5">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions9">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 5</H3><HR NOSHADE SIZE=10><p>
+<a name="ext6"></a>
+<H2>Extension 6: Roving Eyes; Slow Motion Edition (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+  <LI> Ken Goldman
+</UL></DL>
+<BLOCKQUOTE>
+<UL>
+<LI> 
+We suggest that you wait until you have completed module 5 to do this extension, as the information in module 5 will help. 
+<LI> A video demonstrating a solution can be found <a href="Extensions/slowrovingeyes.mp4">here</a>.
+</UL>
+</BLOCKQUOTE>
+To do this extension, you must first complete the one above and successfully
+demo it.  Then you can earn the points for this extension by causing the
+eyes to move slowly from where they were looking to where they should be
+looking.
+
+<BLOCKQUOTE>
+You are not allowed to do this by slowing the simulation down. Instead, you
+must smoothly vary where the eyes should look in the normal speed of the
+simulation.
+</BLOCKQUOTE>
+
+<a name="extdemo6"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions0">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 6</H3><HR NOSHADE SIZE=10><p>
+<a name="ext7"></a>
+<H2>Extension 7: Web Scraper (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Fede Rozenberg
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<H4>Intro</H4>
+<p> <a href="https://en.wikipedia.org/wiki/Web_scraping">Web scrapers</a> are programs that search websites and scrape off useful data. 
+You will write a web scraper in this assignment that looks for weather
+information in a zip code of interest.  There are two ways to go about this:
+<UL>
+<LI> The result of accessing a web URL is a stream of text which
+you can receive a a Java <KBD>String</KBD>.  You can scan
+that <KBD>String</KBD> for information of interest.  In this approach, you
+search for features that delimit the area of interest, and trim the <KBD>String</KBD>
+to extract data of interest.
+<LI> A library has been developed
+for Java called <KBD><a href="http://jsoup.org/">jsoup</a></KBD> that allows 
+direct interaction with a website's HTML.  This library regards a web document
+in terms of its structure.  You use methods from this library to navigate to
+the part of the web page that is of interest.
+</UL>
+<DL>
+ <DT> URLs and web sites
+ <DD> <UL>
+  <LI> Watch <a href="Extensions/scraping1.mp4">this video</a> which
+demonstrates how URLs are used in the 
+<KBD><a href="http://www.wunderground.com/" target="weather">http://www.wunderground.com/</a></KBD>
+web site.
+  <LI> We have to 
+<a href="https://en.wikipedia.org/wiki/Reverse_engineering">reverse engineer</a>
+how that web site uses URLs to request zip-code-specific weather information.
+<BLOCKQUOTE>
+<a href="https://en.wikipedia.org/wiki/Reverse_engineering">Reverse engineering</a> skills are useful skills and can serve you well.
+</BLOCKQUOTE>
+<UL>
+<LI> After watching the video, visit the 
+<KBD><a href="http://www.wunderground.com/" target="weather">http://www.wunderground.com/</a></KBD> site
+<LI> Take a look around for a bit to see what is offered there
+<LI> Type into the field <KBD>Search Locations</KBD>  some zip code of interest
+to you.  Examples might include
+<UL>
+  <LI> <KBD><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=63130" target="weather">63130</a></KBD> for Washington University
+  <LI> <KBD><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=80424" target="weather">80424</a></KBD> for Breckenridge, Colorado
+  <LI> <KBD><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=10598" target="weather">10598</a></KBD> for Yorktown Height, New York
+</UL>
+<LI> Observe that when you submit your request, you are taken to
+a web page whose URL is different from the home page for the site.
+</UL>
+  <LI> Try editing the URL in your browser to find weather information
+for a different zip code of interest to you.
+  <LI> For one or more of the pages you reach, view the source of that
+web page in your browser, as you saw in the video.
+<BLOCKQUOTE>
+Browsers vary in how they allow you to see the page source.  If you are on
+the web page of interest, try control- (right-) clicking and one option you
+should see should resemble <KBD>View Page Source</KBD>.
+<p>
+If you are lost, try <a href="http://www.google.com">Googling</a> for how
+to view page source in your browser.
+</BLOCKQUOTE>
+  <LI> Try to locate the text within the page source that corresponds to
+the temperature report.  In the video, this was found near the
+string <KBD>curTemp</KBD> in the source.
+</UL>
+  <DT> Simple use of <KBD>jsoup</KBD>
+  <DD>
+<UL>
+  <LI> Watch <a href="Extensions/scraping2.mp4">this video</a> which
+shows how to supply <KBD>jsoup</KBD> with  a URL within Java.
+  <LI> The result of that interaction is a <KBD>String</KBD>.
+</UL>
+</DL>
+In this assignment, you will process the text yourself after getting the
+document's text using <KBD>jsoup</KBD>.  You could use methods in <KBD>jsoup</KBD>
+to isolate what you need, but you can explore that on your own.
+<p>
+<H4>Procedure</H4>
+<UL>
+  <LI> Find and open the <KBD>Weather</KBD> class in the <KBD>scraping</KBD>
+project of your <KBD>extensions</KBD> folder.
+  <LI> That code is what you saw on the video, with comments added
+to direct your work.
+  <LI> Your task is essentially to isolate the temperature data and some
+other statistic from the source text of the web page.
+<BLOCKQUOTE>
+<UL>
+<LI>
+What makes this difficult is that the author of the web page doesn't know
+you want to find this information.  
+<LI>You have to look at the web page yourself
+to find distinguishing features of the page near where you want to extract
+information.
+<LI> Worse still, the author of that web page is not obligated to keep the
+information you see in future versions of that web page.  Scraping is a
+dodgy effort at best, and you may have to revise your code in response to
+changes made by the author of the pages you scrape.
+</UL>
+</BLOCKQUOTE>
+<LI> It will be helpful to use some methods from the
+<KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a></KBD>
+class.  The following describes some of those methods, assuming they
+are called on a target <KBD>String t</KBD>.
+<BLOCKQUOTE>
+<DL>
+  <DT> <KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#indexOf%28java.lang.String%29" target="doc">
+int indexof(String str)
+</a></KBD>
+  <DD> Finds the location of the specified <KBD>str</KBD> in <KBD>t</KBD>.
+  <DT> <KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#substring%28int%29" target="doc">
+String substring(int beginIndex)
+</a></KBD>
+  <DD> Returns a new <KBD>String</KBD> that is copied from <KBD>t</KBD>, starting
+at the supplied <KBD>beginIndex</KBD>.
+  <DT> <KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#substring%28int,%20int%29" target="doc">
+String substring(int beginIndex, endIndex)
+</a></KBD>
+  <DD> Returns a new <KBD>String</KBD> that is the substring of <KBD>t</KBD>, starting
+at the supplied <KBD>beginIndex</KBD>, up to but not including <KBD>endIndex</KBD>.
+</DL>
+</BLOCKQUOTE>
+</UL>
+<H4>Demo</H4>
+<UL>
+  <LI> Complete the code as instructed in the comments.
+  <LI> Your output must include the current temperature and some other
+statistic of interest from that same web page.
+  <LI> Show the output to your TA.
+</UL>
+
+<a name="extdemo7"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.7</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.7">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions1">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 7</H3><HR NOSHADE SIZE=10><p>
+<a name="ext100"></a>
+<H2>Extension 100: Nutrition Again (C++) (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<p>For this extension you will re-use your nutrition code from Lab 1, and potentially the C++ code you wrote from the similar extension. The difference is that this time instead of writing the information to terminal, you will use a file to write out the nutrition info and the analysis. You will then demonstrate your ability to read back in that file.
+<blockquote>By completing this work, you  demonstrate that you can:</p>
+<ul>
+  <li>Utilize the input/output features of C++</li>
+  <li>Incorporate new headers into existing work</li>
+  <li>Produce meaningful output based on your computations</li>
+</ul></blockquote>
+<p>
+ 
+<p><strong>Procedure</strong></p>
+<ol>
+  <li>	First, create a <kbd>nutritionFSteam</kbd> C++ source and header file in the
+<KBD>nutrition</KBD> package of the <KBD>extensions</KBD> source folder.
+  <li>Think about the information you need to write to the file, where you want white space, or where you do not.
+  You should also think about which <b>Data Type</b> you should use for your information in order to write them out correctly. </li>
+  <li>Consider making it as simple as possible to avoid unnecessary coding when you read it back in.</li>
+  </ol>
+
+<p>You will need to prompt the user for inputs just as before and calculate the same boolean values and caloric values</p>
+
+<p>You will need to initailize a <KBD>ofstream</KBD> which stands for output file stream</p>
+
+<p>You will also need to initialize a <KBD>ifstream</KBD> which stands for input file stream</p>
+
+<p>Arrange for your program to produce output such that:</p>
+<ul>
+  <li>It prompts the user for nutritional data from food</li>
+  <li>It prompts the user for a file name to save under</li>
+  <li>It writes out the file correctly, and read's in the file correctly</li>
+</ul>
+
+
+<b>Finally, your program should print the same exact information as it did before, but this time reading it from your file stream
+rather than printing them out from your code directly. </b>
+<p>&nbsp;</p>
+
+<a name="extdemo100"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 4.100</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="4.100">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions4">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 100</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

@@ -1,0 +1,174 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <title> Video for Modules</title>
+		<style type="text/css">
+		#player {
+			 background:#000;
+			 padding:10px;
+			 width:640px; /*this should equal the width of the video you're using*/
+			 margin:0 auto;
+			 -webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+							 border-radius: 10px;
+		}
+		#player video {
+			 width:640px; /*this will change the width of the video*/
+		}
+		/*below is the styling for the playlist*/
+		#playlist {
+			 background:#333;
+			 list-style:none;
+			 padding:0;
+			 margin:0; 
+			 width:640px;
+		}
+		#playlist h1 {
+			 font: 24px Arial, Helvetica, sans-serif; 
+			 color:#fff; 
+			 font-weight:bold;
+			 padding:5px 2px;
+			 margin:0;
+		}
+		#playlist a {
+			 color:#eeeedd;
+			 background:#333;
+			 padding:10px 5px;
+			 display:block;
+			 text-decoration:none;
+			 border-bottom:1px solid #222;
+		}
+		#playlist a:hover {
+			 text-decoration:none; 
+			 background:#999;
+			 color:#000;
+		}
+		</style>
+
+    <style>
+        .moduleNavigation button{
+            background-color: #4863A0;
+            border: none;
+            color: white;
+            padding: 8px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .moduleNavigation button:hover{
+            background-color: #2B3856;
+        }
+        /*hightlight button*/
+        .moduleNavigation button:focus{
+            background-color: #2B3856;
+        }
+        /*navigation bar*/
+        #moduleNavigation{
+            background-color: #4863A0;
+        }
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id='module'>
+
+    <div class="moduleNavigation" id='moduleNavigation'>
+        <button id='moduleVideo'> Video </button>
+        <button id='moduleStudio'> Studio </button>
+        <button id='moduleLab'> Lab </button>
+    </div>
+
+    <div id='moduleContent'>
+			<div id="player">
+				 <video controls="controls" width="640" height="360" preload="auto" autoplay>
+						<source src="../../resources/module1/LaVieEnRose.mp4" type="video/mp4" />
+				 </video>
+				 <div id="playlist">
+						<h1>Videos</h1>
+						<a href="../../resources/module1/LaVieEnRose.mp4">La Vie En Rose</a>
+						<a href="../../resources/module1/EggFried.mp4">Egg Fried</a>
+						<a href="../../resources/module1/StickyRibs.mp4">Sticky Pork Ribs</a>
+				 </div>
+			</div>
+    </div>
+
+
+</div>
+</body>
+
+<script>
+   //Ensure all links in the div "#player" act in the same way:
+   var video_playlist = document.getElementById("player");
+   var links = video_playlist.getElementsByTagName('a');
+   for (var i=0; i<links.length; i++) {
+      links[i].onclick = handler;
+   };
+   //Give functionality to the links:
+   function handler(e) {
+      e.preventDefault(); //Prevents default action of links going directly to the source file
+      videotarget = this.getAttribute("href"); //looks at the filename in the link's href attribute
+      filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget; //Splits the filename and takes everything before the ".", giving us just name without the extension
+      video = document.querySelector("#player video"); //Finds div #player and video
+      video.removeAttribute("poster"); //Removes the poster attribute in the video tag
+      source = document.querySelectorAll("#player video source"); //Finds source elements inside the video tag
+      source[0].src = filename + ".mp4"; //defines the MP4 source
+      video.load(); //Loads video when video is selected
+      video.play(); //Plays video automatically
+   };
+
+function getVideos(event){
+	var path= "../../resources/module1/";
+	//the full path is ~/public_html/131website/resources/module1
+	//TODO: make this dynamic, this is not just for 1 module
+	
+	var dataString = path;
+ 
+	var xmlHttp = new XMLHttpRequest(); 
+	xmlHttp.open("POST", "getVideos.php", true); 
+	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+	xmlHttp.addEventListener("load", function(event){
+		var jsonData = JSON.parse(event.target.responseText); 
+		if(jsonData.success){  
+			var names= json.names;
+			for (var name in names){
+				//TODO: populate the videos into the playlist
+			}
+		}else{
+			alert("You were not Registered.  "+jsonData.message);
+		}
+	}, false); 
+	xmlHttp.send(dataString); 
+}
+
+function clickOnModuleNavigation(){
+    var content= document.getElementById('moduleContent');
+    var player= document.getElementById('player');
+
+    //content.innerHTML="";
+
+    // Show content
+    switch (this.id){
+        case "moduleVideo": 
+				{
+					break;
+				}
+
+        case "moduleStudio": content.innerHTML='<object type="text/html" data="studio.html" width="100%" height="90%"></object>'; break;
+        case "moduleLab": content.innerHTML='<object type="text/html" data="lab.html"  width="100%" height="90%"></object>'; break;
+        default: break;
+    }
+}
+
+</script>
+<script type='text/javascript'>
+    document.getElementById('moduleVideo').addEventListener('click', clickOnModuleNavigation, false);
+    document.getElementById('moduleStudio').addEventListener('click', clickOnModuleNavigation, false);
+    document.getElementById('moduleLab').addEventListener('click', clickOnModuleNavigation, false);
+		$(document).ready(function(){
+			document.getElementById('moduleVideo').click();
+		});
+</script>
+</html>

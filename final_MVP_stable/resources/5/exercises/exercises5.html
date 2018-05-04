@@ -1,0 +1,93 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Methods</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H3>Exercises</H3>
+<BLOCKQUOTE>
+These exercises are part of the asynchronous component of this course.
+Material is taught and demonstrated, but at times you are asked to complete
+one of the exercises to help you master the new concepts.
+<p>
+In the repository you are using for this course, look inside the
+<KBD>exercises</KBD> source folder, and you will see assignments organized
+by name.  Before continuing on to the next portion of the asynchronous material,
+spend some time on the exercise.  When you are finished, commit your code
+so that credit for the exercise can be given.
+<p>
+It is not so important that you get the exercise exactly right.  It is
+important to work through it as best you can before you look at the
+solution or continue with other work in this module.
+</BLOCKQUOTE>
+<HR>
+<a name="exer1"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Cooking abstractions</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>Recipe</KBD> Java program in the <KBD>exercises5</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+  <LI> For the work below, enter your work into that file.
+</UL>
+In the introductory video for this exercise, you heard the
+following recipe excerpt:
+<UL>
+<LI> Heat 200 cc water to 100 degrees
+<LI> Stir in 5 grams of yeast
+<LI> Melt butter and stur in the vanilla with the butter
+<LI> After 5 minutes, combine yeast with butter, sugar, and flour
+<LI> Place the mixture in a 110 degree oven to rise for 45 minutes
+<LI> Divide the mixture into 10 equally sized portions and cook for
+45 minutes at 350 degrees
+</UL>
+Define abstractions present in the above recipe.  Rephrase the
+recipe in terms of your abstractions.
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer2"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Exercises:  writing methods</H3>
+<H4>Instructions</H4>
+<UL>
+  <LI> Find and open the <KBD>StringMethods</KBD> Java program in the <KBD>exercises5</KBD> package
+  of the <KBD>exercises</KBD> source folder.
+  <LI> Write the methods described below into the program.
+  <LI> Call those methods from the <KBD>main</KBD> method and print out the
+    results to check that your work is correct.
+  <LI> The first method is completed for you already.
+</UL>
+The methods you should write:
+<UL>
+  <LI> A method that takes in a <KBD>String</KBD> and returns that string
+     concatenated with itself.  <EM>This one is completed for you.</EM>
+ <LI> A method that takes in a <KBD>String</KBD> and an <KBD>int</KBD> <EM>n</EM>, and returns <EM>n</EM> cpies of the string concatenated together
+  <LI> Now go back and rewrite your first method by having it call the second
+one.
+  <LI> Take a look at Java's <KBD><a href="">split</a></KBD> method, that
+splits a <KBD>String</KBD> into an array containing the parts split by the
+specified regular expression.
+<BLOCKQUOTE>
+Here, assume the regular expression is simply <KBD>" "</KBD>, so that the
+input <KBD>String</KBD> is split into words.
+</BLOCKQUOTE>
+  <LI> Write a method <KBD>join(String[] array, String joiner)</KBD> that
+is the inverse of split: it returns a single <KBD>String</KBD> with a copy
+of the <KBD>joiner</KBD> string between each part.
+  <LI> Rewrite your second method in terms of this last one.  To do this,
+create an array that has <EM>n</EM> copies of a given <KBD>String</KBD>, and
+then use your <KBD>join</KBD> method to concatenate them.
+<BLOCKQUOTE>
+Think about the string you want to appear between the copies, so that
+it appears the strings were concontenated together as before.
+</BLOCKQUOTE>
+</UL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+</BODY>
+</HTML>

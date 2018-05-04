@@ -1,0 +1,45 @@
+<label> Enter module name: </label>
+<input type="textfield" id="module_name" value="module1"/>
+<br>
+<label for="uploadfile_input">Choose a file to upload:</label> <input name="uploadedfile" type="file" id="uploadfile_input" />
+<button id='upload_video'> Upload Video</button>
+<button id='upload_lab'> Upload Lab</button>
+<button id='upload_studio'> Upload Studio</button>
+
+<!-- show the list off videos in module!-->
+<p>List of Video Files</p>
+<div id="video_list">
+</div>
+<button id='delete_video'> Delete </button>
+<br>
+
+<!-- show the list off labs in module!-->
+<p>List of Lab Files</p>
+<div id="lab_list">
+</div>
+<button id='delete_lab'> Delete </button>
+<button id='edit_lab'> Edit Lab </button>
+<br>
+
+<!-- show the list off studios in module!-->
+<p>List of Studio Files</p>
+<div id="studio_list">
+</div>
+<button id='delete_studio'> Delete </button>
+<button id='edit_studio'> Edit Studio </button>
+<br>
+
+<!--watch Video -->
+<p> Video Name</p>
+<input id='video' value='EggFried.mp4'/>
+<button id='watch_video'> Watch Video</button>
+
+<!--go to Lab-->
+<p> Lab Name</p>
+<input id='lab' value='lab0'/>
+<button id='check_lab'>Check Lab Grade</button>
+
+<!--javascript and jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="upload.js"></script>
+<script src="progress.js"></script>

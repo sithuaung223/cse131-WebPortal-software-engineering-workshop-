@@ -1,0 +1,487 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: ADTs</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 8: ADTs</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI class="active"><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Exercises</H3>
+<BLOCKQUOTE>
+These exercises are part of the asynchronous component of this course.
+Material is taught and demonstrated, but at times you are asked to complete
+one of the exercises to help you master the new concepts.
+<p>
+In the repository you are using for this course, look inside the
+<KBD>exercises</KBD> source folder, and you will see assignments organized
+by name.  Before continuing on to the next portion of the asynchronous material,
+spend some time on the exercise.  When you are finished, commit your code
+so that credit for the exercise can be given.
+<p>
+It is not so important that you get the exercise exactly right.  It is
+important to work through it as best you can before you look at the
+solution or continue with other work in this module.
+</BLOCKQUOTE>
+<HR>
+<a name="exer1"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Thinking about how to use lists</H3>
+You do not write code in this exercise.  Instead, consider each numbered
+question below and write down some responses that come to mind.
+You are at this point quite new to lists, so take your time and try to think
+of the best responses you can.
+<BLOCKQUOTE>
+To record your work here, create and edit a new Java
+class <KBD>ThinkingAboutLists</KBD> in the
+<KBD>exercises8</KBD> package of your <KBD>exercises</KBD> folder.
+You can enter the text in comments there.
+</BLOCKQUOTE>
+<OL>
+  <LI> What are some examples of lists?  In the introductory video, I spoke
+about a list of books that I read this summer and a list of temperature
+readings.  Those might be declared ast <KBD>List&lt;String&gt;</KBD> and
+<KBD>List&lt;Double&gt;</KBD>, respectively.  The <KBD>String</KBD> could
+repesent the title of each book I read, and the <KBD>Double</KBD> could represent
+each temperature reading.
+<p>
+Think of possible applications of the other two types of lists covered in
+the video:
+<UL>
+  <LI> <KBD>List&lt;Color&gt;</KBD>
+  <LI> <KBD>List&lt;Account&gt;</KBD>
+</UL>
+For each of the above, try to find an example where at least one of the
+following is true:
+<UL>
+  <LI> The order of elements in the list is important.
+  <LI> There can be duplicates in the list.
+</UL>
+<LI> Suppose we spin a 
+<a href="https://en.wikipedia.org/wiki/Roulette">Roulette </a>
+wheel some number of times, and we must report 
+the numbers that show on the wheel when it stops.  Note that:
+<UL>
+  <LI> The same number may appear multiple times.
+  <LI> The order of the numbers' appearance is important.
+</UL>
+Thus, we need a <KBD>List&lt;?&gt;</KBD>, but what type of element
+should be in this list?
+<LI> Can you think of a problem where having <KBD>List&lt;Boolean&gt;</KBD>
+would be useful?
+<LI> Suppose we have some kind of a <KBD>List</KBD>.  What kinds of operations
+might we want to perform on that <KBD>List</KBD>?
+</OL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer2"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Use a <KBD>List&lt;String&gt;</KBD></H3>
+Let's try using the code from the end of the video.  
+If you get stuck, look at the solution video, but only as far as it takes
+you to get unstuck, then try going forward on your own again.
+<p>
+To get started, open the <KBD>UsingLists</KBD> class in the <KBD>exercises8</KBD>
+package of the <KBD>exercises</KBD> folder.
+<p>
+Some important points:
+<UL>
+  <LI> We declare the list using the abstract type <KBD>List</KBD>.
+  <LI> We instantiate it using a concrete type, such as <KBD>LinkedList</KBD> or
+<KBD>ArrayList</KBD>.  
+<BLOCKQUOTE>
+For now, use <KBD>LinkedList</KBD>.
+</BLOCKQUOTE>
+  <LI> Eclipse will say it doesnt know what those types are.  You have to
+mouse-over the offensive code and allow eclipse to suggest what you should
+do.
+<BLOCKQUOTE>
+The classes you want are found in <KBD>java.util</KBD> so be sure to
+choose those.
+</BLOCKQUOTE>
+ <LI> The <KBD>List</KBD> needs a type parameter, which in this
+case should be <KBD>String</KBD>.
+ <LI> Using your list, add the following:
+  <UL>
+   <LI> <KBD>"open mouth"</KBD>
+   <LI> <KBD>"insert food"</KBD>
+   <LI> <KBD>"chew"</KBD>
+   <LI> <KBD>"chew"</KBD>
+   <LI> <KBD>"swallow"</KBD>
+  </UL>
+  <LI> Print the list and verify that it's right
+  <LI> Add some more things to the list and print it again
+  <LI> Delete one thing and print it again
+</UL>
+Once you are done, change the implementation from <KBD>LinkedList</KBD> to
+<KBD>ArrayList</KBD>, and verify that you see no difference in the program's
+behavior (this part is not on the video).
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer3"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Investigating the <KBD>Set</KBD> interface</H3>
+Often in designing or writing software, it helps to use code that
+others have written.  We have done exactly that with the <KBD>List</KBD>
+interface and its <KBD>LinkedList</KBD> implementation.
+<p>
+In this exercise you will investigate the <KBD>Set</KBD> interface 
+using <a href="https://en.wikipedia.org/wiki/Javadoc">Javadoc</a> documentation.
+You will then write code to use the <KBD>Set</KBD> interface via its
+<KBD>HashSet</KBD> implementation, and observe what happens with
+the <KBD>eating</KBD> example from <a href="#exer2">the previous
+exercise</a>.
+<BLOCKQUOTE>
+You will no doubt find some of the documentation confusing, as it refers to
+concepts we have not studied.  Nonetheless, browsing such documentation is
+commonplace at all levels when searching for code that may be of use as
+you develop software.
+<p>
+Try to skim over the confusing parts to pick up the essential parts of
+the documentation:
+<UL>
+  <LI> What methods does this interface or class offer?
+  <LI> What parameters do those methods need?
+  <LI> What kind of return result can be expected?
+</UL>
+The methods are listed alphabetically, which does not necessarily 
+cover the most important methods first.  Skim to get what you need.
+</BLOCKQUOTE>
+<OL>
+  <LI> Browse
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html" target="doc">this documentation</a> 
+for the
+<KBD>Set</KBD> interface.
+<UL>
+  <LI> Find methods that resemble those you used for <KBD>List</KBD>.  
+<BLOCKQUOTE>It is
+no accident that the same methods are here:  Java implements its
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html" target="doc">collection objects</a> with great consistency.
+</BLOCKQUOTE>
+<p>
+Can you find the Javadoc documentation for the <KBD>List</KBD> interface
+on your own, using <a href="http://www.google.com" target="doc2">Google</a>?
+<BLOCKQUOTE>
+Such documentation is usually found by searching for the fully qualified
+class, as: <KBD>java util list</KBD>.
+</BLOCKQUOTE>
+  <LI> Remind yourself of the differences between a <KBD>Set</KBD> and
+a <KBD>List</KBD>:
+  <UL>
+     <LI> Order is important in a <KBD>List</KBD>.  The elements of a
+<KBD>Set</KBD> occur in no particular order.
+     <LI> A <KBD>List</KBD> can have duplicates.  Attempts to add an already
+present element to a <KBD>Set</KBD> do not succeed.
+  </UL>
+</UL>
+<LI> In the
+<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html" target="doc">documentation</a>,
+find the list of <B>All Known Implementing Classes</B>.  All of these
+implement the <KBD>Set</KBD> interface, but:
+<UL>
+  <LI> The method of implementation will vary
+  <LI> The performance of the implementation will vary
+  <LI> Some implementations may <I>exceed</I> the <KBD>Set</KBD> interface
+by offering additional functionality. 
+</UL>
+<LI> Browse the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/HashSet.html" target="doc">documentation</a> for <KBD>HashSet</KBD>, an
+implementation of the <KBD>Set</KBD> interface.
+<LI> Open the <KBD>UsingSet</KBD> class of the <KBD>exercises8</KBD> package
+in the <KBD>exercises</KBD> folder.
+<UL>
+  <LI> Copy and paste the code from <KBD>UsingList</KBD>, but change
+the type of the collection
+  <UL>
+     <LI> from <KBD>List</KBD> to <KBD>Set</KBD>
+     <LI> from <KBD>LinkedList</KBD> to <KBD>HashSet</KBD>
+  </UL>
+</UL>
+</OL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer4"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Generating <KBD>hashCode</KBD> and <KBD>equals</KBD> for an object you design</H3>
+In this exercise, you use eclipse to <I>auto-generate</I> useful parts of
+a class.  Try this on your own, but as you need help, run the solution
+video only as far as necessary for you to move forward again on your own.
+<OL>
+ <LI> Find and open the <KBD>Point</KBD> class in the <KBD>exercises8</KBD>
+package of the <KBD>exercises</KBD> folder.
+ <LI> Based on the comment you see there concerning <i>has-a</i>, declare
+the instance variables for this class,
+calling them <KBD>x</KBD> and <KBD>y</KBD>.
+ <LI> Auto-generate the constructor by choosing
+<KBD>Source</KBD> and then <KBD>Generate Constructor using Fields&hellip;</KBD>.
+ <LI> Choose the fields <KBD>x</KBD> and <KBD>y</KBD>, and finish to generate
+the constructor.
+<BLOCKQUOTE>
+Admire the work eclipse just did for you.
+</BLOCKQUOTE>
+<LI> These fields will be <i>immutable</I>, so edit the declarations for
+<KBD>x</KBD> and <KBD>y</KBD> and add the <KBD>final</KBD> attribute.  
+<BLOCKQUOTE>
+This
+ensures that the values of <KBD>x</KBD> and <KBD>y</KBD> can be set only by
+the constructor.
+</BLOCKQUOTE>
+<LI> Now use eclipse to generate the <I>getters</I> for <KBD>x</KBD> and <KBD>y</KBD>.  
+<BLOCKQUOTE>
+Usually the menu you are presented would also offer to generate
+<I>setters</I> but eclipse knows the relevant variables are <KBD>final</KBD> and
+cannot be set after construction.
+</BLOCKQUOTE>
+<LI> In the <KBD>main()</KBD> method, construct and print a <KBD>Point</KBD> or
+two and verify that things look good.
+<BLOCKQUOTE>
+They should not look so good.  When you print a <KBD>Point</KBD>, you get
+an ugly and uninformative <KBD>String</KBD>.   To get something better, we
+must override the <KBD>toString()</KBD> method.
+</BLOCKQUOTE>
+<LI> Use eclipse similarly to generate a simple <KBD>toString()</KBD> method.
+<BLOCKQUOTE>
+This, and the subsequent work below, is accomplished also via the
+<KBD>Source</KBD> menu.
+</BLOCKQUOTE>
+<LI> OK we are ready to make a <KBD>Set</KBD> of some points.  Put the
+following code in the <KBD>main</KBD> method:
+<PRE>
+Set&lt;Point&gt; set = new HashSet&lt;Point&gt;();
+set.add(new Point(131, 132));
+set.add(new Point(131,132));
+System.out.println("Set has " + set);
+</PRE>
+<BLOCKQUOTE>
+<UL>
+<LI>
+Recalling that sets should have no duplicates, you the output
+from the above code should show the set having the same point twice.
+<LI> This is because Java is using its built-in notion of <i>equality</i>: are
+two objects exactly the same object (as in, the same reference in memory)?
+<LI> We need to change this behavior, so read on.
+</UL>
+</BLOCKQUOTE>
+<LI> Now let's use eclipse to generate <KBD>hashCode()</KBD> and
+<KBD>equals(Object other)</kBD> methods.
+<BLOCKQUOTE>
+You must pick the attributes (instance variable names) upon which you wish
+equality to be based.
+</BLOCKQUOTE>
+<LI> Rerun your code and make sure that two <KBD>Point</KBD> objects with
+the same coordinates cannot both be contained in the same set.
+</OL>
+<HR>
+<H4>Further exploration</H4>
+<OL>
+  <LI> What happens if <KBD>hashCode()</KBD> returns a random integer?  Try:
+<PRE>
+public int hashCode() {
+   return (int)(Math.random()*100000);
+}
+</PRE>
+<BLOCKQUOTE>
+<UL>
+ <LI> What behavior do you see in the set?
+ <LI> Why do you see that behavior?
+</UL>
+The above code makes <KBD>hashCode()</KBD> <I> inconsistent</I>,
+breaking a portion of the contract concerning object equality.
+</BLOCKQUOTE>
+<LI> What happens if <KBD>hashCode()</KBD> always returns the same result?
+Try:
+<PRE>
+public int hashCode() {
+   return 0;
+}
+</PRE>
+<BLOCKQUOTE>
+  <UL> 
+   <LI> Does this work?
+   <LI> What impact does the above <KBD>hashCode()</KBD> have on performance?
+  </UL>
+</BLOCKQUOTE>
+</OL>
+<HR>
+<H4>Now try lists</H4>
+<p>
+Go back and change the <KBD>Set</KBD> and <KBD>HashSet</KBD> of your code
+to use <KBD>List</KBD> and <KBD>LinkedList</KBD>, respectively.
+<OL>
+  <LI> You should see duplicates.  But that's OK for lists.
+  <LI> Intentionally break KBD>.equals(Object other)</KBD> by returning
+<KBD>false</KBD> always.
+<BLOCKQUOTE>
+What aspect of the contract does this break for 
+<KBD>.equals(Object other)?
+</BLOCKQUOTE>
+  <LI> What behavior do you see?
+   <BLOCKQUOTE> Adding to a list does not consult <KBD>.equals(Other object)</KBD>, so
+you should see no difference.
+</BLOCKQUOTE>
+   <LI> Now ask whether the list <KBD>.contains(new Point(131,132))</KBD>.
+<BLOCKQUOTE>
+Nothing should be found in the list with the broken
+<KBD>.equals(Object other)</KBD>.
+</BLOCKQUOTE>
+   <LI> Revert the code back to its proper <KBD>hashCode</KBD> and 
+<KBD>.equals(Object other)</KBD>.
+</OL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer5"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Implementing a <KBD>StockHolding</KBD> object</H3>
+OK now you are pretty much on your own:  
+<UL>
+  <LI> I will tell you a story.  
+  <LI> You will design an object.  
+  <LI> Create this object from scratch in the
+<KBD>exercises8</KBD> package of the <KBD>exercises</KBD> folder.
+</UL>
+As usual, if stuck, consult portions of the solutions video.
+<H4> The story </H4>
+A <KBD>StockHolding</KBD> object:
+<DL>
+ <DT>has-a
+  <DD> <UL>
+  <LI> immutable <KBD>String<KBD> identifying its name (e.g., <KBD>IBM</KBD>)
+   <LI> immutable <KBD>String</KBD> identifying its owner (e.g., <KBD>Ari</KBD>)
+   <LI> number of share (<KBD>int</KBD>) that can change over time
+   <LI> price per share (<KBD>int</KBD>) that can change over time
+</UL>
+  <DT> and it needs:
+<DD>
+<UL>
+  <LI> A constructor
+  <LI> A <KBD>toString()</KBD>
+  <LI> <KBD>hashCode()</KBD> and <KBD>equals(Object other)</KBD>
+</UL>
+You should generate the above automatically, not by hand!
+</DL>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<HR>
+<a name="exer6"></a>
+<BLOCKQUOTE><EM>Before starting this exercise:</EM><br>Be sure to update your repository before beginning this assignment, so that you receive any code you need.</BLOCKQUOTE>
+<H3>Applying an interface</H3>
+Do your work in the <KBD>exercises8</KBD> package of
+the <KBD>exercises</KBD> folder.
+<H4> The story </H4>
+Define
+a <KBD>PersonalProperty</KBD> object:
+<DL>
+ <DT>has-a
+  <DD> <UL>
+  <LI> immutable <KBD>int<KBD> for its initial value
+   <LI> immutable <KBD>int</KBD> representing the years since its
+initial value was established
+</UL>
+  <DT> and it needs:
+<DD>
+<UL>
+  <LI> A constructor that takes in values for the two instance variables
+  <LI> A method <KBD>int depreciatedValue()</KBD> that returns the value
+of the property according to the formula:
+<CENTER>
+<KBD>initiaValue</KBD> &times; 0.80<sup><KBD>yearsOld</KBD></sup>
+</CENTER>
+  <LI> A <KBD>toString()</KBD>
+</UL>
+</DL>
+<H4>Your task</H4>
+After defining the above class, adapt it to implement
+the <KBD>Valuable</KBD> interface:
+<PRE>
+public interface Valuable {
+   public int getLiquidValue();
+}
+</PRE>
+
+
+<BLOCKQUOTE><EM>After completing this exercise:</EM><br>Commit any files you have changed so that you receive credit for your work!</BLOCKQUOTE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,1185 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Arrays</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 3: Arrays</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Pascal's Triangle (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Robert Sedgewick (book)
+</UL></DL>
+Take a look at the Wikipedia page on <a href="http://en.wikipedia.org/wiki/Pascal%27s_triangle"> Pascal's Triangle</a>.  We will implement this using
+a two-dimensional array, so it may be easier to imagine the entries left-justified rather than
+in triangular form:
+<PRE>
+        column
+        0  1  2  3  4
+row
+0       1
+1       1  1
+2       1  2  1
+3       1  3  3  1
+4       1  4  6  4  1
+        .
+        .
+        .
+</PRE>
+Viewed as a two-dimensional array, the computation is specified
+as follows, for each entry at row <I>r</I> and column <I>c</I>:
+<UL>
+   <LI> If <I>c</I> is 0, then the entry is <KBD>1</KBD>.
+   <LI> If <I>c</I><KBD>==</KBD><I>r</I>, then the entry is <KBD>1</KBD>.
+   <LI> If <I>r</I><KBD>&lt;0</KBD> or <I>c</I><KBD>&lt;0</KBD> or <I>c</I><KBD>&gt</KBD><I>r</I>, then the entry is <KBD>0</KBD> and is not shown.
+   <LI> Everywhere else, the entry is computed as the sum of the entries
+        at:
+       <UL>
+          <LI> <I>r</I><KBD>-1</KBD>,<I>c</I>
+          <LI> <I>r</I><KBD>-1</KBD>,<I>c</I><KBD>-1</KBD>
+       </UL> 
+</UL>
+<H4>Procedure</H4>
+<OL>
+  <LI> Open the <KBD>PascalsTriangle</KBD> class, found in the
+<KBD>arrays</KBD> package of the <KBD>extensions</KBD> folder.
+  <LI> Insert code to obtain from the user the value <I>N</I> which is the number of
+rows you should compute of the triangle.
+  <LI> Instantiate the two-dimensional array needed to hold the results.
+<BLOCKQUOTE>
+Java lets you do this as a <I>ragged</I> array, where each row can be of
+a different length.  
+<p>
+You are welcome to instantiate the array that way, but
+it is simpler and equally acceptable to instantiate the array with the same 
+number of columns in each row.  Java syntax for that is <I>much</I> simpler.
+An example of this appears in <KBD>SelfAvoidingWalk</KBD>,
+found in the
+<KBD>book.ch1</KBD> package of the <KBD>book</KBD> source folder
+in your repositories.
+</BLOCKQUOTE>
+  <LI> Compute the triangle as a two-dimensional array and print the results 
+left-justified as shown above.
+  <LI> For extra fun, try to print the triangle centered as shown on
+the <a href="http://en.wikipedia.org/wiki/Pascal%27s_triangle">Wikipedia page</a>.
+</OL>
+
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions4">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Birthday Problem (5 points):</H2><p>
+  Some number of people, say <I>N</I>, wander into a room.  We are
+interested in computing the fraction of those people who are:
+<UL>
+   <LI> are born in the same month
+    <LI> are born on the same day, in the same or in different months
+   <LI> are born on the exact same day (the same day in the same month)
+</UL>
+<BLOCKQUOTE>
+Before proceeding, you might think a bit about the above statistics and
+hypothesize what values you will see in your simulation.
+</BLOCKQUOTE>
+<H4>Procedure</H4>
+<BLOCKQUOTE>
+To make things simple, let's assume that all months have 31 days.
+</BLOCKQUOTE>
+<OL>
+  <LI> Open the <KBD>Birthday</KBD> class, found in the <KBD>arrays</KBD> package
+of the <KBD>extensions</KBD> folder.
+  <LI> Insert code to obtain from the user the number of people <I>N</I> that will enter
+the room.
+  <LI> For each person, randomly generate a month and day on which that person
+was born.
+  <LI> Using a two-dimensional array that is indexed by month and by day,
+keep track of the number of people born on that month and day.
+<BLOCKQUOTE>
+For example, perhaps you randomly decide the person was born in month 4 and
+day 28.
+</BLOCKQUOTE>
+  <LI> After processing all of the <I>N</I> people, iterate over your array
+to compute:
+  <UL>
+    <LI> For each month, the fraction (or percentage) of people born in the that month.
+    <LI> The average of the 12 values you computed for the above.
+    <LI> For each day, the fraction (or percentage) of people born on that day, whether
+           in the same or in a different month.
+    <LI> The average of the 31 values you computed for the above.
+    <LI> The fraction (or percentage) of people born on exactly the same day.
+<BLOCKQUOTE>
+Be careful!  A <KBD>1</KBD> entry means just one person was born on that particular day.  You are looking for the fraction of people who share a birthday with at least one other person.
+</BLOCKQUOTE>
+  </UL>
+</OL>
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: GC Content (2 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+Computer science plays a large role in modern biology.  BioJava is a framework for working with biological data.  It provides a framework for using sequences and performing common biology functions.  In this extension you will be reading in a DNA sequence and computing its 
+<A HREF="http://en.wikipedia.org/wiki/GC-content">GC-Content</A>.
+
+<H4>Notes</H4>
+<UL>
+  <LI> You can find the Java files for this extension in the <KBD>extensions</KBD> source folder.
+<BLOCKQUOTE>
+Locate the following files in the <KBD>biojavagc</KBD> package:
+<UL>
+  <LI> <KBD>GCContent.java</KBD> is the file you complete.  When you run it,
+analysis is performed on four genomes and the results are printed as output.
+  <LI> <KBD>GCContentTest.java</KBD> is a unit test for your work.  You will
+receive credit for this extension only if this test passes.
+</UL>
+</BLOCKQUOTE>
+  <LI> You can do this extension by following the instructions below.
+However, you might want to take some time to familiarize yourself with the 
+<A HREF="http://biojava.org/wiki/Main_Page">BioJava website</A>.  
+Of special importance is the 
+  <A HREF="http://biojava.org/wiki/BioJava:CookBook">BioJava Cookbook</A>.  The cookbook 
+  has information and examples for performing common tasks.  You may also find the <A HREF="http://www.biojava.org/docs/api/index.html">BioJava API</A> helpful.
+<p>
+  <LI> You will be working with some DNA sequences,
+represented in the <A HREF="http://en.wikipedia.org/wiki/FASTA_format">FASTA format</A>,
+which you can find in the
+<KBD>genomes</KBD> folder of your workspace:
+<UL>
+  <LI> <KBD>NC_002677.fasta</KBD>
+  <LI> <KBD>mysterya.fasta</KBD>
+  <LI> <KBD>mysteryb.fasta</KBD>
+  <LI> <KBD>mysteryc.fasta</KBD>
+</UL>
+As you might guess from their names, there is an air of mystery surrounding
+some of these genomes.
+<p>
+Consider a bacterium and a phage that might be hosted by that
+bacterium.  It turns out that the DNA of the host and of the phage often need
+to be similar in terms of their GC content for the bacterium to play host
+to the phage:
+<BLOCKQUOTE>
+Most bacteriophage and other bacteria are lower in GC content than Salmonella and its relatives, so invading DNA is an obvious target for H-NS. &quot;It's like a primitive immune system,&quot; says Fang. &quot;Reduce their expression, and the foreign genes can be tolerated.&quot;
+<HR>
+From <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2064161/"><KBD>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2064161/</KBD></a>
+</BLOCKQUOTE>
+In other words, if the GC content in the bacterium and phage is dissimilar, the bacterium may be
+immune to infection by the phage.
+</UL>
+<HR>
+<H4>Procedure</H4>
+<OL>
+  <LI> Complete the method <KBD>percentGC</KBD>  in <KBD>GCContent</KBD>.
+  <BLOCKQUOTE>
+  Note: BioJava already has a function to get the GC-count (number of G and C nucleotides) of a sequence.  
+<p>
+<B>Do not use this function.</B>  
+<p>
+Instead, devise a way to
+iterate through the array of characters (representing nucleotides) yourself.  
+  </BLOCKQUOTE>
+  <LI> Run the unit test <KBD>GCContentTest</KBD>  and make sure it passes.
+<BLOCKQUOTE>
+Most students' code fails when given a string with no DNA in it whatsover
+(an empty string or <KBD>""</KBD>.  Its GC content is 0%.
+</BLOCKQUOTE>
+  <LI> Run <KBD>GCContent</KBD> as a Java Application and be prepared to answer
+questions by the TA at the demo.
+</OL>
+
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions6">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Reading Frame of a Sequence (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+
+
+Sequences of nucleotides can be read as sequences of nucleotide triplets, known as <A HREF="http://en.wikipedia.org/wiki/Codon">codons</A>.  This means there are 3 different ways of reading a nucleotide sequence.  
+One starts with the first nucleotide in the sequence, one starts with the second, and one starting with the third, as shown below:
+<BLOCKQUOTE>
+<CENTER><IMG SRC="Extensions/frame.jpg" HEIGHT=300></CENTER>
+<HR>
+Image from <KBD><a href="https://wikispaces.psu.edu/display/Biol230WFall09/Protein+Translation">https://wikispaces.psu.edu/display/Biol230WFall09/Protein+Translation</a></KBD>
+<p>
+<UL>
+<LI>
+The sequences shown above are RNA.  The corresponding DNA sequences would
+have a <KBD>T</KBD> everywhere you see a <KBD>U</KBD>.
+<LI> Reading frame 1 begins at the first nucleotide.  Interpreting
+<KBD>AGT</KBD> using the <a href="http://en.wikipedia.org/wiki/DNA_codon_table">genetic code</a>, 
+Serine would be generated as the first amino acid of
+the resulting protein, if this is the proper reading frame.
+<LI> However, if the reading frame should start one base later,
+then the first DNA triple is <KBD>GTC</KBD>, which encodes Valine.
+<LI> Finally, if  the reading frame should start two bases later,
+then the first DNA triple is <KBD>TCT</KBD>, which encodes Serine.  While
+this protein begins with the same amino acid as in reading frame 1, the next
+amino acid is different, as shown in the above figure.
+  <LI> There is no other reading frame of interest.  If we considered a 
+reading frame that begins at the fourth nucleotide, that is the same as if
+the frame began at the first nucleotide.
+<p>
+  <LI> <B>Important:</B> In the picture above, the reading frames are
+denoted 1, 2, or 3.  Keeping with computer science custom, you must compute
+these as 0, 1, or 2.   The unit test will not work if you fail to follow this
+convention!
+</UL>
+</BLOCKQUOTE>
+How do we determine which reading frame is correct?  Our approach is based
+on the following observations, which are somewhat simplified to suit our 
+purposes.  The interested student is encouraged to take Bio&nbsp;2960 for
+a much more thorough and revealing treatment of this material.
+<UL>
+  <LI> Protein translation is initiated only by a special sequence of
+3 nucleotides called
+a 
+<a href="http://en.wikipedia.org/wiki/Start_codon">start codon</a>.
+  <LI> Translation continues until a
+<a href="http://en.wikipedia.org/wiki/Stop_codon">stop codon</a> is encountered, which is also a specially
+designated sequence of 3 DNA nucleotides.
+<BLOCKQUOTE>
+Note that it is the <i>first</i> stop codon that ends the translation.  
+While the translated region could contain other start codons, which translate
+as the amino acid methionine, <i>any</i> stop codon encounered after
+the start codon ends the translation process.
+</BLOCKQUOTE>
+   <LI> If we scan random DNA, we expect each of the four bases (A, T, C, G)
+to occur with probability 1 in 4.
+   <LI> If we look for two specific bases, one after the other, in random DNA,
+scanning pairs a time, we expect the two bases to occur with probability
+1 in 16 (1 in 4 times 1 in 4).
+   <LI> If we scan DNA looking for a specific triplet, moving 3 bases each
+time we look, we expect that given triplet to occur with probability
+1 in 64 (1 in 4 times 1 in 4 times 1 in 4).
+<p>
+For example, we expect the start codon to occur with probability 1 in 64.
+   <LI> Because there are three possible stop codons, the probability in
+random DNA that
+a given triplet is one of the three stop codons is 3 in 64, which is
+approximately 1 in 20.
+   <LI> This means that if DNA is random, a protein sequence would be about
+20 amino acids in length, once its start codon is found.
+    <LI> It turns out that proteins are much longer than that, say at least
+60 amino acids in length.
+    <LI> If we start in the wrong reading frame, the DNA should appear to us
+as random, and we should obtain very short amino acid chains by translation.
+</UL>
+<BLOCKQUOTE>
+    Thus, the best reading frame for a sequence of DNA is the offset at which
+translation would produce
+the <B>longest chain of amino acids</B>.  The DNA sequence that produces
+that chain begins with the start codon.  The start codon and all subsequent
+codons are interpreted in groups of 3 bases.  The sequence 
+contains no stop codon until the end of the translated region.  In other
+words, the translated region may contain multiple start codons in the middle
+(which are translated as the amino acid methionine), but the region contains
+no stop codons in the middle.
+</BLOCKQUOTE>
+<p>
+Your task in this extension is to analyze a sequence of DNA to determine its
+best reading frame.
+
+<H4>Notes</H4>
+<UL>
+  <LI> You can find the Java files for this extension in the <KBD>extensions</KBD> source folder.
+<BLOCKQUOTE>
+Locate the following files in the <KBD>biofindframe</KBD> package:
+<UL>
+  <LI> <KBD>FindTheFrame.java</KBD> is the file you complete.
+  <LI> <KBD>FindTheFrameTest.java</KBD> is a unit test for your work.  
+You will
+receive credit for this extension if this test (usually) passes.
+</UL>
+</BLOCKQUOTE>
+  <LI> You will be working with some DNA sequences,
+represented in the <A HREF="http://en.wikipedia.org/wiki/FASTA_format">FASTA format</A>,
+which you can find in the
+<KBD>genomes</KBD> folder of your workspace.
+</UL>
+
+<H4>Procedure</H4>
+
+<OL>
+  <LI> The code given to you prompts the user for a genome DNA file, and
+then reads that file into a <KBD>char</KBD> array using methods provided by
+<A HREF="http://biojava.org/wiki/Main_Page">bioJava</A>.  
+<p>
+If you are uncertain about <KBD>char</KBD> arrays, this would be a good time to review
+the relevant material in your text and in the lecture notes.
+   <LI> Your work takes place in the method <KBD>bestReadingFrame</KBD>.
+Open that file now and take a look at what is provided.
+<p>
+There are comments in that file to direct your work, which consists of
+the steps described below.
+<BLOCKQUOTE>
+You should read these instructions and the comments <I>carefully</I> before
+you begin.
+Solutions that fail to follow the instructions will receive no credit!
+</BLOCKQUOTE>
+   <LI> First, define 3 <KBD>char</KBD> arrays, one for each
+of the possible <a href="http://en.wikipedia.org/wiki/Genetic_code#Start.2Fstop_codons">stop codons</a>: ochre, amber, and opal.
+    <LI> Next, define a <KBD>char</KBD> array named <KBD>methionine</KBD>
+for the start codon.
+<BLOCKQUOTE>
+The most common start codon is Methionine, which is encoded by the DNA
+sequence
+<KBD>AUG</KBD>.  For the purposes of this extension, Methionine is the only
+start codon you will consider.  
+<p>
+More information about start and stop codons can be found
+<a href="http://en.wikipedia.org/wiki/Genetic_code#Start.2Fstop_codons">here</a>.
+</BLOCKQUOTE>
+  <LI> The rest of the code you write will attempt to read the DNA in each
+of the possible 3 reading frames.
+Find the best reading frame and return the index at which that best
+reading frame occurs.  Thus, your method will return a value as follows:
+<UL>
+  <LI> 0, if reading frame 1 is the right answer.  That frame begins at
+index 0 of the <KBD>dna</KBD> array you are given.
+  <LI> 1, if reading frame 2 is the right answer.  That frame begins at
+index 1 of the <KBD>dna</KBD> array you are given.
+  <LI> 2, if reading frame 3 is the right answer.  That frame begins at
+index 2 of the <KBD>dna</KBD> array you are given.
+  <LI> -1 if no reading frame exists at all
+</UL>
+<BLOCKQUOTE>
+<B>Hint:</B>  Scan the DNA one base a time, looking for the longest coding
+sequence that begins at that base.  A coding sequence begins with a start codon
+and ends at the next stop codon that is found by scanning triplets.
+<p>
+Based on the index at which the <I>longest</I> coding sequence occurs, compute
+the corresponding reading frame (0, 1, or 2).  That is the value you want
+to return.
+</BLOCKQUOTE>
+</OL>
+
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions7">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext100"></a>
+<H2>Extension 100: Pascal's Triangle (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+This extension is not available for any credit.
+</FONT></BLOCKQUOTE>
+Take a look at the Wikipedia page on <a href="http://en.wikipedia.org/wiki/Pascal%27s_triangle"> Pascal's Triangle</a>.  We will implement this using
+a two-dimensional array, so it may be easier to imagine the entries left-justified rather than
+in triangular form:
+<PRE>
+        column
+        0  1  2  3  4
+row
+0       1
+1       1  1
+2       1  2  1
+3       1  3  3  1
+4       1  4  6  4  1
+        .
+        .
+        .
+</PRE>
+Viewed as a two-dimensional array, the computation is specified
+as follows, for each entry at row <I>r</I> and column <I>c</I>:
+<UL>
+   <LI> If <I>c</I> is 0, then the entry is <KBD>1</KBD>.
+   <LI> If <I>c</I><KBD>==</KBD><I>r</I>, then the entry is <KBD>1</KBD>.
+   <LI> If <I>r</I><KBD>&lt;0</KBD> or <I>c</I><KBD>&lt;0</KBD> or <I>c</I><KBD>&gt</KBD><I>r</I>, then the entry is <KBD>0</KBD> and is not shown.
+   <LI> Everywhere else, the entry is computed as the sum of the entries
+        at:
+       <UL>
+          <LI> <I>r</I><KBD>-1</KBD>,<I>c</I>
+          <LI> <I>r</I><KBD>-1</KBD>,<I>c</I><KBD>-1</KBD>
+       </UL> 
+</UL>
+<H4>Procedure</H4>
+<OL>
+  <LI> Create the <KBD>pascals</KBD> source file, in the
+<KBD>arrays</KBD> package of the <KBD>extensions</KBD> folder.
+  <LI> Insert code to obtain from the user the value <I>N</I> which is the number of
+rows you should compute of the triangle.
+  <LI> Instantiate the two-dimensional array needed to hold the results.
+<BLOCKQUOTE>
+C++ will not let you do this as a <I>ragged</I> array, unlike java, where each row can be of
+a different length. You will have to find a way to create filler values that are ignored when the triangle is
+printed.
+<p>
+It is simpler to instantiate the array with the same number of columns in each row.
+</BLOCKQUOTE>
+  <LI> Compute the triangle as a two-dimensional array and print the results 
+left-justified as shown above.
+  <LI> For extra fun, try to print the triangle centered as shown on
+the <a href="http://en.wikipedia.org/wiki/Pascal%27s_triangle">Wikipedia page</a>.
+</OL>
+
+<a name="extdemo100"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.100</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.100">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 100</H3><HR NOSHADE SIZE=10><p>
+<a name="ext200"></a>
+<H2>Extension 200: Birthday Problem (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+This extension is not available for any credit.
+</FONT></BLOCKQUOTE>
+  Some number of people, say <I>N</I>, wander into a room.  We are
+interested in computing the fraction of those people who are:
+<UL>
+   <LI> are born in the same month
+    <LI> are born on the same day, in the same or in different months
+   <LI> are born on the exact same day (the same day in the same month)
+</UL>
+<BLOCKQUOTE>
+Before proceeding, you might think a bit about the above statistics and
+hypothesize what values you will see in your simulation.
+</BLOCKQUOTE>
+<H4>Procedure</H4>
+<BLOCKQUOTE>
+To make things simple, let's assume that all months have 31 days.
+</BLOCKQUOTE>
+<OL>
+  <LI> Create the <KBD>Birthday</KBD> source file, in the <KBD>arrays</KBD> package
+of the <KBD>extensions</KBD> folder.
+  <LI> Insert code to obtain from the user the number of people <I>N</I> that will enter
+the room.
+  <LI> For each person, randomly generate a month and day on which that person
+was born.
+  <LI> Using a two-dimensional array that is indexed by month and by day,
+keep track of the number of people born on that month and day.
+<BLOCKQUOTE>
+For example, perhaps you randomly decide the person was born in month 4 and
+day 28.
+</BLOCKQUOTE>
+  <LI> After processing all of the <I>N</I> people, iterate over your array
+to compute:
+  <UL>
+    <LI> For each month, the fraction (or percentage) of people born in the that month.
+    <LI> The average of the 12 values you computed for the above.
+    <LI> For each day, the fraction (or percentage) of people born on that day, whether
+           in the same or in a different month.
+    <LI> The average of the 31 values you computed for the above.
+    <LI> The fraction (or percentage) of people born on exactly the same day.
+<BLOCKQUOTE>
+Be careful!  A <KBD>1</KBD> entry means just one person was born on that particular day.  You are looking for the fraction of people who share a birthday with at least one other person.
+</BLOCKQUOTE>
+  </UL>
+</OL>
+
+<a name="extdemo200"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.200</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.200">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 200</H3><HR NOSHADE SIZE=10><p>
+<a name="ext300"></a>
+<H2>Extension 300: GC Content (C++) (4 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+This extension is not available for any credit.
+</FONT></BLOCKQUOTE>
+Computer science plays a large role in modern biology. In this extension you will be reading in a DNA sequence and computing its 
+<A HREF="http://en.wikipedia.org/wiki/GC-content">GC-Content</A>.
+
+<H4>Notes</H4>
+<UL>
+  <LI> You can find the C++ files for this extension in the <KBD>extensions</KBD> source folder. In this extension we will introduce header files, a concept not found in Java. If you already know what a header file is, you can continue as normal. If you don't,
+  then more information can be found <A HREF="http://www.cplusplus.com/forum/articles/10627/">here</A> for a primer on headers, includes, and why we need them. 
+<BLOCKQUOTE>
+Locate the following files in the <KBD>fastaReader</KBD> directory:
+<UL>
+  <LI> <KBD>fastaReader.h</KBD> This header, combined with the source file, has been provided for you in order to allow you to use the .fasta files.
+  <LI> <KBD>fastaReader.cpp</KBD> This file has only one function <KBD>readFasta</KBD> which takes a filename and a string, the file is read into the string and returned to you for use.
+  <LI> <KBD>cgContent.cpp</KBD> This is where your extension code and testing goes.
+</UL>
+</BLOCKQUOTE>
+<p>
+  <LI> You will be working with some DNA sequences,
+represented in the <A HREF="http://en.wikipedia.org/wiki/FASTA_format">FASTA format</A>,
+which you can find in the
+<KBD>genomes</KBD> folder of your workspace:
+<UL>
+  <LI> <KBD>NC_002677.fasta</KBD>
+  <LI> <KBD>mysterya.fasta</KBD>
+  <LI> <KBD>mysteryb.fasta</KBD>
+  <LI> <KBD>mysteryc.fasta</KBD>
+</UL>
+As you might guess from their names, there is an air of mystery surrounding
+some of these genomes.
+<p>
+Consider a bacterium and a phage that might be hosted by that
+bacterium.  It turns out that the DNA of the host and of the phage often need
+to be similar in terms of their GC content for the bacterium to play host
+to the phage:
+<BLOCKQUOTE>
+Most bacteriophage and other bacteria are lower in GC content than Salmonella and its relatives, so invading DNA is an obvious target for H-NS. &quot;It's like a primitive immune system,&quot; says Fang. &quot;Reduce their expression, and the foreign genes can be tolerated.&quot;
+<HR>
+From <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2064161/"><KBD>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2064161/</KBD></a>
+</BLOCKQUOTE>
+In other words, if the GC content in the bacterium and phage is dissimilar, the bacterium may be
+immune to infection by the phage.
+</UL>
+<HR>
+<H4>Procedure</H4>
+<OL>
+  <LI> Complete the method <KBD>gcContent.cpp</KBD>
+  <LI> Write a test to prove to us that your methods work.
+  <LI> Run these tests.
+  <LI> Be prepared to answer questions by the TA at the demo.
+</OL>
+
+
+<a name="extdemo300"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.300</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.300">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 300</H3><HR NOSHADE SIZE=10><p>
+<a name="ext400"></a>
+<H2>Extension 400: Reading Frame of a Sequence (C++) (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+This extension is not available for any credit.
+</FONT></BLOCKQUOTE>
+
+
+Sequences of nucleotides can be read as sequences of nucleotide triplets, known as <A HREF="http://en.wikipedia.org/wiki/Codon">codons</A>.  This means there are 3 different ways of reading a nucleotide sequence.  
+One starts with the first nucleotide in the sequence, one starts with the second, and one starting with the third, as shown below:
+<BLOCKQUOTE>
+<CENTER><IMG SRC="Extensions/frame.jpg" HEIGHT=300></CENTER>
+<HR>
+Image from <KBD><a href="https://wikispaces.psu.edu/display/Biol230WFall09/Protein+Translation">https://wikispaces.psu.edu/display/Biol230WFall09/Protein+Translation</a></KBD>
+<p>
+<UL>
+<LI>
+The sequences shown above are RNA.  The corresponding DNA sequences would
+have a <KBD>T</KBD> everywhere you see a <KBD>U</KBD>.
+<LI> Reading frame 1 begins at the first nucleotide.  Interpreting
+<KBD>AGT</KBD> using the <a href="http://en.wikipedia.org/wiki/DNA_codon_table">genetic code</a>, 
+Serine would be generated as the first amino acid of
+the resulting protein, if this is the proper reading frame.
+<LI> However, if the reading frame should start one base later,
+then the first DNA triple is <KBD>GTC</KBD>, which encodes Valine.
+<LI> Finally, if  the reading frame should start two bases later,
+then the first DNA triple is <KBD>TCT</KBD>, which encodes Serine.  While
+this protein begins with the same amino acid as in reading frame 1, the next
+amino acid is different, as shown in the above figure.
+  <LI> There is no other reading frame of interest.  If we considered a 
+reading frame that begins at the fourth nucleotide, that is the same as if
+the frame began at the first nucleotide.
+<p>
+  <LI> <B>Important:</B> In the picture above, the reading frames are
+denoted 1, 2, or 3.  Keeping with computer science custom, you must compute
+these as 0, 1, or 2.   The unit test will not work if you fail to follow this
+convention!
+</UL>
+</BLOCKQUOTE>
+How do we determine which reading frame is correct?  Our approach is based
+on the following observations, which are somewhat simplified to suit our 
+purposes.  The interested student is encouraged to take Bio&nbsp;2960 for
+a much more thorough and revealing treatment of this material.
+<UL>
+  <LI> Protein translation is initiated only by a special sequence of
+3 nucleotides called
+a 
+<a href="http://en.wikipedia.org/wiki/Start_codon">start codon</a>.
+  <LI> Translation continues until a
+<a href="http://en.wikipedia.org/wiki/Stop_codon">stop codon</a> is encountered, which is also a specially
+designated sequence of 3 DNA nucleotides.
+<BLOCKQUOTE>
+Note that it is the <i>first</i> stop codon that ends the translation.  
+While the translated region could contain other start codons, which translate
+as the amino acid methionine, <i>any</i> stop codon encounered after
+the start codon ends the translation process.
+</BLOCKQUOTE>
+   <LI> If we scan random DNA, we expect each of the four bases (A, T, C, G)
+to occur with probability 1 in 4.
+   <LI> If we look for two specific bases, one after the other, in random DNA,
+scanning pairs a time, we expect the two bases to occur with probability
+1 in 16 (1 in 4 times 1 in 4).
+   <LI> If we scan DNA looking for a specific triplet, moving 3 bases each
+time we look, we expect that given triplet to occur with probability
+1 in 64 (1 in 4 times 1 in 4 times 1 in 4).
+<p>
+For example, we expect the start codon to occur with probability 1 in 64.
+   <LI> Because there are three possible stop codons, the probability in
+random DNA that
+a given triplet is one of the three stop codons is 3 in 64, which is
+approximately 1 in 20.
+   <LI> This means that if DNA is random, a protein sequence would be about
+20 amino acids in length, once its start codon is found.
+    <LI> It turns out that proteins are much longer than that, say at least
+60 amino acids in length.
+    <LI> If we start in the wrong reading frame, the DNA should appear to us
+as random, and we should obtain very short amino acid chains by translation.
+</UL>
+<BLOCKQUOTE>
+    Thus, the best reading frame for a sequence of DNA is the offset at which
+translation would produce
+the <B>longest chain of amino acids</B>.  The DNA sequence that produces
+that chain begins with the start codon.  The start codon and all subsequent
+codons are interpreted in groups of 3 bases.  The sequence 
+contains no stop codon until the end of the translated region.  In other
+words, the translated region may contain multiple start codons in the middle
+(which are translated as the amino acid methionine), but the region contains
+no stop codons in the middle.
+</BLOCKQUOTE>
+<p>
+Your task in this extension is to analyze a sequence of DNA to determine its
+best reading frame.
+
+<H4>Notes</H4>
+<UL>
+  <LI> You can find the C++ files for this extension in the <KBD>extensions</KBD> source folder.
+<BLOCKQUOTE>
+Locate the following files in the <KBD>biofindframe</KBD> folder:
+<UL>
+  <LI> <KBD>FindTheFrame.cpp</KBD> is the file you complete.
+  <LI> <KBD>fastaReader.cpp</KBD> and <KBD>fastaReader.h</KBD> are files for reading in teh provided fasta genome files.
+</UL>
+</BLOCKQUOTE>
+  <LI> You will be working with some DNA sequences,
+represented in the <A HREF="http://en.wikipedia.org/wiki/FASTA_format">FASTA format</A>,
+which you can find in the
+<KBD>genomes</KBD> folder of your workspace.
+</UL>
+
+<H4>Procedure</H4>
+
+<OL>
+  <LI> The code given to you prompts the user for a genome DNA file, and
+then reads that file into a <KBD>std::string</KBD>.
+<p>
+If you are uncertain about <KBD>strings</KBD> in C++, this would be a good time to review as they are very similar to Java.
+Open that file now and take a look at what is provided.
+<p>
+There are comments in that file to direct your work, which consists of
+the steps described below.
+<BLOCKQUOTE>
+You should read these instructions and the comments <I>carefully</I> before
+you begin.
+Solutions that fail to follow the instructions will receive no credit!
+</BLOCKQUOTE>
+   <LI> First, define 3 <KBD>char</KBD> arrays, one for each
+of the possible <a href="http://en.wikipedia.org/wiki/Genetic_code#Start.2Fstop_codons">stop codons</a>: ochre, amber, and opal.
+    <LI> Next, define a <KBD>char</KBD> array named <KBD>methionine</KBD>
+for the start codon.
+<BLOCKQUOTE>
+The most common start codon is Methionine, which is encoded by the DNA
+sequence
+<KBD>AUG</KBD>.  For the purposes of this extension, Methionine is the only
+start codon you will consider.  
+<p>
+More information about start and stop codons can be found
+<a href="http://en.wikipedia.org/wiki/Genetic_code#Start.2Fstop_codons">here</a>.
+</BLOCKQUOTE>
+  <LI> The rest of the code you write will attempt to read the DNA in each
+of the possible 3 reading frames.
+Find the best reading frame and return the index at which that best
+reading frame occurs.  Thus, your method will return a value as follows:
+<UL>
+  <LI> 0, if reading frame 1 is the right answer.  That frame begins at
+index 0 of the <KBD>dna</KBD> array you are given.
+  <LI> 1, if reading frame 2 is the right answer.  That frame begins at
+index 1 of the <KBD>dna</KBD> array you are given.
+  <LI> 2, if reading frame 3 is the right answer.  That frame begins at
+index 2 of the <KBD>dna</KBD> array you are given.
+  <LI> -1 if no reading frame exists at all
+</UL>
+<BLOCKQUOTE>
+<B>Hint:</B>  Scan the DNA one base a time, looking for the longest coding
+sequence that begins at that base.  A coding sequence begins with a start codon
+and ends at the next stop codon that is found by scanning triplets.
+<p>
+Based on the index at which the <I>longest</I> coding sequence occurs, compute
+the corresponding reading frame (0, 1, or 2).  That is the value you want
+to return.
+</BLOCKQUOTE>
+</OL>
+
+
+<a name="extdemo400"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 3.400</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="3.400">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 400</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

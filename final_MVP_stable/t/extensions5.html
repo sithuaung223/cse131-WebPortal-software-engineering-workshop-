@@ -1,0 +1,1793 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Methods</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 5: Methods</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: Methodize It (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<H3>Refactoring</H3>
+<p>
+To earn the points for this extension, go back to a lab or extension
+you have previously completed, and refactor it using methods to eliminate
+code duplication.
+<p>
+To demo:
+<UL>
+  <LI> Make sure your refactored code still works.
+  <LI> Commit the refactored version.
+  <LI> To show your work to a TA, right (control) click on the file
+name in eclipse package explorer, then choose <KBD>Compare with...</KBD>.
+choose <KBD>Revision or URL</KBD>. In the pop up box, choose
+<KBD> Revision:</KBD> and hit <KBD>browse</KBD>.  Pick a revision that
+shows your work prior to refactoring.   Eclipse will display both files side by side so your TA can marvel at your refactoring.
+</UL>
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions6">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Chase, The Mouse (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<H3>A Story</H3>
+<p>
+Chase, the Mouse, was standing still on the Standard Draw template one day, thinking about the meaning of 
+life. All of a sudden, out of nowhere, a ball began to follow Chase. No matter where Chase went the ball would follow and pester Chase until he moved again. 
+You will be writing the code for the ball.
+<p>
+<H4>Procedure</H4>
+Create a <KBD>FollowTheMouse</KBD> class in the <KBD>mousefollower</KBD> package. You will have to write a few specific methods for this extension. 
+You can test those with the JUnit test provided in the package.
+Once all of these methods are written, you will put them to use in 
+the main method to create a Standard Draw template in which a ball follows your mouse. The methods that you must write are:
+
+<DL>
+  <DT> <KBD>double[] getMousePosition()</KBD> 
+  <DD> This method returns an array of two <KBD>doubles</KBD>, the x and y coordinates of the mouse. You can find the coordinates 
+  of the mouse on the standard canvas using <KBD>StdDraw.mouseX()</KBD> and <KBD>StdDraw.mouseY()</KBD>
+   <OL>
+      <LI> Write that method so that the first <KBD>double</KBD> in the array that you return is the x coordinate of the mouse, and the second <KBD>double</KBD> is 
+      the y coordinate of the mouse. 
+       <BLOCKQUOTE>
+      This method should be very simple.
+       </BLOCKQUOTE>
+       <LI> Test this method using the JUnit test <KBD>GetMousePositionTest</KBD> in the <KBD>mousefollower</KBD> class. When you run this test, a ball will appear
+        on a Standard Draw template. Try to follow the ball with your mouse while the test runs.
+   </OL>
+  <DT> <KBD>drawBall(double[] position, double radius)</KBD> 
+  <DD>This Method draws the ball wherever it should be in a specific frame. 
+	 <OL> 	
+  		<LI> This should take in an array of 2 <KBD>doubles</KBD> that specifies the x and y coordinates of the ball and a <KBD>double</KBD> for the radius.
+  		<LI> Test this by manually drawing a ball in your main method at a specific x and y coordinate. You can use the following code:
+  		  <BLOCKQUOTE>
+  		  
+  		  <KBD>
+  		  double[] tester = new double[]{.5, .5};
+		  drawBall(tester, .2);
+	 	  StdDraw.show(2000);
+	 	  </KBD>
+	 	  <br>
+	 	  If this draws a large ball in the middle of your template, then your <KBD>drawBall()</KBD> method works!
+	 	  </BLOCKQUOTE>
+  	</OL>
+  <DT> <KBD>double[] changePosition(double[] position, double[] mousePosition, double speed)</KBD> 
+  <DD> This should return an array of 2 <KBD>doubles</KBD> that represents the new position of the ball
+   <OL> 	
+  		<LI>This method takes in an array of 2 <KBD>doubles</KBD> that specifies the original position of the ball, an array of 2 <KBD>doubles</KBD> that 
+  		specifies the mouse position, and a <KBD>double</KBD> for the speed. 
+  		<BLOCKQUOTE>
+  		 You are not simply drawing a ball at the position of the mouse. The ball should move at a constant speed towards the mouse at all times.
+  		  This will require some basic geometry. However, you will not need to use any trigonometric functions. 
+ 		
+		<IMG SRC="Extensions/SimilairTriangles.png" width = 400>
+		
+		
+		dx and dy are the distances from the ball to the mouse. The legs of the green triangle represent the x and y components of the distance the ball moves
+		in each frame. The hypotenuse of the green triangle represents the total distance the ball moves in each frame. This is, effectively, the "speed" of the ball,
+		 distance per frame. 
+		</BLOCKQUOTE>
+   </OL>
+</DL>   
+ 
+ Finally, make sure to implement all of these methods in the <KBD>main</KBD> method inside of a <KBD>while</KBD> loop, along with the other 
+ necessary <KBD>StdDraw</KBD> code. It would be helpful to set the initial position of the ball outside of the <KBD>while</KBD> loop, and then alter it inside. 
+ 
+ 
+ <H4>To Demo:</H4>
+ 
+ You must be able to pass the unit tests, and you should have a ball follow your mouse
+ 
+   
+   
+   
+   
+
+
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions7">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Build Your Own Calculator! (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<H3>A How-To Guide</H3>
+<p>
+<BLOCKQUOTE>
+In this extension you shall complete the functionality of a calculator. You accomplish this by creating a series of methods that 
+use the arithmetic, <KBD>String</KBD>, <KBD>boolean</KBD>, and casting operations. 
+</BLOCKQUOTE>
+
+<UL>
+<LI>In eclipse, open the <KBD>calculator</KBD> package found in
+the <KBD>extensions</KBD> source folder.
+<LI> You will find the following Java files:
+<DL>
+  <DT> <KBD>Computations</KBD> <DD>This is where you will be writing your code. 
+  <DT> <KBD>Calculator</KBD>  <DD>This is what you will run when you are finished writing all of your methods. This class creates a GUI, 
+  <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphic User Interface</a>. This is what you see when you run <KBD>Calculator</KBD>, an 
+  interface that allows the user to interact with the code. <KBD>Calculator</KBD> will not run until you are finished writing all of your methods, so 
+  if you want to check your code, use the unit test provided.
+   <DT> <KBD>ComputationsTest</KBD> <DD>This is the unit test for this extension. Your code must pass this test for you to earn credit. You can check your methods with 
+   test as you go. We recommend that you check intermittently to see if you are writing your code correctly, so that if you're making a mistake, you 
+   can catch yourself early.
+</DL>
+</UL>
+
+<H4>Procedure</H4>
+
+You will be writing two kinds of methods. The first kind will be the operational methods, which take in two parameters, and return the result of 
+some operation. For example:
+<BLOCKQUOTE>
+<PRE>
+// Returns the result of adding d1 and d2.
+public static double addDoubles(double d1, double d2) {
+	return d1 + d2;
+}
+</PRE>
+</BLOCKQUOTE>
+
+The second kind of method will be <EM>to</EM> methods, which take in some value, and cast it to the necessary type. For example:
+<BLOCKQUOTE>
+<PRE>
+// takes in an int and returns a double
+public static double intToDouble(int in) {
+	return (double)in;
+}
+</PRE>
+</BLOCKQUOTE>
+If the input makes no sense, <EM>throw</EM> an exception. For example, if someone inputs a <KBD>String</KBD>, converting it to an <KBD>int</KBD> would make no sense. 
+<BLOCKQUOTE> 
+So for the method 
+ <PRE>
+ public static int stringToInt(String in) {
+	throw new UnsupportedOperationException();
+}  
+</PRE>
+<p> 
+you would <EM>throw</EM> an exception that indicates that this operation is unsupported.
+ When you <EM>throw</EM> this exception, our code <EM>catches</EM> the exception, and sends out an error message through the GUI.
+You will learn more about this in future classes. 
+</BLOCKQUOTE>
+<H4>Methods</H4>
+First you will write:
+<UL>
+<LI> Double operations, which take in two doubles and output one double:
+<UL>
+<LI> <KBD>double addDoubles(double d1, double d2)</KBD>
+<LI> <KBD>double subtractDoubles(double d1, double d2)</KBD>
+<LI> <KBD>double divideDoubles(double d1, double d2)</KBD>
+<LI> <KBD>double multiplyDoubles(double d1, double d2)</KBD>
+</UL>
+<BLOCKQUOTE> 
+Make sure that the calculator will not crash if a user tells it to divide by zero. If a user tries to divide by zero, return zero.
+</BLOCKQUOTE>
+At ths point, and at each subsequent point of arrival, run the unit
+test to see if the changes you have made so far pass the test.  At this
+point, the <KBD>double</KBD> tests should pass.
+</BLOCKQUOTE>
+<LI> Integer operations, which take in two integers, and output one
+<UL>
+<LI> <KBD>int addInts(int i1, int i2)</KBD>
+<LI> <KBD>int subtractInts(int i1, int i2)</KBD>
+<LI> <KBD>int divideInts(int i1, int i2)</KBD>
+<LI> <KBD>int multiplyInts(int i1, int i2)</KBD>
+</UL>
+<BLOCKQUOTE>
+Again, there is a possibility that a user will divide by zero here. <a href="http://www.youtube.com/watch?v=YneYiO1r0Ow"> Do the thing</a> detailed above. 
+</BLOCKQUOTE>
+<LI> A String Operation, which takes in two Strings and concatenates them
+<UL>
+<LI> <KBD>String concatenate(String s1, String s2)</KBD>
+</UL>
+<LI> Boolean operations, which take in two booleans and outputs one
+<UL>
+<LI> <KBD>boolean andBoolean(boolean b1, boolean b2)</KBD> which returns the value of the expression <KBD>b1 &amp;&amp; b2</KBD>
+<LI> <KBD>boolean orBoolean(boolean b1, boolean b2)</KBD> which returns the value of the expression <KBD>b1 || b2</KBD>
+</UL>
+</UL>
+
+Then you will write: 
+<UL>
+<LI> Double <EM>to</EM> methods, which take in a value and convert it to a double when it makes sense, and throw an error if it doesn't make sense.
+<UL>
+<LI> <KBD>double intToDouble(int in)</KBD>
+<LI> <KBD>double doubleToDouble(double in)</KBD>
+<LI> <KBD>double stringToDouble(String in)</KBD>
+<LI> <KBD>double booleanToDouble(boolean in)</KBD>
+</UL>
+<LI> Integer <EM>to</EM> methods, which take in a value and convert it to an integer when it makes sense, and throw an error if it doesn't make sense.
+<UL>
+<LI> <KBD>int intToInt(int in)</KBD>
+<LI> <KBD>int doubleToInt(double in)</KBD>
+<LI> <KBD>int stringToInt(String in))</KBD>
+<LI> <KBD>int booleanToInt(boolean in)</KBD>
+</UL> 
+<LI> String <EM>to</EM> methods, which take in a value and convert it to a String when it makes sense, and throw an error if it doesn't make sense.
+<UL>
+<LI> <KBD>String intToString(int in)</KBD>
+<LI> <KBD>String doubleToString(double in)</KBD>
+<LI> <KBD>String stringToString(String in)</KBD>
+<LI> <KBD>String booleanToString(boolean in)</KBD>
+</UL>
+<LI> Boolean <EM>to</EM> methods, which take in a value and convert it to a boolean when it makes sense, and throw and error if it doesn't make sense.
+<UL>
+<LI> <KBD>boolean intToBoolean(int in)</KBD>
+<LI> <KBD>boolean doubleToBoolean(double in)</KBD>
+<LI> <KBD>boolean stringToBoolean(String in)</KBD>
+<LI> <KBD>boolean booleanToBoolean(boolean in)</KBD>
+</UL>
+</UL>
+Each of these methods should be quite short.
+
+
+<H4> To Demo </H4>
+You must pass all of the unit tests, and your calculator should work properly 
+
+
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions8">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: Watermelon Puzzle (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<BLOCKQUOTE>
+Adapted from <I>Sit and Solve Brainteasers</I> by Derick Niederman
+</BLOCKQUOTE>
+<HR>
+<H4> Warm Up </H4>
+Five watermelons, each of different weight, have been weighed in <i>pairs</I>
+to obtain the following weights:
+<p>
+<CENTER><B>
+20, 22, 23, 24, 25, 26, 27, 28, 30, 31
+</B></CENTER>
+<p>
+
+One way to solve this would be to figure out a mathematical algorithm for this number of watermelons and work out the weight of each watermelon. 
+Another would be to try all of the possible combinations of weights five watermelons until you found one that has this same set of combinations of weights.
+Either way you did it, the specific set of watermelons that produces these weights is
+<p>
+<CENTER><B>
+ [ 9, 11, 13, 14, 17 ]
+</B></CENTER>
+<p>
+
+<H4> Procedure </H4> 
+Since we have computers, and know how to write code, trying all of the possible weights of the five watermelons is now much easier. In this extension, 
+you will take in an array of 10 weights, and you will try, iteratively, to come up with the individual weights of the five watermelons.
+
+<OL>
+<LI>
+Find the code for this extension in the <KBD>watermelons</KBD> package.
+<LI> Create two methods in the <KBD>Watermelons</KBD> class. There is one finished method that will help you write the other two 
+methods. The two methods you must create are:
+<DL>
+ <DT> <KBD>int[] allPairSums(int[] nums)
+ <DD> This method must be completed first.  Given the input array
+<KBD>nums</KBD>, this method computes the pairwise-sum of each distinct
+pair of index values for that array.  For example, given the
+input <KBD>{40, 20, 10, 30}</KBD>, the method must compute the sums of
+indices 
+<KBD>(0,1)</KBD>,
+<KBD>(0,2)</KBD>,
+<KBD>(0,3)</KBD>,
+<KBD>(1,2)</KBD>,
+<KBD>(1,3)</KBD>,
+<KBD>(2,3)</KBD>, returning the array
+<CENTER>
+<KBD>{60, 50, 70, 30, 50, 40}</KBD>
+</CENTER>
+The ordering of the elements in the returned array does not matter.
+<DT> <KBD>int[] getSolution(int[] originalSums)</KBD>
+<DD> This method returns a solution to the puzzle for the array of 10 integers that are passed into it. The ordering of elements
+in the array you produce does not matter, as far as the provided unit test is concerned. 
+<BLOCKQUOTE>
+The included method, <KBD>boolean sameIntArrays(int[] one, int[] two)</KBD> 
+will help you with this method. When you pass two integer arrays into <KBD>sameIntArrays</KBD>, it checks whether the two integer arrays contain the same elements.
+The order of the elements in the arrays does not matter.
+</BLOCKQUOTE>
+</DL>
+<LI> Make sure you pass the provided unit tests.  Once it does, you will
+have a solution to the puzzle.
+
+<BLOCKQUOTE>
+For extra fun, go into the code for the Unit test, and inside the <KBD>int[] genSolution()</KBD> method, uncomment <KBD>List<Integer> ans = genIntsSlow();</KBD>
+and comment out <KBD>List<Integer> ans = genIntsFast();</KBD>. This will pass larger weights into your <KBD>int[] getSolution(int[] originalSums)</KBD> method, 
+and so the computation will take longer. It could take up to a minute. This is not required, but it is a neat example of a very large computation.
+</BLOCKQUOTE>
+</OL>
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions9">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext5"></a>
+<H2>Extension 5: Tic-Tac-Toe (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Tim Huber
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<BLOCKQUOTE>
+<UL>
+<LI>
+This is a new extension. If you find problems with it, please let
+the instructor know right away. Thanks!
+<LI> Update your repos to make sure you get the code.
+</UL>
+</BLOCKQUOTE>
+<H4>Introduction</H4>
+The design of software can often be specified using its
+<a href="https://en.wikipedia.org/wiki/Application_programming_interface">API</a>, or Application Programming Interface.  The API specifies the
+<i>methods</I> that are offered by the software.  Documentation for those
+methods typically includes:
+<UL>
+  <LI> the <i>signature</I> of each method:
+<UL>
+ <LI> the method's name
+ <LI> the types of the method's parameters
+ <LI> the return type (or <KBD>void</KBD>) for the method
+</UL>
+<LI>  the documentation for the method
+</UL>
+The above should be sufficient to use the software, but it can also form
+the <i>design</I> document for implementing the software.
+<BLOCKQUOTE>
+<UL>
+<LI> 
+For this Tic-Tac-Toe assignment, the API can be found 
+<a href="Extensions/TTTDoc/" target="doc">here</a>.
+<LI> A video showing how to navigate the documentation can be found
+<a href="Extensions/tictactoe.mp4 target="vid"">here</a..
+<LI> This form of documentation is known as
+<a href="https://en.wikipedia.org/wiki/Javadoc">Javadoc</a>.  It can be
+generated automatically from the <KBD>/**&hellip;*/</KBD> comments that 
+you entered into your work for this module's <a href="lab.html">lab</a>.
+</UL>
+</BLOCKQUOTE>
+<H4> Procedure </H4> 
+<UL>
+  <LI> Find the assignment's code in the <KBD>tictactoe</KBD> package of
+the <KBD>extensions</KBD> folder.  
+<BLOCKQUOTE>Your work will be done in the
+<KBD>TicTacToe</KBD> class.
+</BLOCKQUOTE>
+  <LI> Watch <a href="Extensions/tictactoe.mp4" target="vid">the documentation video</a>.
+  <LI> Implement the methods according to the
+<a href="Extensions/TTTDoc/" target="doc">documentation</a>.
+  <LI> Test as you go by running the unit test <KBD>TTTTest</KBD>.
+</UL>
+<p>
+It is suggested that you implement the methods in the following order:
+<OL>
+  <LI>  <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#genBoard--" target="doc">String[][] genBoard()</a></KBD> (actually shown in the video)
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#verifyValidRow-int-" target="doc">void verifyValidRow(int)</a></KBD>
+<BLOCKQUOTE>
+For this assignment,
+when an improper input is found by methods like this,
+you are required
+to <KBD>throw</KBD> an
+<KBD><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html" target="doc">IllegalArgumentException</a></KBD>.
+<p>
+An example of that is done for you in <KBD>verifyValidPlayer</KBD>, so take
+a look at that for guidance.
+</BLOCKQUOTE>
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#verifyValidCol-int-" target="doc">void verifyValidCol(int)</a></KBD>
+   <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#makeMove-java.lang.String-java.lang.String:A:A-int-int-" target="doc">boolean makeMove(String, String[][], int, int)</a></KBD>
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#boardFull-java.lang.String:A:A-" target="doc">boolean boardFull(String[][])</a></KBD>
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#winFor-java.lang.String-java.lang.String:A:A-" target="doc">boolean winFor(String, String[][])</a></KBD>
+</OL>
+Other methods are in the class and documentation, but they are already
+implemented for you:
+<UL>
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#prettyString-java.lang.String:A:A-" target="doc">String prettyString(String[][])</a></KBD>
+  <LI> <KBD><a href="http://www.cs.wustl.edu/~cytron//cse131/Modules/5/Extensions/TTTDoc/tictactoe/TicTacToe.html#verifyValidPlayer-java.lang.String-" target="doc">void verifyValidPlayer(String)</a></KBD>
+</UL>
+<h4>Play the game</H4>
+<UL>
+ <LI> Watch <a href="Extensions/tictactoeplay.mp4" target="doc">this video</a> showing
+the play of the game.
+ <LI> Run the <KBD>Game</KBD> class in the <KBD>tictactoe</KBD> package of
+your <KBD>extensions</KBD> folder to play against the computer.
+</UL>
+
+<a name="extdemo5"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.5</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.5">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions0">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 5</H3><HR NOSHADE SIZE=10><p>
+<a name="ext6"></a>
+<H2>Extension 6: Jackpot (7 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Not ready, need to dictate methods, need more detail.
+<UL>
+ <LI> Design some squares, and show examples
+ <LI> Draw square (at place) given half-center, half-width, half-height
+ <LI> Animate one strip of them, moving stoppig on a click
+</UL>
+</FONT></BLOCKQUOTE>
+<H4>Description</H4> 
+In this extension you complete the first step towards creating slots, the classic casino game. In this game, you pull a lever and the slots rotate, slow down, and eventually land
+on some combination. Based on the combination you have the chance to win a certain amount of money. You will create this machine using 
+<kbd>StdDraw</kbd>. 
+<H4>Procedure</H4> 
+<BLOCKQUOTE>
+You are only taking a step towards completing slots, so read the instructions carefully so that you do not do more than you need to.
+</BLOCKQUOTE>
+This step in your implementation of the slots machine must include:
+<UL>
+<LI> Some sort of drawing of the slots machine. Get creative here! There is a lot you can do with <kbd>StdDraw</kbd>.
+<LI> Three rotating wheels with shapes on them. The shapes must move from the top of the screen to the bottom of the screen, or vice-versa. You can use any shapes you would
+like. 
+</UL>
+A couple of methods that might be helpful in your implementation are:
+<UL>
+<LI> Some sort of <kbd>drawShapes()</kbd> method that takes in some description of the state of a shape or a slot and draws it
+<LI> A <kbd>moveShapes()</kbd> method that moves the shapes with the desired velocity in some direction.
+<LI> And, of course, a <kbd>main()</kbd> method to run your loop.
+</UL>
+You can add more or fewer methods, depending on how you want your implementation to work, but having these will save you a lot of code writing.
+
+<a name="extdemo6"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions1">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 6</H3><HR NOSHADE SIZE=10><p>
+<a name="ext7"></a>
+<H2>Extension 7: Jackpot: Actual Game (7 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+</UL></DL>
+
+<H4>Description</H4> 
+In this extension you complete the second step towards creating slots, the classic casino game. In this game, you pull a lever, and the slots rotate, slow down, and eventually land
+on some combination. Based on the combination you have the chance to win a certain amount of money. You will create this machine using 
+<kbd>StdDraw</kbd>. 
+
+<H4>Procedure</H4> 
+This step in your implementation of the slots machine must include:
+<UL>
+<LI> You can decide: either the slots will slow down and then eventually come
+ to a stop on a random shape, or the user will click, and the shapes will stop.
+<BLOCKQUOTE>
+Either way, when a slot stops on a shape that shape must appear in the center of the slot, so that the user can tell which shape the slot landed on
+</BLOCKQUOTE>
+<LI> When the slots stop, you should print a message telling the user whether or not any points were scored. If the user hit the Jackpot, congratulations are in order. If not, 
+inform the user of this with a morose message, such as "you stink" or  <a href="https://youtu.be/S3I5XcsReT0?t=10s">this</a> (right click this link, and open it in a new tab)
+
+ <BLOCKQUOTE>
+ You can write text using <kbd>StdDraw.text(double xCoord, double yCoord, String string)</kbd>. If you want to set the font, create a new font and then set that as
+ the font 
+ <PRE>
+ 	Font f = new Font("Tahoma", Font.PLAIN, 50);
+ 	
+	StdDraw.setFont(f);
+</PRE>
+<kbd>Tahoma</kbd> is the name of the font, <kbd>Font.plain</kbd> is the style, and <kbd>50</kbd> is the size of the font. 
+</BLOCKQUOTE>
+
+<LI> You should keep the score of the game and display it every time the slots stop. The score should go up every time the user gets 2 or 3 of a kind, and go down otherwise. 
+<LI> Once you display to the user the outcome of the spin, the user should be able to click on the standard draw canvas, and the Jackpot machine should run again.
+If you would like to create a button you can, but it is not required, as long as clicking somehow restarts the animation. 
+</UL>
+A couple of methods that you might add when you modify your Jackpot machine:
+<UL>
+<LI> a <kbd>checkStop()</kbd> or <kbd>slowDown</kbd> method that stops the slot when the mouse is pressed or slows it down, depending on your implementation
+
+<BLOCKQUOTE>
+If you are going to check if the user clicked to stop the slot, check in your <kbd>main()</kbd> method, and pass the coordinates of the mouse
+ (using <kbd>StdDraw.mouseX()</kbd> and <kbd>StdDraw.mouseY()</kbd>) into the method that decides which slot will stop, as opposed to finding the coordinates of the mouse 
+ in the method that you call. There is a tiny widow of time in which the user could move the mouse out of the way, which could cause you to stop the wrong slot.
+</BLOCKQUOTE> 
+
+<LI> one or more methods that draw the screen that appears when the slots stop that show the score and write out whether or not the user won anything
+<LI> a <kbd>checkIfFinished()</kbd> method that returns whether or not all of the slots have stopped moving. 
+</UL>
+You can have more or fewer methods, depending on how you want your implementation to work, but having these will save you a lot of code writing.
+ 
+ 
+ 
+<a name="extdemo7"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.7</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.7">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions2">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 7</H3><HR NOSHADE SIZE=10><p>
+<a name="ext8"></a>
+<H2>Extension 8: Memory Matching (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Tim Huber
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Not ready yet
+<UL>
+ <LI> Dictate the methods
+ <LI> Unit test them
+</UL>
+</FONT></BLOCKQUOTE>
+<H4> Procedure </H4> 
+<p>Your goal in this extension is to create a memory matching game using <kbd>StdDraw</kbd> and your growing computer science knowledge. If
+you've never played a memory matching game before, you can find a Thomas the Tank Engine themed one <a href="http://www.sproutonline.com/games/thomas-memory-match"> here </a>
+to get the general idea. </p> 
+
+<p>In this extension, you are going to create a matching game that uses colors rather than images. It should do the following:</p>
+<ul>
+<li> Generate a 4-by-4 grid of clearly distinguishable tiles (you can change your design to accommodate any even number of tiles if you want, but 4x4 is the
+base requirement).
+<li> The board should be made up of randomly distributed pairs of colored tiles (8 in total); all of these colors are initially hidden. You are welcome to choose
+ the colors yourself, or come up with some way of auto-generating them. Note that the distribution of colored tiles on the board should change from 
+ game to game, but the actual colors need not.
+<li> Tiles should start out blank and should reveal their concealed color when clicked. When a single tile is clicked, it will remain visible until
+a second is selected. If that second selected tile does not conceal the same color as the first tile then, after a reasonable delay, both tiles should 
+revert to blank. If the second tile is the same color as the first tile, then both these tiles should stay flipped. You get to decide what eight colors 
+are hidden in the game board, but they should be easily distinguishable from each other.
+<li> The game must keep track of score. You can do this by either timing the game, or counting the number clicks it takes before the full board is revealed.
+Once the game is over, the score should be displayed on the <kbd>StdDraw</kbd> canvas somewhere.
+<li> After the game is over, a single click to the StdDraw canvas should start a new game (the player shouldn't need to re-run the program to play
+again).
+</ul>
+<blockquote>
+Be aware that the <kbd>(0,0)</kbd> coordinate on the <kbd>StdDraw</kbd> canvas is in the <em>lower</em>-left corner while the 
+<kbd>[0][0]</kbd> index of a double array is in the <em>upper</em>-left. If you store information is arrays, you want to have consistency between the 
+way that information is stored and viewed. You can do this however you like, but it's recommended that you change the scale of the 
+<kbd>StdDraw</kbd> canvas so that its coordinates match those of the double array.
+</blockquote>
+
+<p>In order to make this task easier for yourself, you should break the game up into parts and use several methods. Maybe you start out by creating a method
+to randomly generate the board of colors, then a method to draw the board, then then move on to the game itself.</p>
+
+<p>In this extension, you are going to need while loops that will run indefinitely, waiting for some input from the player. You 
+<em>must</em> use the <kbd>StdDraw.pause(int msec)</kbd> method to give your computer a break. If you don't, the computer will waste 
+resources doing absolutely nothing. Below is some sample code to demonstrate what this looks like:</p>
+<pre>
+while(true) {
+	if(StdDraw.mousePressed()) {
+		// Do something...
+	}
+	StdDraw.pause(80);
+}
+</pre>
+
+<blockquote>
+Don't forget that in order to actually run you game you will need a <kbd>main</kbd> method.
+</blockquote>
+
+
+ 
+<a name="extdemo8"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.8</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.8">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 8</H3><HR NOSHADE SIZE=10><p>
+<a name="ext9"></a>
+<H2>Extension 9: Net Present Value (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Arman Guerra
+  <LI> Alan Waldman
+  <LI> <a href="https://en.wikipedia.org/wiki/Net_present_value">Wikipedia</a>
+  <LI> <a href="http://www.cs.wustl.edu/~cytron/">Ron K. Cytron</a>
+</UL></DL>
+<H4>Present Value</H4>
+In this assignment, we consider and reason about the
+<a href="https://en.wikipedia.org/wiki/Time_value_of_money">time value of money</a>.  
+This is based on the observations:
+<UL>
+<LI>
+While we live in the present, we understand the value of
+$1 in terms of what it can buy today.  
+<LI> It's difficult for us to think of what a dollar
+could buy 100 years ago, or 100 years from now.
+<LI> If we want to compare monetary values from several time periods,
+it is helpful to view them in the same time period.
+</UL>
+<p>
+<BLOCKQUOTE>
+The suggestion is therefore to reason about all currency in <I>today's dollars</I>.  This is called <i>present value</I>.
+</BLOCKQUOTE>
+The ideas discussed here are widely used in economics, finanace, and
+accounting.
+<H4>Two Friends and your $1</H4>
+Suppose you have $1 and two friends who offer to take your dollar under the
+following circumstances:
+<P>
+<TABLE BORDER CELLPADDING=10>
+<TR><TD VALIGN=TOP>
+<B>Friend One</B>
+<p>
+This friend takes your $1 and gives you back $5 tomorrow.
+</TD>
+<TD VALIGN=TOP>
+<B>Friend Two</B>
+<p>
+This friend takes your $1 and gives you back $10 in fifty years.
+</TD>
+</TR>
+</TABLE>
+<P>
+Which friend is offering you the better deal?  
+<UL>
+ <LI> If we consider only the number of dollars you receive from these
+two friends, then in 50 years you end up with either $5, or $10.
+<LI> It may therefore seem that Friend Two is offering you the better deal.
+<LI> However, we know that $10 fifty years from now is not worth $10 today.
+</UL>
+<p>
+How do we reason about the value of $10 in fifty years?  We must first model
+how the value of money changes over time.  We do this by choosing:
+<UL>
+  <LI> a time period during which the money's value stays the same, and at the
+end of which money grows instantaneously by some factor <I>r</I>
+<BLOCKQUOTE>For this exercise, we choose a year's time, so that money changes
+value annually.</BLOCKQUOTE>
+  <LI> the factor <I>r</I>, which is interchangeably called
+the <I>discount rate</I>, <I>opportunity cost of capital</I>, and
+<I>rate of return</I>.
+<BLOCKQUOTE>For this exercise, we choose 10% growth so that 
+<I>r&nbsp;=&nbsp;0.1</I>.
+</BLOCKQUOTE>
+</UL>
+<p>
+We
+then use the 
+<a href="https://en.wikipedia.org/wiki/Time_value_of_money">time value of money</a> 
+to compute the following:
+<UL>
+  <LI> What would $1 be worth in fifty years if invested with some
+rate of return <I>r</I>?
+<BLOCKQUOTE>
+We model this computation by the function
+<PRE>
+futureValue(dollars, years, r) = dollars &times; (1.0 + r)<sup>years</sup>
+</PRE>
+<p>
+Thus, $1 is the same now as $117 dollars fifty years from now.
+</BLOCKQUOTE>
+  <LI> How much would I have to set aside today so that it would be worth
+$1 in fifty years using the discount
+rate <I>r</I>?
+<BLOCKQUOTE>
+We model this computation by computing the reverse (running time backwards)
+of what we computed for the future:
+<PRE>
+presentValue(dollars, years, r) = dollars / (1.0 + r)<sup>years</sup>
+</PRE>
+<p>
+Thus, to have $1 fifty years from now, we would have to set aside
+0.854 cents (less than one cent) now.
+</BLOCKQUOTE>
+</UL>
+<p>
+Returning to your two friends, let's relate both friends' offers in terms
+of present value, and compute your profit or loss (your <I>net</I> result).
+<H4>Net Present Value</H4>
+<TABLE BORDER CELLPADDING=10>
+<TR> <TD COLSPAN=2 ALIGN=CENTER>
+Recall we assume a discount rate of 10% (<KBD>r=0.10</KBD>) and we regard
+time annually.</TD></TR>
+<TR><TD VALIGN=TOP>
+<B>Friend One</B>
+<UL>
+<LI>
+This friend takes your $1 and gives you back $5 tomorrow.  
+<LI> With money changing
+value annually, $5 tomorrow is the same as $5 today.  
+<LI>Computing
+<PRE>presentValue($5, 0, 0.10) = $5 / (1.0 + 0.10)<sup>0</sup></PRE> yields $5.
+<LI>
+This friend's offer is therefore worth $5 today. 
+<LI> Your <I>net</I> gain is
+the $5 you receive <I>minus</I> the $1 you gave away, so you net $4.
+</UL>
+<BLOCKQUOTE>
+Because your <I>net present value</I> from this deal is positive ($5), you would choose
+to take advantage of this friend's offer.
+</BLOCKQUOTE>
+</TD>
+<TD VALIGN=TOP>
+<B>Friend Two</B>
+<UL>
+<LI>
+This friend takes your $1 and gives you back $10 in a fifty years.
+<LI> $10 in fifty years sounds better than $5 tomorrow, but &hellip;
+<LI>
+Computing <PRE>presentValue($10, 50, 0.10) = $10 / (1.0 + 0.10)<sup>50</sup></PRE> 
+tell us that this friend's
+offer is worth about 8 cents today.  
+<LI> Your <I>net</i> gain is the 0.08 dollars
+you receive minus the $1 you gave away, so you net &minus;0.92 dollars.
+</UL>
+<BLOCKQUOTE>
+Because your <I>net present value</I> is negative (&minus;0.92), you would decline
+this friend's offer.
+</BLOCKQUOTE>
+</TD>
+</TR>
+</TABLE>
+<H4>Product Development Story</H4>
+
+Consider the following <a href="https://en.wikipedia.org/wiki/Net_present_value#Example">example from Wikipedia</a>,
+based on investing $100,000 to create a new product:
+<UL>
+ <LI> The product would cost you $100,000 to develop.  That money would be gone forever.
+ <LI> Every year for the next 12 years, you would receive $10,000 from sales
+of the product.
+</UL>
+<p>
+In summary, you give away $100,000 and you get $120,000 back.  Is this 
+a good deal?  Let's look at the returns in terms of Net Present Value (NPV):
+<p>
+<TABLE BORDER CELLPADDING=5>
+<TR>
+<TH>Year</TH> <TH>Present Value<br>Computation<br>(for year 0)</TH> <TH>Computation<br>Result</TH> <TH>Net Present Value</TH> <TH> Comments</TH> </TR>
+<TR>
+ <TD ALIGN=CENTER><B>0</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> &minus;$100,000</TD></TR>
+    <TR> <TD><HR></TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>0</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;&minus;$100,000.00</TD>
+ <TD ALIGN=RIGHT>&minus;$100,000.00</TD>
+ <TD> Initial investment, no return until year 1</TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>1</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>1</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$9,090.91</TD>
+ <TD ALIGN=RIGHT>&minus;90,909.09</TD>
+ <TD> The <B>Computation Result</B> column shows the yearly return of $10,000,
+discounted by the rate (0.10) so it can be
+expressed in present (year-0) dollars</TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>2</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>2</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$8,264.46</TD>
+ <TD ALIGN=RIGHT>&minus;82,644.63</TD>
+ <TD>The <B>Net Present Value</B> column shows the cumulative gain or loss </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>3</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>3</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$7,513.15</TD>
+ <TD ALIGN=RIGHT>&minus;75,131.48</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>4</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>4</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$6,830.13</TD>
+ <TD ALIGN=RIGHT>&minus;68,301.35</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>5</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>5</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$6,209.21</TD>
+ <TD ALIGN=RIGHT>&minus;62,092.14</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>6</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>6</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$5,644.74</TD>
+ <TD ALIGN=RIGHT>&minus;56,447.40</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>7</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>7</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$5,131.58</TD>
+ <TD ALIGN=RIGHT>&minus;51,315.82</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>8</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>8</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$4,665.07</TD>
+ <TD ALIGN=RIGHT>&minus;46,650.75</TD>
+ <TD>In present value, the $10,000 received in this year is
+worth less than half! </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>9</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>9</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$4,240.98</TD>
+ <TD ALIGN=RIGHT>&minus;42,409.77</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>10</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>10</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$3,855.43</TD>
+ <TD ALIGN=RIGHT>&minus;38,554.34</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>11</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>11</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$3.504.94</TD>
+ <TD ALIGN=RIGHT>&minus;35,049.40</TD>
+ <TD> </TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER><B>12</B></TD> 
+ <TD ALIGN=CENTER>
+  <TABLE>
+    <TR> <TD ALIGN=CENTER> $10,000</TD></TR>
+    <TR> <TD> <HR> </TD></TR>
+    <TR>  <TD ALIGN=CENTER>(1+0.10)<sup><B>12</B></sup></TD> </TR>
+  </TABLE>
+  </TD>
+ <TD ALIGN=RIGHT>&nbsp;=&nbsp;$3,186.31</TD>
+ <TD ALIGN=RIGHT>&minus;31,863.09</TD>
+ <TD>At the end of 12 years, we have $120,000 but that is worth only
+$68,136.91 in present (year-0) dollars, with each year's $10,000 discounted
+to show present value.</TD>
+</TR>
+</TABLE>
+<BLOCKQUOTE>
+The NPV of the $100,000 investment is &minus;31,863.09, which is a substantial loss.
+Because the NPV is negative, this is not an investment you should make.
+</BLOCKQUOTE>
+
+<H4> Procedure </H4>
+
+<UL>
+<LI>
+Find and open
+the <KBD>NPV</KBD> class found in the
+<KBD>netpresentvalue</KBD> package of the <KBD>extensions</KBD> source
+folder in your repository.
+<LI> 
+Using the information provided above, your task is to complete the methods within that class
+<LI> Test your work by running the provided unit test.  It should show green
+and produce a table similar to the one provided above.
+</UL>
+<H4>To Demo</H4>
+Show your unit test output to a TA.
+
+<a name="extdemo9"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions4">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 9</H3><HR NOSHADE SIZE=10><p>
+<a name="ext400"></a>
+<H2>Extension 400: Watermelon Puzzle (C++) (8 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<BLOCKQUOTE>
+Adapted from <I>Sit and Solve Brainteasers</I> by Derick Niederman
+</BLOCKQUOTE>
+<HR>
+<H4> Warm Up </H4>
+Five watermelons, each of different weight, have been weighed in <i>pairs</I>
+to obtain the following weights:
+<p>
+<CENTER><B>
+20, 22, 23, 24, 25, 26, 27, 28, 30, 31
+</B></CENTER>
+<p>
+
+One way to solve this would be to figure out a mathematical algorithm for this number of watermelons and work out the weight of each watermelon. 
+Another would be to try all of the possible combinations of weights five watermelons until you found one that has this same set of combinations of weights.
+Either way you did it, the specific set of watermelons that produces these weights is
+<p>
+<CENTER><B>
+ [ 9, 11, 13, 14, 17 ]
+</B></CENTER>
+<p>
+
+<H4> Procedure </H4> 
+Since we have computers, and know how to write code, trying all of the possible weights of the five watermelons is now much easier. In this extension, 
+you will take in an array of 10 weights, and you will try, iteratively, to come up with the individual weights of the five watermelons.
+
+<p>In this extension we will introduce <kbd>vectors</kbd> which are defined in the <kbd>vector</kbd> header. Vectors work a lot like arrays with a couple
+very important differences. Before you start this extension, familiarize yourself with the <a href="http://www.cplusplus.com/reference/vector/vector/">vector class</a></p>
+
+<OL>
+<LI>
+Find the code for this extension in the <KBD>watermelons</KBD> package.
+<LI> Take a look at <KBD>watermelons.h</kbd> and familiarize yourself with the functions required.
+<LI> Create two methods in the <KBD>Watermelons</KBD> source file. There is one finished method that will help you write the other two 
+methods. The two methods you must create are:
+<DL>
+ <DT> <KBD>int[] allPairSums(int[] nums)
+ <DD> This method must be completed first.  Given the input array
+<KBD>nums</KBD>, this method computes the pairwise-sum of each distinct
+pair of index values for that array.  For example, given the
+input <KBD>{40, 20, 10, 30}</KBD>, the method must compute the sums of
+indices 
+<KBD>(0,1)</KBD>,
+<KBD>(0,2)</KBD>,
+<KBD>(0,3)</KBD>,
+<KBD>(1,2)</KBD>,
+<KBD>(1,3)</KBD>,
+<KBD>(2,3)</KBD>, returning the array
+<CENTER>
+<KBD>{60, 50, 70, 30, 50, 40}</KBD>
+</CENTER>
+The ordering of the elements in the returned array does not matter.
+<DT> <KBD>int[] getSolution(int[] originalSums)</KBD>
+<DD> This method returns a solution to the puzzle for the array of 10 integers that are passed into it. The ordering of elements
+in the array you produce does not matter, as far as the provided unit test is concerned. 
+<BLOCKQUOTE>
+The included method, <KBD>bool sameIntArrays(vector<int> one, vector<int> two)</KBD> 
+will help you with this method. When you pass two integer arrays into <KBD>sameIntArrays</KBD>, it checks whether the two integer vectors contain the same elements.
+The order of the elements in the arrays does not matter.
+</BLOCKQUOTE>
+</DL>
+<LI> Make sure you pass the provided tests in <kbd>WatermelonsTest</kbd>.  Once it does, you will
+have a solution to the puzzle.
+</OL>
+
+<a name="extdemo400"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.400</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.400">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 400</H3><HR NOSHADE SIZE=10><p>
+<a name="ext500"></a>
+<H2>Extension 500: Lab Methods (C++) (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> Dan Nolan
+</UL></DL>
+<H4>Introduction</H4>
+<UL>
+<LI> Open a browser and re-read the description for <KBD>Module 5</KBD>
+<LI>As we did in studio, the code you develop for this lab is tested using <KBD>lab5Tests.cpp</KBD>
+<LI> Review the course slides, text, your studio work, and lab 5 solutions if necessary.
+<HR>
+<LI> At this point you should understand the following:
+<UL>
+ <LI> The methods you write must agree in name, input parameter types, and output parameter
+type with the specification given here.  Otherwise, the tests will not compile.
+</UL>
+</UL>
+<HR>
+<H4>Methods</H4>
+<BLOCKQUOTE>
+We strongly suggest that you proceed <B>one method at a time</B> through the work below,
+testing each time to be sure what you have written so far is correct.
+<p>
+If you show up for help with a bunch of methods that don't work because you typed them
+all in before testing anything, we may not be able to help you until you clean up your code
+and focus on one method at a time.
+</BLOCKQUOTE>
+<UL>
+<LI>
+Open the provided files <KBD>Lab5Methods.cpp</KBD> and <KBD>lab5Tests.cpp</KBD>.
+<LI> For each of the following specifications,
+<UL>
+<LI>create a method in <KBD>Lab5Methods</KBD> that implements the specification
+</UL>
+At times, we have not specified the return type.  In those cases, you should think about the nature of the
+method's computed result and determine the appropriate return type.
+</UL>
+
+<OL>
+<P><LI>Write and test the method <code>sumDownBy2</code>
+with the following specification.
+<PRE>
+PARAMETERS:   an integer n
+RETURN VALUE: the sum of the positive integers n + (n-2) + (n-4) + ...
+EXAMPLES:     sumDownBy2(7) is 7+5+3+1 = 16
+              sumDownBy2(8) is 8+6+4+2 = 20
+              sumDownBy2(0) is 0
+              sumDownBy2(-1) is 0
+</PRE>
+<BLOCKQUOTE>
+<KBD>sumDownBy2</KBD> works properly.
+<p>
+Continue the lab in this fashion:  write code, test the code, and then
+move forward.
+</BLOCKQUOTE>
+<HR>
+<P><LI>Write and test a method <code>harmonicSum</code>
+with the following specification.
+<PRE>
+PARAMETERS:   a positive integer, n
+RETURN VALUE: the sum 1 + 1/2 + 1/3 + ... + 1/(n-1) + 1/n
+</PRE>
+<BLOCKQUOTE>
+<B>Warning:</B>  Think carefully about this method's return type! 
+</BLOCKQUOTE>
+<P>
+
+<HR>
+<LI>Write and test a method called <CODE>geometricSum</CODE>
+with the following specification.
+<PRE>
+PARAMETERS:   a non-negative integer, k
+RETURN VALUE: the sum 1 + 1/2 + 1/4 + 1/8 + ... + 1/Math.pow(2,k)
+</PRE>
+<P>
+
+<HR>
+<P><LI>Write and test a method <code>multPos</code> 
+that takes in two positive integers and returns their product.
+<PRE>
+PARAMETERS:   positive integers j and k
+RETURN VALUE: the product j*k
+</PRE>
+<BLOCKQUOTE>
+You must accomplish this
+<b>without using the multiplication operator</b>.   Use iteration and repeated addition
+to form the product.
+</BLOCKQUOTE>
+
+<HR>
+<P><LI>Write and test a method <code>mult</code> 
+that takes in two integers and returns their product.
+Each integer could be positive, negative, or zero.
+<PRE>
+PARAMETERS:   integers j and k
+RETURN VALUE: the product j*k
+</PRE>
+<BLOCKQUOTE>
+Do this by calling your <KBD>multPos</KBD> method:
+<UL>
+<LI> Pass <KBD>multPos</KBD> the absolute values of <KBD>j</KBD> and <KBD>k</KBD>.  It should
+return the product of those positive values.
+<LI> Compute this method's return value based on the result of <KBD>multPos</KBD> and based
+on the signs
+of <KBD>j</KBD> and </KBD>k</KBD>.
+</UL>
+</BLOCKQUOTE>
+
+<HR>
+<P><LI>Write and test a method <code>expt</code>
+with the following specification.  Use repeated multiplication.
+(Do not use the built-in exponentiation method.)
+<PRE>
+PARAMETERS:   integers n and k, where k >= 0
+RETURN VALUE: the value of n to the power k
+EXAMPLES:     expt(3,2) is 9
+              expt(5,0) is 1
+              expt(2,5) is 32
+</PRE>
+
+</OL>
+
+<HR>
+
+<a name="extdemo500"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 5.500</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="5.500">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 500</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

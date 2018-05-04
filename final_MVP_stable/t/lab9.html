@@ -1,0 +1,233 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Lists</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 9: Lists</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI class="active"><A HREF="lab.html">Lab</A></LI>
+<LI><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Lab</H3>
+<HR>
+Update your svn repository as usual to get the <KBD>lab9</KBD> package in the <KBD>labs</KBD>
+source folder.
+<P>
+<BLOCKQUOTE>IMPORTANT: Do not modify the provided toString method in the ListItem class, since our automated tests depend on the specific formatting it produces.</BLOCKQUOTE>
+<P><HR><P>
+<H3><a name="project">Project: Linked List Manipulation</a></H3>
+
+In <a href="../8"> Module 8</a>, you used the LinkedList class as an abstraction to represent the coefficients of polynomials.  However, the internal representation was encapsulated within each LinkedList object and you operated on it only in terms of the methods in the List interface.
+In this lab, you will be working with directly with "raw" list structure, using references to traverse lists and manipulating references to change the structure of lists.
+<OL>
+
+<LI>In the file <b>ListItem.java</b>, write methods for the ListItem
+class that satisfisfy the following specifications. 
+In each case, be sure to use recursion or iteration as specified.
+Where not indicated, you may choose either approach.
+<BLOCKQUOTE>
+<UL>
+<LI>
+<b>Use the JUnit test cases in <KBD>ListItemTest</KBD> to guide the development of your methods, and
+continually test-as-you-go.</b>
+<LI>
+<B>Hints:</B> Draw lots of pictures before writing any code.  Try small examples and hand simulate how your algorithm will work.  Use small lists for testing in JUnit so you can draw the corresponding pictures.  Then, if things don't work as expected, use the debugger to examine the list structure itself in memory.  To do this, set a breakpoint at a line in the test case where you want the debugger to pause.  Then, choose "debug as" instead of "run as" in Eclipse.  Use the "step over" and "step into" methods to single step through the code, and examine the list structure in the "variables" view by opening up the "next" references to see what they refer to. 
+</UL>
+</BLOCKQUOTE>
+
+<OL>
+<LI>A <b>recursive</b> method <CODE>duplicate</CODE>
+that takes no parameters and returns a new ListItem that begins a
+list containing the same numbers (but not the same ListItem objects)
+as the original list. <!-- (We did this one in class, but try to do it without
+looking at your notes.) -->
+<P>
+
+<LI>A <b>recursive</b> method <CODE>length</CODE>
+that takes no parameters and returns the number of elements in the list.
+For example, the list (3 5 9 3 2 4) would have length 6.
+<P>
+
+<LI>An <b>iterative</b> method <code>stretch</code> that takes a positive number <code>n</code>
+as a parameter and returns a new ListItem beginning a
+list in which each of the numbers in the original
+list is repeated <code>n</code>
+times.  For example, if the original
+list is ( 6 7 6 9 ) and the parameter value is
+2, then the new list returned is ( 6 6 7 7 6 6 9 9 ).
+<P>
+
+<LI>A method <CODE>find</CODE> that takes an integer <code>target</code>
+and returns the first ListItem in the list that contains the given number.
+If the target does not occur in the list, then <code>null</code> is returned.
+<P>
+
+<LI>A method <CODE>max</CODE> that
+returns the largest number in the list.
+Hint: You know that the maximum
+value must be at least as large as the number in the first ListItem.
+
+<p>
+<LI>In the file <b>ListItem.java</b>, write a <b>static</b> method
+that satisfies the following specification.  Remember that static methods are called directly on the ListItem class itself, rather than on ListItem objects.
+
+<P>
+
+A <b>recursive</b> procedure <CODE>evenElements</CODE>
+<PRE>
+PARAMETERS:   a ListItem reference, ls
+RETURN VALUE: a ListItem at the beginning of a list structure
+              containing copies of the even numbers in given list.
+                 for example, given input list ( 3 2 6 9 ), the
+                 return value would be the list ( 2 6 )
+</PRE>
+<P>
+
+</OL>
+<HR>
+Make sure your code passes both unit tests in your repo before asking to demo.
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> You must demo the commited work to a TA.  Make sure the TA knows that
+your demo is for credit at this point.  
+<LI> Follow the directions below to have your demo for this work recorded.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:39:05 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab9">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+        <BLOCKQUOTE class="demo">
+        When you done with this lab, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for lab 9</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="lab9a">
+        <input type="hidden" name="Thing"    value="lab">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+</BODY>
+</HTML>

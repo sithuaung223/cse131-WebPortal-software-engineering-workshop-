@@ -1,0 +1,329 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Intro and Types&nbsp;&amp;&nbsp;Names</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H3>Studio</H3>
+<HR>
+Read this before starting:
+<h3> Studio Sessions Overview: </h3>
+<UL>
+  <LI> We gather as a community in studio session to learn from each other.
+     Our community includes:
+    <UL>
+       <LI> Instructor
+       <LI> TAs
+       <LI> Students
+    </UL>
+  <LI> Our community is egalitarian in terms of learning:  all of us will
+    have questions
+    and all of us should try to provide answers.   
+  <LI> The idea is to challenge each other
+    and to share what we discover.
+  <LI> You are free (downright encouraged) to collaborate in this
+       session:
+   <UL>
+     <LI> Primarily within your small group of 2-4 people
+     <LI> Secondarily with any group in the class
+     <LI> As much as you like with the instructor and TAs
+   </UL>
+  <LI> In studio, the instructor's mission is to observe, interact,
+      and work with groups.
+     <UL>
+        <LI> How you think, work, and arrive at a solution is
+             more important than getting the right answer.  Thus, the instructor
+             and TAs will observe you throughout the exercise and offer
+             constructive feedback.
+        <LI> The help you receive may be incomplete at any given time, so that
+             you can work through more of the solution on your own.  Do not
+             hesitate to ask for more help.
+     </UL>
+  <LI> In studio, the student's mission is to acquire new knowledge
+       and skills by the collaborative solving of problems.
+     <UL>
+         <LI> You are <I>not</I> graded on whether you get wrong
+              or right answers on this exercise.
+         <LI> You are graded on your level of participation in studio.
+     </UL>
+  <LI> Participation is defined as
+     <UL>
+       <LI> Asking questions, at any level, of any person in the studio
+       <LI> Discussing possible solutions with people in the studio
+       <LI> Helping somebody in the studio solve a problem
+       <LI> Presenting or demonstrating your solution to people in the studio
+       <LI> Documenting your group's experiences in studio
+     </UL>
+  <LI> Please eliminate external stimuli (cell phones, IM, Facebook) 
+       during studio.  Please devote yourself to learning, mastering, and
+       extending the material for the session.
+</UL>
+<BLOCKQUOTE>
+The results of your studio session are to be reported and documented
+in a file that you save in your workspace.  You are to commit
+that report prior to leaving studio.  In the descriptions of
+the studio exercises, verbs like <i>report</i> and <i>document</i> are
+indications of activities you should summarize and discuss in your report.
+<p>
+In your groups, take turns documenting results, looking over shoulders, and
+staffing the keyboard.
+<p>
+It is unacceptable to copy anything without understanding it.  At any point,
+the TA or instructor can point to something you've done and ask you why
+it works, or change it and ask what would happen with the modification.
+</BLOCKQUOTE>
+
+<HR>
+<p>
+<BLOCKQUOTE>
+<UL>
+<LI>
+To receive credit for a studio, your team must
+cleared by a TA using the green box at the bottom of this page.
+<LI>
+Be careful how you use the web.  You are required to develop solutions
+as a group by thinking not by finding solutions that have been thought
+out by others.  You must be able to explain anything that you have done.
+</UL>
+</BLOCKQUOTE>
+<HR>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<H3>Procedure</H3>
+<p>
+<UL>
+<LI> You will complete a series of simple Java programs, and run each program
+to ensure it performs its task correctly.   
+<LI> The files for this program
+are in the <KBD>studio1</KBD> package of the repository you loaded.
+<LI> There are two ways to run programs in this course:
+<p>
+<UL>
+  <LI> <EM>Directly in eclipse:</EM>
+To run a program, right- (control-) click on the file's name, choose
+<KBD>Run As</KBD>&hellip;<KBD>Java Application</KBD>.  The program will then
+launch and prompt you for the inputs it needs.
+<BLOCKQUOTE>
+Try this now on the <KBD>Hello</KBD> class.  When it asks you how you
+are feeling, enter whatever comes to mind.
+</BLOCKQUOTE>
+<p>
+The tools we use are replete with buttons and menus to make programming
+easier.   One such button near the top of your eclipse window is a green
+circle containing a white triangle:&nbsp;<IMG SRC="Studio/gbutton.png" align=middle>
+<p>
+Clicking on this button will run the program again.
+<BLOCKQUOTE>
+Try running the program using the button.  Isn't that more fun?
+</BLOCKQUOTE> 
+
+  <LI> <EM>Command line:</EM>  This method simulates how you would run your
+program from <I>outside</I> eclipse.  You should see a <KBD>usecommandline.jar</KBD>
+file in your studio repo.  Double-click it to run the program, and
+a window should appear.
+If you click in the lower part of that window, you can type commands into that window, including a command that will run
+your Java program.
+<BLOCKQUOTE>
+For example, to run the <KBD>Hello</KBD> example, included in this studio,
+you would type:
+<PRE>
+java studio1.Hello
+</PRE>
+<CENTER>
+<IMG SRC="Studio/cline.png">
+</CENTER>
+and hit enter.
+<B>
+Try that.
+</B>
+</BLOCKQUOTE>
+<p>
+On the command line, you can supply the program's inputs directly, instead
+of being prompted for them one at a time.
+<BLOCKQUOTE>
+In the command line window, type:
+<PRE>
+java studio1.Hello spunky
+</PRE>
+and hit return.
+Notice that the program now uses <KBD>spunky</KBD> as its input.
+</BLOCKQUOTE>
+</UL>
+
+</UL>
+<HR>
+<BLOCKQUOTE>
+Some of
+the following exercises are adapted from Princeton University's
+<a href="http://www.cs.princeton.edu/courses/archive/spring12/cos126/precepts.php">COS&nbsp;126 course</a>, based on our text by Sedgewick and Wayne.
+</BLOCKQUOTE>
+<p>
+For each of the following exercises, find the file in your studio repository
+and complete it to do the assigned task.
+<DL>
+  <DT> <KBD>HiOne</KBD>
+  <DD> Say hello to the name supplied as input to this program.
+Sample output: <KBD>Hi Ron.  How are you?</KBD> (assuming <KBD>Ron</KBD> was supplied
+as input)
+<BLOCKQUOTE>
+Feel free to end the output with punctuation that indicates the level
+of enthusiasm associated with your greeting.
+</BLOCKQUOTE>
+
+  <DT> <KBD>HiFour</KBD>
+  <DD> Expand your hospitality to the <EM>four</EM> names supplied to this program.
+Sample output: <KBD>Greetings Cormen, Leiserson, Rivest, and Stein.</KBD>
+<p>
+<B>Be sure to put in <a href="http://en.wikipedia.org/wiki/Serial_comma">proper punctuation</a> to separate the names.</B>
+<DT><KBD>Ordered</KBD>
+<DD>Define a boolean variable <KBD>isOrdered</KBD> whose value is 
+<KBD>true</KBD> if the three values are either in strictly ascending 
+order 
+(<KBD>x&nbsp;&lt;&nbsp;y&nbsp;&lt;&nbsp;z</KBD>)
+or in strictly descending order 
+(<KBD>x&nbsp;&gt;&nbsp;y&nbsp;&gt;&nbsp;z</KBD>),
+and <KBD>false</KBD> otherwise. 
+Print out the variable <KBD>isOrdered</KBD> using <KBD>System.out.println(isOrdered)</KBD>. 
+<BLOCKQUOTE>
+Some of you may already know some Java.  We have not yet covered the
+<KBD>if</KBD> statement.  You must use what has been taught so far (simple
+expressions and assignment) to accomplish this task.
+</BLOCKQUOTE>
+<DT><KBD>Average</KBD>
+<DD>Complete this code so that it prints the average of its two integer inputs.
+<BLOCKQUOTE>
+Sample output: 
+<br>
+<KBD>Average of 5 and 6 is 5.5</KBD>
+<p>
+Note that the output is specified as a <KBD>double</KBD>,
+because the average of two integers is not necessarily an integer.
+</BLOCKQUOTE>
+OK, for this one, you are on your own.  We are not giving you code for this, but will
+instruct you how to create your own Java file from scratch:
+<p>
+<OL>
+  <LI> Right- (control-) click on the <KBD>studio1</KBD> package, select
+<KBD>New&hellip;Class</KBD>.
+   <LI> Type the name <KBD>Average</KBD> and check the box that indicates
+you want to create 
+<KBD>public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)</KBD>:
+<CENTER>
+<IMG SRC="Studio/newclass.png" WIDTH=50%>
+</CENTER>
+    <LI> Click <KBD>Finish</KBD> and your new class shows up in the editor window.
+   <LI> At the top of the <KBD>main</KBD> method, you need to insert the
+<KBD>ArgsProcessor</KBD> code to accept two integers:
+<KBD>n1</KBD>
+and
+<KBD>n2</KBD>.
+<BLOCKQUOTE>
+<UL>
+<LI>
+Refer to other studio code to see how this is done.  
+<LI> It is likely that when you type in the code, eclipse will flag your
+code with an error, because it doesn't know (yet) about <KBD>ArgsProcessor</KBD>.
+<p>
+Silly eclipse.
+<p>
+You can get eclipse to solve its own problem by mousing over the error, and using the first suggestion that pops up, namely to include <KBD>ArgsProcessor</KBD> from
+the <KBD>cse131</KBD> package.
+<BLOCKQUOTE>
+Sometimes eclipse is <I>&uuml;ber</I> silly and won't tell you about that fix until
+you have saved your file.  So save it.
+</BLOCKQUOTE>
+<LI> Try to use meaningful
+messages to prompt for values.  The units for the values will be interpreted
+as <I>grams</I>.  For example, if <KBD>3</KBD> is specified for <KBD>carbs</KBD>,
+that means that this run of your program is for food that has 3 grams of
+carbohydrates.
+<p>
+A not so nice prompt:
+<PRE>
+int n1 = ap.nextInt("Yo, sup?");
+</PRE>
+and a nice prompt:
+<PRE>
+int n1 = ap.nextInt("The first of two integers to be averaged?");
+</PRE>
+<LI> Run your program and makes sure it prompts you correctly for its values.
+<LI> Ask a TA to check your work at this point.
+</UL>
+</BLOCKQUOTE>
+<LI> Finish the class so it prints out the appropriate message.
+</OL>
+</DL>
+<HR>
+<H3>Creative Exercise</H3>
+As a group, brainstorm the best data type to represent the following
+situations:
+<BLOCKQUOTE>
+Often, there is no <I>right</I> or <I>wrong</I> answer.  Be prepared
+to defend your choices.
+</BLOCKQUOTE>
+<UL>
+  <LI> The number of times you have been to <a href="http://www.teddrewes.com/home/default.aspx">Ted Drewes</a>
+  <LI> Whether you like <a href="http://www.teddrewes.com/sitecontent/dynamiccontent.aspx?pid=76&uid=D18D6B6C-7948-4C04-8F59-12F77F9F3F49">vanilla frozen custard</a> or not
+  <LI> The number of people you can take in your car
+  <LI> The price of a small cup of <a href="http://www.teddrewes.com/sitecontent/dynamiccontent.aspx?pid=76&uid=D18D6B6C-7948-4C04-8F59-12F77F9F3F49">vanilla frozen custard</a>
+  <LI> The name of 
+your favorite <a href="http://www.teddrewes.com/sitecontent/Specials.aspx">special</a> offering from
+<a href="http://www.teddrewes.com/home/default.aspx"> Ted Drewes</a> 
+  <LI> The 
+<a href="http://www.teddrewes.com/sitecontent/dynamiccontent.aspx?pid=92&uid=1FA7B06F-39EC-4A8E-8A31-23EE0B783705">address </a>
+of the 
+<a href="http://www.teddrewes.com/home/default.aspx#">Ted Drewes </a>
+that is closest to campus
+  <LI> The percentage of calories in
+<a href="http://www.teddrewes.com/sitecontent/dynamiccontent.aspx?pid=76&uid=D18D6B6C-7948-4C04-8F59-12F77F9F3F49">vanilla frozen custard</a> that come
+from fat
+   <LI> The probability that you will see a friend at
+<a href="http://www.teddrewes.com/home/default.aspx">Ted Drewes</a> when you go there
+</UL>
+</DL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:38:57 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+</BODY>
+</HTML>

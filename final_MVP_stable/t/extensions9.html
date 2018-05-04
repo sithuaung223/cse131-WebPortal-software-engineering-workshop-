@@ -1,0 +1,890 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Lists</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H2><a href="http://www.cs.wustl.edu/~jp/cse131/">CSE 131</a> Module 9: Lists</H2>
+<UL CLASS="tabs primary">
+<LI><A HREF="index.html">Module Home</A></LI>
+<LI><A HREF="exercises.html">Exercises</A></LI>
+<LI><A HREF="studio.html">Studio</A></LI>
+<LI><A HREF="lab.html">Lab</A></LI>
+<LI class="active"><A HREF="extensions.html">Extensions</A></LI>
+</UL>
+<H3>Extensions</H3>
+<a name="ext1"></a>
+<H2>Extension 1: More ListItem Methods: the List Goes On (4 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+In the file <b>ListItem.java</b>, write <b>static</b> methods
+that satisfy the following specifications.  Remember that static methods are called directly on the ListItem class itself, rather than on ListItem objects.
+
+<P>
+<B>Create JUnit tests to test each method thoroughly.</B>
+Recall that
+to call static methods of the ListItem class
+from your JUnit test methods, you can specify the class name each time,
+as in <tt>ListItem.evenElements(ls)</tt>.  Alternatively, you can save characters and just write <tt>evenElements(ls)</tt> if you import the static methods from the ListItem class by adding the line<br>
+<CODE>import static lab8.ListItem.*;</CODE><br>
+near the top of your file, after the package declaration.
+<P>
+
+As you work through these exercises, be sure to use recursion or
+iteration as indicated.  Where not indicated, you may choose either
+approach.  Each method will take references to list items as
+parameters. Unless otherwise specified, <b>you should handle the case
+of a null parameter value.</b>
+
+<P>
+<OL>
+<LI>A <b>recursive</b> static procedure <CODE>pairwiseSum</CODE>
+<PRE>
+PARAMETERS:   two ListItem references, ls1 an ls2
+RETURN VALUE: a ListItem at the front of a new list containing the pairwise
+              sum of the elements in ls1 and ls2
+                 for example, given lists ( 3 2 6 ) and ( 1 4 2), 
+                 the return value would be the list ( 4 6 8 )
+</PRE>
+You may assume that the given lists are the same length.
+<P>
+
+<LI>An <b>iterative</b> static procedure <code>smallElements</code>
+<PRE>
+PARAMETERS:   a ListItem reference, ls
+              an integer n
+RETURN VALUE: a new list identical to the given list, except
+              that it contains no occurrences of numbers greater than n.
+              for example, given input list ( 3 2 6 3 4 ) and 3,
+                 the return value would be the list ( 3 2 3 )
+</PRE>
+<P>
+
+<LI>An <b>iterative</b> static procedure <code>scale</code>
+<PRE>
+PARAMETERS:   a ListItem reference, ls
+              an integer n
+RETURN VALUE: none (void)
+              the procedure <b>mutates</b> the list by multiplying
+              each number in the list by the given number n.
+                 for example, given input lists ( 3 2 6 3 4) and
+                 the number 3,
+                 the modified list would be ( 9 6 18 9 12 ).
+</PRE>
+
+<LI>A static procedure <code>insertAfter</code>
+<PRE>
+PARAMETERS:   a ListItem reference, ls
+              two integers i and j (not equal)
+RETURN VALUE: none (void)
+              the procedure <b>mutates</b> the list by inserting the
+              given number i after each occurrence of j.
+                 for example, given input lists ( 3 2 6 3 4) and
+                 the number 5 and 3,
+                 the modified list would be ( 3 5 2 6 3 5 4 ).
+</PRE>
+Be sure to do this by creating new list items only for the inserted
+numbers.  Modifying the <code>next</code> references in the existing
+ListItem objects to insert the new items in the right places.
+Don't create a whole new list structure.
+<P>
+</OL>
+
+<a name="extdemo1"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.1</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.1">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions0">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 1</H3><HR NOSHADE SIZE=10><p>
+<a name="ext2"></a>
+<H2>Extension 2: Reversing Lists (3 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<P>
+
+In the ListItem class, write methods with the following specifications,
+and write thorough JUnit tests to check that they work correctly. 
+
+<UL>
+
+<LI>A <b>recursive</b> method <code>reverseRecurse</code> that takes no
+parameters and returns a ListItem.  The return value should be
+a <b>new</b> list structure that contains the same numbers as this list, but
+in the reverse order.  (Hint: Use a helper procedure with an extra
+parameter that accumulates the reversed list.)  
+<P>
+
+<LI>An <b>iterative</b> method <code>reverseLoop</code> that takes no
+parameters and returns a ListItem.  The return value should be
+a <b>new</b> list structure that contains the same numbers as this list, but
+in the reverse order. (Hint: Create a loop variable that's a ListItem reference
+to keep track of your current position in the list.)
+<P>
+
+</UL>
+
+<a name="extdemo2"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.2</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.2">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions1">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 2</H3><HR NOSHADE SIZE=10><p>
+<a name="ext3"></a>
+<H2>Extension 3: Falling Arches (12 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+More points, unit tests, better stepwise description
+</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>
+This extension requires a substative development effort.  It is possible I would give more points for this
+extension than are advertised.  If you are interested please contact the instructor.
+</BLOCKQUOTE>
+<H3> Overview:</H3>
+Computers are powerful problem-solving tools, and simulation is a common technique for
+analyzing systems whose behavior is beyond the capabilities of simple models or closed formulae.
+Weather prediction and fluid flow are examples of such systems.  In the work described here,
+you will simulate the shape of a suspended cable by constructing the cable from masses and springs and
+allowing gravity and the laws of Newtonian physics to act upon the masses.
+<p>
+More specifically,
+you construct a model for simulating the
+shape of a <b>catenary</b>:  the shape
+of our beloved St. Louis <a href="http://en.wikipedia.org/wiki/Gateway_Arch">Gateway Arch</a>.
+<HR>
+<H3>
+Goals:</H3>
+By the end of this lab, you should
+<UL>
+<LI> Gain more experiences with arrays and lists
+<LI> Gain more experience with iteration
+<LI> Understand the nature of simulation and approximation in computation science
+</UL>
+<HR>
+<H3>
+Before starting:</H3>
+<ul>
+<li>
+Read over this entire document before you start.
+<LI> Ask questions of the instructor and TAs.
+</ul>
+<HR>
+<H3>
+Problem description: </H3>
+<p>
+Long before our city began its expansion into the NFL, the pioneers of
+our country expanded to the West, crossing the Mississippi and braving the
+perils of midwestern life.  As a monument to their efforts, the City of
+St. Louis erected 
+<a href="http://www.google.com/search?q=Eero+Saarinen">Eero Saarinen</a>'s famous 
+<a href="http://www.gatewayarch.com/Arch/info/arch.fact.aspx">Arch</a> in 1965.  Its grace,
+beauty, and elegance have inspired poets, musicians, and artists
+of the past five decades.
+<p>
+It's time that
+CSE131 had its turn.
+<P>
+A <b><a href="http://en.wikipedia.org/wiki/Catenary">catenary</a></b> is the shape made when you suspend a string by holding its ends, and let gravity
+pull on the string.
+If you look at
+a telephone wire strung between two poles, the shape you see is
+a catenary,
+though not one that would necessarily garner artistic praise.
+<p>
+It turns out that our 
+Arch 
+is also a catenary, but situated upside down.
+<p>
+How are we to simulate an catenary acting on a string?  If we look really
+closely at the string, we see that it is composed of a series of mass points,
+with each adjacent pair of masses connected by a spring.
+<p>
+With gravity turned off, the picture is as follows:
+<CENTER>
+<IMG SRC="Extensions/orig.png"> </TD>
+</CENTER>
+As the simulation proceeds, the catenary takes on the following shapes:
+<CENTER>
+<IMG SRC="Extensions/100.png"><br>
+<IMG SRC="Extensions/300.png"><br>
+<IMG SRC="Extensions/final.png"><br>
+</CENTER>
+<HR>
+<H3>Notes</H3>
+<UL>
+  <LI> You are given an <KBD>ArchController</KBD> and <KBD>Arch</KBD> class to facilitate your
+running this program as a GUI.
+  <LI> Your effort goes into the <KBD>Arch</KBD> class, specifically:
+    <UL>
+       <LI> The constructor must set up the simulation.
+       <LI> The <KBD>round()</KBD> method must simulate one round of gravity and springs acting on each mass.
+    </UL>
+    <BLOCKQUOTE>
+    You can use any data type to represent the masses and/or springs. Wisely you must choose, young padawan, for this choice will affect how much work you will 
+    have to put in for the remainder of this extension.
+    </BLOCKQUOTE>
+  <LI> To obtain consistent results, it is suggested that you simulate movement in two phases within a given round:
+    <OL>
+      <LI> First compute where each mass should move at the end of this round, but do not move them.
+This way, the other mass's positions are computed consistently.
+      <LI> Once the new position of all masses are known, have each mass move to its new position.
+    </OL>
+    <BLOCKQUOTE> It is preferred that you do not account for the momentum of the masses. In the real world, when the masses fall, if they are held 
+    together by springs, they would bounce up and down until eventually the springs turn the kinetic energy of the masses into heat through internal friction.
+    In this code, even if you account for momentum AND friction, it is very hard to get the masses to settle. So instead, for every <kbd>round()</kbd>
+    calculate where the mass should be based on the force of gravity and the springs, and move it there. 
+    </BLOCKQUOTE>
+  <LI> Think of the resolution of this project in terms of the number of  masses that are used in the simulation.
+Make sure that the sum  of the masses is constant, no matter how many masses you use, so that the cable
+has constant total mass no matter how many point masses (rectangles in the picturse) you use in the simulation.
+  <LI> A spring obeys 
+<a href="http://en.wikipedia.org/wiki/Hooke%27s_law"> Hook's Law</a>.
+   <LI> To receive credit, you must be able to change certain properties of the simulation.  See the list of
+questions below for more detail, and be sure to parameterizse your simulation so that these are easily changed.
+</UL>
+<HR>
+<H3> To receive credit</H3>
+       Be prepared to answer the following questions when you demo:
+   <OL>
+    <LI> What happens when the spring constant is large?
+    <LI> Why do the masses continue to wiggle, even after the Arch seems
+         finished?
+    <LI> What happens when you have more masses, but the same gravity and
+         spring constant?
+    <LI> What happens when gravity increases?
+   </OL>
+<p>
+  <b>Extra fun:</b> Modify your solution so that the Arch starts
+at the bottom of the screen, and falls up instead of down.
+
+<a name="extdemo3"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.3</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.3">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions2">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 3</H3><HR NOSHADE SIZE=10><p>
+<a name="ext4"></a>
+<H2>Extension 4: BioJava (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Add some actual experiments to be done here.  Double check that biojava still 
+works.
+</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>
+Researchers in genetics and biology frequently collect samples of DNA that
+they then wish to analyze for certain properties.  Biologists use such results
+to investigate diseases and their treatments, evolution, and 
+the nature of biological systems.
+<p>
+In this extension you will use a package developed to assist in processing
+biological data.   Some of the processing occurs on your computer (locally),
+while some processing occurs at 
+the <a href="http://www.ncbi.nlm.nih.gov/">NCBI</a> and other
+institutions.
+</BLOCKQUOTE>
+<H3> Overview:</H3>
+<a href="http://biojava.org/wiki/Main_Page">Biojava</a> is a collection of
+packages and classes that represent and process biological information.
+With these packages installed and available for your workspace, you can
+use the code base to store, maipulate, and analyze DNA, RNA, and
+protein sequences.  You can connect to repositories and retrieve
+sequences by their <a href="http://en.wikipedia.org/wiki/Accession_number_%28bioinformatics%29">accession number</a> (which often contains letters as well
+as numbers).  You can also send data to sites that perform analysis remotely
+and retrieve the results of that analysis.
+<p>
+Throughout this work, you may wish to consult the following resources:
+<UL>
+  <LI> <a href="http://biojava.org/wiki/Main_Page">biojava</a> web site
+  <LI> <a href="http://www.biojava.org/docs/api/index.html"> biojava API </a>
+  <LI> <a href="http://biojava.org/wiki/BioJava:CookBook3.0"> biojava cookbook</a>
+</UL>
+<BLOCKQUOTE>
+Note that we are using BioJava release 3.  
+Earlier releases are still available on the web, but they are
+incompatible with release 3 and they tend not to work with NCBI.
+</BLOCKQUOTE>
+<OL>
+  <LI> Download <a href="Extensions/whatisthis.fasta"> this fasta file</a>
+  <LI> Copy it into the genomes folder of your eclipse workspace
+  <LI> Using NCBI blast through biojava, determine the likely origin of this DNA
+<BLOCKQUOTE>
+More will be added -- stay tuned
+</BLOCKQUOTE>
+</OL>
+
+<a name="extdemo4"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.4</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.4">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions3">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 4</H3><HR NOSHADE SIZE=10><p>
+<a name="ext5"></a>
+<H2>Extension 5: Trees and a Map ADT (10 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Video for this
+</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>
+<I>Note:</I> 
+This extension is especially recommended for those students who
+wish to continue with computer science studies.  Others are welcome to
+complete it as well.
+</BLOCKQUOTE>
+Update your svn repository as usual to get the <KBD>trees</KBD> package
+in your <KBD>extensions</KBD> folder.
+<P><HR><P>
+<H3>Two implementations of a Map interface</H3>
+In this lab, you will implement a <I>map</I> abstract data type
+two different ways.  Both of the implementations will provide the
+same functionality, but will differ in their structure and
+efficiency.
+
+Think of a "map" ADT as a relation between a <em>domain</em> and
+a <em>range</em>.  For example, a telephone directory is a map from
+names to telephone numbers.  The domain is all possible names, and the
+range is all possible phone numbers.  As another example, this kind of
+data structure could be useful, for example, to map stock names to
+their current prices in a stock trading application.  Each entry in the map
+is a pair of elements, one from the domain and one from the range.
+Often, the domain and range are different types, but that is not a
+requirement.  The test cases for this lab will map strings to
+integers, but your implementations should be able to handle any data
+types.
+
+<P>
+<B>Implementation notes:</B>
+<UL>
+<LI>One purpose of this lab is for you to learn how
+to design and implement different data structures.  Therefore,
+<b>do not</b> use any of the data structures that are already
+provided by Java in the <tt>java.util</tt> package.  Build your data
+structures from scratch.
+<P>
+<LI>To compare objects, such as String values, use the <b>provided</b>
+<code>compareTo</code> method of the 
+<KBD><a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Comparable.html">Comparable</a></KBD> interface.  
+For String values,
+this method uses lexicographic ordering (dictionary ordering);
+the <code>compareTo</code> method takes as its parameter another String,
+and returns an integer whose value is:
+<UL>
+<LI>negative if this string is less than the parameter,
+<LI>zero if this string is equal to the parameter, or
+<LI>positive if this string is greater than the parameter.
+</UL>
+
+<P><LI>
+<B>Do not use the <code>==</code> operator to compare objects for
+equality.</B>
+When <code>==</code> is used on objects, it evaluates to true if both
+sides of the comparison refer to the same exact memory location (i.e.,
+it's the exact same object).  For example, even if two String objects
+contain the same text, the <code>==</code> test for equality on the
+two objects would return <code>false</code> if they are not
+the same object.
+</UL>
+<HR>
+<H3>Directions:</H3>
+<OL>
+
+<LI>Open the provided file <b>Map.java</b> and study the provided
+code in that file.  Notice that the file does not contain a class
+definition, but instead contains an
+<em>interface</em>.  Recall that an interface is just a collection of method names
+with parameter types and return types.  It cannot be instantiated,
+because it doesn't actually contain implementations of any of the
+methods.  That is, the methods have no bodies.
+<P>
+<LI>Open the provided file <b>OrderedListMap.java</b> and
+read the provided code.  Notice the line
+<pre>
+public class OrderedListMap&lt;K extends Comparable&lt;K&gt;,V&gt; implements Map
+</pre>
+near the top of the file.  The phrase "implements Map" means that
+this class conforms to the Map interface.  In other words,
+this class must define all of the methods contained in the
+Map interface, and the compiler will check that this is indeed
+the case.
+<P>
+Notice also that the key type <KBD>K</KBD> is any <KBD>Comparable</KBD> object.
+This will allow you to call the <code>compareTo</code> method on the keys.
+The values associated with key can be objects of any type.
+
+<P><LI>
+In general, Java's support for
+interfaces provides
+the power to define the interface of an ADT and write programs in
+terms of that interface.  Then, you can implement the ADT in different
+ways and use those implementations interchangably.
+For example,
+look at the testAllMethods procedure
+in the provided file <b>MapTest.java</b>.
+Notice that the method calls another method to create a Map object.
+Any object returned by that method must
+implement the Map interface, and so the testAllMethods procedure may call any of
+the methods in the Map interface on the object returned.
+There are two other JUnit test cases provided, one for OrderedListMap and one for TreeMap.  Each of these <em>extends</em> the MapTest and so each of them <em>inherits</em> testAllMethods.  Each of these test cases <em>overrides</em> the method that creates the Map, to create an OrderedListMap and a TreeMap, respectively.
+So, when you run each of those test cases, they will use the same test method, but will use different type of object.
+
+
+<P><LI>Study again the interface definition in the file <b>Map.java</b>,
+paying attention to the documentation for each method.
+<p>
+<LI>
+<B>Optional in 2013:</b>: 
+Complete the implementation in the file <b>OrderedListMap.java</b>,
+being sure to satisfy the specification given in the interface file.
+For your internal representation, use a
+linked list, where each list item contains a domain element (e.g., a <KBD>String</KBD>), a range
+element (e.g., an <KBD>Integer</KBD>), and a next pointer (to another list item).  If you
+like, you can use dummy nodes at the beginning and end of the list.
+Also, feel free to create a doubly linked list (with previous pointers) if you
+find that easier.
+<P>
+One of the representation invariants for your OrderedListMap
+implementation should be that the list is kept in alphabetically
+sorted order according to the domain element.
+Use the fact that the list is kept in sorted order
+in order to improve the efficiency of the methods.
+
+<P>You can write additional test cases, but when you are finished, the provided test case <KBD>OrderedListMapTest</KBD> should run correctly.
+Also, be sure to verify that your toString methods produce the correct output.
+Verify that your list is being kept in sorted order.
+<P>
+
+<P><LI> Complete the implementation in the file <b>TreeMap.java</b>,
+being sure to satisfy the specification given in the interface file.
+To do this, you'll need to define a <tt>TreeNode</tt> class.
+Each node in the tree will have a domain element,
+a range element, a
+(possibly null) left subtree and
+a (possibly null) right subtree.
+Your implementation should satisfy the representation invariant that
+for each node, all strings in the left subtree are alphabetically less,
+and all strings in the right subtree are alphabetically greater.
+Make use of this invariant
+to improve the efficiency of the methods.
+<P>
+
+Your <tt>remove</tt> method will require deleting elements from the tree.
+The usual way to delete nodes from a binary search tree is somewhat
+complicated, as discussed in class.  Therefore, we are leaving the proper implementation of delete as an optional extension for this lab.
+If you don't want to do that
+extension, then you can implement delete by adding a boolean instance
+variable called <tt>deleted</tt> to your tree nodes.  If you delete an
+element from the tree, you can just set <tt>deleted</tt> to true.  Then, when a search reaches that node for the <tt>get</tt> or <tt>contains</tt> method, you can act as if the element is not in the tree.
+
+<P>
+Implement the <code>toString</code> method so that it returns
+a readable representation of the tree.
+Display the tree sideways, with the root of
+the tree at the left edge of the page.
+Your return String should have one node
+per line, something like this:
+<pre>
+
+                        (quack,4)
+            (oink,5)
+                        (moo,7)
+(meow,2)
+                        ()
+            (bow wow,8)
+                        (baa,5)
+
+</pre>
+This is called an <em> in-order traversal</em> of the tree, since
+one subtree is traversed first, then the node itself, and then
+the other subtree.
+You can use the special
+character <code>'\n'</code> in a String to cause the terminal to advance
+to a new line as it prints the string.
+<P>
+Hint: 
+The depth of the node in the tree determines how much to indent.
+So, use a helper procedure with a String parameter
+that keeps track of the leading spaces
+for each line of output.  Start it out with the value <code>""</code>
+and then concatenate a String of spaces to create
+the indentation String parameter for the recursive calls on both subtrees.
+If you want, you can use the special tab character <code>'\t'</code>
+instead of multiple spaces.
+
+<P><LI>You can write additional test cases, but when you are finished, the provided test case TreeMapTest should run correctly.
+Also, be sure to verify that your toString methods produce the correct output.
+Verify that your list is being kept in sorted order.
+Look at the printed values to be sure that the
+representation invariant is being preserved by your implementation.
+<P>
+
+</OL>
+
+
+<a name="extdemo5"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.5</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.5">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions4">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 5</H3><HR NOSHADE SIZE=10><p>
+<a name="ext6"></a>
+<H2>Extension 6: Deforestation: Binary Search Tree Deletion (5 points):</H2><p>
+<DL><DT>Authors<DD><UL>
+  <LI> 
+</UL></DL>
+<BLOCKQUOTE> <FONT COLOR="RED"><B>Issues:</b>
+Video for this
+</FONT></BLOCKQUOTE>
+<P>
+Implement deletion properly in your binary search tree.  In particular, suppose you want to remove node <b>x</b> from the tree.
+<OL>
+<LI>If <b>x</b> is a leaf, let <b>x</b>'s parent refer to null instead.
+<LI>If <b>x</b> has only one child,  let <b>x</b>'s parent refer to <b>x</b>'s child instead.
+<LI>In the difficult case, when <b>x</b> has two children, you can replace <b>x</b> in the tree by the rightmost element in <b>x</b>'s left subtree.
+</OL>
+
+<a name="extdemo6"></a>
+        <BLOCKQUOTE class="demo">
+        When you done with this extension, you must be cleared by the TA to receive credit.
+        <UL>
+           <LI> Commit all your work to your repository
+           <LI> Fill in the form below with the relevant information
+           <LI> Have a TA check your work
+           <LI> The TA should check your work and then fill in his or her name
+           <LI> Click <KBD>OK</KBD> while the TA watches
+           <LI> If you request propagation, it does not happen immediately,
+but should be posted in the next day or so
+        </UL>
+        <p>
+<BLOCKQUOTE>
+<FONT SIZE=4><B>This demo box is for extension 9.6</B></FONT>
+</BLOCKQUOTE>
+        <FORM method="post" action="http://userfs.cec.wustl.edu/~joshlandman/recordgrade.php">
+        <input type="hidden" name="Logentry" value="9.6">
+        <input type="hidden" name="Course"  value="131">
+        <input type="hidden" name="Logname"  value="extensions5">
+        <input type="hidden" name="Thing"    value="extension">
+        <TABLE>
+        <TR> <TD> </TD> <TH> Last name</TH> <TH> WUSTL Key </TH> <TH COLSPAN=2>Propagate?</TH></TR>
+         <TR> <TD></TD> <TD> </TD> <TD><FONT SIZE=-2 COLOR="red">(or your numeric ID)</FONT> </TD> <TD><input type="radio" name="PropFrom" value="0" checked></TD><TD>Do not propagate</TD></TR>
+         <TR> <TD>e.g.</TD> <TD> <KBD>Smith</KBD> </TD> <TD><KBD>j.smith</KBD> </TD> <TD COLSPAN=2></TD></TR>
+            <TR> <TD> 1</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name1">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID1">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=1>
+             </TD><TD>
+                 Copy from 1 to all others
+             </TD>
+            </TR>
+            <TR> <TD> 2</TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="Name2">
+             </TD>
+             <TD>
+                <input type="text" size="12" maxlength="20" name="ID2">
+             </TD>
+             <TD>
+                <input type="radio" name="PropFrom" value=2>
+             </TD><TD>
+                 Copy from 2 to all others
+             </TD>
+            </TR>
+         </TABLE>
+         <hr>
+         TA: <input type="text" size="12" maxlength="12" name="TA">
+         Password: <input type="password" size="12" maxlength="12" name="Password" AUTOCOMPLETE="OFF"><br />
+         <p>
+         <input type="submit" value="OK">
+         </FORM>
+         </BLOCKQUOTE>
+         <p>
+<P><H3>End of extension 6</H3><HR NOSHADE SIZE=10><p>
+</BODY>
+</HTML>

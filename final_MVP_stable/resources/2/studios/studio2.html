@@ -1,0 +1,237 @@
+
+<HTML XMLNS="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>CSE 131: Choice&nbsp;&amp;&nbsp;Iteration</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+</HEAD>
+<BODY>
+<H3>Studio</H3>
+<HR>
+<html>
+Review <a href="../../StudioDocs/studioheader.html">studio procedures</a> before
+starting.
+<HR>
+<p>
+<BLOCKQUOTE><b>
+Feel free to participate in a different group than last time. This is totally
+up to you, but try to find a group that makes it easy for you to participate.
+<p>
+Be careful how you use the web.  You are required to develop solutions
+as a group by thinking not by finding solutions that have been thought
+out by others.  You must be able to explain anything that you have done.
+</B></BLOCKQUOTE>
+<HR>
+<H3>Warmup</H3>
+<UL>
+<LI>
+First, form a group:
+<UL>
+ <LI> If you are at a table with a large, wall-mounted screens, a group of 3-4 people is fine.
+ <LI> If you are seated at a table without a large screen, a group of 2 people is better.
+</UL>
+<LI> All but one member of your group should have this web page open so you can follow along
+and see the instructions as you work.
+<LI> All members of the group should update their repositories:
+<UL>
+  <LI> Open your repository in eclipse
+  <LI> Right-click (control-click on a mac) on your repository name
+  <LI> Drag down to <KBD>Team...</KBD>
+  <LI> Choose <KBD>Update</KBD>
+  <LI> Supply your WUSTL key and password as necessary
+</UL>
+<LI> Plan to have one computer at which your team does its work.  Initially,
+one of you will be in charge of typing at that computer.
+<LI> Throughout the studio, you should trade who is in charge of the keyboard.  Before doing so,
+<B>commit your work</B> to make sure your work is saved.
+</UL>
+
+<HR>
+<BLOCKQUOTE>
+<FONT SIZE=4>
+<B>
+Two problems follow.  First pick the one of greatest interest to your group,
+and try to finish that one.  If you have time, then try the other one.
+</B></FONT>
+</BLOCKQUOTE>
+<HR>
+<H3>Problem 1:  Determining the GC content of DNA</H3>
+<p>
+<a href="http://en.wikipedia.org/wiki/DNA">DNA</a> 
+is comprised of two long polymers (often called strands) of <I>nucleotides</I>.  Each nucleotide
+is commonly one of four possible <I>bases</I> denoted by a single character:
+A, T, C, or G.
+<p>
+An organism's DNA, once determined, is often represented as a string 
+whose characters that represent a portion of one strand of the DNA. 
+<p>
+One property of interest to biologist is the GC content of DNA:  what fraction
+of an organism's DNA are the bases G or C?
+<p>
+In this studio, your team should do the following:
+<OL>
+  <LI> With your repository open, create a <KBD>GC</KBD> class in the
+<KBD>studio2</KBD> package.
+<BLOCKQUOTE>
+Be sure to check the box that generates <KBD>public static void main</KBD>. 
+Otherwise you will have to type that by hand.
+</BLOCKQUOTE>
+ <LI> Your first task is to generate a random string of DNA, as follows:
+ <OL>
+   <LI> Prompt the user to supply an integer that will be the length of the
+string you will generate.  
+<BLOCKQUOTE>
+If you don't remember how to do this, look at code from a previous
+studio or lab.
+</BLOCKQUOTE>
+   <LI> Use iteration, conditionals, and the random-number generator to 
+generate a random <KBD>String</KBD> of DNA.
+   <LI> Print that string so we can see it.
+ </OL>
+  <LI> Run the <KBD>CG</KBD> program several times.  Check the output to make sure
+it looks reasonable in terms of the length and contents.
+<BLOCKQUOTE>
+You should ensure that your code works properly for <I>edge cases</I>.  For
+example, what happens if the user specifies <KBD>0</KBD> as the desired
+length?
+<p>
+Also, because you are using the random-number generator, your output should
+look different among different runs.
+</BLOCKQUOTE>
+<LI> Now let's compute the CG content of your generated DNA.
+<OL>
+  <LI> Just after you have printed the DNA, write a loop that computes
+     how many bases in the DNA string are <KBD>C</KBD> or <KBD>G</KBD>.
+<BLOCKQUOTE>
+Some notes:
+<UL>
+  <LI> Case matters.  A <KBD>G</KBD> and a <KBD>g</KBD> are two different
+characters.  Be sure you are looking for the proper case.
+  <LI> If you have a <KBD>String</KBD>&nbsp;</KBD>s</KBD>, then the
+caracter at position <I>i</I> can be gotten by:
+<PRE>
+  char r = s.charAt(i);
+</PRE>
+<LI>
+Note that the first chracter in <KBD>s</KBD> occurs at location <KBD>0</KBD>.
+If <KBD>s</KBD> has <KBD>n</KBD> characters, then its last character
+occurs at location <KBD>n-1</KBD>.
+  <LI> To compare <KBD>r</KBD> to a character constant, surround that
+character constant with single quotes, as in:
+<PRE>
+   if (r == 'G') {
+      System.out.println("I saw a G.");
+   }
+</PRE>
+</UL>
+</BLOCKQUOTE
+</OL>
+  <LI> Print an informative message that shows the fraction or percent of
+the generated DNA that is <KBD>G</KBD> or <KBD>C</KBD>.
+<LI> Go back and change the probabilities of generating the four specific
+bases, so that you are more likely to generate <KBD>G</KBD> or <KBD>C</KBD>
+than <KBD>A</KBD> or <KBD>T</KBD>.
+  <LI> Rerun your program and see if your analysis confirms that the 
+distribution was suitably affected.
+</OL>
+<HR>
+<H3> Problem 2:  Computing <a href="http://en.wikipedia.org/wiki/Pi">Pi</a> by throwing darts</H3>
+<p>
+Computer scientists often use <a href="http://en.wikipedia.org/wiki/Simulation">simulation</a> as a means of
+modeling, understanding, and predicting real-world phenomena.
+<p>
+Your group is auditioning 
+for <a href="http://en.wikipedia.org/wiki/Survivor_%28TV_series%29"> Survivor</a>
+by proving your group's ability to compute 
+<a href="http://en.wikipedia.org/wiki/Pi">Pi</a> using
+only the materials at hand, as follows:
+<UL>
+  <LI> A unit-square dart board (say, 1 meter by 1 meter).  Unit-square
+   dart boards are astoundingly resilient in plane crashes,
+   and yours is nicely intact.
+  <LI> Some darts, suitable for throwing at the dart board.
+  <LI> A string and a stylus, standard safety-kit issue, suitable for 
+     inscribing a unit circle in your unit-square dartboard.
+  <LI> A dart-throwing expert.  However, since the plane crash, the
+      expert is left with the (uncanny) ability to throw darts that always land
+      somewhere, uniformly and randomly, within the unit-square dart board.
+      <BLOCKQUOTE>
+      While the thrower never misses the unit square, the darts 
+      land sometimes within the inscribed circle, sometimes not.
+      </BLOCKQUOTE>
+</UL>
+<OL>
+<LI> 
+As a group, develop an approach for computing
+<a href="http://en.wikipedia.org/wiki/Pi">Pi</a> based on the above
+materials.  
+<LI> Implement your approach using iteration.
+You can start with the following
+<a href="Studio/Pi.java">Pi.java</a> file that you can paste into a new
+Java class in one of your lab projects.
+<BLOCKQUOTE>
+This may be the first new Class you have developed, but eclipse makes
+it easy:
+<UL>
+ <LI> Right-click on the package name in which you want to define the
+    new class.  In this case, use <KBD>studio2</KBD>.
+ <LI> Click <KBD>New...</KBD>
+ <LI> Choose <KBD>Class<KBD>
+ <LI> Pick the name <KBD>Pi</KBD> for this class, since the code you
+    will paste is for class <KBD>Pi</KBD>.
+ <B> Java style dictates that its classes should begin with a capital letter!</B>
+ <LI> When the editor opens for your new class, copy and paste
+the code from 
+<a href="Studio/Pi.java">Pi.java</a> into the class.
+</UL>
+</BLOCKQUOTE>
+<p>
+You will need to simulate a random dart thrower.  The function
+<a href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#random()"><KBD>math.random()</KBD></a> will help, 
+as it returns a nonnegative <KBD>double</KBD>
+less than 1.0.
+You may also find the <a href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sqrt(double)"><KBD>Math.sqrt()</KBD></a> function
+to be helpful.
+<LI> Investigate and discuss how well your
+technique computes <a href="http://en.wikipedia.org/wiki/Pi">Pi</a>.
+</OL>
+<HR>
+<H3>Further investigations</H3>
+<P>
+If you have time,
+pick one or both of the following:
+<OL>
+<LI> Investigate the fairness of the
+<a href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#random()"><KBD>math.random()</KBD></a> method.
+<OL>
+  <LI> What normative criteria should a random number possess?
+  <LI> How can you measure the fairness of a random number generator?
+  <LI> Implement some tests and discuss your results amongst yourselves and
+       other groups.
+</OL>
+<LI> There are other ways of 
+<a href="http://en.wikipedia.org/wiki/Pi"> computing  Pi</a>.
+Try some of these and study their effectiveness in terms of the number of
+iterations you use.
+</OL>
+
+<HR>
+<H2>Submitting your work (read carefully)</H2>
+<UL>
+<LI> If your studio contains a <KBD>feedback.txt</KBD> file, respond to
+the questions and supply any requested information.
+<LI> You must commit all of your work to your repository.  It's best to do this
+from the top-most level of your repository, which bears your name and student ID.
+<LI> Follow the instructions in the green box below to receive credit for your work.
+</UL>
+<hr>
+
+
+<font size=-1>
+<br>
+Last modified 08:38:58 CDT 16 April 2016
+<!-- by <a href="http://www.cs.wustl.edu/~cytron">Ron K. Cytron</a> -->
+</font>
+
+</BODY>
+</HTML>
